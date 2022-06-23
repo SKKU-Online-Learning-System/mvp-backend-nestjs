@@ -17,12 +17,12 @@ export class CourseController {
 
 	@Get('cat1')
 	getCat1() {
-		return this.courseService.getCat1();
+		return this.courseService.getCategory1();
 	}
 
 	@Get('cat2')
 	getCat2() {
-		return this.courseService.getCat2();
+		return this.courseService.getCategory2();
 	}
 
 	@Get(':id')

@@ -28,7 +28,7 @@ export class DataSeedService {
 		];
 
 		if (true) {
-			seeds.map(({ seed, table }) =>
+			await seeds.map(({ seed, table }) =>
 				seed.map((data) =>
 					this.dataSource.manager.save(
 						this.dataSource.getRepository(table).create(data),

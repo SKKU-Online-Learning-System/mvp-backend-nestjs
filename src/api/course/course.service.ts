@@ -10,11 +10,11 @@ export class CourseService {
 		return 'courses filtered by query string';
 	}
 
-	getCat1() {
+	getCategory1() {
 		return 'category 1';
 	}
 
-	getCat2() {
+	getCategory2() {
 		return 'category 2';
 	}
 

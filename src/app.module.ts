@@ -7,11 +7,11 @@ import { TypeOrmConfigModule } from './configs/database/config.module';
 import { TypeOrmConfigService } from './configs/database/config.service';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { DataSeedModule } from './routes/data-seed/data-seed.module';
-import { AuthModule } from './routes/auth/auth.module';
-import { CourseModule } from './routes/course/course.module';
-import { LectureModule } from './routes/lecture/lecture.module';
-import { UserModule } from './routes/user/user.module';
+import { AuthModule } from './api/auth/auth.module';
+import { CourseModule } from './api/course/course.module';
+import { LectureModule } from './api/lecture/lecture.module';
+import { UserModule } from './api/user/user.module';
+import { PageModule } from './page/page.module';
 
 @Module({
 	imports: [
@@ -21,11 +21,11 @@ import { UserModule } from './routes/user/user.module';
 			useClass: TypeOrmConfigService,
 			inject: [TypeOrmConfigService],
 		}),
-		DataSeedModule,
 		AuthModule,
 		CourseModule,
 		LectureModule,
 		UserModule,
+		PageModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
