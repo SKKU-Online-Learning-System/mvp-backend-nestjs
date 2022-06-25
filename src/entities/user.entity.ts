@@ -1,12 +1,16 @@
-import internal from 'stream';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+	Column,
+	CreateDateColumn,
+	Entity,
+	PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class User {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'varchar', length: 50 })
+	@Column({ type: 'varchar', length: 50, unique: true })
 	email: string;
 
 	@Column({ type: 'varchar', length: 200 })
@@ -15,24 +19,24 @@ export class User {
 	@Column({ type: 'varchar', length: 20 })
 	name: string;
 
-	@Column({ type: 'bool' })
-	sex: boolean;
+	// @Column({ type: 'bool' })
+	// sex: boolean;
 
-	@Column({ type: 'varchar', length: 20 })
-	phone: string;
+	// @Column({ type: 'varchar', length: 20 })
+	// phone: string;
 
-	@Column({ type: 'date' })
-	birth: Date;
+	// @Column({ type: 'date' })
+	// birth: Date;
 
-	@Column({ type: 'datetime' })
+	@CreateDateColumn({ type: 'datetime' })
 	joined: Date;
 
-	@Column({ type: 'varchar', length: 200 })
-	description: string;
+	// @Column({ type: 'varchar', length: 200 })
+	// description: string;
 
-	@Column({ type: 'int' })
+	@Column({ type: 'int', default: 4 })
 	privilege: number;
 
-	@Column({ type: 'varchar', length: 200 })
-	salt: string;
+	// @Column({ type: 'varchar', length: 200 })
+	// salt: string;
 }
