@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import helmet from 'helmet';
@@ -13,6 +14,8 @@ async function bootstrap() {
 	// view engine
 	app.setViewEngine('pug');
 	app.setBaseViewsDir(`${__dirname}/../views`);
+
+	app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
 	await app.listen(3000);
 }
