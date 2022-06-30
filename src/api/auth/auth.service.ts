@@ -2,6 +2,8 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { SignupDto } from './dto/signup.dto';
+import { UserEntity } from 'src/entities/user.entity';
+import { AdminEntity } from 'src/entities/admin.entity';
 
 @Injectable()
 export class AuthService {
@@ -28,6 +30,7 @@ export class AuthService {
 	}
 
 	async validateAdmin(username: string, password: string): Promise<any> {
+		// TODO add password hashing
 		const admin = await this.userService.getAdmin(username);
 		if (admin && admin.password === password) {
 			const { password, salt, ...result } = admin;
@@ -37,21 +40,20 @@ export class AuthService {
 	}
 
 	async validateUser(email: string): Promise<any> {
+		// TODO 유저가 있으면 찾아서 돌려주고, 없으면 회원가입 시켜서 돌려주도록 작성
 		const user = await this.userService.getUser(email);
 		return user;
 	}
 
-	async localLogin(user: any) {
-		const payload = { username: user.username, sub: user.userId };
+	async localLogin(user: AdminEntity) {
+		const payload = { id: user.id, username: user.username };
 		const token = this.jwtService.sign(payload);
-		console.log(this.jwtService.decode(token));
-
-		return {
-			access_token: token,
-		};
+		return { access_token: token };
 	}
 
-	async magicLogin(token: string) {
-		return this.jwtService.decode(token);
+	async magicLogin(user: UserEntity) {
+		const payload = { id: user.id, email: user.email };
+		const token = this.jwtService.sign(payload);
+		return { access_token: token };
 	}
 }

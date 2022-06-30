@@ -39,15 +39,15 @@ export class AuthController {
 		return this.authService.localLogin(req.user);
 	}
 
-	@UseGuards(AuthGuard('magic-login'))
 	@Post('login/magic')
 	async magicLogin(@Req() req, @Res() res) {
 		await this.magicLoginStrategy.send(req, res);
 	}
 
+	@UseGuards(AuthGuard('magic-login'))
 	@Get('login/magic/callback')
-	magicLoginCallback(@Query('token') token: string) {
-		return this.authService.magicLogin(token);
+	magicLoginCallback(@Req() req) {
+		return this.authService.magicLogin(req.user);
 	}
 
 	@UseGuards(AuthGuard('jwt'))

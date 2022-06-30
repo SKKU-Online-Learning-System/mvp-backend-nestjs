@@ -17,37 +17,24 @@ export class MagicLoginStrategy extends PassportStrategy(
 			secret: 'helloworld',
 			callbackUrl: 'auth/login/magic/callback',
 			sendMagicLink: async (destination, href) => {
-				console.log('sendMagicLink:', destination, href);
 				await this.mailService.sendUserConfirmation(destination, href);
 			},
-			verify: (payload, callback) => {
-				console.log('verify:', payload, callback);
-				// this.authService
-				// 	.validateUser(payload.destination)
-				// 	.then((user) => {
-				// 		console.log('to then', user);
-				// 		callback(null, user);
-				// 	})
-				// 	.catch((err) => {
-				// 		console.log('to err');
-				// 		callback(err);
-				// 	});
-				callback(null, {});
-
-				// Get or create a user with the provided email from the database
-				// getOrCreateUserWithEmail(payload.destination)
-				// 	.then((user) => {
-				// 		callback(null, user);
-				// 	})
-				// 	.catch((err) => {
-				// 		callback(err);
-				// 	});
+			verify: (payload, callback, info) => {
+				this.authService
+					.validateUser(payload.destination)
+					.then((user) => {
+						console.log('to then', user);
+						callback(null, user, 'optional!'); // user와 optional이 success로 감
+					})
+					.catch((err) => {
+						console.log('to err');
+						callback(err);
+					});
 			},
 		});
 	}
 
-	// async validate(): Promise<any> {
-	// 	console.log('welcome to validate');
-	// 	return { username: 'a@a.com', sub: 1 };
-	// }
+	success(user, info) { // verify의 callback 함수에 인자를 넣으면 success가 실행됨
+		return;
+	}
 }
