@@ -1,56 +1,57 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { SignupDto } from './dto/signup.dto';
-import { DataSource } from 'typeorm';
-import { User } from 'src/entities/user.entity';
 
 @Injectable()
 export class AuthService {
 	constructor(
 		private userService: UserService,
 		private jwtService: JwtService,
-		private dataSource: DataSource,
 	) {}
 
-	async signup({ email, password, name }: SignupDto) {
-		await this.dataSource
-			.createQueryBuilder()
-			.insert()
-			.into(User)
-			.values({
-				email,
-				password,
-				name,
-			})
-			.execute();
+	async signup({ email }: SignupDto) {
+		if (await this.userService.emailExists(email)) {
+			throw new ConflictException('This email already exists.');
+		}
+		return this.userService.createUser(email);
 	}
 
 	async emailCheck(email: string) {
-		const exist = await this.dataSource
-			.createQueryBuilder()
-			.select(['user.email', 'user.password', 'user.name'])
-			.from(User, 'user')
-			.where('user.email = :email', { email })
-			.getMany();
-		console.log(exist);
-
-		return exist;
+		if (await this.userService.emailExists(email)) {
+			throw new ConflictException('This email already exists.');
+		}
+		return {
+			statusCode: 200,
+			message: 'OK',
+		};
 	}
 
-	async validateUser(username: string, password: string): Promise<any> {
-		const user = await this.userService.findOne(username);
-		if (user && user.password === password) {
-			const { password, ...result } = user;
+	async validateAdmin(username: string, password: string): Promise<any> {
+		const admin = await this.userService.getAdmin(username);
+		if (admin && admin.password === password) {
+			const { password, salt, ...result } = admin;
 			return result;
 		}
 		return null;
 	}
 
-	async login(user: any) {
+	async validateUser(email: string): Promise<any> {
+		const user = await this.userService.getUser(email);
+		return user;
+	}
+
+	async localLogin(user: any) {
 		const payload = { username: user.username, sub: user.userId };
+		const token = this.jwtService.sign(payload);
+		console.log(this.jwtService.decode(token));
+
 		return {
-			access_token: this.jwtService.sign(payload),
+			access_token: token,
 		};
+	}
+
+	async magicLogin(token: string) {
+		return this.jwtService.decode(token);
 	}
 }

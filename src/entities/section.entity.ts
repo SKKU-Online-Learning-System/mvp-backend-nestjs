@@ -1,15 +1,15 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-class Cat2 {
+class Section {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'varchar', length: 20 })
-	name: string;
+	@Column({ type: 'varchar', length: 100 })
+	title: string;
 
 	@Column({ type: 'int' })
-	cat1_id: number;
+	course_id: number;
 }
 
-export { Cat2 as Cat2Entity };
+export { Section as SectionEntity };

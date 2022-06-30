@@ -4,19 +4,24 @@ import {
 	Get,
 	Param,
 	Post,
+	Query,
 	Req,
+	Res,
 	UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { SignupDto } from './dto/signup.dto';
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { LocalAuthGuard } from './guards/local-auth.guard';
+import { MagicLoginStrategy } from './strategies/magic-login.strategy';
 
 @ApiTags('/auth')
 @Controller('auth')
 export class AuthController {
-	constructor(private authService: AuthService) {}
+	constructor(
+		private authService: AuthService,
+		private magicLoginStrategy: MagicLoginStrategy,
+	) {}
 
 	@Post('signup')
 	signup(@Body() userData: SignupDto) {
@@ -28,15 +33,26 @@ export class AuthController {
 		return this.authService.emailCheck(email);
 	}
 
-	@UseGuards(LocalAuthGuard)
+	@UseGuards(AuthGuard('local'))
 	@Post('login/local')
-	async login(@Req() req) {
-		return this.authService.login(req.user);
+	async localLogin(@Req() req) {
+		return this.authService.localLogin(req.user);
 	}
 
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(AuthGuard('magic-login'))
+	@Post('login/magic')
+	async magicLogin(@Req() req, @Res() res) {
+		await this.magicLoginStrategy.send(req, res);
+	}
+
+	@Get('login/magic/callback')
+	magicLoginCallback(@Query('token') token: string) {
+		return this.authService.magicLogin(token);
+	}
+
+	@UseGuards(AuthGuard('jwt'))
 	@Get('profile')
 	getProfile(@Req() req) {
-		return req.user;
+		return req.user || 'no req.user';
 	}
 }
