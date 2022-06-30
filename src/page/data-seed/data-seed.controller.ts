@@ -1,7 +1,7 @@
 import { Controller, Get, Render } from '@nestjs/common';
 import { DataSeedService } from './data-seed.service';
 
-@Controller('data-seed')
+@Controller('page/data-seed')
 export class DataSeedController {
 	constructor(private readonly dataSeedService: DataSeedService) {}
 

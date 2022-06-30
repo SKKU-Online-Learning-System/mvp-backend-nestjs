@@ -1,6 +1,8 @@
 import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CourseService } from './course.service';
 
+@ApiTags('/courses')
 @Controller('courses')
 export class CourseController {
 	constructor(private readonly courseService: CourseService) {}
@@ -17,12 +19,12 @@ export class CourseController {
 
 	@Get('cat1')
 	getCat1() {
-		return this.courseService.getCat1();
+		return this.courseService.getCategory1();
 	}
 
 	@Get('cat2')
 	getCat2() {
-		return this.courseService.getCat2();
+		return this.courseService.getCategory2();
 	}
 
 	@Get(':id')

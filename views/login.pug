@@ -1,0 +1,11 @@
+extends layout 
+
+block content 
+	form(action="/auth/login", method="post") 
+		div 
+			label(for="email") email
+			input(type="text", name="email") 
+		div
+			label(for="password") password
+			input(type="password", name="password")
+		input(type="submit", value="login")

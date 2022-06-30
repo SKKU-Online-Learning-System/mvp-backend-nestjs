@@ -7,11 +7,12 @@ import {
 	ParseIntPipe,
 	Post,
 } from '@nestjs/common';
-import { identity } from 'rxjs';
 import { AddUserCourseDto } from './add-user-course.dto';
+import { ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
 
-@Controller('user')
+@ApiTags('/users')
+@Controller('users')
 export class UserController {
 	constructor(private userService: UserService) {}
 
