@@ -1,6 +1,11 @@
+<<<<<<< feature/course
+import { Controller, Delete, Get, Post, Put, Param, Body } from '@nestjs/common';
+=======
 import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+>>>>>>> main
 import { CourseService } from './course.service';
+import { CourseDto } from './dto/course.dto';
 
 @ApiTags('/courses')
 @Controller('courses')
@@ -28,22 +33,22 @@ export class CourseController {
 	}
 
 	@Get(':id')
-	getCourseById() {
-		return this.courseService.getCourseById();
+	getCourseById(@Param('id') id: string) {
+		return this.courseService.getCourseById(id);
 	}
 
-	@Post()
-	createCourse() {
-		return this.courseService.createCourse();
+	@Post('create')
+	createCourse(@Body() courseData: CourseDto) {
+		return this.courseService.createCourse(courseData);
 	}
 
 	@Put(':id')
-	updateCourseById() {
-		return this.courseService.updateCourseById();
+	updateCourseById(@Param('id') id: string, @Body() courseData: CourseDto) {
+		return this.courseService.updateCourseById(id, courseData);
 	}
 
 	@Delete(':id')
-	deleteCourseById() {
-		return this.courseService.deleteCourseById();
+	deleteCourseById(@Param('id') id: string) {
+		return this.courseService.deleteCourseById(id);
 	}
 }
