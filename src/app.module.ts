@@ -3,8 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 
-import { TypeOrmConfigModule } from './configs/database/config.module';
-import { TypeOrmConfigService } from './configs/database/config.service';
+import { TypeOrmConfigModule } from './configs/database/db.config.module';
+import { TypeOrmConfigService } from './configs/database/db.config.service';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './api/auth/auth.module';
@@ -12,7 +12,6 @@ import { CourseModule } from './api/course/course.module';
 import { LectureModule } from './api/lecture/lecture.module';
 import { UserModule } from './api/user/user.module';
 import { PageModule } from './page/page.module';
-import { MailModule } from './mail/mail.module';
 
 @Module({
 	imports: [
@@ -27,7 +26,6 @@ import { MailModule } from './mail/mail.module';
 		LectureModule,
 		UserModule,
 		PageModule,
-		MailModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],

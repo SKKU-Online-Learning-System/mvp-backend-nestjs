@@ -7,10 +7,10 @@ export class MailService {
 
 	async sendUserConfirmation(userEmail: string, url: string) {
 		await this.mailerService.sendMail({
-			// from: 'SKKU MND <paulcjy@naver.com>',
+			// from: mail.module 등록할 때 default로 입력함
 			to: userEmail,
 			subject: 'Welcome to Nice App! Confirm your Email',
-			template: './mail', // `.hbs` extension is appended automatically
+			template: './mail',
 			context: {
 				// ✏️ filling curly brackets with content
 				name: userEmail,
