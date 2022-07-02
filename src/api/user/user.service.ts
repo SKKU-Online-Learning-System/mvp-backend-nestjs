@@ -41,10 +41,11 @@ export class UserService {
 				.execute();
 
 			if (affectedRows) {
-				return {
-					statusCode: 200,
-					message: 'OK',
-				};
+				return affectedRows;
+				// {
+				// 	statusCode: 200,
+				// 	message: 'OK',
+				// };
 			} else {
 				new NotImplementedException('Nothing inserted to database.');
 			}

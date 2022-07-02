@@ -28,6 +28,11 @@ export class AuthController {
 		return this.authService.signup(userData);
 	}
 
+	@Post('signup-admin')
+	signupAdmin(@Body() userData) {
+		return this.authService.signupAdmin(userData);
+	}
+
 	@Get('emailCheck/:email')
 	emailCheck(@Param('email') email: string) {
 		return this.authService.emailCheck(email);

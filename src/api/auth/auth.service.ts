@@ -19,6 +19,12 @@ export class AuthService {
 		return this.userService.createUser(email);
 	}
 
+	async signupAdmin(userData) {
+		// TODO create-admin API
+		// TODO 관리자 비밀번호를 해싱해서 저장하는 user API 만들고 해시 옵션 env에 저장하기
+		return 'signup admin';
+	}
+
 	async emailCheck(email: string) {
 		if (await this.userService.emailExists(email)) {
 			throw new ConflictException('This email already exists.');
