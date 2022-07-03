@@ -6,9 +6,4 @@ import { UserService } from './user.service';
 @Controller('users')
 export class UserController {
 	constructor(private userService: UserService) {}
-
-	@Get('test')
-	test() {
-		return this.userService.getUserByEmail('asdfqwer@');
-	}
 }
