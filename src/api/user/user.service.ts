@@ -3,82 +3,78 @@ import {
 	InternalServerErrorException,
 	NotImplementedException,
 } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { AdminEntity } from 'src/entities/admin.entity';
 import { UserEntity } from 'src/entities/user.entity';
-import { DataSource } from 'typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
-	constructor(private dataSource: DataSource) {}
+	constructor(
+		@InjectRepository(UserEntity)
+		private userRepository: Repository<UserEntity>,
+		@InjectRepository(AdminEntity)
+		private adminRepository: Repository<AdminEntity>,
+	) {}
 
-	async emailExists(email: string): Promise<boolean> {
+	async getUserById(id: number): Promise<UserEntity | null> {
 		try {
-			const found = await this.dataSource
-				.createQueryBuilder()
-				.select('user.email')
-				.from(UserEntity, 'user')
-				.where('user.email = :email', { email })
-				.getCount();
-
-			if (found) {
-				return true;
-			}
-			return false;
+			const user = await this.userRepository
+				.createQueryBuilder('user')
+				.select('user')
+				.where('user.id = :id', { id })
+				.getOne();
+			return user;
 		} catch (e) {
 			throw new InternalServerErrorException();
 		}
 	}
 
-	async createUser(email: string): Promise<any> {
+	async getUserByEmail(email: string): Promise<UserEntity | null> {
+		try {
+			const user = await this.userRepository
+				.createQueryBuilder('user')
+				.select('user')
+				.where('user.email = :email', { email })
+				.getOne();
+			return user;
+		} catch (e) {
+			throw new InternalServerErrorException();
+		}
+	}
+
+	async createUser(email: string): Promise<number> {
 		try {
 			const {
-				raw: { affectedRows },
-			} = await this.dataSource
-				.createQueryBuilder()
+				raw: { affectedRows, insertId },
+			} = await this.userRepository
+				.createQueryBuilder('user')
 				.insert()
-				.into(UserEntity)
 				.values({ email })
 				.execute();
 
 			if (affectedRows) {
-				return affectedRows;
-				// {
-				// 	statusCode: 200,
-				// 	message: 'OK',
-				// };
+				return insertId;
 			} else {
-				new NotImplementedException('Nothing inserted to database.');
+				throw new NotImplementedException(
+					'Nothing inserted to database.',
+				);
 			}
 		} catch (e) {
-			throw new InternalServerErrorException();
+			throw new InternalServerErrorException('error');
 		}
 	}
 
 	async getAdmin(username: string): Promise<any> {
 		try {
-			const admin = await this.dataSource
-				.createQueryBuilder()
+			const admin = await this.adminRepository
+				.createQueryBuilder('admin')
 				.select('admin')
-				.from(AdminEntity, 'admin')
 				.where('admin.username = :username', { username })
 				.getOne();
 
 			console.log('getAdmin in user.service', admin);
 			return admin;
-		} catch (e) {
-			throw new InternalServerErrorException();
-		}
-	}
-
-	async getUser(email: string): Promise<any> {
-		try {
-			const user = await this.dataSource
-				.createQueryBuilder()
-				.select('user')
-				.from(UserEntity, 'user')
-				.where('user.email = :email', { email })
-				.getOne();
-			return user;
 		} catch (e) {
 			throw new InternalServerErrorException();
 		}

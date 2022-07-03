@@ -12,7 +12,6 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { SignupDto } from './dto/signup.dto';
 import { MagicLoginStrategy } from './strategies/magic-login.strategy';
 
 @ApiTags('/auth')
@@ -22,11 +21,6 @@ export class AuthController {
 		private authService: AuthService,
 		private magicLoginStrategy: MagicLoginStrategy,
 	) {}
-
-	@Post('signup')
-	signup(@Body() userData: SignupDto) {
-		return this.authService.signup(userData);
-	}
 
 	@Post('signup-admin')
 	signupAdmin(@Body() userData) {

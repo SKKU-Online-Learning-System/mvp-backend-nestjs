@@ -1,4 +1,4 @@
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
 
@@ -6,4 +6,9 @@ import { UserService } from './user.service';
 @Controller('users')
 export class UserController {
 	constructor(private userService: UserService) {}
+
+	@Get('test')
+	test() {
+		return this.userService.getUserByEmail('asdfqwer@');
+	}
 }

@@ -1,7 +1,6 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
-import { SignupDto } from './dto/signup.dto';
 import { UserEntity } from 'src/entities/user.entity';
 import { AdminEntity } from 'src/entities/admin.entity';
 
@@ -12,13 +11,6 @@ export class AuthService {
 		private jwtService: JwtService,
 	) {}
 
-	async signup({ email }: SignupDto) {
-		if (await this.userService.emailExists(email)) {
-			throw new ConflictException('This email already exists.');
-		}
-		return this.userService.createUser(email);
-	}
-
 	async signupAdmin(userData) {
 		// TODO create-admin API
 		// TODO 관리자 비밀번호를 해싱해서 저장하는 user API 만들고 해시 옵션 env에 저장하기
@@ -26,7 +18,7 @@ export class AuthService {
 	}
 
 	async emailCheck(email: string) {
-		if (await this.userService.emailExists(email)) {
+		if (await this.userService.getUserByEmail(email)) {
 			throw new ConflictException('This email already exists.');
 		}
 		return {
@@ -46,9 +38,14 @@ export class AuthService {
 	}
 
 	async validateUser(email: string): Promise<any> {
-		// TODO 유저가 있으면 찾아서 돌려주고, 없으면 회원가입 시켜서 돌려주도록 작성
-		const user = await this.userService.getUser(email);
-		return user;
+		const user = await this.userService.getUserByEmail(email);
+		if (user) {
+			return user;
+		} else {
+			const userId = await this.userService.createUser(email);
+			const newUser = await this.userService.getUserById(userId);
+			return newUser;
+		}
 	}
 
 	async localLogin(user: AdminEntity) {
