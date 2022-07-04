@@ -6,7 +6,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-class Course {
+export class CourseEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
 
@@ -34,5 +34,3 @@ class Course {
 	@CreateDateColumn({ type: 'datetime' })
 	created_at: Date;
 }
-
-export { Course as CourseEntity };

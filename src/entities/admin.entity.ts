@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-class Admin {
+export class AdminEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
 
@@ -14,5 +14,3 @@ class Admin {
 	@Column({ type: 'varchar', length: 200 })
 	salt: string;
 }
-
-export { Admin as AdminEntity };

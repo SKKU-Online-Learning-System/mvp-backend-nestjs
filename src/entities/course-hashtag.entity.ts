@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-class Course_hashtag {
+export class CourseHashtagEntity {
 	@PrimaryGeneratedColumn({ type: 'int' })
 	id: number;
 
@@ -11,5 +11,3 @@ class Course_hashtag {
 	@Column({ type: 'int' })
 	hashtag_id: number;
 }
-
-export { Course_hashtag as CourseHashtagEntity };

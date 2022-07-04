@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-class Section {
+export class SectionEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
 
@@ -11,5 +11,3 @@ class Section {
 	@Column({ type: 'int' })
 	course_id: number;
 }
-
-export { Section as SectionEntity };

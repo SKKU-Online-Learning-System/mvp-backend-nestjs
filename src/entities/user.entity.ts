@@ -6,7 +6,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-class User {
+export class UserEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
 
@@ -19,5 +19,3 @@ class User {
 	@Column({ type: 'int', default: 4 })
 	privilege: number;
 }
-
-export { User as UserEntity };
