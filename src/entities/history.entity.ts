@@ -10,7 +10,7 @@ import { Lecture } from './lecture.entity';
 import { User } from './user.entity';
 
 @Entity()
-export class History {
+class History {
 	@PrimaryGeneratedColumn()
 	id!: number;
 
@@ -29,3 +29,5 @@ export class History {
 	@ManyToOne(() => Lecture)
 	lecture!: Lecture;
 }
+
+export { History as HistoryEntity };

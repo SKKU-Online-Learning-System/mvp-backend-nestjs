@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { History } from 'src/entities/history.entity';
+import { HistoryEntity } from 'src/entities/history.entity';
 import { DataSource } from 'typeorm';
 import { IHistory } from './interfaces/history.interface';
 
@@ -13,7 +13,7 @@ export class HistoryService {
 		const query = await this.dataSource
 			.createQueryBuilder()
 			.select('history')
-			.from(History, 'history')
+			.from(HistoryEntity, 'history')
 			.where('history.userId = :userId', { userId });
 
 		if (lectureId !== undefined) {
