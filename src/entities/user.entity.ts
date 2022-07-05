@@ -5,7 +5,7 @@ import {
 	OneToMany,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
-import { History } from './history.entity';
+import { HistoryEntity } from './history.entity';
 
 @Entity()
 export class User {
@@ -42,6 +42,6 @@ export class User {
 	// @Column({ type: 'varchar', length: 200 })
 	// salt: string;
 
-	@OneToMany(() => History, (history) => history.user)
+	@OneToMany(() => HistoryEntity, (history) => history.user)
 	histories: History[];
 }
