@@ -12,6 +12,7 @@ import { CourseModule } from './api/course/course.module';
 import { LectureModule } from './api/lecture/lecture.module';
 import { UserModule } from './api/user/user.module';
 import { PageModule } from './page/page.module';
+import { HistoryModule } from './api/history/history.module';
 
 @Module({
 	imports: [
@@ -26,6 +27,7 @@ import { PageModule } from './page/page.module';
 		LectureModule,
 		UserModule,
 		PageModule,
+		HistoryModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
