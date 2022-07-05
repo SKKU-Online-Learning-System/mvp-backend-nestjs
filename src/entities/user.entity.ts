@@ -8,33 +8,15 @@ import {
 import { HistoryEntity } from './history.entity';
 
 @Entity()
-export class User {
+class User {
 	@PrimaryGeneratedColumn()
 	id: number;
 
 	@Column({ type: 'varchar', length: 50, unique: true })
 	email: string;
 
-	@Column({ type: 'varchar', length: 200 })
-	password: string;
-
-	@Column({ type: 'varchar', length: 20 })
-	name: string;
-
-	// @Column({ type: 'bool' })
-	// sex: boolean;
-
-	// @Column({ type: 'varchar', length: 20 })
-	// phone: string;
-
-	// @Column({ type: 'date' })
-	// birth: Date;
-
 	@CreateDateColumn({ type: 'datetime' })
-	joined: Date;
-
-	// @Column({ type: 'varchar', length: 200 })
-	// description: string;
+	joined_at: Date;
 
 	@Column({ type: 'int', default: 4 })
 	privilege: number;
@@ -45,3 +27,5 @@ export class User {
 	@OneToMany(() => HistoryEntity, (history) => history.user)
 	histories: History[];
 }
+
+export { User as UserEntity };

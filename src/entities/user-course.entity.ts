@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class User_Course {
+class User_Course {
 	@PrimaryGeneratedColumn()
 	id!: number;
 
@@ -14,3 +14,5 @@ export class User_Course {
 	@Column({ type: 'boolean', default: false })
 	status!: boolean;
 }
+
+export { User_Course as UserCourseEntity };

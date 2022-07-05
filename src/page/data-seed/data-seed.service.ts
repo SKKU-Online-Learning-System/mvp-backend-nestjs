@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { Cat1 } from 'src/entities/cat1.entity';
-import { Cat2 } from 'src/entities/cat2.entity';
-import { Course } from 'src/entities/course.entity';
-import { Course_hashtag } from 'src/entities/course_hashtag.entity';
-import { Hashtag } from 'src/entities/hashtag.entity';
-import { Lecture } from 'src/entities/lecture.entity';
-import { User } from 'src/entities/user.entity';
-import { User_lecture } from 'src/entities/user_lecture.entity';
+import { Cat1Entity } from 'src/entities/cat1.entity';
+import { Cat2Entity } from 'src/entities/cat2.entity';
+import { CourseEntity } from 'src/entities/course.entity';
+import { CourseHashtagEntity } from 'src/entities/course-hashtag.entity';
+import { HashtagEntity } from 'src/entities/hashtag.entity';
+import { LectureEntity } from 'src/entities/lecture.entity';
+import { UserEntity } from 'src/entities/user.entity';
+import { UserLectureEntity } from 'src/entities/user-lecture.entity';
 import { DataSource } from 'typeorm';
 import { Cat1_seed } from './seeds/cat1.seed';
 import { Cat2_seed } from './seeds/cat2.seed';
 import { Course_seed } from './seeds/course.seed';
-import { Course_hashtag_seed } from './seeds/course_hashtag.seed';
+import { Course_hashtag_seed } from './seeds/course-hashtag.seed';
 import { Hashtag_seed } from './seeds/hashtag.seed';
 
 @Injectable()
@@ -20,11 +20,11 @@ export class DataSeedService {
 
 	async home() {
 		const seeds = [
-			{ seed: Cat1_seed, table: Cat1 },
-			{ seed: Cat2_seed, table: Cat2 },
-			{ seed: Course_seed, table: Course },
-			{ seed: Hashtag_seed, table: Hashtag },
-			{ seed: Course_hashtag_seed, table: Course_hashtag },
+			{ seed: Cat1_seed, table: Cat1Entity },
+			{ seed: Cat2_seed, table: Cat2Entity },
+			{ seed: Course_seed, table: CourseEntity },
+			{ seed: Hashtag_seed, table: HashtagEntity },
+			{ seed: Course_hashtag_seed, table: CourseHashtagEntity },
 		];
 
 		if (true) {
@@ -46,18 +46,18 @@ export class DataSeedService {
 
 	async countData() {
 		return {
-			cat1: await this.dataSource.getRepository(Cat1).count(),
-			cat2: await this.dataSource.getRepository(Cat2).count(),
+			cat1: await this.dataSource.getRepository(Cat1Entity).count(),
+			cat2: await this.dataSource.getRepository(Cat2Entity).count(),
 			course_hashtag: await this.dataSource
-				.getRepository(Course_hashtag)
+				.getRepository(CourseHashtagEntity)
 				.count(),
-			course: await this.dataSource.getRepository(Course).count(),
-			hashtag: await this.dataSource.getRepository(Hashtag).count(),
-			lecture: await this.dataSource.getRepository(Lecture).count(),
+			course: await this.dataSource.getRepository(CourseEntity).count(),
+			hashtag: await this.dataSource.getRepository(HashtagEntity).count(),
+			lecture: await this.dataSource.getRepository(LectureEntity).count(),
 			user_lecture: await this.dataSource
-				.getRepository(User_lecture)
+				.getRepository(UserLectureEntity)
 				.count(),
-			user: await this.dataSource.getRepository(User).count(),
+			user: await this.dataSource.getRepository(UserEntity).count(),
 		};
 	}
 

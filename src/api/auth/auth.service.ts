@@ -1,56 +1,67 @@
-import { Injectable } from '@nestjs/common';
+import { Body, ConflictException, Injectable } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
-import { SignupDto } from './dto/signup.dto';
-import { DataSource } from 'typeorm';
-import { User } from 'src/entities/user.entity';
+import { UserEntity } from 'src/entities/user.entity';
+import { AdminEntity } from 'src/entities/admin.entity';
+import { CreateAdminDto } from './dto/create-admin.dto';
 
 @Injectable()
 export class AuthService {
 	constructor(
 		private userService: UserService,
 		private jwtService: JwtService,
-		private dataSource: DataSource,
 	) {}
 
-	async signup({ email, password, name }: SignupDto) {
-		await this.dataSource
-			.createQueryBuilder()
-			.insert()
-			.into(User)
-			.values({
-				email,
-				password,
-				name,
-			})
-			.execute();
+	async createAdmin(@Body() adminData: CreateAdminDto) {
+		const { username, password } = adminData;
+		const saltRounds = 12;
+		const hash = await bcrypt.hash(password, saltRounds);
+		await this.userService.createAdmin(username, hash);
+		return 'signup admin';
 	}
 
 	async emailCheck(email: string) {
-		const exist = await this.dataSource
-			.createQueryBuilder()
-			.select(['user.email', 'user.password', 'user.name'])
-			.from(User, 'user')
-			.where('user.email = :email', { email })
-			.getMany();
-		console.log(exist);
-
-		return exist;
-	}
-
-	async validateUser(username: string, password: string): Promise<any> {
-		const user = await this.userService.findOne(username);
-		if (user && user.password === password) {
-			const { password, ...result } = user;
-			return result;
+		if (await this.userService.getUserByEmail(email)) {
+			throw new ConflictException('This email already exists.');
 		}
-		return null;
+		return {
+			statusCode: 200,
+			message: 'OK',
+		};
 	}
 
-	async login(user: any) {
-		const payload = { username: user.username, sub: user.userId };
-		return {
-			access_token: this.jwtService.sign(payload),
-		};
+	async validateAdmin(username: string, password: string): Promise<any> {
+		const admin = await this.userService.getAdminByName(username);
+		if (!admin) return null;
+
+		if (await bcrypt.compare(password, admin.password)) {
+			return admin;
+		} else {
+			return null;
+		}
+	}
+
+	async validateUser(email: string): Promise<any> {
+		const user = await this.userService.getUserByEmail(email);
+		if (user) {
+			return user;
+		} else {
+			const userId = await this.userService.createUser(email);
+			const newUser = await this.userService.getUserById(userId);
+			return newUser;
+		}
+	}
+
+	async localLogin(user: AdminEntity) {
+		const payload = { id: user.id, username: user.username };
+		const token = this.jwtService.sign(payload);
+		return { access_token: token };
+	}
+
+	async magicLogin(user: UserEntity) {
+		const payload = { id: user.id, email: user.email };
+		const token = this.jwtService.sign(payload);
+		return { access_token: token };
 	}
 }
