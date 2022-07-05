@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmConfigService } from './config.service';
+import { TypeOrmConfigService } from './db.config.service';
 
 @Module({
 	providers: [TypeOrmConfigService],

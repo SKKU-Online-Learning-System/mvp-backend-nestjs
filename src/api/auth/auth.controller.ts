@@ -5,22 +5,26 @@ import {
 	Param,
 	Post,
 	Req,
+	Res,
 	UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { SignupDto } from './dto/signup.dto';
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { LocalAuthGuard } from './guards/local-auth.guard';
+import { CreateAdminDto } from './dto/create-admin.dto';
+import { MagicLoginStrategy } from './strategies/magic-login.strategy';
 
 @ApiTags('/auth')
 @Controller('auth')
 export class AuthController {
-	constructor(private authService: AuthService) {}
+	constructor(
+		private authService: AuthService,
+		private magicLoginStrategy: MagicLoginStrategy,
+	) {}
 
-	@Post('signup')
-	signup(@Body() userData: SignupDto) {
-		return this.authService.signup(userData);
+	@Post('admin')
+	createAdmin(@Body() adminData: CreateAdminDto) {
+		return this.authService.createAdmin(adminData);
 	}
 
 	@Get('emailCheck/:email')
@@ -28,15 +32,26 @@ export class AuthController {
 		return this.authService.emailCheck(email);
 	}
 
-	@UseGuards(LocalAuthGuard)
+	@UseGuards(AuthGuard('local'))
 	@Post('login/local')
-	async login(@Req() req) {
-		return this.authService.login(req.user);
+	async localLogin(@Req() req) {
+		return this.authService.localLogin(req.user);
 	}
 
-	@UseGuards(JwtAuthGuard)
+	@Post('login/magic')
+	async magicLogin(@Req() req, @Res() res) {
+		await this.magicLoginStrategy.send(req, res);
+	}
+
+	@UseGuards(AuthGuard('magic-login'))
+	@Get('login/magic/callback')
+	magicLoginCallback(@Req() req) {
+		return this.authService.magicLogin(req.user);
+	}
+
+	@UseGuards(AuthGuard('jwt'))
 	@Get('profile')
 	getProfile(@Req() req) {
-		return req.user;
+		return req.user || 'no req.user';
 	}
 }

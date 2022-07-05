@@ -3,8 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 
-import { TypeOrmConfigModule } from './configs/database/config.module';
-import { TypeOrmConfigService } from './configs/database/config.service';
+import { TypeOrmConfigModule } from './configs/database/db.config.module';
+import { TypeOrmConfigService } from './configs/database/db.config.service';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './api/auth/auth.module';
