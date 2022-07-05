@@ -13,7 +13,7 @@ import { Cat2_seed } from './seeds/cat2.seed';
 import { Course_seed } from './seeds/course.seed';
 import { Course_hashtag_seed } from './seeds/course_hashtag.seed';
 import { Hashtag_seed } from './seeds/hashtag.seed';
-
+import { Lecture_seed } from './seeds/lecture.seed';
 @Injectable()
 export class DataSeedService {
 	constructor(private dataSource: DataSource) {}
@@ -25,6 +25,7 @@ export class DataSeedService {
 			{ seed: Course_seed, table: Course },
 			{ seed: Hashtag_seed, table: Hashtag },
 			{ seed: Course_hashtag_seed, table: Course_hashtag },
+			{ seed: Lecture_seed, table: Lecture}
 		];
 
 		if (true) {
