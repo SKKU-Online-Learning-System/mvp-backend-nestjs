@@ -17,10 +17,10 @@ export class History {
 	@Column({ type: 'time' })
 	lastTime!: Date;
 
-	@CreateDateColumn()
+	@CreateDateColumn({ type: 'datetime' })
 	createdAt!: Date;
 
-	@UpdateDateColumn()
+	@UpdateDateColumn({ type: 'datetime' })
 	updatedAt!: Date;
 
 	@ManyToOne(() => User, (user) => user.histories)
