@@ -4,7 +4,6 @@ import {
 	Get,
 	Param,
 	Post,
-	Query,
 	Req,
 	Res,
 	UseGuards,
@@ -12,6 +11,7 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
+import { CreateAdminDto } from './dto/create-admin.dto';
 import { MagicLoginStrategy } from './strategies/magic-login.strategy';
 
 @ApiTags('/auth')
@@ -22,9 +22,9 @@ export class AuthController {
 		private magicLoginStrategy: MagicLoginStrategy,
 	) {}
 
-	@Post('signup-admin')
-	signupAdmin(@Body() userData) {
-		return this.authService.signupAdmin(userData);
+	@Post('admin')
+	createAdmin(@Body() adminData: CreateAdminDto) {
+		return this.authService.createAdmin(adminData);
 	}
 
 	@Get('emailCheck/:email')

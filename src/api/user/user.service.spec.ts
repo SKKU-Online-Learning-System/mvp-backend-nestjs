@@ -35,7 +35,7 @@ describe('UserService', () => {
 		expect(result.email).toEqual('a@asdf.com');
 	});
 
-	it('getUserByEmail return value', async () => {
+	it.skip('getUserByEmail return value', async () => {
 		const result = await service.getUserByEmail('asdfasdf');
 		console.log(result);
 	});

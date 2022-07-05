@@ -26,7 +26,7 @@ export class UserService {
 				.getOne();
 			return user;
 		} catch (e) {
-			throw new InternalServerErrorException();
+			throw new InternalServerErrorException(e.message);
 		}
 	}
 
@@ -39,7 +39,7 @@ export class UserService {
 				.getOne();
 			return user;
 		} catch (e) {
-			throw new InternalServerErrorException();
+			throw new InternalServerErrorException(e.message);
 		}
 	}
 
@@ -61,22 +61,32 @@ export class UserService {
 				);
 			}
 		} catch (e) {
-			throw new InternalServerErrorException('error');
+			throw new InternalServerErrorException(e.message);
 		}
 	}
 
-	async getAdmin(username: string): Promise<any> {
+	async createAdmin(username, password) {
+		try {
+			await this.adminRepository
+				.createQueryBuilder('admin')
+				.insert()
+				.values({ username, password })
+				.execute();
+		} catch (e) {
+			throw new InternalServerErrorException(e.message);
+		}
+	}
+
+	async getAdminByName(username: string): Promise<AdminEntity | null> {
 		try {
 			const admin = await this.adminRepository
 				.createQueryBuilder('admin')
 				.select('admin')
 				.where('admin.username = :username', { username })
 				.getOne();
-
-			console.log('getAdmin in user.service', admin);
 			return admin;
 		} catch (e) {
-			throw new InternalServerErrorException();
+			throw new InternalServerErrorException(e.message);
 		}
 	}
 }

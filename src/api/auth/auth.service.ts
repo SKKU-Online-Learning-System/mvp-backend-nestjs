@@ -1,8 +1,10 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { Body, ConflictException, Injectable } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { UserEntity } from 'src/entities/user.entity';
 import { AdminEntity } from 'src/entities/admin.entity';
+import { CreateAdminDto } from './dto/create-admin.dto';
 
 @Injectable()
 export class AuthService {
@@ -11,9 +13,11 @@ export class AuthService {
 		private jwtService: JwtService,
 	) {}
 
-	async signupAdmin(userData) {
-		// TODO create-admin API
-		// TODO 관리자 비밀번호를 해싱해서 저장하는 user API 만들고 해시 옵션 env에 저장하기
+	async createAdmin(@Body() adminData: CreateAdminDto) {
+		const { username, password } = adminData;
+		const saltRounds = 12;
+		const hash = await bcrypt.hash(password, saltRounds);
+		await this.userService.createAdmin(username, hash);
 		return 'signup admin';
 	}
 
@@ -28,13 +32,14 @@ export class AuthService {
 	}
 
 	async validateAdmin(username: string, password: string): Promise<any> {
-		// TODO add password hashing
-		const admin = await this.userService.getAdmin(username);
-		if (admin && admin.password === password) {
-			const { password, salt, ...result } = admin;
-			return result;
+		const admin = await this.userService.getAdminByName(username);
+		if (!admin) return null;
+
+		if (await bcrypt.compare(password, admin.password)) {
+			return admin;
+		} else {
+			return null;
 		}
-		return null;
 	}
 
 	async validateUser(email: string): Promise<any> {
