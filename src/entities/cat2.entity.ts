@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Cat2 {
+class Cat2 {
 	@PrimaryGeneratedColumn()
 	id: number;
 
@@ -11,3 +11,5 @@ export class Cat2 {
 	@Column({ type: 'int' })
 	cat1_id: number;
 }
+
+export { Cat2 as Cat2Entity };

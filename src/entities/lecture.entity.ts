@@ -6,22 +6,27 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Lecture {
+class Lecture {
 	@PrimaryGeneratedColumn()
 	id: number;
 
 	@Column({ type: 'varchar', length: 100 })
 	title: string;
 
+	@Column({ type: 'int' })
+	duration: number;
+
 	@Column({ type: 'varchar', length: 255 })
-	filename: string;
+	filepath: string;
 
 	@Column({ type: 'int' })
 	course_id: number;
 
-	@Column({type: 'int'})
+	@Column({ type: 'int' })
 	section_id: number;
 
 	@CreateDateColumn({ type: 'datetime' })
 	created_at: Date;
 }
+
+export { Lecture as LectureEntity };

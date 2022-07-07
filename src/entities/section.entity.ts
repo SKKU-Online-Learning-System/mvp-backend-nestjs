@@ -1,13 +1,15 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Section{
-    @PrimaryGeneratedColumn()
-    id : number;
+class Section {
+	@PrimaryGeneratedColumn()
+	id: number;
 
-    @Column({type: 'varchar', length: 100})
-    title: string;
+	@Column({ type: 'varchar', length: 100 })
+	title: string;
 
-    @Column({type: 'int'})
-    course_id: number;
+	@Column({ type: 'int' })
+	course_id: number;
 }
+
+export { Section as SectionEntity };
