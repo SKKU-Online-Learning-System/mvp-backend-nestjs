@@ -12,22 +12,22 @@ import { UserEntity } from './user.entity';
 @Entity()
 class History {
 	@PrimaryGeneratedColumn()
-	id!: number;
+	id: number;
 
 	@Column({ type: 'time' })
-	lastTime!: Date;
+	last_time: Date;
 
 	@CreateDateColumn({ type: 'datetime' })
-	createdAt!: Date;
+	created_at: Date;
 
 	@UpdateDateColumn({ type: 'datetime' })
-	updatedAt!: Date;
+	updated_at: Date;
 
 	@ManyToOne(() => UserEntity, (user) => user.histories)
-	user!: UserEntity;
+	user: UserEntity;
 
 	@ManyToOne(() => LectureEntity, (lecture) => lecture.histories)
-	lecture!: LectureEntity;
+	lecture: LectureEntity;
 }
 
 export { History as HistoryEntity };
