@@ -1,12 +1,12 @@
 import {
 	Column,
+	CreateDateColumn,
 	Entity,
 	PrimaryGeneratedColumn,
-	UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
-class History {
+class Answer {
 	@PrimaryGeneratedColumn()
 	id: number;
 
@@ -14,13 +14,14 @@ class History {
 	user_id: number;
 
 	@Column({ type: 'int' })
+	course_id: number;
+
+	@Column({ type: 'int', nullable: true })
 	lecture_id: number;
 
-	@UpdateDateColumn()
-	updated_at: Date;
+	@Column({ type: 'text' })
+	contents: string;
 
-	@Column({ type: 'int' })
-	last_time: number;
+	@CreateDateColumn()
+	created_at: Date;
 }
-
-export { History as HistoryEntity };

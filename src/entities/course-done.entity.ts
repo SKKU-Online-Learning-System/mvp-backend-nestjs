@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-class User_Course {
+class Course_Done {
 	@PrimaryGeneratedColumn()
 	id: number;
 
@@ -12,7 +12,7 @@ class User_Course {
 	course_id: number;
 
 	@Column({ type: 'boolean', default: false })
-	status: boolean;
+	bookmark: boolean;
 }
 
-export { User_Course as UserCourseEntity };
+export { Course_Done as CourseDoneEntity };
