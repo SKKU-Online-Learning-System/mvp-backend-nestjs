@@ -60,12 +60,27 @@ export class CourseService {
 	async getCourseById(id: number) {
 		try {
 			const course = await this.dataSource
-				.createQueryBuilder()
-				.from(CourseEntity, 'course')
-				.select('course')
-				.where('id = :id', { id })
-				.getMany();
-			return course;
+        .createQueryBuilder()
+        .from(CourseEntity, 'course')
+        .select(['course.id', 'course.title', 'course.description', 
+        'course.thumbnail', 'course.difficulty', 'course.created_at'])
+        .addSelect('user.email', 'instructor_name')
+        .addSelect('cat1.name', 'cat1_name')
+        .addSelect('cat2.name', 'cat2_name')
+        .innerJoin(Cat1Entity, 'cat1', 'cat1.id = course.cat1_id')
+        .innerJoin(Cat2Entity, 'cat2', 'cat2.id = course.cat2_id')
+        .innerJoin(UserEntity, 'user', 'user.id = course.instructor_id')
+        .where('course.id = :id', { id })
+        .getRawMany()
+        
+       const hashtag = await this.courseHashtagEntity
+        .createQueryBuilder('coursehash')
+        .select('coursehash.hashtag_id')
+        .where("course_id = :id", {id})
+        .addSelect('hashtag.tag', 'tag')
+        .innerJoin(HashtagEntity, 'hashtag', 'hashtag.id = coursehash.id')
+        .getRawMany()
+      return { course, hashtag };
 		} catch (e) {
 			throw new InternalServerErrorException(e.message);
 		}
