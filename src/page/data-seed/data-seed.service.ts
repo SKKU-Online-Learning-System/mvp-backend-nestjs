@@ -13,7 +13,7 @@ import { Cat2_seed } from './seeds/cat2.seed';
 import { Course_seed } from './seeds/course.seed';
 import { Course_hashtag_seed } from './seeds/course-hashtag.seed';
 import { Hashtag_seed } from './seeds/hashtag.seed';
-
+import { Lecture_seed } from './seeds/lecture.seed';
 @Injectable()
 export class DataSeedService {
 	constructor(private dataSource: DataSource) {}

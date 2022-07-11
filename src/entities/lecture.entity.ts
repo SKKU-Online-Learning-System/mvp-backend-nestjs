@@ -19,7 +19,7 @@ class Lecture {
 	duration: number;
 
 	@Column({ type: 'varchar', length: 255 })
-	filepath: string;
+	filename: string;
 
 	@Column({ type: 'int' })
 	course_id: number;

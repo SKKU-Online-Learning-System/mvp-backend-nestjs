@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 class Course_Hashtag {
-	@PrimaryGeneratedColumn({ type: 'int' })
+	@PrimaryGeneratedColumn()
 	id: number;
 
 	@Column({ type: 'int' })
