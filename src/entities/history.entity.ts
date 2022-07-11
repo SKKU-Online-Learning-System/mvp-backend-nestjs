@@ -14,11 +14,8 @@ class History {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'time' })
-	last_time: Date;
-
-	@CreateDateColumn({ type: 'datetime' })
-	created_at: Date;
+	@Column({ type: 'int' })
+	last_time: number;
 
 	@UpdateDateColumn({ type: 'datetime' })
 	updated_at: Date;
