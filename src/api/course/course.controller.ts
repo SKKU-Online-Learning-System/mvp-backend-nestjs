@@ -9,12 +9,13 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CourseService } from './course.service';
-import { CourseDto } from './dto/course.dto';
+import { CreateCourseDto } from './dto/create-course.dto';
+import { UpdateCourseDto } from './dto/update-course.dto';
 
 @ApiTags('/courses')
 @Controller('courses')
 export class CourseController {
-	constructor(private readonly courseService: CourseService) {}
+	constructor(private courseService: CourseService) {}
 
 	@Get()
 	getAllCourses() {
@@ -37,22 +38,25 @@ export class CourseController {
 	}
 
 	@Get(':id')
-	getCourseById(@Param('id') id: string) {
+	getCourseById(@Param('id') id: number) {
 		return this.courseService.getCourseById(id);
 	}
 
 	@Post('create')
-	createCourse(@Body() courseData: CourseDto) {
-		return this.courseService.createCourse(courseData);
+	createCourse(@Body() createCourseDto: CreateCourseDto) {
+		return this.courseService.createCourse(createCourseDto);
 	}
 
 	@Put(':id')
-	updateCourseById(@Param('id') id: string, @Body() courseData: CourseDto) {
-		return this.courseService.updateCourseById(id, courseData);
+	updateCourseById(
+		@Param('id') id: number,
+		@Body() updateCourseDto: UpdateCourseDto,
+	) {
+		return this.courseService.updateCourseById(id, updateCourseDto);
 	}
 
 	@Delete(':id')
-	deleteCourseById(@Param('id') id: string) {
+	deleteCourseById(@Param('id') id: number) {
 		return this.courseService.deleteCourseById(id);
 	}
 }

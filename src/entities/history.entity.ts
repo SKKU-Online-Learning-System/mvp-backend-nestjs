@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-class User_Course {
+class History {
 	@PrimaryGeneratedColumn()
 	id: number;
 
@@ -9,10 +9,13 @@ class User_Course {
 	user_id: number;
 
 	@Column({ type: 'int' })
-	course_id: number;
+	lecture_id: number;
 
-	@Column({ type: 'boolean', default: false })
-	status: boolean;
+	@Column({ type: 'datetime' })
+	created_at: Date;
+
+	@Column({ type: 'int' })
+	last_time: number;
 }
 
-export { User_Course as UserCourseEntity };
+export { History as HistoryEntity };

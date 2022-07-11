@@ -10,8 +10,7 @@ import { HashtagEntity } from 'src/entities/hashtag.entity';
 import {LectureEntity } from 'src/entities/lecture.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CourseEntity, Cat1Entity, Cat2Entity, CourseHashtagEntity ,HashtagEntity, LectureEntity])],
-  controllers: [CourseController],
-  providers: [CourseService]
+	controllers: [CourseController],
+	providers: [CourseService],
 })
 export class CourseModule {}

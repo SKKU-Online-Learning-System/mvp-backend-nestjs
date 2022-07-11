@@ -12,6 +12,8 @@ import { CourseModule } from './api/course/course.module';
 import { LectureModule } from './api/lecture/lecture.module';
 import { UserModule } from './api/user/user.module';
 import { PageModule } from './page/page.module';
+import { HistoryModule } from './api/history/history.module';
+import { AdminModule } from './api/admin/admin.module';
 
 @Module({
 	imports: [
@@ -21,8 +23,10 @@ import { PageModule } from './page/page.module';
 			useClass: TypeOrmConfigService,
 			inject: [TypeOrmConfigService],
 		}),
+		AdminModule,
 		AuthModule,
 		CourseModule,
+		HistoryModule,
 		LectureModule,
 		UserModule,
 		PageModule,

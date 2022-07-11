@@ -8,11 +8,8 @@ class Admin {
 	@Column({ type: 'varchar', length: 30, unique: true })
 	username: string;
 
-	@Column({ type: 'varchar', length: 200 })
+	@Column({ type: 'varchar', length: 60 })
 	password: string;
-
-	@Column({ type: 'varchar', length: 200 })
-	salt: string;
 }
 
 export { Admin as AdminEntity };

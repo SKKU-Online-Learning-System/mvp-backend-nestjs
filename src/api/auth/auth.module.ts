@@ -10,15 +10,17 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { UserModule } from '../user/user.module';
 import { jwtConstants } from './constants';
+import { AdminModule } from '../admin/admin.module';
 
 @Module({
 	imports: [
-		UserModule,
 		PassportModule,
 		JwtModule.register({
 			secret: jwtConstants.secret,
-			signOptions: { expiresIn: '60s' },
+			signOptions: { expiresIn: '5m' },
 		}),
+		UserModule,
+		AdminModule,
 		MailModule,
 	],
 	controllers: [AuthController],

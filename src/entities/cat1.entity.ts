@@ -5,7 +5,7 @@ class Cat1 {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'varchar', length: 20 })
+	@Column({ type: 'varchar', length: 30 })
 	name: string;
 }
 
