@@ -1,4 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+	Column,
+	CreateDateColumn,
+	Entity,
+	ManyToOne,
+	PrimaryGeneratedColumn,
+	UpdateDateColumn,
+} from 'typeorm';
+import { LectureEntity } from './lecture.entity';
+import { UserEntity } from './user.entity';
 
 @Entity()
 class History {
@@ -6,16 +15,16 @@ class History {
 	id: number;
 
 	@Column({ type: 'int' })
-	user_id: number;
-
-	@Column({ type: 'int' })
-	lecture_id: number;
-
-	@Column({ type: 'datetime' })
-	created_at: Date;
-
-	@Column({ type: 'int' })
 	last_time: number;
+
+	@UpdateDateColumn({ type: 'datetime' })
+	updated_at: Date;
+
+	@ManyToOne(() => UserEntity, (user) => user.histories)
+	user: UserEntity;
+
+	@ManyToOne(() => LectureEntity, (lecture) => lecture.histories)
+	lecture: LectureEntity;
 }
 
 export { History as HistoryEntity };

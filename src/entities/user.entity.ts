@@ -2,8 +2,10 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
+	OneToMany,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
+import { HistoryEntity } from './history.entity';
 
 @Entity()
 class User {
@@ -18,6 +20,12 @@ class User {
 
 	@Column({ type: 'int', default: 4 })
 	privilege: number;
+
+	// @Column({ type: 'varchar', length: 200 })
+	// salt: string;
+
+	@OneToMany(() => HistoryEntity, (history) => history.user)
+	histories: History[];
 }
 
 export { User as UserEntity };
