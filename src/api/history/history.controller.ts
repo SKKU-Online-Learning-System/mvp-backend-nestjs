@@ -3,7 +3,6 @@ import {
 	Delete,
 	Get,
 	Param,
-	ParseIntPipe,
 	Post,
 } from '@nestjs/common';
 import { HistoryService } from './history.service';
@@ -14,14 +13,14 @@ export class HistoryController {
 	constructor(private historyService: HistoryService) {}
 
 	@Get('/user/:userId')
-	getHistories(@Param('userId', ParseIntPipe) userId): Promise<IHistory[]> {
+	getHistories(@Param('userId') userId: number): Promise<IHistory[]> {
 		return this.historyService.getHistories(userId);
 	}
 
 	@Get('user/:userId/lecture/:lectureId')
 	getLectureHistory(
-		@Param('userId', ParseIntPipe) userId,
-		@Param('lectureId', ParseIntPipe) lectureId,
+		@Param('userId') userId: number,
+		@Param('lectureId') lectureId: number,
 	): Promise<IHistory[]> {
 		return this.historyService.getHistories(userId, lectureId);
 	}
