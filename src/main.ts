@@ -20,13 +20,13 @@ async function bootstrap() {
 	app.setViewEngine('pug');
 	app.setBaseViewsDir(`${__dirname}/../views`);
 
-	app.useGlobalPipes(new ValidationPipe({ transform: true }));
-	
-	// hot reload
-	if (module.hot) {
-		module.hot.accept();
-		module.hot.dispose(() => app.close());
-	}
+	app.useGlobalPipes(
+		new ValidationPipe({
+			transform: true,
+			whitelist: true,
+			forbidNonWhitelisted: true,
+		}),
+	);
 
 	await app.listen(3000);
 }

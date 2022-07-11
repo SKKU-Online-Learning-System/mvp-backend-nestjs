@@ -3,16 +3,16 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 class User_Course {
 	@PrimaryGeneratedColumn()
-	id!: number;
+	id: number;
 
 	@Column({ type: 'int' })
-	userId!: number;
+	user_id: number;
 
 	@Column({ type: 'int' })
-	courseId!: number;
+	course_id: number;
 
 	@Column({ type: 'boolean', default: false })
-	status!: boolean;
+	status: boolean;
 }
 
 export { User_Course as UserCourseEntity };

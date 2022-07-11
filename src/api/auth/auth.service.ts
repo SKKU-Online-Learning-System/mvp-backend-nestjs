@@ -4,22 +4,16 @@ import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { UserEntity } from 'src/entities/user.entity';
 import { AdminEntity } from 'src/entities/admin.entity';
-import { CreateAdminDto } from './dto/create-admin.dto';
+import { CreateAdminDto } from '../admin/dto/create-admin.dto';
+import { AdminService } from '../admin/admin.service';
 
 @Injectable()
 export class AuthService {
 	constructor(
-		private userService: UserService,
 		private jwtService: JwtService,
+		private userService: UserService,
+		private adminService: AdminService,
 	) {}
-
-	async createAdmin(@Body() adminData: CreateAdminDto) {
-		const { username, password } = adminData;
-		const saltRounds = 12;
-		const hash = await bcrypt.hash(password, saltRounds);
-		await this.userService.createAdmin(username, hash);
-		return 'signup admin';
-	}
 
 	async emailCheck(email: string) {
 		if (await this.userService.getUserByEmail(email)) {
@@ -29,17 +23,6 @@ export class AuthService {
 			statusCode: 200,
 			message: 'OK',
 		};
-	}
-
-	async validateAdmin(username: string, password: string): Promise<any> {
-		const admin = await this.userService.getAdminByName(username);
-		if (!admin) return null;
-
-		if (await bcrypt.compare(password, admin.password)) {
-			return admin;
-		} else {
-			return null;
-		}
 	}
 
 	async validateUser(email: string): Promise<any> {
@@ -53,14 +36,34 @@ export class AuthService {
 		}
 	}
 
-	async localLogin(user: AdminEntity) {
-		const payload = { id: user.id, username: user.username };
+	async magicLogin(user: UserEntity) {
+		const payload = { id: user.id, email: user.email };
 		const token = this.jwtService.sign(payload);
 		return { access_token: token };
 	}
 
-	async magicLogin(user: UserEntity) {
-		const payload = { id: user.id, email: user.email };
+	// admin
+	async createAdmin(@Body() createAdminDto: CreateAdminDto) {
+		const { username, password } = createAdminDto;
+		const saltRounds = 12;
+		const hash = await bcrypt.hash(password, saltRounds);
+		await this.adminService.createAdmin({ username, password: hash });
+		return 'signup admin';
+	}
+
+	async validateAdmin(username: string, password: string): Promise<any> {
+		const admin = await this.adminService.getAdminByName(username);
+		if (!admin) return null;
+
+		if (await bcrypt.compare(password, admin.password)) {
+			return admin;
+		} else {
+			return null;
+		}
+	}
+
+	async localLogin(user: AdminEntity) {
+		const payload = { id: user.id, username: user.username };
 		const token = this.jwtService.sign(payload);
 		return { access_token: token };
 	}

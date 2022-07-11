@@ -1,9 +1,7 @@
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppModule } from 'src/app.module';
-import { AdminEntity } from 'src/entities/admin.entity';
-import { UserEntity } from 'src/entities/user.entity';
+import { AdminService } from '../admin/admin.service';
 import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
 
@@ -12,11 +10,8 @@ describe('AuthService', () => {
 
 	beforeAll(async () => {
 		const module: TestingModule = await Test.createTestingModule({
-			imports: [
-				AppModule,
-				TypeOrmModule.forFeature([UserEntity, AdminEntity]),
-			],
-			providers: [AuthService, UserService, JwtService],
+			imports: [AppModule],
+			providers: [AuthService, JwtService, UserService, AdminService],
 		}).compile();
 
 		service = module.get<AuthService>(AuthService);
@@ -24,11 +19,5 @@ describe('AuthService', () => {
 
 	it('should be defined', () => {
 		expect(service).toBeDefined();
-	});
-
-	it('validateUser test', async () => {
-		const result = await service.validateUser('a@b123.com');
-		console.log(result);
-		expect(1).toEqual(1);
 	});
 });

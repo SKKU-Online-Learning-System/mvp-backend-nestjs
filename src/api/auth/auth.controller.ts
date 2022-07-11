@@ -8,10 +8,12 @@ import {
 	Res,
 	UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { CreateAdminDto } from './dto/create-admin.dto';
+import { CreateAdminDto } from '../admin/dto/create-admin.dto';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { LocalAuthGuard } from './guards/local-auth.guard';
+import { MagicLoginAuthGuard } from './guards/magic-auth.guard';
 import { MagicLoginStrategy } from './strategies/magic-login.strategy';
 
 @ApiTags('/auth')
@@ -22,20 +24,9 @@ export class AuthController {
 		private magicLoginStrategy: MagicLoginStrategy,
 	) {}
 
-	@Post('admin')
-	createAdmin(@Body() adminData: CreateAdminDto) {
-		return this.authService.createAdmin(adminData);
-	}
-
 	@Get('emailCheck/:email')
 	emailCheck(@Param('email') email: string) {
 		return this.authService.emailCheck(email);
-	}
-
-	@UseGuards(AuthGuard('local'))
-	@Post('login/local')
-	async localLogin(@Req() req) {
-		return this.authService.localLogin(req.user);
 	}
 
 	@Post('login/magic')
@@ -43,13 +34,25 @@ export class AuthController {
 		await this.magicLoginStrategy.send(req, res);
 	}
 
-	@UseGuards(AuthGuard('magic-login'))
+	@UseGuards(MagicLoginAuthGuard)
 	@Get('login/magic/callback')
 	magicLoginCallback(@Req() req) {
 		return this.authService.magicLogin(req.user);
 	}
 
-	@UseGuards(AuthGuard('jwt'))
+	@Post('admin')
+	createAdmin(@Body() createAdminDto: CreateAdminDto) {
+		return this.authService.createAdmin(createAdminDto);
+	}
+
+	@UseGuards(LocalAuthGuard)
+	@Post('login/local')
+	async localLogin(@Req() req) {
+		return this.authService.localLogin(req.user);
+	}
+
+	// for test
+	@UseGuards(JwtAuthGuard)
 	@Get('profile')
 	getProfile(@Req() req) {
 		return req.user || 'no req.user';
