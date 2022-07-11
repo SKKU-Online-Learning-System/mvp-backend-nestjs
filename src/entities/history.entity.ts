@@ -6,8 +6,8 @@ import {
 	PrimaryGeneratedColumn,
 	UpdateDateColumn,
 } from 'typeorm';
-import { Lecture } from './lecture.entity';
-import { User } from './user.entity';
+import { LectureEntity } from './lecture.entity';
+import { UserEntity } from './user.entity';
 
 @Entity()
 class History {
@@ -23,11 +23,11 @@ class History {
 	@UpdateDateColumn({ type: 'datetime' })
 	updatedAt!: Date;
 
-	@ManyToOne(() => User, (user) => user.histories)
-	user!: User;
+	@ManyToOne(() => UserEntity, (user) => user.histories)
+	user!: UserEntity;
 
-	@ManyToOne(() => Lecture)
-	lecture!: Lecture;
+	@ManyToOne(() => LectureEntity, (lecture) => lecture.histories)
+	lecture!: LectureEntity;
 }
 
 export { History as HistoryEntity };

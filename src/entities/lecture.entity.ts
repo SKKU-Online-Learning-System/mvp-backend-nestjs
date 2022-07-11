@@ -2,8 +2,10 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
+	OneToMany,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
+import { HistoryEntity } from './history.entity';
 
 @Entity()
 class Lecture {
@@ -27,6 +29,9 @@ class Lecture {
 
 	@CreateDateColumn({ type: 'datetime' })
 	created_at: Date;
+
+	@OneToMany(() => HistoryEntity, (history) => history.lecture)
+	histories: History[];
 }
 
 export { Lecture as LectureEntity };
