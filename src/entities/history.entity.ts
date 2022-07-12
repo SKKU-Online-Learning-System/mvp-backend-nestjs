@@ -1,6 +1,5 @@
 import {
 	Column,
-	CreateDateColumn,
 	Entity,
 	ManyToOne,
 	PrimaryGeneratedColumn,
@@ -14,17 +13,21 @@ class History {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'int' })
-	last_time: number;
+	@Column()
+	lastTime: number;
 
 	@UpdateDateColumn()
-	updated_at: Date;
+	updatedAt: Date;
 
-	@ManyToOne(() => UserEntity, (user) => user.histories)
+	@ManyToOne(() => UserEntity)
 	user: UserEntity;
+	@Column()
+	userId: number;
 
-	@ManyToOne(() => LectureEntity, (lecture) => lecture.histories)
+	@ManyToOne(() => LectureEntity)
 	lecture: LectureEntity;
+	@Column()
+	lectureId: number;
 }
 
 export { History as HistoryEntity };

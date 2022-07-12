@@ -2,10 +2,8 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
-	OneToMany,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
-import { HistoryEntity } from './history.entity';
 
 @Entity()
 class User {
@@ -15,14 +13,11 @@ class User {
 	@Column({ type: 'varchar', length: 50, unique: true })
 	email: string;
 
-	@CreateDateColumn({ type: 'datetime' })
-	joined_at: Date;
+	@CreateDateColumn()
+	joinedAt: Date;
 
-	@Column({ type: 'int', default: 4 })
+	@Column({ default: 4 })
 	privilege: number;
-
-	@OneToMany(() => HistoryEntity, (history) => history.user)
-	histories: History[];
 }
 
 export { User as UserEntity };

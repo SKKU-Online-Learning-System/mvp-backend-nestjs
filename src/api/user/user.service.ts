@@ -3,7 +3,7 @@ import {
 	InternalServerErrorException,
 	NotImplementedException,
 } from '@nestjs/common';
-import { UserCourseEntity } from 'src/entities/user-course.entity';
+import { CourseRegisteredEntity } from 'src/entities/course-registered.entity';
 import { UserEntity } from 'src/entities/user.entity';
 import { DataSource } from 'typeorm';
 import { CreateUserCourseDto } from './dto/create-user-course.dto';
@@ -64,13 +64,13 @@ export class UserService {
 		}
 	}
 
-	async getUserCourses(id: number): Promise<UserCourseEntity[]> {
+	async getUserCourses(id: number): Promise<CourseRegisteredEntity[]> {
 		try {
 			const userCourses = await this.dataSource
 				.createQueryBuilder()
 				.select('user_course')
-				.from(UserCourseEntity, 'user_course')
-				.where('user_course.user_id = :id', { id })
+				.from(CourseRegisteredEntity, 'user_course')
+				.where('user_course.userId = :id', { id })
 				.getMany();
 			return userCourses;
 		} catch (e) {
@@ -89,8 +89,8 @@ export class UserService {
 			} = await this.dataSource
 				.createQueryBuilder()
 				.insert()
-				.into(UserCourseEntity)
-				.values({ user_id: userId, course_id: courseId })
+				.into(CourseRegisteredEntity)
+				.values({ userId, courseId })
 				.execute();
 
 			if (affectedRows) {
@@ -116,7 +116,7 @@ export class UserService {
 			} = await this.dataSource
 				.createQueryBuilder()
 				.delete()
-				.from(UserCourseEntity, 'user_course')
+				.from(CourseRegisteredEntity, 'user_course')
 				.where('user_course.user_id = :userId', { userId })
 				.andWhere('user_course.course_id = :courseId', { courseId })
 				.execute();

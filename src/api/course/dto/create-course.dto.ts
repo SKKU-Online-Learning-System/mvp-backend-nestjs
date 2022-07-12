@@ -11,10 +11,10 @@ export class CreateCourseDto {
 	readonly instructorId: number;
 
 	@IsInt()
-	readonly category1: number;
+	readonly category1Id: number;
 
 	@IsInt()
-	readonly category2: number;
+	readonly category2Id: number;
 
 	@IsInt()
 	readonly difficulty: number;

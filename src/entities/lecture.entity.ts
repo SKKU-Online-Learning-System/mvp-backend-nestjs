@@ -2,10 +2,11 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
-	OneToMany,
+	ManyToOne,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
-import { HistoryEntity } from './history.entity';
+import { CourseEntity } from './course.entity';
+import { SectionEntity } from './section.entity';
 
 @Entity()
 class Lecture {
@@ -15,23 +16,24 @@ class Lecture {
 	@Column({ type: 'varchar', length: 100 })
 	title: string;
 
-	@Column({ type: 'int' })
+	@Column()
 	duration: number;
 
 	@Column({ type: 'varchar', length: 255 })
 	filename: string;
 
-	@Column({ type: 'int' })
-	course_id: number;
+	@ManyToOne(() => CourseEntity)
+	course: CourseEntity;
+	@Column()
+	courseId: number;
 
-	@Column({ type: 'int' })
-	section_id: number;
+	@ManyToOne(() => SectionEntity)
+	section: SectionEntity;
+	@Column()
+	sectionId: number;
 
-	@CreateDateColumn({ type: 'datetime' })
-	created_at: Date;
-
-	@OneToMany(() => HistoryEntity, (history) => history.lecture)
-	histories: History[];
+	@CreateDateColumn()
+	createdAt: Date;
 }
 
 export { Lecture as LectureEntity };

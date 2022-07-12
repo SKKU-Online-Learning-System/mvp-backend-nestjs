@@ -2,26 +2,38 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
+	ManyToOne,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
+import { CourseEntity } from './course.entity';
+import { LectureEntity } from './lecture.entity';
+import { UserEntity } from './user.entity';
 
 @Entity()
-class Answer {
+class Question {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'int' })
-	user_id: number;
+	@ManyToOne(() => UserEntity)
+	user: UserEntity;
+	@Column()
+	userId: number;
 
-	@Column({ type: 'int' })
-	course_id: number;
+	@ManyToOne(() => CourseEntity)
+	course: CourseEntity;
+	@Column()
+	courseId: number;
 
-	@Column({ type: 'int', nullable: true })
-	lecture_id: number;
+	@ManyToOne(() => LectureEntity)
+	lecture: LectureEntity;
+	@Column()
+	lectureId: number;
 
 	@Column({ type: 'text' })
 	contents: string;
 
 	@CreateDateColumn()
-	created_at: Date;
+	createdAt: Date;
 }
+
+export { Question as QuestionEntity };

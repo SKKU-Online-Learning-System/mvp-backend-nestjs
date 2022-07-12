@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { Cat1Entity } from 'src/entities/cat1.entity';
-import { Cat2Entity } from 'src/entities/cat2.entity';
+import { Category1Entity } from 'src/entities/category1.entity';
+import { Category2Entity } from 'src/entities/category2.entity';
 import { CourseEntity } from 'src/entities/course.entity';
 import { CourseHashtagEntity } from 'src/entities/course-hashtag.entity';
 import { HashtagEntity } from 'src/entities/hashtag.entity';
 import { LectureEntity } from 'src/entities/lecture.entity';
 import { UserEntity } from 'src/entities/user.entity';
-import { UserLectureEntity } from 'src/entities/user-lecture.entity';
 import { DataSource } from 'typeorm';
 import { Cat1_seed } from './seeds/cat1.seed';
 import { Cat2_seed } from './seeds/cat2.seed';
@@ -20,9 +19,10 @@ export class DataSeedService {
 
 	async home() {
 		const seeds = [
-			{ seed: Cat1_seed, table: Cat1Entity },
-			{ seed: Cat2_seed, table: Cat2Entity },
+			{ seed: Cat1_seed, table: Category1Entity },
+			{ seed: Cat2_seed, table: Category2Entity },
 			{ seed: Course_seed, table: CourseEntity },
+			{ seed: Lecture_seed, table: LectureEntity },
 			{ seed: Hashtag_seed, table: HashtagEntity },
 			{ seed: Course_hashtag_seed, table: CourseHashtagEntity },
 		];
@@ -46,17 +46,18 @@ export class DataSeedService {
 
 	async countData() {
 		return {
-			cat1: await this.dataSource.getRepository(Cat1Entity).count(),
-			cat2: await this.dataSource.getRepository(Cat2Entity).count(),
+			category1: await this.dataSource
+				.getRepository(Category1Entity)
+				.count(),
+			category2: await this.dataSource
+				.getRepository(Category2Entity)
+				.count(),
 			course_hashtag: await this.dataSource
 				.getRepository(CourseHashtagEntity)
 				.count(),
 			course: await this.dataSource.getRepository(CourseEntity).count(),
 			hashtag: await this.dataSource.getRepository(HashtagEntity).count(),
 			lecture: await this.dataSource.getRepository(LectureEntity).count(),
-			user_lecture: await this.dataSource
-				.getRepository(UserLectureEntity)
-				.count(),
 			user: await this.dataSource.getRepository(UserEntity).count(),
 		};
 	}

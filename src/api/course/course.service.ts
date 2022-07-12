@@ -5,8 +5,8 @@ import {
 } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { CourseEntity } from 'src/entities/course.entity';
-import { Cat1Entity } from 'src/entities/cat1.entity';
-import { Cat2Entity } from 'src/entities/cat2.entity';
+import { Category1Entity } from 'src/entities/category1.entity';
+import { Category2Entity } from 'src/entities/category2.entity';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { CourseHashtagEntity } from 'src/entities/course-hashtag.entity';
@@ -34,11 +34,11 @@ export class CourseService {
 		return 'courses filtered by query string';
 	}
 
-	async getCategory1(): Promise<Cat1Entity[]> {
+	async getCategory1(): Promise<Category1Entity[]> {
 		try {
 			const cat1 = await this.dataSource
 				.createQueryBuilder()
-				.from(Cat1Entity, 'cat1')
+				.from(Category1Entity, 'cat1')
 				.select('cat1')
 				.getMany();
 			return cat1;
@@ -47,14 +47,14 @@ export class CourseService {
 		}
 	}
 
-	async getCategory2(): Promise<Cat2Entity[]> {
+	async getCategory2(): Promise<Category2Entity[]> {
 		try {
-			const cat2 = await this.dataSource
+			const category2 = await this.dataSource
 				.createQueryBuilder()
-				.from(Cat2Entity, 'cat2')
+				.from(Category2Entity, 'cat2')
 				.select('cat2')
 				.getMany();
-			return cat2;
+			return category2;
 		} catch (e) {
 			throw new InternalServerErrorException(e.message);
 		}
@@ -76,8 +76,8 @@ export class CourseService {
 				.addSelect('user.email', 'instructor_name')
 				.addSelect('cat1.name', 'cat1_name')
 				.addSelect('cat2.name', 'cat2_name')
-				.innerJoin(Cat1Entity, 'cat1', 'cat1.id = course.cat1_id')
-				.innerJoin(Cat2Entity, 'cat2', 'cat2.id = course.cat2_id')
+				.innerJoin(Category1Entity, 'cat1', 'cat1.id = course.cat1_id')
+				.innerJoin(Category2Entity, 'cat2', 'cat2.id = course.cat2_id')
 				.innerJoin(UserEntity, 'user', 'user.id = course.instructor_id')
 				.where('course.id = :id', { id })
 				.getRawMany();
@@ -106,8 +106,8 @@ export class CourseService {
 				title,
 				description,
 				instructorId,
-				category1,
-				category2,
+				category1Id,
+				category2Id,
 				difficulty,
 			} = createCourseDto;
 
@@ -120,9 +120,9 @@ export class CourseService {
 				.values({
 					title,
 					description,
-					instructor_id: instructorId,
-					cat1_id: category1,
-					cat2_id: category2,
+					instructorId,
+					category1Id,
+					category2Id,
 					difficulty,
 				})
 				.execute();
@@ -141,7 +141,7 @@ export class CourseService {
 
 	async updateCourseById(id: number, updateCourseDto: UpdateCourseDto) {
 		try {
-			const { title, description, category1, category2, difficulty } =
+			const { title, description, category1Id, category2Id, difficulty } =
 				updateCourseDto;
 
 			const {
@@ -153,8 +153,8 @@ export class CourseService {
 				.update({
 					title,
 					description,
-					cat1_id: category1,
-					cat2_id: category2,
+					// category1: category1,
+					// category2: category2,
 					difficulty,
 				})
 				.execute();

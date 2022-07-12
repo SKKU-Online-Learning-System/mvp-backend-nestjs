@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { CourseEntity } from './course.entity';
 
 @Entity()
 class Section {
@@ -8,8 +9,10 @@ class Section {
 	@Column({ type: 'varchar', length: 100 })
 	title: string;
 
-	@Column({ type: 'int' })
-	course_id: number;
+	@ManyToOne(() => CourseEntity)
+	course: CourseEntity;
+	@Column()
+	courseId: number;
 }
 
 export { Section as SectionEntity };

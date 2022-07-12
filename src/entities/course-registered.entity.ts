@@ -1,18 +1,24 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { CourseEntity } from './course.entity';
+import { UserEntity } from './user.entity';
 
 @Entity()
-class Course_Registered {
+class CourseRegistered {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'int' })
-	user_id: number;
+	@ManyToOne(() => UserEntity)
+	user: UserEntity;
+	@Column()
+	userId: number;
 
-	@Column({ type: 'int' })
-	course_id: number;
+	@ManyToOne(() => CourseEntity)
+	course: CourseEntity;
+	@Column()
+	courseId: number;
 
-	@Column({ type: 'boolean', default: false })
+	@Column({ default: false })
 	bookmark: boolean;
 }
 
-export { Course_Registered as CourseRegisteredEntity };
+export { CourseRegistered as CourseRegisteredEntity };

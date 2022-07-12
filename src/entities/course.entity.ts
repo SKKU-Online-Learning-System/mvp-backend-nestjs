@@ -2,8 +2,14 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
+	JoinColumn,
+	ManyToOne,
+	OneToMany,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Category1Entity } from './category1.entity';
+import { Category2Entity } from './category2.entity';
+import { UserEntity } from './user.entity';
 
 @Entity()
 class Course {
@@ -16,23 +22,30 @@ class Course {
 	@Column({ type: 'text' })
 	description: string;
 
-	@Column({ type: 'int' })
-	instructor_id: number;
+	@ManyToOne(() => UserEntity)
+	@JoinColumn({ name: 'instructorId' })
+	instructor: UserEntity;
+	@Column()
+	instructorId: number;
 
-	@Column({ type: 'int' })
-	cat1_id: number;
+	@ManyToOne(() => Category1Entity)
+	category1: Category1Entity;
+	@Column()
+	category1Id: number;
 
-	@Column({ type: 'int' })
-	cat2_id: number;
+	@ManyToOne(() => Category2Entity)
+	category2: Category2Entity;
+	@Column()
+	category2Id: number;
 
 	@Column({ type: 'varchar', length: 200, nullable: true })
 	thumbnail: string;
 
-	@Column({ type: 'int' })
+	@Column()
 	difficulty: number;
 
-	@CreateDateColumn({ type: 'datetime' })
-	created_at: Date;
+	@CreateDateColumn()
+	createdAt: Date;
 }
 
 export { Course as CourseEntity };

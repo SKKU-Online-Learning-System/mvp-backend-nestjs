@@ -1,15 +1,21 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { CourseEntity } from './course.entity';
+import { UserEntity } from './user.entity';
 
 @Entity()
-class Teaching_Assistent {
+class TeachingAssistent {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'int' })
-	course_id: number;
+	@ManyToOne(() => CourseEntity)
+	course: CourseEntity;
+	@Column()
+	courseId: number;
 
-	@Column({ type: 'int' })
-	user_id: number;
+	@ManyToOne(() => UserEntity)
+	user: UserEntity;
+	@Column()
+	userId: number;
 }
 
-export { Teaching_Assistent as TeachingAssistentEntity };
+export { TeachingAssistent as TeachingAssistentEntity };
