@@ -14,6 +14,7 @@ import { UserModule } from './api/user/user.module';
 import { PageModule } from './page/page.module';
 import { HistoryModule } from './api/history/history.module';
 import { AdminModule } from './api/admin/admin.module';
+import { QuestionModule } from './api/question/question.module';
 
 @Module({
 	imports: [
@@ -29,6 +30,7 @@ import { AdminModule } from './api/admin/admin.module';
 		HistoryModule,
 		LectureModule,
 		UserModule,
+		QuestionModule,
 		PageModule,
 	],
 	controllers: [AppController],
