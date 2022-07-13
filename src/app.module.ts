@@ -15,6 +15,7 @@ import { PageModule } from './page/page.module';
 import { HistoryModule } from './api/history/history.module';
 import { AdminModule } from './api/admin/admin.module';
 import { QuestionModule } from './api/question/question.module';
+import { AnswerModule } from './api/answer/answer.module';
 
 @Module({
 	imports: [
@@ -31,6 +32,7 @@ import { QuestionModule } from './api/question/question.module';
 		LectureModule,
 		UserModule,
 		QuestionModule,
+		AnswerModule,
 		PageModule,
 	],
 	controllers: [AppController],
