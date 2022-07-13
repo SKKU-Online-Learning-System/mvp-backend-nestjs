@@ -26,7 +26,7 @@ class Question {
 
 	@ManyToOne(() => LectureEntity)
 	lecture: LectureEntity;
-	@Column()
+	@Column({ nullable: true })
 	lectureId: number;
 
 	@Column({ type: 'text' })
