@@ -19,13 +19,13 @@ class Question {
 	@Column()
 	userId: number;
 
-	@ManyToOne(() => CourseEntity)
-	course: CourseEntity;
+	// @ManyToOne(() => CourseEntity)
+	// course: CourseEntity;
 	@Column()
 	courseId: number;
 
-	@ManyToOne(() => LectureEntity)
-	lecture: LectureEntity;
+	// @ManyToOne(() => LectureEntity)
+	// lecture: LectureEntity;
 	@Column({ nullable: true })
 	lectureId: number;
 

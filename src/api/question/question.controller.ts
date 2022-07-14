@@ -19,13 +19,13 @@ export class QuestionController {
 	constructor(private readonly questionService: QuestionService) {}
 
 	@Get('course/:courseId')
-	getAllQuestionByCourseId(@Param('courseId') id: number) {
-		return this.questionService.getAllQuestionByCourseId(id);
+	getQuestionsByCourseId(@Param('courseId') id: number) {
+		return this.questionService.getQuestionsByCourseId(id);
 	}
 
 	@Get('lecture/:lectureId')
-	getQuestionByLectureId(@Param('lectureId') id: number) {
-		return this.questionService.getQuestionByLectureId(id);
+	getQuestionsByLectureId(@Param('lectureId') id: number) {
+		return this.questionService.getQuestionsByLectureId(id);
 	}
 
 	@UseGuards(JwtAuthGuard)

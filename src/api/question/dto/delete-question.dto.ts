@@ -1,9 +1,9 @@
-import { IsInt } from 'class-validator';
+import { IsInt, IsNumberString } from 'class-validator';
 
 export class DeleteQuestionDto {
-	@IsInt()
-	readonly userId: number;
+	@IsNumberString()
+	readonly questionId: number;
 
 	@IsInt()
-	readonly questionId: number;
+	readonly userId: number;
 }
