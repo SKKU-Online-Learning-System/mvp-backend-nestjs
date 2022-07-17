@@ -60,14 +60,14 @@ export class QuestionService {
 	async updateQuestionById(updateQuestionDto: UpdateQuestionDto) {
 		const { questionId, userId, contents } = updateQuestionDto;
 
-		const [result] = await this.dataSource
+		const result = await this.dataSource
 			.createQueryBuilder()
 			.select('question.userId')
 			.from(QuestionEntity, 'question')
 			.where('id = :questionId', { questionId })
-			.execute();
+			.getOne();
 
-		if (result && result?.question_userId === userId) {
+		if (result && result?.userId === userId) {
 			const { affected } = await this.dataSource
 				.createQueryBuilder()
 				.update(QuestionEntity)
@@ -90,14 +90,14 @@ export class QuestionService {
 	async deleteQuestionById(deleteQuestionDto: DeleteQuestionDto) {
 		const { questionId, userId } = deleteQuestionDto;
 
-		const [result] = await this.dataSource
+		const result = await this.dataSource
 			.createQueryBuilder()
 			.select('question.userId')
 			.from(QuestionEntity, 'question')
 			.where('id = :questionId', { questionId })
-			.execute();
+			.getOne();
 
-		if (result && result?.question_userId === userId) {
+		if (result && result?.userId === userId) {
 			const { affected } = await this.dataSource
 				.createQueryBuilder()
 				.delete()

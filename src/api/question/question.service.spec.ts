@@ -43,7 +43,7 @@ describe('QuestionService', () => {
 		expect(1).toEqual(1);
 	});
 
-	it('getQuestionsByLectureId', async () => {
+	it.skip('getQuestionsByLectureId', async () => {
 		const result = await service.getQuestionsByCourseId(1);
 		console.log(result);
 		expect(1).toEqual(1);
