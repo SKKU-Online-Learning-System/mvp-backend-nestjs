@@ -14,7 +14,7 @@ import { Course_hashtag_seed } from './seeds/course-hashtag.seed';
 import { Hashtag_seed } from './seeds/hashtag.seed';
 import { Lecture_seed } from './seeds/lecture.seed';
 @Injectable()
-export class DataSeedService {
+export class SeedService {
 	constructor(private dataSource: DataSource) {}
 
 	async home() {

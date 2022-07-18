@@ -4,7 +4,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { MagicLoginStrategy } from './strategies/magic-login.strategy';
-import { MailModule } from 'src/mail/mail.module';
+import { MailModule } from 'src/modules/mail/mail.module';
 
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';

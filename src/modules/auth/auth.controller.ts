@@ -24,11 +24,6 @@ export class AuthController {
 		private magicLoginStrategy: MagicLoginStrategy,
 	) {}
 
-	@Get('emailCheck/:email')
-	emailCheck(@Param('email') email: string) {
-		return this.authService.emailCheck(email);
-	}
-
 	@Post('login/magic')
 	async magicLogin(@Req() req, @Res() res) {
 		await this.magicLoginStrategy.send(req, res);
