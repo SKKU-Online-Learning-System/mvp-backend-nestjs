@@ -27,13 +27,13 @@ class Answer {
 
 	// @ManyToOne(() => CourseEntity)
 	// course: CourseEntity;
-	// @Column()
-	// courseId: number;
+	@Column()
+	courseId: number;
 
 	// @ManyToOne(() => LectureEntity)
 	// lecture: LectureEntity;
-	// @Column()
-	// lectureId: number;
+	@Column()
+	lectureId: number;
 
 	@Column({ type: 'text' })
 	contents: string;
