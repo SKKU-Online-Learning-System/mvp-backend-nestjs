@@ -1,5 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { CourseEntity } from './course.entity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 class Hashtag {
@@ -8,11 +7,6 @@ class Hashtag {
 
 	@Column({ type: 'varchar', length: 20 })
 	tag: string;
-
-	// @ManyToOne(() => CourseEntity)
-	// course: CourseEntity;
-	@Column()
-	courseId: number;
 }
 
 export { Hashtag as HashtagEntity };

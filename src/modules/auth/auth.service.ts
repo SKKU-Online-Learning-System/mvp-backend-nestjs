@@ -57,4 +57,12 @@ export class AuthService {
 		const token = this.jwtService.sign(payload);
 		return { access_token: token };
 	}
+
+	// for test
+	getToken() {
+		const token_1 = this.jwtService.sign({ id: 1, email: 'a@a.com' });
+		const token_2 = this.jwtService.sign({ id: 2, email: 'b@b.com' });
+		const token_3 = this.jwtService.sign({ id: 3, email: 'c@c.com' });
+		return { token_1, token_2, token_3 };
+	}
 }
