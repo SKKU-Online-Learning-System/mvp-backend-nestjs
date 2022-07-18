@@ -14,8 +14,8 @@ class Question {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@ManyToOne(() => UserEntity)
-	user: UserEntity;
+	// @ManyToOne(() => UserEntity)
+	// user: UserEntity;
 	@Column()
 	userId: number;
 

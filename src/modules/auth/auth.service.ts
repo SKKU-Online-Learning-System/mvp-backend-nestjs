@@ -15,16 +15,6 @@ export class AuthService {
 		private adminService: AdminService,
 	) {}
 
-	async emailCheck(email: string) {
-		if (await this.userService.getUserByEmail(email)) {
-			throw new ConflictException('This email already exists.');
-		}
-		return {
-			statusCode: 200,
-			message: 'OK',
-		};
-	}
-
 	async validateUser(email: string): Promise<any> {
 		const user = await this.userService.getUserByEmail(email);
 		if (user) {

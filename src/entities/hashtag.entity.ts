@@ -9,8 +9,8 @@ class Hashtag {
 	@Column({ type: 'varchar', length: 20 })
 	tag: string;
 
-	@ManyToOne(() => CourseEntity)
-	course: CourseEntity;
+	// @ManyToOne(() => CourseEntity)
+	// course: CourseEntity;
 	@Column()
 	courseId: number;
 }

@@ -9,8 +9,8 @@ class Category2 {
 	@Column({ type: 'varchar', length: 30 })
 	name: string;
 
-	@ManyToOne(() => Category1Entity)
-	category1: Category1Entity;
+	// @ManyToOne(() => Category1Entity)
+	// category1: Category1Entity;
 	@Column()
 	category1Id: number;
 }

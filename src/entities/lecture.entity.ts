@@ -22,13 +22,13 @@ class Lecture {
 	@Column({ type: 'varchar', length: 255 })
 	filename: string;
 
-	@ManyToOne(() => CourseEntity)
-	course: CourseEntity;
+	// @ManyToOne(() => CourseEntity)
+	// course: CourseEntity;
 	@Column()
 	courseId: number;
 
-	@ManyToOne(() => SectionEntity)
-	section: SectionEntity;
+	// @ManyToOne(() => SectionEntity)
+	// section: SectionEntity;
 	@Column()
 	sectionId: number;
 

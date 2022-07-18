@@ -7,15 +7,15 @@ import { TypeOrmConfigModule } from './configs/database/db.config.module';
 import { TypeOrmConfigService } from './configs/database/db.config.service';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AuthModule } from './api/auth/auth.module';
-import { CourseModule } from './api/course/course.module';
-import { LectureModule } from './api/lecture/lecture.module';
-import { UserModule } from './api/user/user.module';
-import { PageModule } from './page/page.module';
-import { HistoryModule } from './api/history/history.module';
-import { AdminModule } from './api/admin/admin.module';
-import { QuestionModule } from './api/question/question.module';
-import { AnswerModule } from './api/answer/answer.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { CourseModule } from './modules/course/course.module';
+import { LectureModule } from './modules/lecture/lecture.module';
+import { UserModule } from './modules/user/user.module';
+import { PageModule } from './modules/page/page.module';
+import { HistoryModule } from './modules/history/history.module';
+import { AdminModule } from './modules/admin/admin.module';
+import { QuestionModule } from './modules/question/question.module';
+import { AnswerModule } from './modules/answer/answer.module';
 
 @Module({
 	imports: [
