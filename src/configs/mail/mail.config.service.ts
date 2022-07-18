@@ -22,7 +22,7 @@ export class MailConfigService implements MailerOptionsFactory {
 				from: this.configService.get<string>('EMAIL_FROM'),
 			},
 			template: {
-				dir: `${__dirname}/../../**/email/templates`,
+				dir: `${__dirname}/../../mail/templates`,
 				adapter: new PugAdapter(),
 				options: {
 					strict: true,
