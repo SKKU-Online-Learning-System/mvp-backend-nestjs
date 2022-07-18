@@ -1,14 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { HistoryEntity } from 'src/entities/history.entity';
+import { LectureEntity } from 'src/entities/lecture.entity';
 import { DataSource } from 'typeorm';
+import { CreateOrUpdateHistoryDto } from './dto/create-or-update-history.dto';
+import { GetHistoryDto } from './dto/get-history.dto';
 
 @Injectable()
 export class HistoryService {
 	constructor(private dataSource: DataSource) {}
-	async getHistories(
-		userId: number,
-		lectureId?: number,
-	): Promise<HistoryEntity[]> {
+	async getHistories({
+		userId,
+		lectureId,
+	}: GetHistoryDto): Promise<HistoryEntity[]> {
 		const query = await this.dataSource
 			.createQueryBuilder()
 			.select('history')
@@ -22,5 +25,80 @@ export class HistoryService {
 		}
 
 		return await query.getMany();
+	}
+
+	async createOrUpdateHistory(
+		createOrUpdateHistoryDto: CreateOrUpdateHistoryDto,
+	) {
+		const { userId, lectureId, lastTime } = createOrUpdateHistoryDto;
+
+		const histories = await this.getHistories({ userId, lectureId });
+		if (histories.length === 0) {
+			await this.createHistory(createOrUpdateHistoryDto);
+		} else {
+			await this.updateHistory(createOrUpdateHistoryDto);
+
+			const lectureDuration = await this.getLectureDuration(lectureId);
+			if (
+				!histories[0].isFinished &&
+				this.isLectureFinished(lastTime, lectureDuration)
+			) {
+				this.updateIsFinished(userId, lectureId);
+			}
+		}
+
+		return 'update history';
+	}
+
+	async createHistory(createOrUpdateHistoryDto: CreateOrUpdateHistoryDto) {
+		await this.dataSource
+			.createQueryBuilder()
+			.insert()
+			.into(HistoryEntity)
+			.values([createOrUpdateHistoryDto])
+			.execute();
+	}
+
+	async updateHistory({
+		userId,
+		lectureId,
+		lastTime,
+	}: CreateOrUpdateHistoryDto) {
+		await this.dataSource
+			.createQueryBuilder()
+			.update(HistoryEntity)
+			.set({ lastTime: lastTime })
+			.where('userId = :userId', { userId })
+			.andWhere('lectureId = :lectureId', { lectureId })
+			.execute();
+	}
+
+	async getLectureDuration(lectureId: number) {
+		const lecture = await this.dataSource
+			.createQueryBuilder()
+			.select('lecture')
+			.from(LectureEntity, 'lecture')
+			.where('lecture.id = :lectureId', { lectureId })
+			.getOne();
+
+		return lecture.duration;
+	}
+
+	isLectureFinished(lastTime: number, duration: number): boolean {
+		if (lastTime / duration > 0.95) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	async updateIsFinished(userId: number, lectureId: number) {
+		await this.dataSource
+			.createQueryBuilder()
+			.update(HistoryEntity)
+			.set({ isFinished: true })
+			.where('userId = :userId', { userId })
+			.andWhere('lectureId = :lectureId', { lectureId })
+			.execute();
 	}
 }

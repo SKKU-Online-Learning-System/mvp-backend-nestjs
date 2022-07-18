@@ -19,6 +19,9 @@ class History {
 	@UpdateDateColumn()
 	updatedAt: Date;
 
+	@Column()
+	isFinished: boolean;
+
 	@ManyToOne(() => UserEntity)
 	user: UserEntity;
 	@Column()
