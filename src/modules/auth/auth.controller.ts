@@ -52,4 +52,9 @@ export class AuthController {
 	getProfile(@Req() req) {
 		return req.user || 'no req.user';
 	}
+
+	@Get('get-token')
+	getToken() {
+		return this.authService.getToken();
+	}
 }

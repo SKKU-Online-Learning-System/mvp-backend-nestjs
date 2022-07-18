@@ -7,24 +7,26 @@ import { HashtagEntity } from 'src/entities/hashtag.entity';
 import { LectureEntity } from 'src/entities/lecture.entity';
 import { UserEntity } from 'src/entities/user.entity';
 import { DataSource } from 'typeorm';
-import { Cat1_seed } from './seeds/cat1.seed';
-import { Cat2_seed } from './seeds/cat2.seed';
-import { Course_seed } from './seeds/course.seed';
-import { Course_hashtag_seed } from './seeds/course-hashtag.seed';
-import { Hashtag_seed } from './seeds/hashtag.seed';
-import { Lecture_seed } from './seeds/lecture.seed';
+import { Category1 } from './seeds/category1.seed';
+import { Category2 } from './seeds/category2.seed';
+import { Course } from './seeds/course.seed';
+import { CourseHashtag } from './seeds/course-hashtag.seed';
+import { Hashtag } from './seeds/hashtag.seed';
+import { Lecture } from './seeds/lecture.seed';
+import { User } from './seeds/user.seed';
 @Injectable()
 export class SeedService {
 	constructor(private dataSource: DataSource) {}
 
 	async home() {
 		const seeds = [
-			{ seed: Cat1_seed, table: Category1Entity },
-			{ seed: Cat2_seed, table: Category2Entity },
-			{ seed: Course_seed, table: CourseEntity },
-			{ seed: Lecture_seed, table: LectureEntity },
-			{ seed: Hashtag_seed, table: HashtagEntity },
-			{ seed: Course_hashtag_seed, table: CourseHashtagEntity },
+			{ seed: Category1, table: Category1Entity },
+			{ seed: Category2, table: Category2Entity },
+			{ seed: Course, table: CourseEntity },
+			{ seed: CourseHashtag, table: CourseHashtagEntity },
+			{ seed: Hashtag, table: HashtagEntity },
+			{ seed: Lecture, table: LectureEntity },
+			{ seed: User, table: UserEntity },
 		];
 
 		if (true) {
