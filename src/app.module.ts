@@ -15,6 +15,7 @@ import { PageModule } from './modules/page/page.module';
 import { HistoryModule } from './modules/history/history.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { WishlistModule } from './modules/wishlist/wishlist.module';
+import { BookmarkModule } from './modules/bookmark/bookmark.module';
 import { QuestionModule } from './modules/question/question.module';
 import { AnswerModule } from './modules/answer/answer.module';
 import { LearningModule } from './modules/learning/learning.module';
@@ -35,6 +36,7 @@ import { CompleteModule } from './modules/complete/complete.module';
 		LectureModule,
 		UserModule,
 		WishlistModule,
+		BookmarkModule,
 		QuestionModule,
 		AnswerModule,
 		PageModule,
