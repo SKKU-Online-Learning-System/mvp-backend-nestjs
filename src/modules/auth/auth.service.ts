@@ -1,11 +1,10 @@
-import { Body, ConflictException, Injectable } from '@nestjs/common';
+import { Body, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
-import { UserEntity } from 'src/entities/user.entity';
-import { AdminEntity } from 'src/entities/admin.entity';
 import { CreateAdminDto } from '../admin/dto/create-admin.dto';
 import { AdminService } from '../admin/admin.service';
+import { Response } from 'express';
 
 @Injectable()
 export class AuthService {
@@ -26,10 +25,11 @@ export class AuthService {
 		}
 	}
 
-	async magicLogin(user: UserEntity) {
+	magicLogin(res: Response, user) {
 		const payload = { id: user.id, email: user.email };
 		const token = this.jwtService.sign(payload);
-		return { access_token: token };
+		res.cookie('Authorization', token, { httpOnly: true });
+		return { statusCode: 200, message: 'OK' };
 	}
 
 	// admin
@@ -52,10 +52,11 @@ export class AuthService {
 		}
 	}
 
-	async localLogin(user: AdminEntity) {
+	async localLogin(res: Response, user) {
 		const payload = { id: user.id, username: user.username };
 		const token = this.jwtService.sign(payload);
-		return { access_token: token };
+		res.cookie('Authorization', token, { httpOnly: true });
+		return { statusCode: 200, message: 'OK' };
 	}
 
 	// for test

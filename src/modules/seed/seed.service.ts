@@ -14,12 +14,15 @@ import { CourseHashtag } from './seeds/course-hashtag.seed';
 import { Hashtag } from './seeds/hashtag.seed';
 import { Lecture } from './seeds/lecture.seed';
 import { User } from './seeds/user.seed';
+import { Admin } from './seeds/admin.seed';
+import { AdminEntity } from 'src/entities/admin.entity';
 @Injectable()
 export class SeedService {
 	constructor(private dataSource: DataSource) {}
 
 	async home() {
 		const seeds = [
+			{ seed: Admin, table: AdminEntity },
 			{ seed: Category1, table: Category1Entity },
 			{ seed: Category2, table: Category2Entity },
 			{ seed: Course, table: CourseEntity },
@@ -48,6 +51,7 @@ export class SeedService {
 
 	async countData() {
 		return {
+			admin: await this.dataSource.getRepository(AdminEntity).count(),
 			category1: await this.dataSource
 				.getRepository(Category1Entity)
 				.count(),
