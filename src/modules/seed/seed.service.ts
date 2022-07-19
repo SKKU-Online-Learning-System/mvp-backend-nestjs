@@ -51,7 +51,9 @@ export class SeedService {
 
 	async countData() {
 		return {
-			admin: await this.dataSource.getRepository(AdminEntity).count(),
+			admin: await this.dataSource
+				.getRepository(AdminEntity)
+				.count(),
 			category1: await this.dataSource
 				.getRepository(Category1Entity)
 				.count(),
@@ -61,10 +63,18 @@ export class SeedService {
 			course_hashtag: await this.dataSource
 				.getRepository(CourseHashtagEntity)
 				.count(),
-			course: await this.dataSource.getRepository(CourseEntity).count(),
-			hashtag: await this.dataSource.getRepository(HashtagEntity).count(),
-			lecture: await this.dataSource.getRepository(LectureEntity).count(),
-			user: await this.dataSource.getRepository(UserEntity).count(),
+			course: await this.dataSource
+				.getRepository(CourseEntity)
+				.count(),
+			hashtag: await this.dataSource
+				.getRepository(HashtagEntity)
+				.count(),
+			lecture: await this.dataSource
+				.getRepository(LectureEntity)
+				.count(),
+			user: await this.dataSource
+				.getRepository(UserEntity)
+				.count(),
 		};
 	}
 
