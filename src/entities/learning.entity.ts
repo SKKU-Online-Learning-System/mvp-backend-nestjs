@@ -3,7 +3,7 @@ import { CourseEntity } from './course.entity';
 import { UserEntity } from './user.entity';
 
 @Entity()
-class CourseDone {
+class Learning {
 	@PrimaryGeneratedColumn()
 	id: number;
 
@@ -21,4 +21,4 @@ class CourseDone {
 	bookmark: boolean;
 }
 
-export { CourseDone as CourseDoneEntity };
+export { Learning as LearningEntity };
