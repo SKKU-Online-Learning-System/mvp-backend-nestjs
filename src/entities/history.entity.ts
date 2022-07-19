@@ -19,7 +19,7 @@ class History {
 	@UpdateDateColumn()
 	updatedAt: Date;
 
-	@Column()
+	@Column({ default: false })
 	isFinished: boolean;
 
 	// @ManyToOne(() => UserEntity)

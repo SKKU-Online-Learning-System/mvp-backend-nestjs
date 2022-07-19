@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { NotFoundError } from 'rxjs';
 import { HistoryEntity } from 'src/entities/history.entity';
 import { LectureEntity } from 'src/entities/lecture.entity';
 import { DataSource } from 'typeorm';
@@ -80,6 +81,10 @@ export class HistoryService {
 			.from(LectureEntity, 'lecture')
 			.where('lecture.id = :lectureId', { lectureId })
 			.getOne();
+
+		if (!lecture) {
+			throw new NotFoundException('Lecture Not Found(FK)');
+		}
 
 		return lecture.duration;
 	}
