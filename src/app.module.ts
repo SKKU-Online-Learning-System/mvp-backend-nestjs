@@ -36,6 +36,7 @@ import { CompleteModule } from './modules/complete/complete.module';
 		QuestionModule,
 		AnswerModule,
 		PageModule,
+		HistoryModule,
 		LearningModule,
 		CompleteModule,
 	],
