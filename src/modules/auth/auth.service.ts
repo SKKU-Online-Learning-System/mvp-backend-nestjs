@@ -14,6 +14,7 @@ export class AuthService {
 		private adminService: AdminService,
 	) {}
 
+	// user
 	async validateUser(email: string): Promise<any> {
 		const user = await this.userService.getUserByEmail(email);
 		if (user) {
@@ -56,6 +57,12 @@ export class AuthService {
 		const payload = { id: user.id, username: user.username };
 		const token = this.jwtService.sign(payload);
 		res.cookie('Authorization', token, { httpOnly: true });
+		return { statusCode: 200, message: 'OK' };
+	}
+
+	// logout
+	logout(res: Response) {
+		res.cookie('Authorization', '', { httpOnly: true });
 		return { statusCode: 200, message: 'OK' };
 	}
 

@@ -50,6 +50,11 @@ export class AuthController {
 		return this.authService.localLogin(res, user);
 	}
 
+	@Get('logout')
+	logout(@Res({ passthrough: true }) res: Response) {
+		return this.authService.logout(res);
+	}
+
 	// for test
 	@UseGuards(JwtAuthGuard)
 	@Get('profile')
