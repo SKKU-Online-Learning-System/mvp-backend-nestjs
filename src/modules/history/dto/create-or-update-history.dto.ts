@@ -1,12 +1,12 @@
-import { IsNumberString } from 'class-validator';
+import { IsInt } from 'class-validator';
 
 export class CreateOrUpdateHistoryDto {
-	@IsNumberString()
+	@IsInt()
 	userId: number;
 
-	@IsNumberString()
+	@IsInt()
 	lectureId: number;
 
-	@IsNumberString()
+	@IsInt()
 	lastTime: number;
 }

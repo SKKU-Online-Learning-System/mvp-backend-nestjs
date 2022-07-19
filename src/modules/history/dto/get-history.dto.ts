@@ -1,7 +1,7 @@
-import { IsNumberString } from 'class-validator';
+import { IsInt, IsNumberString } from 'class-validator';
 
 export class GetHistoryDto {
-	@IsNumberString()
+	@IsInt()
 	readonly userId: number;
 
 	@IsNumberString()
