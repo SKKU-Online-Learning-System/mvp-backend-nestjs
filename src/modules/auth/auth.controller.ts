@@ -2,7 +2,6 @@ import {
 	Body,
 	Controller,
 	Get,
-	Param,
 	Post,
 	Req,
 	Res,
@@ -15,6 +14,8 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { MagicLoginAuthGuard } from './guards/magic-auth.guard';
 import { MagicLoginStrategy } from './strategies/magic-login.strategy';
+import { User } from 'src/configs/decorator/user.decorator';
+import { Response } from 'express';
 
 @ApiTags('/auth')
 @Controller('auth')
@@ -31,8 +32,11 @@ export class AuthController {
 
 	@UseGuards(MagicLoginAuthGuard)
 	@Get('login/magic/callback')
-	magicLoginCallback(@Req() req) {
-		return this.authService.magicLogin(req.user);
+	magicLoginCallback(
+		@Res({ passthrough: true }) res: Response,
+		@User() user,
+	) {
+		return this.authService.magicLogin(res, user);
 	}
 
 	@Post('admin')
@@ -42,15 +46,20 @@ export class AuthController {
 
 	@UseGuards(LocalAuthGuard)
 	@Post('login/local')
-	async localLogin(@Req() req) {
-		return this.authService.localLogin(req.user);
+	async localLogin(@Res({ passthrough: true }) res: Response, @User() user) {
+		return this.authService.localLogin(res, user);
+	}
+
+	@Get('logout')
+	logout(@Res({ passthrough: true }) res: Response) {
+		return this.authService.logout(res);
 	}
 
 	// for test
 	@UseGuards(JwtAuthGuard)
 	@Get('profile')
-	getProfile(@Req() req) {
-		return req.user || 'no req.user';
+	getProfile(@User() user) {
+		return user || 'no user';
 	}
 
 	@Get('get-token')
