@@ -40,9 +40,7 @@ export class CompleteService {
 	}
 
 	async deleteCompletedCourse({ userId, courseId }: DeleteUserCourseDto) {
-		const {
-			raw: { affectedRows },
-		} = await this.dataSource
+		const { affected } = await this.dataSource
 			.createQueryBuilder()
 			.delete()
 			.from(CompleteEntity, 'complete')
@@ -50,7 +48,7 @@ export class CompleteService {
 			.andWhere('complete.courseId = :courseId', { courseId })
 			.execute();
 
-		if (affectedRows) {
+		if (affected) {
 			return { statusCode: 200, message: 'OK' };
 		} else {
 			throw new NotImplementedException(

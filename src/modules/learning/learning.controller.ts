@@ -12,19 +12,19 @@ export class LearningController {
 
 	@UseGuards(JwtAuthGuard)
 	@Get()
-	getCoursesRegistered(@BPU() getUserCourseDto: GetUserCourseDto) {
+	getLearningCourses(@BPU() getUserCourseDto: GetUserCourseDto) {
 		return this.learningService.getLearningCourses(getUserCourseDto);
 	}
 
 	@UseGuards(JwtAuthGuard)
 	@Post()
-	addUserCourse(@BPU() createUserCourseDto: CreateUserCourseDto) {
+	createLearningCourse(@BPU() createUserCourseDto: CreateUserCourseDto) {
 		return this.learningService.createLearningCourse(createUserCourseDto);
 	}
 
 	@UseGuards(JwtAuthGuard)
 	@Delete('/:courseId')
-	deleteUserCourse(@BPU() deleteUserCourseDto: DeleteUserCourseDto) {
+	deleteLearningCourse(@BPU() deleteUserCourseDto: DeleteUserCourseDto) {
 		return this.learningService.deleteLearningCourse(deleteUserCourseDto);
 	}
 }
