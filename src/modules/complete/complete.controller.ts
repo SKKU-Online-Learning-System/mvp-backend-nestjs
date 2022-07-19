@@ -1,30 +1,30 @@
 import { Controller, Delete, Get, Post, UseGuards } from '@nestjs/common';
 import { BPU } from 'src/configs/decorator/body-param-user.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { CourseDoneService } from './complete.service';
+import { CompleteService } from './complete.service';
 import { CreateUserCourseDto } from './dto/create-user-course.dto';
 import { DeleteUserCourseDto } from './dto/delete-user-course.dto';
 import { GetUserCourseDto } from './dto/get-user-course.dto';
 
-@Controller('courses-done')
-export class CourseDoneController {
-	constructor(private readonly courseDoneService: CourseDoneService) {}
+@Controller('complete')
+export class CompleteController {
+	constructor(private readonly completeService: CompleteService) {}
 
 	@UseGuards(JwtAuthGuard)
 	@Get()
-	getCoursesRegistered(@BPU() getUserCourseDto: GetUserCourseDto) {
-		return this.courseDoneService.getCoursesDone(getUserCourseDto);
+	getCompletedCourses(@BPU() getUserCourseDto: GetUserCourseDto) {
+		return this.completeService.getCompletedCourses(getUserCourseDto);
 	}
 
 	@UseGuards(JwtAuthGuard)
 	@Post()
-	createUserCourse(@BPU() addUserCourseDto: CreateUserCourseDto) {
-		return this.courseDoneService.createCourseDone(addUserCourseDto);
+	createCompletedCourse(@BPU() createUserCourseDto: CreateUserCourseDto) {
+		return this.completeService.createCompletedCourse(createUserCourseDto);
 	}
 
 	@UseGuards(JwtAuthGuard)
 	@Delete('/:courseId')
-	deleteUserCourse(@BPU() deleteUserCourseDto: DeleteUserCourseDto) {
-		return this.courseDoneService.deleteCourseDone(deleteUserCourseDto);
+	deleteCompletedCourse(@BPU() deleteUserCourseDto: DeleteUserCourseDto) {
+		return this.completeService.deleteCompletedCourse(deleteUserCourseDto);
 	}
 }

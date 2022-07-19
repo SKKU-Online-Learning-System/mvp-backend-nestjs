@@ -1,32 +1,32 @@
 import { Injectable, NotImplementedException } from '@nestjs/common';
-import { CompleteEntity } from 'src/entities/complete.entity';
+import { LearningEntity } from 'src/entities/learning.entity';
 import { DataSource } from 'typeorm';
 import { CreateUserCourseDto } from './dto/create-user-course.dto';
 import { DeleteUserCourseDto } from './dto/delete-user-course.dto';
 import { GetUserCourseDto } from './dto/get-user-course.dto';
 
 @Injectable()
-export class CompleteService {
+export class LearningService {
 	constructor(private dataSource: DataSource) {}
 
-	async getCompletedCourses({ userId }: GetUserCourseDto) {
-		const completedCourses = this.dataSource
+	async getLearningCourses({ userId }: GetUserCourseDto) {
+		const learningCourses = this.dataSource
 			.createQueryBuilder()
-			.select('complete')
-			.from(CompleteEntity, 'complete')
-			.where('complete.userId = :userId', { userId })
+			.select('learning')
+			.from(LearningEntity, 'learning')
+			.where('learning.userId = :userId', { userId })
 			.getMany();
 
-		return completedCourses;
+		return learningCourses;
 	}
 
-	async createCompletedCourse({ userId, courseId }: CreateUserCourseDto) {
+	async createLearningCourse({ userId, courseId }: CreateUserCourseDto) {
 		const {
 			raw: { affectedRows },
 		} = await this.dataSource
 			.createQueryBuilder()
 			.insert()
-			.into(CompleteEntity)
+			.into(LearningEntity)
 			.values({ userId, courseId })
 			.execute();
 
@@ -34,27 +34,27 @@ export class CompleteService {
 			return { statusCode: 201, message: 'Created' };
 		} else {
 			throw new NotImplementedException(
-				'complete.service: createCompletedCourse - Nothing inserted.',
+				'learning.service: createLearningCourse - Nothing inserted.',
 			);
 		}
 	}
 
-	async deleteCompletedCourse({ userId, courseId }: DeleteUserCourseDto) {
+	async deleteLearningCourse({ userId, courseId }: DeleteUserCourseDto) {
 		const {
 			raw: { affectedRows },
 		} = await this.dataSource
 			.createQueryBuilder()
 			.delete()
-			.from(CompleteEntity, 'complete')
-			.where('complete.userId = :userId', { userId })
-			.andWhere('complete.courseId = :courseId', { courseId })
+			.from(LearningEntity, 'learning')
+			.where('learning.userId = :userId', { userId })
+			.andWhere('learning.courseId = :courseId', { courseId })
 			.execute();
 
 		if (affectedRows) {
 			return { statusCode: 200, message: 'OK' };
 		} else {
 			throw new NotImplementedException(
-				'complete.service: deleteCompletedCourse - Nothing deleted.',
+				'learning.service: deleteLearningCourse - Nothing deleted.',
 			);
 		}
 	}

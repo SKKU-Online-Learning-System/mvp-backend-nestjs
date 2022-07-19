@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { CourseDoneService } from './complete.service';
-import { CourseDoneController } from './complete.controller';
+import { CompleteService } from './complete.service';
+import { CompleteController } from './complete.controller';
 
 @Module({
-	providers: [CourseDoneService],
-	controllers: [CourseDoneController],
+	providers: [CompleteService],
+	controllers: [CompleteController],
+	exports: [CompleteService],
 })
-export class CourseDoneModule {}
+export class CompleteModule {}
