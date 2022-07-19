@@ -1,27 +1,32 @@
-import { Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { BPU } from 'src/configs/decorator/body-param-user.decorator';
 import { HistoryEntity } from 'src/entities/history.entity';
+import { CreateOrUpdateHistoryDto } from './dto/create-or-update-history.dto';
+import { GetHistoryDto } from './dto/get-history.dto';
 import { HistoryService } from './history.service';
 
 @Controller('history')
 export class HistoryController {
 	constructor(private historyService: HistoryService) {}
 
-	@Get('/user/:userId')
-	getHistories(@Param('userId') userId: number): Promise<HistoryEntity[]> {
-		return this.historyService.getHistories(userId);
-	}
-
-	@Get('user/:userId/lecture/:lectureId')
-	getLectureHistory(
-		@Param('userId') userId: number,
-		@Param('lectureId') lectureId: number,
+	@Get()
+	getHistories(
+		@BPU() getHistoryDto: GetHistoryDto,
 	): Promise<HistoryEntity[]> {
-		return this.historyService.getHistories(userId, lectureId);
+		return this.historyService.getHistories(getHistoryDto);
 	}
 
-	// @Post()
-	// createHistory() {}
+	@Get('/lecture/:lectureId')
+	getLectureHistory(
+		@BPU() getHistoryDto: GetHistoryDto,
+	): Promise<HistoryEntity[]> {
+		return this.historyService.getHistories(getHistoryDto);
+	}
 
-	// @Delete('user/:userId/lecture/:lectureId')
-	// deleteHistory() {}
+	@Patch()
+	createOrUpdateHistory(
+		@BPU() createOrUpdateHistoryDto: CreateOrUpdateHistoryDto,
+	) {
+		this.historyService.createOrUpdateHistory(createOrUpdateHistoryDto);
+	}
 }
