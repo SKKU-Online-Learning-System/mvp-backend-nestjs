@@ -1,26 +1,26 @@
 import { Injectable, NotImplementedException } from '@nestjs/common';
 import { CourseDoneEntity } from 'src/entities/course-done.entity';
 import { DataSource } from 'typeorm';
-import { AddUserCourseDto } from './dto/add-user-course.dto';
+import { CreateUserCourseDto } from './dto/create-user-course.dto';
 import { DeleteUserCourseDto } from './dto/delete-user-course.dto';
 import { GetUserCourseDto } from './dto/get-user-course.dto';
 
 @Injectable()
-export class CourseDoneService {
+export class CompleteService {
 	constructor(private dataSource: DataSource) {}
 
-	async getCoursesDone({ userId }: GetUserCourseDto) {
+	async getCompletedCourses({ userId }: GetUserCourseDto) {
 		const completedCourses = this.dataSource
 			.createQueryBuilder()
 			.select('course_done')
-			.from(CourseDoneEntity, 'course_registered')
+			.from(CourseDoneEntity, 'course_done')
 			.where('course_done.userId = :userId', { userId })
 			.getMany();
 
 		return completedCourses;
 	}
 
-	async addCourseDone({ userId, courseId }: AddUserCourseDto) {
+	async createCourseDone({ userId, courseId }: CreateUserCourseDto) {
 		const {
 			raw: { affectedRows },
 		} = await this.dataSource

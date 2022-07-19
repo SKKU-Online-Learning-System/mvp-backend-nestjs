@@ -1,6 +1,6 @@
 import { IsInt } from 'class-validator';
 
-export class AddUserCourseDto {
+export class CreateUserCourseDto {
 	@IsInt()
 	readonly userId: number;
 

@@ -1,8 +1,8 @@
 import { Controller, Delete, Get, Post, UseGuards } from '@nestjs/common';
 import { BPU } from 'src/configs/decorator/body-param-user.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { CourseDoneService } from './course-done.service';
-import { AddUserCourseDto } from './dto/add-user-course.dto';
+import { CourseDoneService } from './complete.service';
+import { CreateUserCourseDto } from './dto/create-user-course.dto';
 import { DeleteUserCourseDto } from './dto/delete-user-course.dto';
 import { GetUserCourseDto } from './dto/get-user-course.dto';
 
@@ -18,8 +18,8 @@ export class CourseDoneController {
 
 	@UseGuards(JwtAuthGuard)
 	@Post()
-	addUserCourse(@BPU() addUserCourseDto: AddUserCourseDto) {
-		return this.courseDoneService.addCourseDone(addUserCourseDto);
+	createUserCourse(@BPU() addUserCourseDto: CreateUserCourseDto) {
+		return this.courseDoneService.createCourseDone(addUserCourseDto);
 	}
 
 	@UseGuards(JwtAuthGuard)
