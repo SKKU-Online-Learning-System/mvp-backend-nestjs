@@ -14,6 +14,7 @@ import { UserModule } from './modules/user/user.module';
 import { PageModule } from './modules/page/page.module';
 import { HistoryModule } from './modules/history/history.module';
 import { AdminModule } from './modules/admin/admin.module';
+import { WishlistModule } from './modules/wishlist/wishlist.module';
 import { QuestionModule } from './modules/question/question.module';
 import { AnswerModule } from './modules/answer/answer.module';
 
@@ -31,6 +32,7 @@ import { AnswerModule } from './modules/answer/answer.module';
 		HistoryModule,
 		LectureModule,
 		UserModule,
+		WishlistModule,
 		QuestionModule,
 		AnswerModule,
 		PageModule,
