@@ -1,5 +1,5 @@
 import { Controller, Get, Put, UseGuards, Req, Param } from '@nestjs/common';
-import { ApiTags } from '@nestjs/Swagger';
+import { ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { BookmarkService } from './bookmark.service';
 
