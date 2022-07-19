@@ -34,6 +34,7 @@ import { AnswerModule } from './modules/answer/answer.module';
 		QuestionModule,
 		AnswerModule,
 		PageModule,
+		HistoryModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
