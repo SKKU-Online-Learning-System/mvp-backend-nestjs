@@ -3,10 +3,6 @@ import {
 	SwaggerDocumentOptions,
 	SwaggerModule,
 } from '@nestjs/swagger';
-import { AuthModule } from 'src/api/auth/auth.module';
-import { CourseModule } from 'src/api/course/course.module';
-import { LectureModule } from 'src/api/lecture/lecture.module';
-import { UserModule } from 'src/api/user/user.module';
 import { SwaggerUpdates } from './swagger.update';
 
 export const swaggerConfig = (app) => {
@@ -16,10 +12,10 @@ export const swaggerConfig = (app) => {
 		.setVersion('0.0.1')
 		.build();
 
-	const options: SwaggerDocumentOptions = {
-		include: [AuthModule, CourseModule, LectureModule, UserModule],
-	};
+	// const options: SwaggerDocumentOptions = {
+	// 	include: [],
+	// };
 
-	const document = SwaggerModule.createDocument(app, config, options);
+	const document = SwaggerModule.createDocument(app, config); // options 사용시, createDocument의 3번째 인자로 options 전달
 	SwaggerModule.setup('api-docs', app, document);
 };

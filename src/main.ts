@@ -5,8 +5,6 @@ import helmet from 'helmet';
 import { AppModule } from './app.module';
 import { swaggerConfig } from './configs/swagger/swagger.config';
 
-declare const module: any;
-
 async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
@@ -25,6 +23,7 @@ async function bootstrap() {
 			transform: true,
 			whitelist: true,
 			forbidNonWhitelisted: true,
+			validateCustomDecorators: true,
 		}),
 	);
 

@@ -15,23 +15,23 @@ class Answer {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@ManyToOne(() => QuestionEntity)
-	question: QuestionEntity;
+	// @ManyToOne(() => QuestionEntity)
+	// question: QuestionEntity;
 	@Column()
 	questionId: number;
 
-	@ManyToOne(() => UserEntity)
-	user: UserEntity;
+	// @ManyToOne(() => UserEntity)
+	// user: UserEntity;
 	@Column()
 	userId: number;
 
-	@ManyToOne(() => CourseEntity)
-	course: CourseEntity;
+	// @ManyToOne(() => CourseEntity)
+	// course: CourseEntity;
 	@Column()
 	courseId: number;
 
-	@ManyToOne(() => LectureEntity)
-	lecture: LectureEntity;
+	// @ManyToOne(() => LectureEntity)
+	// lecture: LectureEntity;
 	@Column()
 	lectureId: number;
 

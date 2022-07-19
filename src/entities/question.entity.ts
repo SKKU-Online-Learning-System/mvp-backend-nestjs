@@ -14,19 +14,19 @@ class Question {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@ManyToOne(() => UserEntity)
-	user: UserEntity;
+	// @ManyToOne(() => UserEntity)
+	// user: UserEntity;
 	@Column()
 	userId: number;
 
-	@ManyToOne(() => CourseEntity)
-	course: CourseEntity;
+	// @ManyToOne(() => CourseEntity)
+	// course: CourseEntity;
 	@Column()
 	courseId: number;
 
-	@ManyToOne(() => LectureEntity)
-	lecture: LectureEntity;
-	@Column()
+	// @ManyToOne(() => LectureEntity)
+	// lecture: LectureEntity;
+	@Column({ nullable: true })
 	lectureId: number;
 
 	@Column({ type: 'text' })
