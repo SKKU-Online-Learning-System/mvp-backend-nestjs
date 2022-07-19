@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
 	Injectable,
 	InternalServerErrorException,
@@ -8,6 +9,11 @@ import { UserEntity } from 'src/entities/user.entity';
 import { DataSource } from 'typeorm';
 import { CreateUserCourseDto } from './dto/create-user-course.dto';
 import { DeleteUserCourseDto } from './dto/delete-user-course.dto';
+=======
+import { Injectable, NotImplementedException } from '@nestjs/common';
+import { UserEntity } from 'src/entities/user.entity';
+import { DataSource } from 'typeorm';
+>>>>>>> remotes/origin/main
 
 @Injectable()
 export class UserService {
@@ -51,6 +57,7 @@ export class UserService {
 			.getOne();
 		return user;
 	}
+<<<<<<< HEAD
 
 	async getUserCourses(id: number): Promise<CourseRegisteredEntity[]> {
 		const userCourses = await this.dataSource
@@ -108,4 +115,6 @@ export class UserService {
 			);
 		}
 	}
+=======
+>>>>>>> remotes/origin/main
 }
