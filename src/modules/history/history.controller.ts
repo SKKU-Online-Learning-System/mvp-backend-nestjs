@@ -1,4 +1,4 @@
-import { Controller, Get, Patch } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { BPU } from 'src/configs/decorator/body-param-user.decorator';
 import { HistoryEntity } from 'src/entities/history.entity';
 import { CreateOrUpdateHistoryDto } from './dto/create-or-update-history.dto';
