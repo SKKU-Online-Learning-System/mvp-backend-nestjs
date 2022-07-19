@@ -24,11 +24,6 @@ export class AuthController {
 		private magicLoginStrategy: MagicLoginStrategy,
 	) {}
 
-	@Get('emailCheck/:email')
-	emailCheck(@Param('email') email: string) {
-		return this.authService.emailCheck(email);
-	}
-
 	@Post('login/magic')
 	async magicLogin(@Req() req, @Res() res) {
 		await this.magicLoginStrategy.send(req, res);
@@ -56,5 +51,10 @@ export class AuthController {
 	@Get('profile')
 	getProfile(@Req() req) {
 		return req.user || 'no req.user';
+	}
+
+	@Get('get-token')
+	getToken() {
+		return this.authService.getToken();
 	}
 }

@@ -6,10 +6,10 @@ class CourseHashtag {
 	id: number;
 
 	@Column({ type: 'int' })
-	course_id: number;
+	courseId: number;
 
 	@Column({ type: 'int' })
-	hashtag_id: number;
+	hashtagId: number;
 }
 
 export { CourseHashtag as CourseHashtagEntity };

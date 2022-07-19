@@ -7,13 +7,13 @@ class TeachingAssistent {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@ManyToOne(() => CourseEntity)
-	course: CourseEntity;
+	// @ManyToOne(() => CourseEntity)
+	// course: CourseEntity;
 	@Column()
 	courseId: number;
 
-	@ManyToOne(() => UserEntity)
-	user: UserEntity;
+	// @ManyToOne(() => UserEntity)
+	// user: UserEntity;
 	@Column()
 	userId: number;
 }

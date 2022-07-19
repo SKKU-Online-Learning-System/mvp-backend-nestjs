@@ -15,16 +15,6 @@ export class AuthService {
 		private adminService: AdminService,
 	) {}
 
-	async emailCheck(email: string) {
-		if (await this.userService.getUserByEmail(email)) {
-			throw new ConflictException('This email already exists.');
-		}
-		return {
-			statusCode: 200,
-			message: 'OK',
-		};
-	}
-
 	async validateUser(email: string): Promise<any> {
 		const user = await this.userService.getUserByEmail(email);
 		if (user) {
@@ -66,5 +56,13 @@ export class AuthService {
 		const payload = { id: user.id, username: user.username };
 		const token = this.jwtService.sign(payload);
 		return { access_token: token };
+	}
+
+	// for test
+	getToken() {
+		const token_1 = this.jwtService.sign({ id: 1, email: 'a@a.com' });
+		const token_2 = this.jwtService.sign({ id: 2, email: 'b@b.com' });
+		const token_3 = this.jwtService.sign({ id: 3, email: 'c@c.com' });
+		return { token_1, token_2, token_3 };
 	}
 }

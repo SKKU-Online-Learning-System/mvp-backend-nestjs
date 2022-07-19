@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { DataSeedModule } from './data-seed/data-seed.module';
+import { SeedModule } from '../seed/seed.module';
 import { PageController } from './page.controller';
 import { PageService } from './page.service';
 
 @Module({
-	imports: [DataSeedModule],
+	imports: [SeedModule],
 	controllers: [PageController],
 	providers: [PageService],
 })
