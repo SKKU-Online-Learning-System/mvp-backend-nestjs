@@ -6,10 +6,12 @@ import {
 	Put,
 	Param,
 	Body,
+	Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CourseService } from './course.service';
 import { CreateCourseDto } from './dto/create-course.dto';
+import { SearchCoursesDto } from './dto/search-courses.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 
 @ApiTags('/courses')
@@ -23,8 +25,8 @@ export class CourseController {
 	}
 
 	@Get('search')
-	searchCourses() {
-		return this.courseService.searchCourses();
+	searchCourses(@Query() searchCoursesDto: SearchCoursesDto) {
+		return this.courseService.searchCourses(searchCoursesDto);
 	}
 
 	@Get('cat1')
@@ -42,7 +44,7 @@ export class CourseController {
 		return this.courseService.getCourseById(id);
 	}
 
-	@Post('create')
+	@Post()
 	createCourse(@Body() createCourseDto: CreateCourseDto) {
 		return this.courseService.createCourse(createCourseDto);
 	}
