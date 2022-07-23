@@ -49,14 +49,15 @@ export class CourseService {
 			});
 		}
 		if (keyword) {
+			console.log(keyword);
 			courses = courses.where('course.title like :keyword', {
-				keyword: keyword.toLowerCase(),
+				keyword: `%${keyword.toLowerCase()}%`,
 			});
 		}
 
 		courses = await courses
-			// .offset(perPage * (page - 1))
-			// .limit(perPage)
+			.offset(perPage * (page - 1))
+			.limit(perPage)
 			.select([
 				'course.id AS id',
 				'course.title AS title',
@@ -70,9 +71,30 @@ export class CourseService {
 			])
 			.getRawMany();
 
-		console.log(
-			`page: ${page}, perPage: ${perPage}, category1Id: ${category1Id}`,
-		);
+		const hashtags = await this.dataSource
+			.createQueryBuilder()
+			.from(CourseHashtagEntity, 'course_hashtag')
+			.leftJoin(
+				HashtagEntity,
+				'hashtag',
+				'hashtag.id = course_hashtag.hashtagId',
+			)
+			.select([
+				'course_hashtag.id AS id',
+				'course_hashtag.courseId AS courseId',
+				'course_hashtag.hashtagId AS hashtagID',
+				'hashtag.tag AS tag',
+			])
+			.getRawMany();
+
+		courses.map((course, i, arr) => {
+			course.hashtag = [];
+			hashtags.map((hashtag) => {
+				if (course.id === hashtag.courseId) {
+					course.hashtag.push(hashtag.tag);
+				}
+			});
+		});
 
 		return courses;
 	}

@@ -1,13 +1,16 @@
+import { Type } from 'class-transformer';
 import { IsInt, IsNumberString, IsOptional, IsString } from 'class-validator';
 
 export class SearchCoursesDto {
 	@IsOptional()
-	@IsNumberString()
-	readonly page?: number;
+	@IsInt()
+	@Type(() => Number)
+	readonly page?: number = 1;
 
 	@IsOptional()
-	@IsNumberString()
-	readonly perPage?: number;
+	@IsInt()
+	@Type(() => Number)
+	readonly perPage?: number = 24;
 
 	@IsOptional()
 	@IsString()
