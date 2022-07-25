@@ -14,7 +14,7 @@ export class MagicLoginStrategy extends PassportStrategy(
 		private authService: AuthService,
 	) {
 		super({
-			secret: 'helloworld',
+			secret: process.env.MAGIC_SECRET,
 			callbackUrl: 'auth/login/magic/callback',
 			sendMagicLink: async (destination, href) => {
 				await this.mailService.sendUserConfirmation(destination, href);

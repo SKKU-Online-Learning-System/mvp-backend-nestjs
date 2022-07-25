@@ -10,8 +10,9 @@ export class MailConfigService implements MailerOptionsFactory {
 	createMailerOptions(): MailerOptions | Promise<MailerOptions> {
 		return {
 			transport: {
-				host: this.configService.get<string>('EMAIL_HOST'),
-				port: this.configService.get<number>('EMAIL_PORT'),
+				service: this.configService.get<string>('EMAIL_SERVICE'),
+				// host: this.configService.get<string>('EMAIL_HOST'),
+				// port: this.configService.get<number>('EMAIL_PORT'),
 				secure: false,
 				auth: {
 					user: this.configService.get<string>('EMAIL_USERNAME'),
@@ -22,7 +23,7 @@ export class MailConfigService implements MailerOptionsFactory {
 				from: this.configService.get<string>('EMAIL_FROM'),
 			},
 			template: {
-				dir: `dist/mail/templates`,
+				dir: `dist/modules/mail/templates`,
 				adapter: new PugAdapter(),
 				options: {
 					strict: true,
