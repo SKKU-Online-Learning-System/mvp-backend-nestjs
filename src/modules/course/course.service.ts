@@ -1,6 +1,5 @@
 import {
 	Injectable,
-	InternalServerErrorException,
 	NotImplementedException,
 } from '@nestjs/common';
 import { DataSource } from 'typeorm';
@@ -152,7 +151,7 @@ export class CourseService {
 			.innerJoin(
 				HashtagEntity,
 				'hashtag',
-				'hashtag.id = courseHashtag.id',
+				'hashtag.id = courseHashtag.hashtagId',
 			)
 			.select(['hashtag.tag AS tag'])
 			.where('courseId = :id', { id })
@@ -203,7 +202,6 @@ export class CourseService {
 	async updateCourseById(id: number, updateCourseDto: UpdateCourseDto) {
 		const { title, description, category1Id, category2Id, difficulty } =
 			updateCourseDto;
-
 		const {
 			raw: { affectedRows },
 		} = await this.dataSource
@@ -220,7 +218,7 @@ export class CourseService {
 			.execute();
 
 		if (affectedRows) {
-			return { statusCode: 201, message: 'Created' };
+			return { statusCode: 201, message: 'Updated' };
 		} else {
 			throw new NotImplementedException(
 				'course.service: updateCourseById - Nothing changed.',
@@ -229,17 +227,14 @@ export class CourseService {
 	}
 
 	async deleteCourseById(id: number) {
-		const {
-			raw: { affectedRows },
-		} = await this.dataSource
+		const { affected } = await this.dataSource
 			.createQueryBuilder()
 			.from(CourseEntity, 'course')
 			.where('id = :id', { id })
 			.delete()
 			.execute();
-
-		if (affectedRows) {
-			return { statusCode: 201, message: 'Created' };
+		if (affected) {
+			return { statusCode: 201, message: 'Deleted' };
 		} else {
 			throw new NotImplementedException(
 				'course.service: deleteCourseById - Nothing deleted.',
