@@ -1,4 +1,5 @@
 import { Injectable, NotImplementedException } from '@nestjs/common';
+import { CourseEntity } from 'src/entities/course.entity';
 import { LearningEntity } from 'src/entities/learning.entity';
 import { DataSource } from 'typeorm';
 import { CreateUserCourseDto } from './dto/create-user-course.dto';
@@ -12,10 +13,20 @@ export class LearningService {
 	async getLearningCourses({ userId }: GetUserCourseDto) {
 		const learningCourses = this.dataSource
 			.createQueryBuilder()
-			.select('learning')
 			.from(LearningEntity, 'learning')
+			.innerJoin(CourseEntity, 'course', 'learning.courseId = course.id')
+			.select([
+				'learning.id AS id',
+				'learning.bookmark AS bookmark',
+				'learning.courseId AS courseId',
+				'course.title AS title',
+				'course.description AS description',
+				'course.category1Id AS category1Id',
+				'course.category2Id AS category2Id',
+				'course.thumbnail AS thumbnail',
+			])
 			.where('learning.userId = :userId', { userId })
-			.getMany();
+			.getRawMany();
 
 		return learningCourses;
 	}
