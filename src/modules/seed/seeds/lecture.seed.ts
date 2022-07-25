@@ -50,7 +50,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] 웹사이트에 React 추가하기',
 		courseId: 2,
-		sectionId: 1,
+		sectionId: 3,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -59,7 +59,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] Components 와 Props',
 		courseId: 2,
-		sectionId: 2,
+		sectionId: 4,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -68,7 +68,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] Component 만들고 추출하기',
 		courseId: 2,
-		sectionId: 2,
+		sectionId: 4,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -77,7 +77,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] Event 다루기',
 		courseId: 2,
-		sectionId: 3,
+		sectionId: 5,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -86,7 +86,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] 로그인 버튼 렌더링하기',
 		courseId: 2,
-		sectionId: 3,
+		sectionId: 5,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -95,7 +95,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] Flutter vs React Native',
 		courseId: 3,
-		sectionId: 1,
+		sectionId: 6,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -104,7 +104,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] Flutter 개발을 위한 환경 구축하기',
 		courseId: 3,
-		sectionId: 1,
+		sectionId: 6,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -113,7 +113,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] 영화 목록 데이터 연동 및 데이터 요청',
 		courseId: 3,
-		sectionId: 1,
+		sectionId: 6,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -122,7 +122,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] 정렬 순서에 따라 데이터 호출하기',
 		courseId: 3,
-		sectionId: 1,
+		sectionId: 6,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -131,7 +131,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] 데이터를 가져오는 동안 로딩 화면 보여주기',
 		courseId: 3,
-		sectionId: 1,
+		sectionId: 6,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -140,7 +140,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] Vue 인스턴스 생성하기',
 		courseId: 4,
-		sectionId: 1,
+		sectionId: 7,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -149,7 +149,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] 여러 개의 뷰 인스턴스 사용하기 ',
 		courseId: 4,
-		sectionId: 2,
+		sectionId: 7,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -158,7 +158,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] 부모&자식 컴포넌트로 데이터 보내기',
 		courseId: 4,
-		sectionId: 3,
+		sectionId: 8,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -167,7 +167,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] 뷰 인스턴스 라이프사이클 ',
 		courseId: 4,
-		sectionId: 4,
+		sectionId: 8,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -176,7 +176,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] Vue Getters & Map 햂퍼',
 		courseId: 4,
-		sectionId: 4,
+		sectionId: 9,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -185,7 +185,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] 도커 이미지 pull',
 		courseId: 5,
-		sectionId: 1,
+		sectionId: 10,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -194,7 +194,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] 도커 컨테이너 run',
 		courseId: 5,
-		sectionId: 2,
+		sectionId: 11,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -203,7 +203,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] 도커 네트워크',
 		courseId: 5,
-		sectionId: 3,
+		sectionId: 12,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -212,7 +212,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] 도커 명령어 실행',
 		courseId: 5,
-		sectionId: 4,
+		sectionId: 13,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -221,7 +221,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] 호스트와 컨테이너 파일 시스템 연결',
 		courseId: 5,
-		sectionId: 5,
+		sectionId: 14,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -230,7 +230,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] 클라우드에 대한 이해',
 		courseId: 6,
-		sectionId: 1,
+		sectionId: 15,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -239,7 +239,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] 가상 서버 만들기 EC2',
 		courseId: 6,
-		sectionId: 1,
+		sectionId: 15,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -248,7 +248,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] ssh로 EC2 인스턴스 접속하기',
 		courseId: 6,
-		sectionId: 1,
+		sectionId: 15,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -257,7 +257,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] 가상 서버의 용량 조절하기 EBS',
 		courseId: 6,
-		sectionId: 1,
+		sectionId: 16,
 		createdAt: new Date(2022, 1, 1),
 	},
 	{
@@ -266,7 +266,7 @@ export const Lecture = [
 		duration: 600,
 		filename: '[테스트 파일명] 자동으로 크기 조절하기 Auto Scaling',
 		courseId: 6,
-		sectionId: 2,
+		sectionId: 16,
 		createdAt: new Date(2022, 1, 1),
 	},
 ];
