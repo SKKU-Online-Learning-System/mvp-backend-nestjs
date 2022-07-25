@@ -49,7 +49,7 @@ export class CourseController {
 		return this.courseService.getCourseById(id);
 	}
 
-	@Get('lecture/:id')
+	@Get(':id/lectures')
     getLecturesByCourseId(@Param('id') id:number){
         return this.courseService.getLecturesByCourseId(id);
     }
