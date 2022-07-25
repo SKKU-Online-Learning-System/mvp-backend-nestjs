@@ -18,8 +18,14 @@ import { Hashtag } from './seeds/hashtag.seed';
 import { Lecture } from './seeds/lecture.seed';
 import { User } from './seeds/user.seed';
 import { Admin } from './seeds/admin.seed';
+import { AdminEntity } from 'src/entities/admin.entity';
+import { Complete } from './seeds/complete.seed';
+import { CompleteEntity } from 'src/entities/complete.entity';
+import { HistoryEntity } from 'src/entities/history.entity';
+import { History } from './seeds/history.seed';
 import { Wishlist } from './seeds/wishlist.seed';
 import { Learning } from './seeds/learning.seed';
+
 @Injectable()
 export class SeedService {
 	constructor(private dataSource: DataSource) {}
@@ -34,6 +40,8 @@ export class SeedService {
 			{ seed: Hashtag, table: HashtagEntity },
 			{ seed: Lecture, table: LectureEntity },
 			{ seed: User, table: UserEntity },
+			{ seed: Complete, table: CompleteEntity },
+			{ seed: History, table: HistoryEntity },
 			{ seed: Wishlist, table: WishlistEntity},
 			{ seed: Learning, table: LearningEntity}
 		];
@@ -69,6 +77,12 @@ export class SeedService {
 			course_hashtag: await this.dataSource
 				.getRepository(CourseHashtagEntity)
 				.count(),
+			complete: await this.dataSource
+				.getRepository(CompleteEntity)
+				.count(),
+			history: await this.dataSource
+        .getRepository(HistoryEntity)
+        .count(),
 			course: await this.dataSource
 				.getRepository(CourseEntity)
 				.count(),
