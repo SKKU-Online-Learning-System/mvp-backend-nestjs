@@ -9,7 +9,7 @@ export class MailService {
 		await this.mailerService.sendMail({
 			// from: mail.module 등록할 때 default로 입력함
 			to: userEmail,
-			subject: 'Welcome to Nice App! Confirm your Email',
+			subject: '온라인 명륜당 로그인',
 			template: './mail',
 			context: {
 				// ✏️ filling curly brackets with content
