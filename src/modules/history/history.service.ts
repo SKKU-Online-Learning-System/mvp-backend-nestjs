@@ -15,8 +15,21 @@ export class HistoryService {
 	}: GetHistoryDto): Promise<HistoryEntity[]> {
 		const query = await this.dataSource
 			.createQueryBuilder()
-			.select('history')
 			.from(HistoryEntity, 'history')
+			.innerJoin(
+				LectureEntity,
+				'lecture',
+				'lecture.id = history.lectureId',
+			)
+			.select([
+				'history.id AS id',
+				'history.lastTime AS lastTime',
+				'history.updatedAt AS updatedAT',
+				'history.isFinished AS isFinished',
+				'lecture.title AS title',
+				'lecture.duration AS duration',
+				'lecture.filename AS filename',
+			])
 			.where('history.userId = :userId', { userId });
 
 		if (lectureId !== undefined) {
@@ -25,7 +38,7 @@ export class HistoryService {
 			});
 		}
 
-		return await query.getMany();
+		return await query.getRawMany();
 	}
 
 	async getHistoriesLatest({ userId }: GetHistoryDto) {
