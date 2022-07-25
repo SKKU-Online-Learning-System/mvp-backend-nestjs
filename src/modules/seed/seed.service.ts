@@ -24,6 +24,8 @@ import { HistoryEntity } from 'src/entities/history.entity';
 import { History } from './seeds/history.seed';
 import { Wishlist } from './seeds/wishlist.seed';
 import { Learning } from './seeds/learning.seed';
+import { Section } from './seeds/section.seed';
+import { SectionEntity } from 'src/entities/section.entity';
 
 @Injectable()
 export class SeedService {
@@ -43,6 +45,7 @@ export class SeedService {
 			{ seed: History, table: HistoryEntity },
 			{ seed: Wishlist, table: WishlistEntity },
 			{ seed: Learning, table: LearningEntity },
+			{ seed: Section, table: SectionEntity}
 		];
 
 		if (true) {
@@ -87,6 +90,9 @@ export class SeedService {
 				.count(),
 			learning: await this.dataSource
 				.getRepository(LearningEntity)
+				.count(),
+			section: await this.dataSource
+				.getRepository(SectionEntity)
 				.count(),
 		};
 	}

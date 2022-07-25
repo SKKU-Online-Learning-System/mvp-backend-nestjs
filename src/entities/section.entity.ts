@@ -1,5 +1,6 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { CourseEntity } from './course.entity';
+import { LectureEntity } from './lecture.entity';
 
 @Entity()
 class Section {
@@ -9,8 +10,8 @@ class Section {
 	@Column({ type: 'varchar', length: 100 })
 	title: string;
 
-	// @ManyToOne(() => CourseEntity)
-	// course: CourseEntity;
+	@OneToMany(() => LectureEntity, (lecture) => lecture.section)
+	lectures: LectureEntity[];
 	@Column()
 	courseId: number;
 }

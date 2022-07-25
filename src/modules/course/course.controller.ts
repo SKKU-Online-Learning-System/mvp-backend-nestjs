@@ -49,6 +49,11 @@ export class CourseController {
 		return this.courseService.getCourseById(id);
 	}
 
+	@Get(':id/lectures')
+    getLecturesByCourseId(@Param('id') id:number){
+        return this.courseService.getLecturesByCourseId(id);
+    }
+
 	@Post()
 	createCourse(@Body() createCourseDto: CreateCourseDto) {
 		return this.courseService.createCourse(createCourseDto);

@@ -9,6 +9,7 @@ import { CourseHashtagEntity } from 'src/entities/course-hashtag.entity';
 import { HashtagEntity } from 'src/entities/hashtag.entity';
 import { UserEntity } from 'src/entities/user.entity';
 import { SearchCoursesDto } from './dto/search-courses.dto';
+import { SectionEntity } from 'src/entities/section.entity';
 
 @Injectable()
 export class CourseService {
@@ -179,6 +180,32 @@ export class CourseService {
 		return { ...course, hashtag };
 	}
 
+	async getLecturesByCourseId(id: number){
+        const lectures = await this.dataSource
+            .getRepository(SectionEntity)
+            .find({
+                where:{
+                    courseId : id,
+                },
+                relations: {
+                    lectures: true,
+                },
+                select:{
+                    id: true,
+                    title: true,
+                    courseId : true,
+                    lectures: {
+                        id: true,
+                        title: true,
+                        duration: true,
+                        filename: true,
+                        createdAt : true
+                    },
+                },
+            });
+        return lectures;
+    }
+	
 	async createCourse(createCourseDto: CreateCourseDto) {
 		const {
 			title,
