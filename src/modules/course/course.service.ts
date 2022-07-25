@@ -116,6 +116,16 @@ export class CourseService {
 		return category2;
 	}
 
+	async getCat2ByCat1(id: number) {
+		const category2 = await this.dataSource
+			.createQueryBuilder()
+			.from(Category2Entity, 'category2')
+			.where('category2.category1Id = :id', { id })
+			.select('category2')
+			.getMany()
+		return category2;
+	}
+
 	async getCourseById(id: number) {
 		const course = await this.dataSource
 			.createQueryBuilder()

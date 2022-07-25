@@ -39,6 +39,11 @@ export class CourseController {
 		return this.courseService.getCategory2();
 	}
 
+	@Get('cat2/:id')
+	getCat2ByCat1Id(@Param('id') id:number){
+		return this.courseService.getCat2ByCat1(id);
+	}
+	
 	@Get(':id')
 	getCourseById(@Param('id') id: number) {
 		return this.courseService.getCourseById(id);
