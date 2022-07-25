@@ -39,22 +39,22 @@ export class SeedService {
 			{ seed: Course, table: CourseEntity },
 			{ seed: CourseHashtag, table: CourseHashtagEntity },
 			{ seed: Hashtag, table: HashtagEntity },
+			{ seed: Section, table: SectionEntity },
 			{ seed: Lecture, table: LectureEntity },
 			{ seed: User, table: UserEntity },
 			{ seed: Complete, table: CompleteEntity },
 			{ seed: History, table: HistoryEntity },
 			{ seed: Wishlist, table: WishlistEntity },
 			{ seed: Learning, table: LearningEntity },
-			{ seed: Section, table: SectionEntity}
 		];
 
 		if (true) {
 			await seeds.map(({ seed, table }) =>
-				seed.map((data) =>
+				seed.map((data) => {
 					this.dataSource.manager.save(
 						this.dataSource.getRepository(table).create(data),
-					),
-				),
+					);
+				}),
 			);
 		}
 
@@ -91,9 +91,7 @@ export class SeedService {
 			learning: await this.dataSource
 				.getRepository(LearningEntity)
 				.count(),
-			section: await this.dataSource
-				.getRepository(SectionEntity)
-				.count(),
+			section: await this.dataSource.getRepository(SectionEntity).count(),
 		};
 	}
 
