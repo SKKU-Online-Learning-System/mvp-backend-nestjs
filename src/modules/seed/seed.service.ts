@@ -16,6 +16,10 @@ import { Lecture } from './seeds/lecture.seed';
 import { User } from './seeds/user.seed';
 import { Admin } from './seeds/admin.seed';
 import { AdminEntity } from 'src/entities/admin.entity';
+import { Complete } from './seeds/complete.seed';
+import { CompleteEntity } from 'src/entities/complete.entity';
+import { HistoryEntity } from 'src/entities/history.entity';
+import { History } from './seeds/history.seed';
 @Injectable()
 export class SeedService {
 	constructor(private dataSource: DataSource) {}
@@ -30,6 +34,8 @@ export class SeedService {
 			{ seed: Hashtag, table: HashtagEntity },
 			{ seed: Lecture, table: LectureEntity },
 			{ seed: User, table: UserEntity },
+			{ seed: Complete, table: CompleteEntity },
+			{ seed: History, table: HistoryEntity },
 		];
 
 		if (true) {
@@ -65,6 +71,10 @@ export class SeedService {
 			hashtag: await this.dataSource.getRepository(HashtagEntity).count(),
 			lecture: await this.dataSource.getRepository(LectureEntity).count(),
 			user: await this.dataSource.getRepository(UserEntity).count(),
+			complete: await this.dataSource
+				.getRepository(CompleteEntity)
+				.count(),
+			history: await this.dataSource.getRepository(HistoryEntity).count(),
 		};
 	}
 
