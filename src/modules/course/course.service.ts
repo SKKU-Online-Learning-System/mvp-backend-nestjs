@@ -58,24 +58,24 @@ export class CourseService {
 				'course.description',
 				'course.thumbnail',
 				'course.difficulty',
-				'course.created_at',
+				'course.createdAt',
 			])
 			.addSelect('user.email', 'instructor_name')
 			.addSelect('cat1.name', 'cat1_name')
 			.addSelect('cat2.name', 'cat2_name')
-			.innerJoin(Category1Entity, 'cat1', 'cat1.id = course.cat1_id')
-			.innerJoin(Category2Entity, 'cat2', 'cat2.id = course.cat2_id')
-			.innerJoin(UserEntity, 'user', 'user.id = course.instructor_id')
+			.innerJoin(Category1Entity, 'cat1', 'cat1.id = course.category1Id')
+			.innerJoin(Category2Entity, 'cat2', 'cat2.id = course.category2Id')
+			.innerJoin(UserEntity, 'user', 'user.id = course.instructorId')
 			.where('course.id = :id', { id })
 			.getRawMany();
 
 		const hashtag = await this.dataSource
 			.createQueryBuilder()
-			.select('coursehash.hashtag_id')
+			.select('coursehash.hashtagId')
 			.from(CourseHashtagEntity, 'coursehash')
-			.where('course_id = :id', { id })
+			.where('courseId = :id', { id })
 			.addSelect('hashtag.tag', 'tag')
-			.innerJoin(HashtagEntity, 'hashtag', 'hashtag.id = coursehash.id')
+			.innerJoin(HashtagEntity, 'hashtag', 'hashtag.id = coursehash.hashtagId')
 			.getRawMany();
 		return { course, hashtag };
 	}
@@ -118,7 +118,6 @@ export class CourseService {
 	async updateCourseById(id: number, updateCourseDto: UpdateCourseDto) {
 		const { title, description, category1Id, category2Id, difficulty } =
 			updateCourseDto;
-
 		const {
 			raw: { affectedRows },
 		} = await this.dataSource
@@ -135,7 +134,7 @@ export class CourseService {
 			.execute();
 
 		if (affectedRows) {
-			return { statusCode: 201, message: 'Created' };
+			return { statusCode: 201, message: 'Updated' };
 		} else {
 			throw new NotImplementedException(
 				'course.service: updateCourseById - Nothing changed.',
@@ -144,17 +143,14 @@ export class CourseService {
 	}
 
 	async deleteCourseById(id: number) {
-		const {
-			raw: { affectedRows },
-		} = await this.dataSource
+		const { affected } = await this.dataSource
 			.createQueryBuilder()
 			.from(CourseEntity, 'course')
 			.where('id = :id', { id })
 			.delete()
 			.execute();
-
-		if (affectedRows) {
-			return { statusCode: 201, message: 'Created' };
+		if (affected) {
+			return { statusCode: 201, message: 'Deleted' };
 		} else {
 			throw new NotImplementedException(
 				'course.service: deleteCourseById - Nothing deleted.',
