@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 import { swaggerConfig } from './configs/swagger/swagger.config';
+import { join } from 'path';
 
 async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -15,6 +16,9 @@ async function bootstrap() {
 	app.enableCors();
 	app.use(helmet());
 	app.use(cookieParser());
+
+	// static files
+	app.useStaticAssets(join(__dirname, '..', 'public'));
 
 	// view engine
 	app.setViewEngine('pug');

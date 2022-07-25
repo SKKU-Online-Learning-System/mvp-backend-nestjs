@@ -20,6 +20,7 @@ import { QuestionModule } from './modules/question/question.module';
 import { AnswerModule } from './modules/answer/answer.module';
 import { LearningModule } from './modules/learning/learning.module';
 import { CompleteModule } from './modules/complete/complete.module';
+import { BannerModule } from './modules/banner/banner.module';
 
 @Module({
 	imports: [
@@ -43,6 +44,7 @@ import { CompleteModule } from './modules/complete/complete.module';
 		HistoryModule,
 		LearningModule,
 		CompleteModule,
+		BannerModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
