@@ -1,7 +1,4 @@
-import {
-	Injectable,
-	NotImplementedException,
-} from '@nestjs/common';
+import { Injectable, NotImplementedException } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { CourseEntity } from 'src/entities/course.entity';
 import { Category1Entity } from 'src/entities/category1.entity';
@@ -96,6 +93,24 @@ export class CourseService {
 		});
 
 		return courses;
+	}
+
+	async getCategories() {
+		const cat = await this.dataSource.getRepository(Category1Entity).find({
+			relations: {
+				category2s: true,
+			},
+			select: {
+				id: true,
+				name: true,
+				category2s: {
+					id: true,
+					name: true,
+				},
+			},
+		});
+
+		return cat;
 	}
 
 	async getCategory1(): Promise<Category1Entity[]> {

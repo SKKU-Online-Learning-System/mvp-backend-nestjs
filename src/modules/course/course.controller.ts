@@ -29,6 +29,11 @@ export class CourseController {
 		return this.courseService.searchCourses(searchCoursesDto);
 	}
 
+	@Get('categories')
+	getCategories() {
+		return this.courseService.getCategories();
+	}
+
 	@Get('cat1')
 	getCat1() {
 		return this.courseService.getCategory1();
