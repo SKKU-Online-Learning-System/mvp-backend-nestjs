@@ -27,8 +27,8 @@ class Lecture {
 	@Column()
 	courseId: number;
 
-	// @ManyToOne(() => SectionEntity)
-	// section: SectionEntity;
+	@ManyToOne(() => SectionEntity, (section) => section.lectures)
+	section: SectionEntity;
 	@Column()
 	sectionId: number;
 
