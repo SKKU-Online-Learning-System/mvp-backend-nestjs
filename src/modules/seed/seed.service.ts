@@ -18,7 +18,6 @@ import { Hashtag } from './seeds/hashtag.seed';
 import { Lecture } from './seeds/lecture.seed';
 import { User } from './seeds/user.seed';
 import { Admin } from './seeds/admin.seed';
-import { AdminEntity } from 'src/entities/admin.entity';
 import { Complete } from './seeds/complete.seed';
 import { CompleteEntity } from 'src/entities/complete.entity';
 import { HistoryEntity } from 'src/entities/history.entity';

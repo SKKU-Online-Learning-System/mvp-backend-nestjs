@@ -19,6 +19,14 @@ export class HistoryController {
 	}
 
 	@UseGuards(JwtAuthGuard)
+	@Get('/latest')
+	getHistoriesLatest(
+		@BPU() getHistoryDto: GetHistoryDto,
+	): Promise<HistoryEntity[]> {
+		return this.historyService.getHistoriesLatest(getHistoryDto);
+	}
+
+	@UseGuards(JwtAuthGuard)
 	@Get('/lecture/:lectureId')
 	getLectureHistory(
 		@BPU() getHistoryDto: GetHistoryDto,
