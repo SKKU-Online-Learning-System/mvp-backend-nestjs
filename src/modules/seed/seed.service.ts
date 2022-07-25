@@ -6,6 +6,9 @@ import { CourseHashtagEntity } from 'src/entities/course-hashtag.entity';
 import { HashtagEntity } from 'src/entities/hashtag.entity';
 import { LectureEntity } from 'src/entities/lecture.entity';
 import { UserEntity } from 'src/entities/user.entity';
+import { AdminEntity } from 'src/entities/admin.entity';
+import { WishlistEntity } from 'src/entities/wishlist.entity';
+import { LearningEntity } from 'src/entities/learning.entity';
 import { DataSource } from 'typeorm';
 import { Category1 } from './seeds/category1.seed';
 import { Category2 } from './seeds/category2.seed';
@@ -15,7 +18,8 @@ import { Hashtag } from './seeds/hashtag.seed';
 import { Lecture } from './seeds/lecture.seed';
 import { User } from './seeds/user.seed';
 import { Admin } from './seeds/admin.seed';
-import { AdminEntity } from 'src/entities/admin.entity';
+import { Wishlist } from './seeds/wishlist.seed';
+import { Learning } from './seeds/learning.seed';
 @Injectable()
 export class SeedService {
 	constructor(private dataSource: DataSource) {}
@@ -30,6 +34,8 @@ export class SeedService {
 			{ seed: Hashtag, table: HashtagEntity },
 			{ seed: Lecture, table: LectureEntity },
 			{ seed: User, table: UserEntity },
+			{ seed: Wishlist, table: WishlistEntity},
+			{ seed: Learning, table: LearningEntity}
 		];
 
 		if (true) {
@@ -51,7 +57,9 @@ export class SeedService {
 
 	async countData() {
 		return {
-			admin: await this.dataSource.getRepository(AdminEntity).count(),
+			admin: await this.dataSource
+				.getRepository(AdminEntity)
+				.count(),
 			category1: await this.dataSource
 				.getRepository(Category1Entity)
 				.count(),
@@ -61,10 +69,24 @@ export class SeedService {
 			course_hashtag: await this.dataSource
 				.getRepository(CourseHashtagEntity)
 				.count(),
-			course: await this.dataSource.getRepository(CourseEntity).count(),
-			hashtag: await this.dataSource.getRepository(HashtagEntity).count(),
-			lecture: await this.dataSource.getRepository(LectureEntity).count(),
-			user: await this.dataSource.getRepository(UserEntity).count(),
+			course: await this.dataSource
+				.getRepository(CourseEntity)
+				.count(),
+			hashtag: await this.dataSource
+				.getRepository(HashtagEntity)
+				.count(),
+			lecture: await this.dataSource
+				.getRepository(LectureEntity)
+				.count(),
+			user: await this.dataSource
+				.getRepository(UserEntity)
+				.count(),
+			wishlist: await this.dataSource
+				.getRepository(WishlistEntity)
+				.count(),
+			learning: await this.dataSource
+				.getRepository(LearningEntity)
+				.count()
 		};
 	}
 
