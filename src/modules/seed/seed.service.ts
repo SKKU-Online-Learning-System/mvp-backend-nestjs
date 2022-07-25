@@ -41,8 +41,8 @@ export class SeedService {
 			{ seed: User, table: UserEntity },
 			{ seed: Complete, table: CompleteEntity },
 			{ seed: History, table: HistoryEntity },
-			{ seed: Wishlist, table: WishlistEntity},
-			{ seed: Learning, table: LearningEntity}
+			{ seed: Wishlist, table: WishlistEntity },
+			{ seed: Learning, table: LearningEntity },
 		];
 
 		if (true) {
@@ -64,9 +64,7 @@ export class SeedService {
 
 	async countData() {
 		return {
-			admin: await this.dataSource
-				.getRepository(AdminEntity)
-				.count(),
+			admin: await this.dataSource.getRepository(AdminEntity).count(),
 			category1: await this.dataSource
 				.getRepository(Category1Entity)
 				.count(),
@@ -79,27 +77,17 @@ export class SeedService {
 			complete: await this.dataSource
 				.getRepository(CompleteEntity)
 				.count(),
-			history: await this.dataSource
-        .getRepository(HistoryEntity)
-        .count(),
-			course: await this.dataSource
-				.getRepository(CourseEntity)
-				.count(),
-			hashtag: await this.dataSource
-				.getRepository(HashtagEntity)
-				.count(),
-			lecture: await this.dataSource
-				.getRepository(LectureEntity)
-				.count(),
-			user: await this.dataSource
-				.getRepository(UserEntity)
-				.count(),
+			history: await this.dataSource.getRepository(HistoryEntity).count(),
+			course: await this.dataSource.getRepository(CourseEntity).count(),
+			hashtag: await this.dataSource.getRepository(HashtagEntity).count(),
+			lecture: await this.dataSource.getRepository(LectureEntity).count(),
+			user: await this.dataSource.getRepository(UserEntity).count(),
 			wishlist: await this.dataSource
 				.getRepository(WishlistEntity)
 				.count(),
 			learning: await this.dataSource
 				.getRepository(LearningEntity)
-				.count()
+				.count(),
 		};
 	}
 
