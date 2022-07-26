@@ -15,25 +15,25 @@ class Answer {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	// @ManyToOne(() => QuestionEntity)
-	// question: QuestionEntity;
+	@ManyToOne(() => QuestionEntity, (question) => question.answers)
+	question: QuestionEntity;
 	@Column()
 	questionId: number;
 
-	// @ManyToOne(() => UserEntity)
-	// user: UserEntity;
+	@ManyToOne(() => UserEntity, { eager: true })
+	user: UserEntity;
 	@Column()
 	userId: number;
 
 	// @ManyToOne(() => CourseEntity)
 	// course: CourseEntity;
-	@Column()
-	courseId: number;
+	// @Column()
+	// courseId: number;
 
 	// @ManyToOne(() => LectureEntity)
 	// lecture: LectureEntity;
-	@Column()
-	lectureId: number;
+	// @Column()
+	// lectureId: number;
 
 	@Column({ type: 'text' })
 	contents: string;
