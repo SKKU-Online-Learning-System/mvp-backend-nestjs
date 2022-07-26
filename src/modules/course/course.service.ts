@@ -165,62 +165,68 @@ export class CourseService {
 		const learningNumbers = await this.dataSource
 			.createQueryBuilder()
 			.from(LearningEntity, 'learning')
+			.innerJoin(CourseEntity, 'course', 'course.id = learning.courseId')
 			.select([
 				'learning.courseId AS courseId',
 				'COUNT(learning.courseId) AS count',
+				'course.title AS title',
+				'course.description AS description',
+				'course.thumbnail AS thumbnail',
+				'course.difficulty AS difficulty',
 			])
 			.groupBy('learning.courseId')
 			.getRawMany();
 
 		const learningNumbersMap = new Map();
 		learningNumbers.forEach((element) => {
-			learningNumbersMap.set(element.courseId, Number(element.count));
+			learningNumbersMap.set(element.courseId, element);
 		});
 
 		const completeNumbers = await this.dataSource
 			.createQueryBuilder()
 			.from(CompleteEntity, 'complete')
+			.innerJoin(CourseEntity, 'course', 'course.id = complete.courseId')
 			.select([
 				'complete.courseId AS courseId',
 				'COUNT(complete.courseId) AS count',
+				'course.title AS title',
+				'course.description AS description',
+				'course.thumbnail AS thumbnail',
+				'course.difficulty AS difficulty',
 			])
 			.groupBy('complete.courseId')
 			.getRawMany();
 
 		const completeNumbersMap = new Map();
 		completeNumbers.forEach((element) => {
-			completeNumbersMap.set(element.courseId, Number(element.count));
+			completeNumbersMap.set(element.courseId, element);
 		});
 
 		const userCourseNumbersMap = new Map(learningNumbersMap);
 
 		for (const [
 			courseIdOfCompleteNumbers,
-			countOfCompleteNumbers,
+			completeNumber,
 		] of completeNumbersMap) {
-			const count = userCourseNumbersMap.get(courseIdOfCompleteNumbers);
-			if (count) {
-				userCourseNumbersMap.set(
-					courseIdOfCompleteNumbers,
-					count + countOfCompleteNumbers,
-				);
+			const element = userCourseNumbersMap.get(courseIdOfCompleteNumbers);
+			if (element) {
+				element['count'] =
+					Number(element['count']) + Number(completeNumber['count']);
+				userCourseNumbersMap.set(courseIdOfCompleteNumbers, element);
 			} else {
 				userCourseNumbersMap.set(
 					courseIdOfCompleteNumbers,
-					countOfCompleteNumbers,
+					completeNumber,
 				);
 			}
 		}
 
 		const userCourseNumbersArray = [...userCourseNumbersMap].sort(
-			(a, b) => b[1] - a[1],
+			(a, b) => b[1]['count'] - a[1]['count'],
 		);
 
 		return userCourseNumbersArray.reduce((accumulator, currentValue) => {
-			accumulator = [
-				...accumulator,
-				{ courseId: currentValue[0], count: currentValue[1] },
-			];
+			accumulator = [...accumulator, currentValue[1]];
 			return accumulator;
 		}, []);
 	}
