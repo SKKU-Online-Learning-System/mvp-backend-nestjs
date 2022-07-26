@@ -14,9 +14,11 @@ import { AdminModule } from '../admin/admin.module';
 @Module({
 	imports: [
 		PassportModule,
-		JwtModule.register({
-			secret: process.env.JWT_SECRET,
-			signOptions: { expiresIn: '12h' },
+		JwtModule.registerAsync({
+      		useFactory: () => ({
+        		secret: process.env.JWT_SECRET,
+        		signOptions: { expiresIn: '12h' },
+     		}),
 		}),
 		UserModule,
 		AdminModule,
