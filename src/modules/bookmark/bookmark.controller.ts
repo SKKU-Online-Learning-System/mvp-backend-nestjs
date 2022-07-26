@@ -1,4 +1,4 @@
-import { Controller, Get, Put, UseGuards, Req, Param } from '@nestjs/common';
+import { Controller, Get, Post, Delete, UseGuards, Req, Param } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { BookmarkService } from './bookmark.service';
@@ -15,13 +15,13 @@ export class BookmarkController{
     }
 
     @UseGuards(JwtAuthGuard)
-    @Put('add-learning/:id')
+    @Post('learning/:id')
     addLearningBookmarkById(@Req() req, @Param('id') id:number){
         return this.bookmarkService.addLearningBookmarkById(req.user, id);
     }
 
     @UseGuards(JwtAuthGuard)
-    @Put('remove-learning/:id')
+    @Delete('learning/:id')
     deleteLearningBookmarkById(@Req() req, @Param('id') id:number){
         return this.bookmarkService.deleteLearningBookmarkById(req.user, id);
     }
@@ -33,13 +33,13 @@ export class BookmarkController{
     }
 
     @UseGuards(JwtAuthGuard)
-    @Put('add-complete/:id')
+    @Post('complete/:id')
     addCompleteBookmarkById(@Req() req, @Param('id') id:number){
         return this.bookmarkService.addCompleteBookmarkById(req.user, id);
     }
 
     @UseGuards(JwtAuthGuard)
-    @Put('remove-complete/:id')
+    @Delete('complete/:id')
     deleteCompleteBookmarkById(@Req() req, @Param('id') id:number){
         return this.bookmarkService.deleteCompleteBookmarkById(req.user, id);
     }
