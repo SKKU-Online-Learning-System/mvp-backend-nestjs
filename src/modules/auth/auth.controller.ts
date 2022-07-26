@@ -66,4 +66,9 @@ export class AuthController {
 	getToken() {
 		return this.authService.getToken();
 	}
+
+	@Get('temp-login')
+	tempLogin(@Res({ passthrough: true }) res: Response) {
+		return this.authService.tempLogin(res);
+	}
 }
