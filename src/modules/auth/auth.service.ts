@@ -73,4 +73,10 @@ export class AuthService {
 		const token_3 = this.jwtService.sign({ id: 3, email: 'c@c.com' });
 		return { token_1, token_2, token_3 };
 	}
+
+	tempLogin(res: Response) {
+		const token = this.jwtService.sign({ id: 1, email: 'a@a.com' });
+		res.cookie('Authorization', token, { httpOnly: true });
+		return { statusCode: 200, message: 'OK' };
+	}
 }
