@@ -29,6 +29,11 @@ export class CourseController {
 		return this.courseService.getCategories();
 	}
 
+	@Get('popular')
+	getCoursesPopular() {
+		return this.courseService.getPopularCourses();
+	}
+
 	@Get(':courseId')
 	getCourseById(@Param('courseId') courseId: number) {
 		return this.courseService.getCourseById(courseId);
