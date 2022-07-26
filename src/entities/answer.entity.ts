@@ -20,8 +20,8 @@ class Answer {
 	@Column()
 	questionId: number;
 
-	// @ManyToOne(() => UserEntity)
-	// user: UserEntity;
+	@ManyToOne(() => UserEntity, { eager: true })
+	user: UserEntity;
 	@Column()
 	userId: number;
 
