@@ -16,17 +16,64 @@ export class QuestionService {
 	constructor(private dataSource: DataSource) {}
 
 	async getQuestionsByCourseId(id: number) {
-		return await this.dataSource.getRepository(QuestionEntity).find({
-			where: {
-				courseId: id,
-			},
-		});
+		const questions = await this.dataSource
+			.getRepository(QuestionEntity)
+			.find({
+				where: {
+					courseId: id,
+				},
+				relations: {
+					user: true,
+					answers: {
+						user: true,
+					},
+				},
+				select: {
+					id: true,
+					contents: true,
+					createdAt: true,
+					user: {
+						email: true,
+					},
+					answers: {
+						id: true,
+						contents: true,
+						createdAt: true,
+						user: {
+							email: true,
+						},
+					},
+				},
+			});
+		return questions;
 	}
 
 	async getQuestionsByLectureId(id: number) {
 		return await this.dataSource.getRepository(QuestionEntity).find({
 			where: {
 				lectureId: id,
+			},
+			relations: {
+				user: true,
+				answers: {
+					user: true,
+				},
+			},
+			select: {
+				id: true,
+				contents: true,
+				createdAt: true,
+				user: {
+					email: true,
+				},
+				answers: {
+					id: true,
+					contents: true,
+					createdAt: true,
+					user: {
+						email: true,
+					},
+				},
 			},
 		});
 	}
