@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { HashtagService } from './hashtag.service';
 
-@Controller('hashtag')
+@Controller('hashtags')
 export class HashtagController {
 	constructor(private readonly hashtagService: HashtagService) {}
 
