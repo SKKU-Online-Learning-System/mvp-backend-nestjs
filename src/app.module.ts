@@ -21,6 +21,7 @@ import { AnswerModule } from './modules/answer/answer.module';
 import { LearningModule } from './modules/learning/learning.module';
 import { CompleteModule } from './modules/complete/complete.module';
 import { BannerModule } from './modules/banner/banner.module';
+import { HashtagModule } from './modules/hashtag/hashtag.module';
 
 @Module({
 	imports: [
@@ -45,6 +46,7 @@ import { BannerModule } from './modules/banner/banner.module';
 		LearningModule,
 		CompleteModule,
 		BannerModule,
+		HashtagModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
