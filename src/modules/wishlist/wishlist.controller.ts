@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Req, UseGuards } from '@nestjs/common';
+import { Controller, Delete, Get, Post, Param, Req, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { WishlistService } from './wishlist.service';
@@ -15,7 +15,7 @@ export class WishlistController{
     }
 
     @UseGuards(JwtAuthGuard)
-    @Get(':id')
+    @Post(':id')
     addWishlistById(@Req() req, @Param('id') id:number){
         return this.wishlistService.addWishlistById(req.user, id);
     }
