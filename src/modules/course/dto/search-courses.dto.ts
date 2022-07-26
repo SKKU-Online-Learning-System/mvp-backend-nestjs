@@ -1,5 +1,12 @@
-import { Type } from 'class-transformer';
-import { IsInt, IsNumberString, IsOptional, IsString } from 'class-validator';
+import { Transform, Type } from 'class-transformer';
+import {
+	IsArray,
+	IsInt,
+	IsNumberString,
+	IsOptional,
+	IsString,
+	ValidateNested,
+} from 'class-validator';
 
 export class SearchCoursesDto {
 	@IsOptional()
@@ -17,8 +24,10 @@ export class SearchCoursesDto {
 	readonly keyword?: string;
 
 	@IsOptional()
-	@IsString()
-	readonly difficulty?: string;
+	@IsArray()
+	@Transform(({ value }) => value.split(',').map((item) => Number(item)))
+	@IsInt({ each: true })
+	readonly difficulty?: number[];
 
 	@IsOptional()
 	@IsNumberString()

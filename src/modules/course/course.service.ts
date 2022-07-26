@@ -11,19 +11,11 @@ import { UserEntity } from 'src/entities/user.entity';
 import { SearchCoursesDto } from './dto/search-courses.dto';
 import { LearningEntity } from 'src/entities/learning.entity';
 import { CompleteEntity } from 'src/entities/complete.entity';
+import { SectionEntity } from 'src/entities/section.entity';
 
 @Injectable()
 export class CourseService {
 	constructor(private dataSource: DataSource) {}
-
-	async getAllCourses(): Promise<CourseEntity[]> {
-		const courses = await this.dataSource
-			.createQueryBuilder()
-			.from(CourseEntity, 'course')
-			.select('course')
-			.getMany();
-		return courses;
-	}
 
 	async searchCourses(searchCoursesDto: SearchCoursesDto) {
 		const { page, perPage, keyword, difficulty, category1Id, category2Id } =
@@ -47,9 +39,13 @@ export class CourseService {
 			});
 		}
 		if (keyword) {
-			console.log(keyword);
 			courses = courses.where('course.title like :keyword', {
 				keyword: `%${keyword.toLowerCase()}%`,
+			});
+		}
+		if (difficulty) {
+			courses = courses.where('course.difficulty IN (:...difficulty)', {
+				difficulty,
 			});
 		}
 
@@ -113,24 +109,6 @@ export class CourseService {
 		});
 
 		return cat;
-	}
-
-	async getCategory1(): Promise<Category1Entity[]> {
-		const category1 = await this.dataSource
-			.createQueryBuilder()
-			.from(Category1Entity, 'category1')
-			.select('category1')
-			.getMany();
-		return category1;
-	}
-
-	async getCategory2(): Promise<Category2Entity[]> {
-		const category2 = await this.dataSource
-			.createQueryBuilder()
-			.from(Category2Entity, 'category2')
-			.select('category2')
-			.getMany();
-		return category2;
 	}
 
 	async getCourseById(id: number) {
@@ -243,6 +221,31 @@ export class CourseService {
 			];
 			return accumulator;
 		}, []);
+	}
+	async getLecturesByCourseId(id: number) {
+		const lectures = await this.dataSource
+			.getRepository(SectionEntity)
+			.find({
+				where: {
+					courseId: id,
+				},
+				relations: {
+					lectures: true,
+				},
+				select: {
+					id: true,
+					title: true,
+					courseId: true,
+					lectures: {
+						id: true,
+						title: true,
+						duration: true,
+						filename: true,
+						createdAt: true,
+					},
+				},
+			});
+		return lectures;
 	}
 
 	async createCourse(createCourseDto: CreateCourseDto) {

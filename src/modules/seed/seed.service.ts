@@ -24,6 +24,12 @@ import { HistoryEntity } from 'src/entities/history.entity';
 import { History } from './seeds/history.seed';
 import { Wishlist } from './seeds/wishlist.seed';
 import { Learning } from './seeds/learning.seed';
+import { Section } from './seeds/section.seed';
+import { SectionEntity } from 'src/entities/section.entity';
+import { Question } from './seeds/question.seed';
+import { QuestionEntity } from 'src/entities/question.entity';
+import { Answer } from './seeds/answer.seed';
+import { AnswerEntity } from 'src/entities/answer.entity';
 
 @Injectable()
 export class SeedService {
@@ -37,21 +43,24 @@ export class SeedService {
 			{ seed: Course, table: CourseEntity },
 			{ seed: CourseHashtag, table: CourseHashtagEntity },
 			{ seed: Hashtag, table: HashtagEntity },
+			{ seed: Section, table: SectionEntity },
 			{ seed: Lecture, table: LectureEntity },
 			{ seed: User, table: UserEntity },
 			{ seed: Complete, table: CompleteEntity },
 			{ seed: History, table: HistoryEntity },
 			{ seed: Wishlist, table: WishlistEntity },
 			{ seed: Learning, table: LearningEntity },
+			{ seed: Question, table: QuestionEntity },
+			{ seed: Answer, table: AnswerEntity },
 		];
 
 		if (true) {
 			await seeds.map(({ seed, table }) =>
-				seed.map((data) =>
+				seed.map((data) => {
 					this.dataSource.manager.save(
 						this.dataSource.getRepository(table).create(data),
-					),
-				),
+					);
+				}),
 			);
 		}
 
@@ -88,6 +97,7 @@ export class SeedService {
 			learning: await this.dataSource
 				.getRepository(LearningEntity)
 				.count(),
+			section: await this.dataSource.getRepository(SectionEntity).count(),
 		};
 	}
 
