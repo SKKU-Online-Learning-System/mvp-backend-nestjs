@@ -9,20 +9,38 @@ export class BookmarkController{
     constructor(private bookmarkService : BookmarkService){}
 
     @UseGuards(JwtAuthGuard)
-    @Get()
-    getAllBookmark(@Req() req){
-        return this.bookmarkService.getAllBookmark(req.user);
+    @Get('learning')
+    getAllLearningBookmark(@Req() req){
+        return this.bookmarkService.getAllLearningBookmark(req.user);
     }
 
     @UseGuards(JwtAuthGuard)
-    @Put('add/:id')
-    addBookmarkById(@Req() req, @Param('id') id:number){
-        return this.bookmarkService.addBookmarkById(req.user, id);
+    @Put('add-learning/:id')
+    addLearningBookmarkById(@Req() req, @Param('id') id:number){
+        return this.bookmarkService.addLearningBookmarkById(req.user, id);
     }
 
     @UseGuards(JwtAuthGuard)
-    @Put('remove/:id')
-    deleteBookmarkById(@Req() req, @Param('id') id:number){
-        return this.bookmarkService.deleteBookmarkById(req.user, id);
+    @Put('remove-learning/:id')
+    deleteLearningBookmarkById(@Req() req, @Param('id') id:number){
+        return this.bookmarkService.deleteLearningBookmarkById(req.user, id);
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Get('complete')
+    getAllCompleteBookmark(@Req() req){
+        return this.bookmarkService.getAllCompleteBookmark(req.user);
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Put('add-complete/:id')
+    addCompleteBookmarkById(@Req() req, @Param('id') id:number){
+        return this.bookmarkService.addCompleteBookmarkById(req.user, id);
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Put('remove-complete/:id')
+    deleteCompleteBookmarkById(@Req() req, @Param('id') id:number){
+        return this.bookmarkService.deleteCompleteBookmarkById(req.user, id);
     }
 }
