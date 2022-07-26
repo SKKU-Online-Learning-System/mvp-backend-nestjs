@@ -47,6 +47,8 @@ export class CourseService {
 			});
 		}
 
+		const length = await courses.getCount();
+
 		courses = await courses
 			.offset(perPage * (page - 1))
 			.limit(perPage)
@@ -88,7 +90,7 @@ export class CourseService {
 			});
 		});
 
-		return courses;
+		return { length, courses };
 	}
 
 	async getCategories() {
