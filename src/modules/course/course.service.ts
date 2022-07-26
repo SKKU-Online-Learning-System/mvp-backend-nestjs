@@ -9,6 +9,8 @@ import { CourseHashtagEntity } from 'src/entities/course-hashtag.entity';
 import { HashtagEntity } from 'src/entities/hashtag.entity';
 import { UserEntity } from 'src/entities/user.entity';
 import { SearchCoursesDto } from './dto/search-courses.dto';
+import { LearningEntity } from 'src/entities/learning.entity';
+import { CompleteEntity } from 'src/entities/complete.entity';
 import { SectionEntity } from 'src/entities/section.entity';
 
 @Injectable()
@@ -138,7 +140,7 @@ export class CourseService {
 			.where('course.id = :id', { id })
 			.getRawOne();
 
-		let hashtag = await this.dataSource
+		const hashtag = await this.dataSource
 			.createQueryBuilder()
 			.from(CourseHashtagEntity, 'courseHashtag')
 			.innerJoin(
@@ -157,6 +159,69 @@ export class CourseService {
 		return { ...course, hashtag };
 	}
 
+	async getPopularCourses() {
+		const learningNumbers = await this.dataSource
+			.createQueryBuilder()
+			.from(LearningEntity, 'learning')
+			.select([
+				'learning.courseId AS courseId',
+				'COUNT(learning.courseId) AS count',
+			])
+			.groupBy('learning.courseId')
+			.getRawMany();
+
+		const learningNumbersMap = new Map();
+		learningNumbers.forEach((element) => {
+			learningNumbersMap.set(element.courseId, Number(element.count));
+		});
+
+		const completeNumbers = await this.dataSource
+			.createQueryBuilder()
+			.from(CompleteEntity, 'complete')
+			.select([
+				'complete.courseId AS courseId',
+				'COUNT(complete.courseId) AS count',
+			])
+			.groupBy('complete.courseId')
+			.getRawMany();
+
+		const completeNumbersMap = new Map();
+		completeNumbers.forEach((element) => {
+			completeNumbersMap.set(element.courseId, Number(element.count));
+		});
+
+		const userCourseNumbersMap = new Map(learningNumbersMap);
+
+		for (const [
+			courseIdOfCompleteNumbers,
+			countOfCompleteNumbers,
+		] of completeNumbersMap) {
+			const count = userCourseNumbersMap.get(courseIdOfCompleteNumbers);
+			if (count) {
+				userCourseNumbersMap.set(
+					courseIdOfCompleteNumbers,
+					count + countOfCompleteNumbers,
+				);
+			} else {
+				userCourseNumbersMap.set(
+					courseIdOfCompleteNumbers,
+					countOfCompleteNumbers,
+				);
+			}
+		}
+
+		const userCourseNumbersArray = [...userCourseNumbersMap].sort(
+			(a, b) => b[1] - a[1],
+		);
+
+		return userCourseNumbersArray.reduce((accumulator, currentValue) => {
+			accumulator = [
+				...accumulator,
+				{ courseId: currentValue[0], count: currentValue[1] },
+			];
+			return accumulator;
+		}, []);
+	}
 	async getLecturesByCourseId(id: number) {
 		const lectures = await this.dataSource
 			.getRepository(SectionEntity)
