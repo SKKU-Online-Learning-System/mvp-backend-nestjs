@@ -16,7 +16,7 @@ class Question {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@ManyToOne(() => UserEntity, { eager: true })
+	@ManyToOne(() => UserEntity)
 	user: UserEntity;
 	@Column()
 	userId: number;
@@ -37,7 +37,7 @@ class Question {
 	@CreateDateColumn()
 	createdAt: Date;
 
-	@OneToMany(() => AnswerEntity, (answer) => answer.question, { eager: true })
+	@OneToMany(() => AnswerEntity, (answer) => answer.question)
 	answers: AnswerEntity[];
 }
 
