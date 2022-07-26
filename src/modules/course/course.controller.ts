@@ -19,11 +19,6 @@ import { UpdateCourseDto } from './dto/update-course.dto';
 export class CourseController {
 	constructor(private courseService: CourseService) {}
 
-	@Get()
-	getAllCourses() {
-		return this.courseService.getAllCourses();
-	}
-
 	@Get('search')
 	searchCourses(@Query() searchCoursesDto: SearchCoursesDto) {
 		return this.courseService.searchCourses(searchCoursesDto);
@@ -34,41 +29,31 @@ export class CourseController {
 		return this.courseService.getCategories();
 	}
 
-	@Get('cat1')
-	getCat1() {
-		return this.courseService.getCategory1();
+	@Get(':courseId')
+	getCourseById(@Param('courseId') courseId: number) {
+		return this.courseService.getCourseById(courseId);
 	}
 
-	@Get('cat2')
-	getCat2() {
-		return this.courseService.getCategory2();
+	@Get(':courseId/lectures')
+	getLecturesByCourseId(@Param('courseId') courseId: number) {
+		return this.courseService.getLecturesByCourseId(courseId);
 	}
-
-	@Get(':id')
-	getCourseById(@Param('id') id: number) {
-		return this.courseService.getCourseById(id);
-	}
-
-	@Get(':id/lectures')
-    getLecturesByCourseId(@Param('id') id:number){
-        return this.courseService.getLecturesByCourseId(id);
-    }
 
 	@Post()
 	createCourse(@Body() createCourseDto: CreateCourseDto) {
 		return this.courseService.createCourse(createCourseDto);
 	}
 
-	@Put(':id')
+	@Put(':courseId')
 	updateCourseById(
-		@Param('id') id: number,
+		@Param('courseId') courseId: number,
 		@Body() updateCourseDto: UpdateCourseDto,
 	) {
-		return this.courseService.updateCourseById(id, updateCourseDto);
+		return this.courseService.updateCourseById(courseId, updateCourseDto);
 	}
 
-	@Delete(':id')
-	deleteCourseById(@Param('id') id: number) {
-		return this.courseService.deleteCourseById(id);
+	@Delete(':courseId')
+	deleteCourseById(@Param('courseId') courseId: number) {
+		return this.courseService.deleteCourseById(courseId);
 	}
 }

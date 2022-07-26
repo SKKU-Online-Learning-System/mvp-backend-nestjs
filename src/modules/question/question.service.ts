@@ -3,6 +3,7 @@ import {
 	Injectable,
 	NotImplementedException,
 } from '@nestjs/common';
+import { AnswerEntity } from 'src/entities/answer.entity';
 import { QuestionEntity } from 'src/entities/question.entity';
 import { UserEntity } from 'src/entities/user.entity';
 import { DataSource } from 'typeorm';
@@ -15,27 +16,66 @@ export class QuestionService {
 	constructor(private dataSource: DataSource) {}
 
 	async getQuestionsByCourseId(id: number) {
-		return await this.dataSource
-			.createQueryBuilder()
-			.select(['courseId', 'lectureId', 'contents', 'createdAt'])
-			.addSelect('question.id', 'questionId')
-			.from(QuestionEntity, 'question')
-			.leftJoin(UserEntity, 'user', 'user.id = question.userId')
-			.addSelect('email', 'author')
-			.where('courseId = :id', { id })
-			.getRawMany();
+		const questions = await this.dataSource
+			.getRepository(QuestionEntity)
+			.find({
+				where: {
+					courseId: id,
+				},
+				relations: {
+					user: true,
+					answers: {
+						user: true,
+					},
+				},
+				select: {
+					id: true,
+					contents: true,
+					createdAt: true,
+					user: {
+						email: true,
+					},
+					answers: {
+						id: true,
+						contents: true,
+						createdAt: true,
+						user: {
+							email: true,
+						},
+					},
+				},
+			});
+		return questions;
 	}
 
 	async getQuestionsByLectureId(id: number) {
-		return await this.dataSource
-			.createQueryBuilder()
-			.select(['courseId', 'lectureId', 'contents', 'createdAt'])
-			.addSelect('question.id', 'questionId')
-			.from(QuestionEntity, 'question')
-			.leftJoin(UserEntity, 'user', 'user.id = question.userId')
-			.addSelect('email', 'author')
-			.where('lectureId = :id', { id })
-			.getRawMany();
+		return await this.dataSource.getRepository(QuestionEntity).find({
+			where: {
+				lectureId: id,
+			},
+			relations: {
+				user: true,
+				answers: {
+					user: true,
+				},
+			},
+			select: {
+				id: true,
+				contents: true,
+				createdAt: true,
+				user: {
+					email: true,
+				},
+				answers: {
+					id: true,
+					contents: true,
+					createdAt: true,
+					user: {
+						email: true,
+					},
+				},
+			},
+		});
 	}
 
 	async createQuestion(createQuestionDto: CreateQuestionDto) {

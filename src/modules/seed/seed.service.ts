@@ -26,6 +26,10 @@ import { Wishlist } from './seeds/wishlist.seed';
 import { Learning } from './seeds/learning.seed';
 import { Section } from './seeds/section.seed';
 import { SectionEntity } from 'src/entities/section.entity';
+import { Question } from './seeds/question.seed';
+import { QuestionEntity } from 'src/entities/question.entity';
+import { Answer } from './seeds/answer.seed';
+import { AnswerEntity } from 'src/entities/answer.entity';
 
 @Injectable()
 export class SeedService {
@@ -46,6 +50,8 @@ export class SeedService {
 			{ seed: History, table: HistoryEntity },
 			{ seed: Wishlist, table: WishlistEntity },
 			{ seed: Learning, table: LearningEntity },
+			{ seed: Question, table: QuestionEntity },
+			{ seed: Answer, table: AnswerEntity },
 		];
 
 		if (true) {
