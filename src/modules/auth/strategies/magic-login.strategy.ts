@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import Strategy from 'passport-magic-login';
+import { MagicLoginConfigService } from 'src/configs/passport/magic-login.config.service';
 import { MailService } from 'src/modules/mail/mail.service';
 import { AuthService } from '../auth.service';
 
@@ -9,27 +11,8 @@ export class MagicLoginStrategy extends PassportStrategy(
 	Strategy,
 	'magic-login',
 ) {
-	constructor(
-		private mailService: MailService,
-		private authService: AuthService,
-	) {
-		super({
-			secret: process.env.MAGIC_SECRET,
-			callbackUrl: 'auth/login/magic/callback',
-			sendMagicLink: async (destination, href) => {
-				await this.mailService.sendUserConfirmation(destination, href);
-			},
-			verify: (payload, callback, info) => {
-				this.authService
-					.validateUser(payload.destination)
-					.then((user) => {
-						callback(null, user, 'optional!'); // user와 optional이 success로 감
-					})
-					.catch((err) => {
-						callback(err);
-					});
-			},
-		});
+	constructor(private magicLoginConfigService: MagicLoginConfigService) {
+		super(magicLoginConfigService.createMagicLoginOptions());
 	}
 
 	success(user, info) {

@@ -39,7 +39,7 @@ export class AuthService {
 		const saltRounds = 12;
 		const hash = await bcrypt.hash(password, saltRounds);
 		await this.adminService.createAdmin({ username, password: hash });
-		return 'signup admin';
+		return { statusCode: 201, message: 'Created' };
 	}
 
 	async validateAdmin(username: string, password: string): Promise<any> {
@@ -62,7 +62,7 @@ export class AuthService {
 
 	// logout
 	logout(res: Response) {
-		res.cookie('Authorization', '', { httpOnly: true });
+		res.clearCookie('Authorization');
 		return { statusCode: 200, message: 'OK' };
 	}
 

@@ -5,25 +5,31 @@ import { LearningService } from './learning.service';
 import { CreateUserCourseDto } from './dto/create-user-course.dto';
 import { DeleteUserCourseDto } from './dto/delete-user-course.dto';
 import { GetUserCourseDto } from './dto/get-user-course.dto';
+import { ApiTags } from '@nestjs/swagger';
+import { ApiLearning } from './learning.swagger';
 
+@ApiTags('Learning')
 @Controller('learning')
 export class LearningController {
 	constructor(private readonly learningService: LearningService) {}
 
-	@UseGuards(JwtAuthGuard)
 	@Get()
+	@UseGuards(JwtAuthGuard)
+	@ApiLearning.getLearningCourses()
 	getLearningCourses(@BPU() getUserCourseDto: GetUserCourseDto) {
 		return this.learningService.getLearningCourses(getUserCourseDto);
 	}
 
-	@UseGuards(JwtAuthGuard)
 	@Post()
+	@UseGuards(JwtAuthGuard)
+	@ApiLearning.createLearningCourse()
 	createLearningCourse(@BPU() createUserCourseDto: CreateUserCourseDto) {
 		return this.learningService.createLearningCourse(createUserCourseDto);
 	}
 
-	@UseGuards(JwtAuthGuard)
 	@Delete('/:courseId')
+	@UseGuards(JwtAuthGuard)
+	@ApiLearning.deleteLearningCourse()
 	deleteLearningCourse(@BPU() deleteUserCourseDto: DeleteUserCourseDto) {
 		return this.learningService.deleteLearningCourse(deleteUserCourseDto);
 	}

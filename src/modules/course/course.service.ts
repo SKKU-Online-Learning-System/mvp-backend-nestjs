@@ -243,7 +243,6 @@ export class CourseService {
 				select: {
 					id: true,
 					title: true,
-					courseId: true,
 					lectures: {
 						id: true,
 						title: true,

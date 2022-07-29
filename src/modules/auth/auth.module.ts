@@ -10,22 +10,29 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { UserModule } from '../user/user.module';
 import { AdminModule } from '../admin/admin.module';
+import { JwtStrategyConfigService } from 'src/configs/passport/jwt.config.service';
+import { JwtPassportStrategyConfigService } from 'src/configs/passport/jwt-passport.config.service';
+import { MagicLoginConfigService } from 'src/configs/passport/magic-login.config.service';
 
 @Module({
 	imports: [
 		PassportModule,
 		JwtModule.registerAsync({
-      		useFactory: () => ({
-        		secret: process.env.JWT_SECRET,
-        		signOptions: { expiresIn: '12h' },
-     		}),
+			useClass: JwtStrategyConfigService,
 		}),
 		UserModule,
 		AdminModule,
 		MailModule,
 	],
 	controllers: [AuthController],
-	providers: [AuthService, LocalStrategy, JwtStrategy, MagicLoginStrategy],
+	providers: [
+		AuthService,
+		LocalStrategy,
+		JwtStrategy,
+		MagicLoginStrategy,
+		JwtPassportStrategyConfigService,
+		MagicLoginConfigService,
+	],
 	exports: [AuthService],
 })
 export class AuthModule {}

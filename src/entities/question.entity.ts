@@ -17,9 +17,9 @@ class Question {
 	id: number;
 
 	@ManyToOne(() => UserEntity)
-	user: UserEntity;
+	author: UserEntity;
 	@Column()
-	userId: number;
+	authorId: number;
 
 	// @ManyToOne(() => CourseEntity)
 	// course: CourseEntity;
