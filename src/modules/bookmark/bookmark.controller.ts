@@ -1,46 +1,67 @@
-import { Controller, Get, Post, Delete, UseGuards, Req, Param } from '@nestjs/common';
+import {
+	Controller,
+	Get,
+	Post,
+	Delete,
+	UseGuards,
+	Param,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { User } from 'src/configs/decorator/user.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { BookmarkService } from './bookmark.service';
+import { ApiBookmark } from './bookmark.swagger';
 
-@ApiTags('/bookmark')
+@ApiTags('Bookmark')
 @Controller('bookmark')
-export class BookmarkController{
-    constructor(private bookmarkService : BookmarkService){}
+export class BookmarkController {
+	constructor(private bookmarkService: BookmarkService) {}
 
-    @UseGuards(JwtAuthGuard)
-    @Get('learning')
-    getAllLearningBookmark(@Req() req){
-        return this.bookmarkService.getAllLearningBookmark(req.user);
-    }
+	@Get('learning')
+	@UseGuards(JwtAuthGuard)
+	@ApiBookmark.getAllLearningBookmarks()
+	getAllLearningBookmarks(@User() user) {
+		return this.bookmarkService.getAllLearningBookmarks(user);
+	}
 
-    @UseGuards(JwtAuthGuard)
-    @Post('learning/:id')
-    addLearningBookmarkById(@Req() req, @Param('id') id:number){
-        return this.bookmarkService.addLearningBookmarkById(req.user, id);
-    }
+	@Post('learning/:courseId')
+	@UseGuards(JwtAuthGuard)
+	@ApiBookmark.addLearningBookmark()
+	addLearningBookmarkByCourseId(@User() user, @Param('courseId') id: number) {
+		return this.bookmarkService.addLearningBookmarkByCourseId(user, id);
+	}
 
-    @UseGuards(JwtAuthGuard)
-    @Delete('learning/:id')
-    deleteLearningBookmarkById(@Req() req, @Param('id') id:number){
-        return this.bookmarkService.deleteLearningBookmarkById(req.user, id);
-    }
+	@Delete('learning/:courseId')
+	@UseGuards(JwtAuthGuard)
+	@ApiBookmark.deleteLearningBookmark()
+	deleteLearningBookmarkByCourseId(
+		@User() user,
+		@Param('courseId') id: number,
+	) {
+		return this.bookmarkService.deleteLearningBookmarkByCourseId(user, id);
+	}
 
-    @UseGuards(JwtAuthGuard)
-    @Get('complete')
-    getAllCompleteBookmark(@Req() req){
-        return this.bookmarkService.getAllCompleteBookmark(req.user);
-    }
+	@Get('complete')
+	@UseGuards(JwtAuthGuard)
+	@ApiBookmark.getAllCompleteBookmarks()
+	getAllCompleteBookmarks(@User() user) {
+		return this.bookmarkService.getAllCompleteBookmarks(user);
+	}
 
-    @UseGuards(JwtAuthGuard)
-    @Post('complete/:id')
-    addCompleteBookmarkById(@Req() req, @Param('id') id:number){
-        return this.bookmarkService.addCompleteBookmarkById(req.user, id);
-    }
+	@Post('complete/:courseId')
+	@UseGuards(JwtAuthGuard)
+	@ApiBookmark.addCompleteBookmark()
+	addCompleteBookmarkByCourseId(@User() user, @Param('courseId') id: number) {
+		return this.bookmarkService.addCompleteBookmarkByCourseId(user, id);
+	}
 
-    @UseGuards(JwtAuthGuard)
-    @Delete('complete/:id')
-    deleteCompleteBookmarkById(@Req() req, @Param('id') id:number){
-        return this.bookmarkService.deleteCompleteBookmarkById(req.user, id);
-    }
+	@Delete('complete/:courseId')
+	@UseGuards(JwtAuthGuard)
+	@ApiBookmark.deleteCompleteBookmark()
+	deleteCompleteBookmarkByCourseId(
+		@User() user,
+		@Param('courseId') id: number,
+	) {
+		return this.bookmarkService.deleteCompleteBookmarkByCourseId(user, id);
+	}
 }

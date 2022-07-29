@@ -16,8 +16,9 @@ import { MagicLoginAuthGuard } from './guards/magic-auth.guard';
 import { MagicLoginStrategy } from './strategies/magic-login.strategy';
 import { User } from 'src/configs/decorator/user.decorator';
 import { Response } from 'express';
+import { ApiAuth } from './auth.swagger';
 
-@ApiTags('/auth')
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
 	constructor(
@@ -25,49 +26,63 @@ export class AuthController {
 		private magicLoginStrategy: MagicLoginStrategy,
 	) {}
 
-	@Post('login/magic')
-	async magicLogin(@Req() req, @Res() res) {
-		await this.magicLoginStrategy.send(req, res);
+	@Post('signup')
+	@ApiAuth.signup()
+	signup(@Req() req, @Res() res) {}
+
+	@Get('signup/callback')
+	@UseGuards(MagicLoginAuthGuard)
+	@ApiAuth.signupCallback()
+	signupCallback(@Res({ passthrough: true }) res: Response, @User() user) {}
+
+	@Post('login')
+	@ApiAuth.login()
+	login(@Req() req, @Res() res) {
+		this.magicLoginStrategy.send(req, res);
 	}
 
+	@Get('login/callback')
 	@UseGuards(MagicLoginAuthGuard)
-	@Get('login/magic/callback')
-	magicLoginCallback(
-		@Res({ passthrough: true }) res: Response,
-		@User() user,
-	) {
+	@ApiAuth.loginCallback()
+	loginCallback(@Res({ passthrough: true }) res: Response, @User() user) {
 		return this.authService.magicLogin(res, user);
 	}
 
 	@Post('admin')
+	@ApiAuth.createAdmin()
 	createAdmin(@Body() createAdminDto: CreateAdminDto) {
 		return this.authService.createAdmin(createAdminDto);
 	}
 
+	@Post('admin/login')
 	@UseGuards(LocalAuthGuard)
-	@Post('login/local')
-	async localLogin(@Res({ passthrough: true }) res: Response, @User() user) {
+	@ApiAuth.adminLogin()
+	adminLogin(@Res({ passthrough: true }) res: Response, @User() user) {
 		return this.authService.localLogin(res, user);
 	}
 
 	@Get('logout')
+	@ApiAuth.logout()
 	logout(@Res({ passthrough: true }) res: Response) {
 		return this.authService.logout(res);
 	}
 
 	// for test
-	@UseGuards(JwtAuthGuard)
 	@Get('profile')
+	@UseGuards(JwtAuthGuard)
+	@ApiAuth.getProfile()
 	getProfile(@User() user) {
 		return user || 'no user';
 	}
 
 	@Get('get-token')
+	@ApiAuth.getToken()
 	getToken() {
 		return this.authService.getToken();
 	}
 
 	@Get('temp-login')
+	@ApiAuth.tempLogin()
 	tempLogin(@Res({ passthrough: true }) res: Response) {
 		return this.authService.tempLogin(res);
 	}

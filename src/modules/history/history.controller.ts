@@ -1,35 +1,41 @@
 import { Controller, Get, Patch, UseGuards } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { BPU } from 'src/configs/decorator/body-param-user.decorator';
-import { HistoryEntity } from 'src/entities/history.entity';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { CreateOrUpdateHistoryDto } from './dto/create-or-update-history.dto';
 import { GetHistoryDto } from './dto/get-history.dto';
 import { HistoryService } from './history.service';
+import { ApiHistory } from './history.swagger';
 
+@ApiTags('History')
 @Controller('history')
 export class HistoryController {
 	constructor(private historyService: HistoryService) {}
 
-	@UseGuards(JwtAuthGuard)
 	@Get()
+	@UseGuards(JwtAuthGuard)
+	@ApiHistory.getHistories()
 	getHistories(@BPU() getHistoryDto: GetHistoryDto) {
 		return this.historyService.getHistories(getHistoryDto);
 	}
 
-	@UseGuards(JwtAuthGuard)
 	@Get('/latest')
+	@UseGuards(JwtAuthGuard)
+	@ApiHistory.getHistoriesLatest()
 	getHistoriesLatest(@BPU() getHistoryDto: GetHistoryDto) {
 		return this.historyService.getHistoriesLatest(getHistoryDto);
 	}
 
-	@UseGuards(JwtAuthGuard)
 	@Get('/lecture/:lectureId')
+	@UseGuards(JwtAuthGuard)
+	@ApiHistory.getLectureHistory()
 	getLectureHistory(@BPU() getHistoryDto: GetHistoryDto) {
 		return this.historyService.getHistories(getHistoryDto);
 	}
 
-	@UseGuards(JwtAuthGuard)
 	@Patch()
+	@UseGuards(JwtAuthGuard)
+	@ApiHistory.createOrUpdateHistory()
 	createOrUpdateHistory(
 		@BPU() createOrUpdateHistoryDto: CreateOrUpdateHistoryDto,
 	) {

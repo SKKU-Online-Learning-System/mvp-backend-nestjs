@@ -3,9 +3,7 @@ import {
 	Injectable,
 	NotImplementedException,
 } from '@nestjs/common';
-import { AnswerEntity } from 'src/entities/answer.entity';
 import { QuestionEntity } from 'src/entities/question.entity';
-import { UserEntity } from 'src/entities/user.entity';
 import { DataSource } from 'typeorm';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { DeleteQuestionDto } from './dto/delete-question.dto';
@@ -16,36 +14,33 @@ export class QuestionService {
 	constructor(private dataSource: DataSource) {}
 
 	async getQuestionsByCourseId(id: number) {
-		const questions = await this.dataSource
-			.getRepository(QuestionEntity)
-			.find({
-				where: {
-					courseId: id,
+		return await this.dataSource.getRepository(QuestionEntity).find({
+			where: {
+				courseId: id,
+			},
+			relations: {
+				author: true,
+				answers: {
+					author: true,
 				},
-				relations: {
-					user: true,
-					answers: {
-						user: true,
-					},
+			},
+			select: {
+				id: true,
+				contents: true,
+				createdAt: true,
+				author: {
+					email: true,
 				},
-				select: {
+				answers: {
 					id: true,
 					contents: true,
 					createdAt: true,
-					user: {
+					author: {
 						email: true,
 					},
-					answers: {
-						id: true,
-						contents: true,
-						createdAt: true,
-						user: {
-							email: true,
-						},
-					},
 				},
-			});
-		return questions;
+			},
+		});
 	}
 
 	async getQuestionsByLectureId(id: number) {
@@ -54,23 +49,51 @@ export class QuestionService {
 				lectureId: id,
 			},
 			relations: {
-				user: true,
+				author: true,
 				answers: {
-					user: true,
+					author: true,
 				},
 			},
 			select: {
 				id: true,
 				contents: true,
 				createdAt: true,
-				user: {
+				author: {
 					email: true,
 				},
 				answers: {
 					id: true,
 					contents: true,
 					createdAt: true,
-					user: {
+					author: {
+						email: true,
+					},
+				},
+			},
+		});
+	}
+
+	async getQuestionById(id: number) {
+		return await this.dataSource.getRepository(QuestionEntity).find({
+			where: { id },
+			relations: {
+				author: true,
+				answers: {
+					author: true,
+				},
+			},
+			select: {
+				id: true,
+				contents: true,
+				createdAt: true,
+				author: {
+					email: true,
+				},
+				answers: {
+					id: true,
+					contents: true,
+					createdAt: true,
+					author: {
 						email: true,
 					},
 				},
@@ -82,19 +105,12 @@ export class QuestionService {
 		const {
 			raw: { affectedRows },
 		} = await this.dataSource
-			.createQueryBuilder()
-			.insert()
-			.into(QuestionEntity)
-			.values(createQuestionDto)
-			.execute();
+			.getRepository(QuestionEntity)
+			.insert(createQuestionDto);
 
-		if (affectedRows) {
-			return { statusCode: 201, message: 'Created' };
-		} else {
-			throw new NotImplementedException(
-				'question.service: createQuestion - Nothing inserted.',
-			);
-		}
+		if (!affectedRows) throw new NotImplementedException();
+
+		return { statusCode: 201, message: 'Created' };
 	}
 
 	async updateQuestionById(updateQuestionDto: UpdateQuestionDto) {
@@ -107,7 +123,7 @@ export class QuestionService {
 			.where('id = :questionId', { questionId })
 			.getOne();
 
-		if (result && result?.userId === userId) {
+		if (result && result?.authorId === userId) {
 			const { affected } = await this.dataSource
 				.createQueryBuilder()
 				.update(QuestionEntity)
@@ -137,7 +153,7 @@ export class QuestionService {
 			.where('id = :questionId', { questionId })
 			.getOne();
 
-		if (result && result?.userId === userId) {
+		if (result && result?.authorId === userId) {
 			const { affected } = await this.dataSource
 				.createQueryBuilder()
 				.delete()

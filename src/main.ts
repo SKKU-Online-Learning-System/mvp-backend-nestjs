@@ -30,6 +30,7 @@ async function bootstrap() {
 			whitelist: true,
 			forbidNonWhitelisted: true,
 			validateCustomDecorators: true,
+			disableErrorMessages: false,
 		}),
 	);
 

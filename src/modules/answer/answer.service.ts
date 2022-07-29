@@ -13,15 +13,6 @@ import { UpdateAnswerDto } from './dto/update-answer.dto';
 export class AnswerService {
 	constructor(private dataSource: DataSource) {}
 
-	async getAnswersByQuestionId(id: number) {
-		return await this.dataSource
-			.createQueryBuilder()
-			.select('answer')
-			.from(AnswerEntity, 'answer')
-			.where('answer.courseId = :id', { id })
-			.getMany();
-	}
-
 	async createAnswer(createAnswerDto: CreateAnswerDto) {
 		const { questionId, userId, contents } = createAnswerDto;
 
@@ -31,7 +22,7 @@ export class AnswerService {
 			.createQueryBuilder()
 			.insert()
 			.into(AnswerEntity)
-			.values({ questionId, userId, contents })
+			.values({ questionId, authorId: userId, contents })
 			.execute();
 
 		if (affectedRows) {
@@ -53,7 +44,7 @@ export class AnswerService {
 			.where('id = :answerId', { answerId })
 			.getOne();
 
-		if (result && result?.userId === userId) {
+		if (result && result?.authorId === userId) {
 			const { affected } = await this.dataSource
 				.createQueryBuilder()
 				.update(AnswerEntity)
@@ -83,7 +74,7 @@ export class AnswerService {
 			.where('id = :answerId', { answerId })
 			.getOne();
 
-		if (result && result?.userId === userId) {
+		if (result && result?.authorId === userId) {
 			const { affected } = await this.dataSource
 				.createQueryBuilder()
 				.delete()
