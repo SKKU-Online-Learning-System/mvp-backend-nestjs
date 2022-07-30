@@ -5,6 +5,10 @@ import { JwtService } from '@nestjs/jwt';
 import { CreateAdminDto } from '../admin/dto/create-admin.dto';
 import { AdminService } from '../admin/admin.service';
 import { Response } from 'express';
+import {
+	HttpResponse,
+	status,
+} from 'src/configs/http-response/http-response.config';
 
 @Injectable()
 export class AuthService {
@@ -26,20 +30,20 @@ export class AuthService {
 		}
 	}
 
-	magicLogin(res: Response, user) {
+	magicLogin(res: Response, user): HttpResponse {
 		const payload = { id: user.id, email: user.email };
 		const token = this.jwtService.sign(payload);
 		res.cookie('Authorization', token, { httpOnly: true });
-		return { statusCode: 200, message: 'OK' };
+		return status(200);
 	}
 
 	// admin
-	async createAdmin(@Body() createAdminDto: CreateAdminDto) {
+	async createAdmin(createAdminDto: CreateAdminDto): Promise<HttpResponse> {
 		const { username, password } = createAdminDto;
 		const saltRounds = 12;
 		const hash = await bcrypt.hash(password, saltRounds);
 		await this.adminService.createAdmin({ username, password: hash });
-		return { statusCode: 201, message: 'Created' };
+		return status(201);
 	}
 
 	async validateAdmin(username: string, password: string): Promise<any> {
@@ -53,17 +57,17 @@ export class AuthService {
 		}
 	}
 
-	async localLogin(res: Response, user) {
+	async localLogin(res: Response, user): Promise<HttpResponse> {
 		const payload = { id: user.id, username: user.username };
 		const token = this.jwtService.sign(payload);
 		res.cookie('Authorization', token, { httpOnly: true });
-		return { statusCode: 200, message: 'OK' };
+		return status(200);
 	}
 
 	// logout
-	logout(res: Response) {
+	logout(res: Response): HttpResponse {
 		res.clearCookie('Authorization');
-		return { statusCode: 200, message: 'OK' };
+		return status(200);
 	}
 
 	// for test
@@ -74,9 +78,9 @@ export class AuthService {
 		return { token_1, token_2, token_3 };
 	}
 
-	tempLogin(res: Response) {
+	tempLogin(res: Response): HttpResponse {
 		const token = this.jwtService.sign({ id: 1, email: 'a@a.com' });
 		res.cookie('Authorization', token, { httpOnly: true });
-		return { statusCode: 200, message: 'OK' };
+		return status(200);
 	}
 }
