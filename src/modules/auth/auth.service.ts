@@ -70,17 +70,17 @@ export class AuthService {
 	getToken() {
 		const token_1 = this.jwtService.sign({
 			id: 1,
-			role: 2,
+			privilege: 2,
 			email: 'a@a.com',
 		});
 		const token_2 = this.jwtService.sign({
 			id: 2,
-			role: 3,
+			privilege: 3,
 			email: 'b@b.com',
 		});
 		const token_3 = this.jwtService.sign({
 			id: 3,
-			role: 4,
+			privilege: 4,
 			email: 'c@c.com',
 		});
 		return { token_1, token_2, token_3 };

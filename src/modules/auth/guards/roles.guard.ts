@@ -6,21 +6,21 @@ import {
 } from '@nestjs/common';
 import { Privilege } from 'src/entities/user.entity';
 
-export const RolesGuard = (roles: Privilege[]): CanActivate => {
+export const RolesGuard = (privileges: Privilege[]): CanActivate => {
 	@Injectable()
 	class RolesGuardMixin implements CanActivate {
 		async canActivate(context: ExecutionContext): Promise<boolean> {
-			if (!roles || roles.length === 0) {
+			if (!privileges || privileges.length === 0) {
 				return true;
 			}
 			const request = context.switchToHttp().getRequest();
 			const user = request.user;
 
-			return this.matchRoles(roles, user.role);
+			return this.matchRoles(privileges, user.privilege);
 		}
 
-		matchRoles(privilegedRoles: Privilege[], userRole: number): boolean {
-			return privilegedRoles.includes(userRole);
+		matchRoles(privileges: Privilege[], userPrivilege: number): boolean {
+			return privileges.includes(userPrivilege);
 		}
 	}
 
