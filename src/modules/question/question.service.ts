@@ -1,8 +1,13 @@
 import {
 	BadRequestException,
 	Injectable,
+	InternalServerErrorException,
 	NotImplementedException,
 } from '@nestjs/common';
+import {
+	HttpResponse,
+	status,
+} from 'src/configs/http-response/http-response.config';
 import { QuestionEntity } from 'src/entities/question.entity';
 import { DataSource } from 'typeorm';
 import { CreateQuestionDto } from './dto/create-question.dto';
@@ -101,7 +106,9 @@ export class QuestionService {
 		});
 	}
 
-	async createQuestion(createQuestionDto: CreateQuestionDto) {
+	async createQuestion(
+		createQuestionDto: CreateQuestionDto,
+	): Promise<HttpResponse> {
 		const {
 			raw: { affectedRows },
 		} = await this.dataSource
@@ -113,63 +120,45 @@ export class QuestionService {
 		return { statusCode: 201, message: 'Created' };
 	}
 
-	async updateQuestionById(updateQuestionDto: UpdateQuestionDto) {
+	async updateQuestionById(
+		updateQuestionDto: UpdateQuestionDto,
+	): Promise<HttpResponse> {
 		const { questionId, userId, contents } = updateQuestionDto;
 
 		const result = await this.dataSource
-			.createQueryBuilder()
-			.select('question.userId')
-			.from(QuestionEntity, 'question')
-			.where('id = :questionId', { questionId })
-			.getOne();
+			.getRepository(QuestionEntity)
+			.findOneBy({ id: questionId });
 
-		if (result && result?.authorId === userId) {
-			const { affected } = await this.dataSource
-				.createQueryBuilder()
-				.update(QuestionEntity)
-				.set({ contents })
-				.where('id = :questionId', { questionId })
-				.execute();
+		if (!(result && result?.authorId === userId))
+			throw new BadRequestException();
 
-			if (affected) {
-				return { statusCode: 200, message: 'OK' };
-			} else {
-				throw new NotImplementedException(
-					'question.service: updateQuestionById - Nothing updated.',
-				);
-			}
-		} else {
-			throw new BadRequestException('Wrong user ID');
-		}
+		const { affected } = await this.dataSource
+			.getRepository(QuestionEntity)
+			.update(questionId, { contents });
+
+		if (!affected) throw new InternalServerErrorException();
+
+		return status(200);
 	}
 
-	async deleteQuestionById(deleteQuestionDto: DeleteQuestionDto) {
+	async deleteQuestionById(
+		deleteQuestionDto: DeleteQuestionDto,
+	): Promise<HttpResponse> {
 		const { questionId, userId } = deleteQuestionDto;
 
 		const result = await this.dataSource
-			.createQueryBuilder()
-			.select('question.userId')
-			.from(QuestionEntity, 'question')
-			.where('id = :questionId', { questionId })
-			.getOne();
+			.getRepository(QuestionEntity)
+			.findOneBy({ id: questionId });
 
-		if (result && result?.authorId === userId) {
-			const { affected } = await this.dataSource
-				.createQueryBuilder()
-				.delete()
-				.from(QuestionEntity)
-				.where('id = :questionId', { questionId })
-				.execute();
+		if (!(result && result?.authorId === userId))
+			throw new BadRequestException();
 
-			if (affected) {
-				return { statusCode: 200, message: 'OK' };
-			} else {
-				throw new NotImplementedException(
-					'question.service: deleteQuestionById - Nothing deleted.',
-				);
-			}
-		} else {
-			throw new BadRequestException('Wrong user ID');
-		}
+		const { affected } = await this.dataSource
+			.getRepository(QuestionEntity)
+			.delete(questionId);
+
+		if (!affected) throw new InternalServerErrorException();
+
+		return status(200);
 	}
 }
