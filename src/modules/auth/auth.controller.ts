@@ -2,6 +2,8 @@ import {
 	Body,
 	Controller,
 	Get,
+	ImATeapotException,
+	InternalServerErrorException,
 	Post,
 	Req,
 	Res,
@@ -12,11 +14,13 @@ import { AuthService } from './auth.service';
 import { CreateAdminDto } from '../admin/dto/create-admin.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
-import { MagicLoginAuthGuard } from './guards/magic-auth.guard';
+import { MagicLoginAuthGuard } from './guards/magic-login.guard';
 import { MagicLoginStrategy } from './strategies/magic-login.strategy';
 import { User } from 'src/configs/decorator/user.decorator';
 import { Response } from 'express';
 import { ApiAuth } from './auth.swagger';
+import { MagicSignupStrategy } from './strategies/magic-signup.strategy';
+import { MagicSignupAuthGuard } from './guards/magic-signup.guard';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -24,17 +28,24 @@ export class AuthController {
 	constructor(
 		private authService: AuthService,
 		private magicLoginStrategy: MagicLoginStrategy,
+		private magicSignupStrategy: MagicSignupStrategy,
 	) {}
 
+	// sign up
 	@Post('signup')
 	@ApiAuth.signup()
-	signup(@Req() req, @Res() res) {}
+	signup(@Req() req, @Res() res) {
+		this.magicSignupStrategy.send(req, res);
+	}
 
 	@Get('signup/callback')
-	@UseGuards(MagicLoginAuthGuard)
+	@UseGuards(MagicSignupAuthGuard)
 	@ApiAuth.signupCallback()
-	signupCallback(@Res({ passthrough: true }) res: Response, @User() user) {}
+	signupCallback(@Res({ passthrough: true }) res: Response, @User() user) {
+		return this.authService.magicLogin(res, user);
+	}
 
+	// magic login
 	@Post('login')
 	@ApiAuth.login()
 	login(@Req() req, @Res() res) {
@@ -48,6 +59,7 @@ export class AuthController {
 		return this.authService.magicLogin(res, user);
 	}
 
+	// admin
 	@Post('admin')
 	@ApiAuth.createAdmin()
 	createAdmin(@Body() createAdminDto: CreateAdminDto) {
@@ -61,6 +73,7 @@ export class AuthController {
 		return this.authService.localLogin(res, user);
 	}
 
+	// logout
 	@Get('logout')
 	@ApiAuth.logout()
 	logout(@Res({ passthrough: true }) res: Response) {

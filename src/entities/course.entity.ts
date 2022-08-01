@@ -22,6 +22,9 @@ class Course {
 	@Column({ type: 'text' })
 	description: string;
 
+	@Column({ type: 'text', nullable: true })
+	summary: string;
+
 	// @ManyToOne(() => UserEntity)
 	// @JoinColumn({ name: 'instructorId' })
 	// instructor: UserEntity;

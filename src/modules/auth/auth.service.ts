@@ -1,10 +1,16 @@
-import { Body, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { CreateAdminDto } from '../admin/dto/create-admin.dto';
 import { AdminService } from '../admin/admin.service';
 import { Response } from 'express';
+import {
+	HttpResponse,
+	status,
+} from 'src/configs/http-response/http-response.config';
+import { CreateUserDto } from '../user/dto/create-user.dto';
+import { UserEntity } from 'src/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -14,32 +20,35 @@ export class AuthService {
 		private adminService: AdminService,
 	) {}
 
-	// user
-	async validateUser(email: string): Promise<any> {
-		const user = await this.userService.getUserByEmail(email);
-		if (user) {
-			return user;
-		} else {
-			const userId = await this.userService.createUser(email);
-			const newUser = await this.userService.getUserById(userId);
-			return newUser;
-		}
+	// signup
+	async signup(createUserDto: CreateUserDto): Promise<UserEntity | null> {
+		const user = await this.userService.createUser(createUserDto);
+		if (user) return user;
+		else return null;
 	}
 
-	magicLogin(res: Response, user) {
-		const payload = { id: user.id, email: user.email };
+	// magic login
+	async magicLoginValidation(email: string): Promise<UserEntity | null> {
+		const user = await this.userService.getUserByEmail(email);
+		if (user) return user;
+		else return null;
+	}
+
+	magicLogin(res: Response, user: UserEntity): HttpResponse {
+		const { id, email, privilege } = user;
+		const payload = { id, email, privilege };
 		const token = this.jwtService.sign(payload);
 		res.cookie('Authorization', token, { httpOnly: true });
-		return { statusCode: 200, message: 'OK' };
+		return status(200);
 	}
 
 	// admin
-	async createAdmin(@Body() createAdminDto: CreateAdminDto) {
+	async createAdmin(createAdminDto: CreateAdminDto): Promise<HttpResponse> {
 		const { username, password } = createAdminDto;
 		const saltRounds = 12;
 		const hash = await bcrypt.hash(password, saltRounds);
 		await this.adminService.createAdmin({ username, password: hash });
-		return { statusCode: 201, message: 'Created' };
+		return status(201);
 	}
 
 	async validateAdmin(username: string, password: string): Promise<any> {
@@ -53,17 +62,17 @@ export class AuthService {
 		}
 	}
 
-	async localLogin(res: Response, user) {
+	async localLogin(res: Response, user): Promise<HttpResponse> {
 		const payload = { id: user.id, username: user.username };
 		const token = this.jwtService.sign(payload);
 		res.cookie('Authorization', token, { httpOnly: true });
-		return { statusCode: 200, message: 'OK' };
+		return status(200);
 	}
 
 	// logout
-	logout(res: Response) {
+	logout(res: Response): HttpResponse {
 		res.clearCookie('Authorization');
-		return { statusCode: 200, message: 'OK' };
+		return status(200);
 	}
 
 	// for test
@@ -86,9 +95,13 @@ export class AuthService {
 		return { token_1, token_2, token_3 };
 	}
 
-	tempLogin(res: Response) {
-		const token = this.jwtService.sign({ id: 1, email: 'a@a.com' });
+	tempLogin(res: Response): HttpResponse {
+		const token = this.jwtService.sign({
+			id: 1,
+			email: 'a@a.com',
+			privilege: 2,
+		});
 		res.cookie('Authorization', token, { httpOnly: true });
-		return { statusCode: 200, message: 'OK' };
+		return status(200);
 	}
 }

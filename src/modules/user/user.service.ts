@@ -1,47 +1,51 @@
-import { Injectable, NotImplementedException } from '@nestjs/common';
+import {
+	BadRequestException,
+	Injectable,
+	InternalServerErrorException,
+} from '@nestjs/common';
 import { UserEntity } from 'src/entities/user.entity';
 import { DataSource } from 'typeorm';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UserService {
 	constructor(private dataSource: DataSource) {}
 
-	async createUser(email: string): Promise<number> {
+	async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
+		const { email, nickname } = createUserDto;
+
+		const exist = await this.dataSource
+			.getRepository(UserEntity)
+			.find({ where: [{ email }, { nickname }] });
+
+		if (exist.length) throw new BadRequestException();
+
 		const {
 			raw: { affectedRows, insertId },
 		} = await this.dataSource
-			.createQueryBuilder()
-			.insert()
-			.into(UserEntity)
-			.values({ email })
-			.execute();
+			.getRepository(UserEntity)
+			.insert(createUserDto);
 
-		if (affectedRows) {
-			return insertId;
-		} else {
-			throw new NotImplementedException(
-				'user.service: createUser - Nothing inserted.',
-			);
-		}
+		if (!affectedRows) throw new InternalServerErrorException();
+
+		return await this.getUserById(insertId);
 	}
 
 	async getUserById(id: number): Promise<UserEntity | null> {
-		const user = await this.dataSource
-			.createQueryBuilder()
-			.select('user')
-			.from(UserEntity, 'user')
-			.where('user.id = :id', { id })
-			.getOne();
-		return user;
+		return await this.dataSource
+			.getRepository(UserEntity)
+			.findOneBy({ id });
 	}
 
 	async getUserByEmail(email: string): Promise<UserEntity | null> {
-		const user = await this.dataSource
-			.createQueryBuilder()
-			.select('user')
-			.from(UserEntity, 'user')
-			.where('user.email = :email', { email })
-			.getOne();
-		return user;
+		return await this.dataSource
+			.getRepository(UserEntity)
+			.findOneBy({ email });
+	}
+
+	async getUserByNickname(nickname: string): Promise<UserEntity | null> {
+		return await this.dataSource
+			.getRepository(UserEntity)
+			.findOneBy({ nickname });
 	}
 }
