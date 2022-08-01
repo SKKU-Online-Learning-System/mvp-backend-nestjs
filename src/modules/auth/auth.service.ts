@@ -1,4 +1,4 @@
-import { Body, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
@@ -9,6 +9,8 @@ import {
 	HttpResponse,
 	status,
 } from 'src/configs/http-response/http-response.config';
+import { CreateUserDto } from '../user/dto/create-user.dto';
+import { UserEntity } from 'src/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -18,20 +20,23 @@ export class AuthService {
 		private adminService: AdminService,
 	) {}
 
-	// user
-	async validateUser(email: string): Promise<any> {
-		const user = await this.userService.getUserByEmail(email);
-		if (user) {
-			return user;
-		} else {
-			const userId = await this.userService.createUser(email);
-			const newUser = await this.userService.getUserById(userId);
-			return newUser;
-		}
+	// signup
+	async signup(createUserDto: CreateUserDto): Promise<UserEntity | null> {
+		const user = await this.userService.createUser(createUserDto);
+		if (user) return user;
+		else return null;
 	}
 
-	magicLogin(res: Response, user): HttpResponse {
-		const payload = { id: user.id, email: user.email };
+	// magic login
+	async magicLoginValidation(email: string): Promise<UserEntity | null> {
+		const user = await this.userService.getUserByEmail(email);
+		if (user) return user;
+		else return null;
+	}
+
+	magicLogin(res: Response, user: UserEntity): HttpResponse {
+		const { id, email, privilege } = user;
+		const payload = { id, email, privilege };
 		const token = this.jwtService.sign(payload);
 		res.cookie('Authorization', token, { httpOnly: true });
 		return status(200);
@@ -79,7 +84,11 @@ export class AuthService {
 	}
 
 	tempLogin(res: Response): HttpResponse {
-		const token = this.jwtService.sign({ id: 1, email: 'a@a.com' });
+		const token = this.jwtService.sign({
+			id: 1,
+			email: 'a@a.com',
+			privilege: 2,
+		});
 		res.cookie('Authorization', token, { httpOnly: true });
 		return status(200);
 	}
