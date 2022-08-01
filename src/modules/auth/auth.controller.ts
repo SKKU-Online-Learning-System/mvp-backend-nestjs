@@ -4,6 +4,7 @@ import {
 	Get,
 	ImATeapotException,
 	InternalServerErrorException,
+	Param,
 	Post,
 	Req,
 	Res,
@@ -30,6 +31,17 @@ export class AuthController {
 		private magicLoginStrategy: MagicLoginStrategy,
 		private magicSignupStrategy: MagicSignupStrategy,
 	) {}
+
+	// check
+	@Get('email-check/:email')
+	emailCheck(@Param('email') email: string) {
+		return this.authService.emailCheck(email);
+	}
+
+	@Get('nickname-check/:nickname')
+	nicknameCheck(@Param('nickname') nickname: string) {
+		return this.authService.nicknameCheck(nickname);
+	}
 
 	// sign up
 	@Post('signup')
