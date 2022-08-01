@@ -1,4 +1,8 @@
-import { Injectable, NotImplementedException } from '@nestjs/common';
+import {
+	Injectable,
+	InternalServerErrorException,
+	NotImplementedException,
+} from '@nestjs/common';
 import { UserEntity } from 'src/entities/user.entity';
 import { DataSource } from 'typeorm';
 
@@ -9,39 +13,22 @@ export class UserService {
 	async createUser(email: string): Promise<number> {
 		const {
 			raw: { affectedRows, insertId },
-		} = await this.dataSource
-			.createQueryBuilder()
-			.insert()
-			.into(UserEntity)
-			.values({ email })
-			.execute();
+		} = await this.dataSource.getRepository(UserEntity).insert({ email });
 
-		if (affectedRows) {
-			return insertId;
-		} else {
-			throw new NotImplementedException(
-				'user.service: createUser - Nothing inserted.',
-			);
-		}
+		if (!affectedRows) throw new InternalServerErrorException();
+
+		return insertId;
 	}
 
 	async getUserById(id: number): Promise<UserEntity | null> {
-		const user = await this.dataSource
-			.createQueryBuilder()
-			.select('user')
-			.from(UserEntity, 'user')
-			.where('user.id = :id', { id })
-			.getOne();
-		return user;
+		return await this.dataSource
+			.getRepository(UserEntity)
+			.findOneBy({ id });
 	}
 
 	async getUserByEmail(email: string): Promise<UserEntity | null> {
-		const user = await this.dataSource
-			.createQueryBuilder()
-			.select('user')
-			.from(UserEntity, 'user')
-			.where('user.email = :email', { email })
-			.getOne();
-		return user;
+		return await this.dataSource
+			.getRepository(UserEntity)
+			.findOneBy({ email });
 	}
 }

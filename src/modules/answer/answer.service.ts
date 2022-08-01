@@ -41,7 +41,7 @@ export class AnswerService {
 
 		const result = await this.dataSource
 			.getRepository(AnswerEntity)
-			.findOne({ where: { id: answerId } });
+			.findOneBy({ id: answerId });
 
 		if (!(result && result?.authorId === userId))
 			throw new BadRequestException();
@@ -62,7 +62,7 @@ export class AnswerService {
 
 		const result = await this.dataSource
 			.getRepository(AnswerEntity)
-			.findOne({ where: { id: answerId } });
+			.findOneBy({ id: answerId });
 
 		if (!(result && result?.authorId === userId))
 			throw new BadRequestException();
