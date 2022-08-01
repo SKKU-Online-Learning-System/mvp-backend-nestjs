@@ -1,13 +1,51 @@
 import { applyDecorators } from '@nestjs/common';
 import {
 	ApiBody,
+	ApiConflictResponse,
 	ApiCookieAuth,
 	ApiOkResponse,
 	ApiOperation,
+	ApiParam,
 	ApiQuery,
 } from '@nestjs/swagger';
 
 export const ApiAuth = {
+	emailCheck() {
+		return applyDecorators(
+			ApiOperation({
+				summary: '이메일 중복 확인',
+				description: '',
+			}),
+			ApiParam({
+				name: 'email',
+				type: 'string',
+			}),
+			ApiOkResponse({
+				description: 'OK',
+			}),
+			ApiConflictResponse({
+				description: 'Conflict',
+			}),
+		);
+	},
+	nicknameCheck() {
+		return applyDecorators(
+			ApiOperation({
+				summary: '닉네임 중복 확인',
+				description: '',
+			}),
+			ApiParam({
+				name: 'nickname',
+				type: 'string',
+			}),
+			ApiOkResponse({
+				description: 'OK',
+			}),
+			ApiConflictResponse({
+				description: 'Conflict',
+			}),
+		);
+	},
 	signup() {
 		return applyDecorators(
 			ApiOperation({

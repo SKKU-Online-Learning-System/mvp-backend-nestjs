@@ -20,6 +20,19 @@ export class AuthService {
 		private adminService: AdminService,
 	) {}
 
+	// check
+	async emailCheck(email: string): Promise<HttpResponse> {
+		const user = await this.userService.getUserByEmail(email);
+		if (user) return status(409);
+		else return status(200);
+	}
+
+	async nicknameCheck(nickname: string): Promise<HttpResponse> {
+		const user = await this.userService.getUserByNickname(nickname);
+		if (user) return status(409);
+		else return status(200);
+	}
+
 	// signup
 	async signup(createUserDto: CreateUserDto): Promise<UserEntity | null> {
 		const user = await this.userService.createUser(createUserDto);
