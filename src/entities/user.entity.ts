@@ -5,6 +5,13 @@ import {
 	PrimaryGeneratedColumn,
 } from 'typeorm';
 
+export enum Privilege {
+	ADMIN = 1,
+	INSTRUCTOR,
+	TA,
+	STUDENT,
+}
+
 @Entity()
 class User {
 	@PrimaryGeneratedColumn()
