@@ -23,7 +23,7 @@ export function status(code: number, extraMessage?: string): HttpResponse {
 	const response = new HttpResponse(code);
 
 	if (extraMessage) {
-		response.message += extraMessage;
+		response.message += `: ${extraMessage}`;
 	}
 
 	return response;
