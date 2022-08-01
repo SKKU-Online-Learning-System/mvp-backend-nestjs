@@ -21,13 +21,13 @@ export class AuthService {
 	) {}
 
 	// check
-	async emailCheck(email: string) {
+	async emailCheck(email: string): Promise<HttpResponse> {
 		const user = await this.userService.getUserByEmail(email);
 		if (user) return status(409);
 		else return status(200);
 	}
 
-	async nicknameCheck(nickname: string) {
+	async nicknameCheck(nickname: string): Promise<HttpResponse> {
 		const user = await this.userService.getUserByNickname(nickname);
 		if (user) return status(409);
 		else return status(200);
