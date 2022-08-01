@@ -1,8 +1,8 @@
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import {
-	Injectable,
-	InternalServerErrorException,
-	NotImplementedException,
-} from '@nestjs/common';
+	HttpResponse,
+	status,
+} from 'src/configs/http-response/http-response.config';
 import { AdminEntity } from 'src/entities/admin.entity';
 import { DataSource } from 'typeorm';
 import { CreateAdminDto } from './dto/create-admin.dto';
@@ -11,36 +11,24 @@ import { CreateAdminDto } from './dto/create-admin.dto';
 export class AdminService {
 	constructor(private dataSource: DataSource) {}
 
-	async createAdmin(
-		createAdminDto: CreateAdminDto,
-	): Promise<{ statusCode: number; message: string }> {
+	async createAdmin(createAdminDto: CreateAdminDto): Promise<HttpResponse> {
 		const { username, password } = createAdminDto;
 
 		const {
 			raw: { affectedRows },
 		} = await this.dataSource
-			.createQueryBuilder()
-			.insert()
-			.into(AdminEntity)
-			.values({ username, password })
-			.execute();
+			.getRepository(AdminEntity)
+			.insert({ username, password });
 
-		if (affectedRows) {
-			return { statusCode: 201, message: 'Created' };
-		} else {
-			throw new NotImplementedException(
-				'user.service: createAdmin - Nothing inserted.',
-			);
-		}
+		if (!affectedRows) throw new InternalServerErrorException();
+
+		return status(201);
 	}
 
 	async getAdminByName(username: string): Promise<AdminEntity | null> {
 		const admin = await this.dataSource
-			.createQueryBuilder()
-			.select('admin')
-			.from(AdminEntity, 'admin')
-			.where('admin.username = :username', { username })
-			.getOne();
+			.getRepository(AdminEntity)
+			.findOne({ where: { username } });
 
 		return admin;
 	}

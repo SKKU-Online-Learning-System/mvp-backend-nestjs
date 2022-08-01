@@ -1,4 +1,8 @@
-import { Injectable, NotImplementedException } from '@nestjs/common';
+import {
+	Injectable,
+	InternalServerErrorException,
+	NotImplementedException,
+} from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { CourseEntity } from 'src/entities/course.entity';
 import { Category1Entity } from 'src/entities/category1.entity';
@@ -12,6 +16,10 @@ import { SearchCoursesDto } from './dto/search-courses.dto';
 import { LearningEntity } from 'src/entities/learning.entity';
 import { CompleteEntity } from 'src/entities/complete.entity';
 import { SectionEntity } from 'src/entities/section.entity';
+import {
+	HttpResponse,
+	status,
+} from 'src/configs/http-response/http-response.config';
 
 @Injectable()
 export class CourseService {
@@ -255,81 +263,42 @@ export class CourseService {
 		return lectures;
 	}
 
-	async createCourse(createCourseDto: CreateCourseDto) {
-		const {
-			title,
-			description,
-			instructorId,
-			category1Id,
-			category2Id,
-			difficulty,
-		} = createCourseDto;
-
+	async createCourse(
+		createCourseDto: CreateCourseDto,
+	): Promise<HttpResponse> {
 		const {
 			raw: { affectedRows },
 		} = await this.dataSource
-			.createQueryBuilder()
-			.insert()
-			.into(CourseEntity)
-			.values({
-				title,
-				description,
-				instructorId,
-				category1Id,
-				category2Id,
-				difficulty,
-			})
-			.execute();
+			.getRepository(CourseEntity)
+			.insert(createCourseDto);
 
-		if (affectedRows) {
-			return { statusCode: 201, message: 'Created' };
-		} else {
-			throw new NotImplementedException(
-				'course.service: createCourse - Nothing inserted.',
-			);
-		}
+		if (!affectedRows) throw new InternalServerErrorException();
+
+		return status(201);
 	}
 
-	async updateCourseById(id: number, updateCourseDto: UpdateCourseDto) {
-		const { title, description, category1Id, category2Id, difficulty } =
-			updateCourseDto;
+	async updateCourseById(
+		id: number,
+		updateCourseDto: UpdateCourseDto,
+	): Promise<HttpResponse> {
 		const {
 			raw: { affectedRows },
 		} = await this.dataSource
-			.createQueryBuilder()
-			.from(CourseEntity, 'course')
-			.where('id = :id', { id })
-			.update({
-				title,
-				description,
-				// category1: category1,
-				// category2: category2,
-				difficulty,
-			})
-			.execute();
+			.getRepository(CourseEntity)
+			.update(id, updateCourseDto);
 
-		if (affectedRows) {
-			return { statusCode: 201, message: 'Updated' };
-		} else {
-			throw new NotImplementedException(
-				'course.service: updateCourseById - Nothing changed.',
-			);
-		}
+		if (!affectedRows) throw new InternalServerErrorException();
+
+		return status(200);
 	}
 
-	async deleteCourseById(id: number) {
+	async deleteCourseById(id: number): Promise<HttpResponse> {
 		const { affected } = await this.dataSource
-			.createQueryBuilder()
-			.from(CourseEntity, 'course')
-			.where('id = :id', { id })
-			.delete()
-			.execute();
-		if (affected) {
-			return { statusCode: 201, message: 'Deleted' };
-		} else {
-			throw new NotImplementedException(
-				'course.service: deleteCourseById - Nothing deleted.',
-			);
-		}
+			.getRepository(CourseEntity)
+			.delete(id);
+
+		if (!affected) throw new InternalServerErrorException();
+
+		return status(200);
 	}
 }

@@ -20,6 +20,7 @@ import { LearningModule } from './modules/learning/learning.module';
 import { CompleteModule } from './modules/complete/complete.module';
 import { BannerModule } from './modules/banner/banner.module';
 import { HashtagModule } from './modules/hashtag/hashtag.module';
+import { SeedModule } from './modules/seed/seed.module';
 
 @Module({
 	imports: [
@@ -42,6 +43,7 @@ import { HashtagModule } from './modules/hashtag/hashtag.module';
 		CompleteModule,
 		BannerModule,
 		HashtagModule,
+		SeedModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
