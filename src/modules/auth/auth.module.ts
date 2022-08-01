@@ -13,6 +13,8 @@ import { AdminModule } from '../admin/admin.module';
 import { JwtStrategyConfigService } from 'src/configs/passport/jwt.config.service';
 import { JwtPassportStrategyConfigService } from 'src/configs/passport/jwt-passport.config.service';
 import { MagicLoginConfigService } from 'src/configs/passport/magic-login.config.service';
+import { MagicSignupStrategy } from './strategies/magic-signup.strategy';
+import { MagicSignupConfigService } from 'src/configs/passport/magic-signup.config.service';
 
 @Module({
 	imports: [
@@ -30,8 +32,10 @@ import { MagicLoginConfigService } from 'src/configs/passport/magic-login.config
 		LocalStrategy,
 		JwtStrategy,
 		MagicLoginStrategy,
+		MagicSignupStrategy,
 		JwtPassportStrategyConfigService,
 		MagicLoginConfigService,
+		MagicSignupConfigService,
 	],
 	exports: [AuthService],
 })

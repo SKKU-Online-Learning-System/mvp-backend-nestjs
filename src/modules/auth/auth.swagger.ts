@@ -12,7 +12,16 @@ export const ApiAuth = {
 		return applyDecorators(
 			ApiOperation({
 				summary: '일반 유저 회원가입',
-				description: '',
+				description:
+					'이메일로 회원가입 인증 링크를 발송합니다. 회원가입 시 사용자가 입력한 이메일과 닉네임을 각각 "destination"과 "nickname"에 담아 보내면 사용자에게 이메일이 발송됩니다.',
+			}),
+			ApiBody({
+				schema: {
+					properties: {
+						destination: { type: 'string' },
+						nickname: { type: 'string' },
+					},
+				},
 			}),
 		);
 	},
@@ -20,7 +29,21 @@ export const ApiAuth = {
 		return applyDecorators(
 			ApiOperation({
 				summary: '회원가입 링크 검증',
-				description: '',
+				description:
+					'사용자는 이메일로 토큰을 받습니다. 로그인 된 상태를 확인하는 토큰과는 별개로 회원가입 인증만을 위한 토큰입니다. 받은 이메일의 링크를 클릭하면 프론트엔드에서는 토큰을 이 API의 쿼리 스트링으로 보내주셔야 합니다. 그럼 회원가입과 로그인이 동시에 이루어집니다.',
+			}),
+			ApiQuery({ name: 'token', type: 'string' }),
+			ApiOkResponse({
+				headers: {
+					setCookie: {
+						description: '쿠키로 토큰 전달',
+						schema: {
+							properties: {
+								Authorization: { type: 'string' },
+							},
+						},
+					},
+				},
 			}),
 		);
 	},

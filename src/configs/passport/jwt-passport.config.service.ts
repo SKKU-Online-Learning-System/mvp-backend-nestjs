@@ -11,7 +11,6 @@ export class JwtPassportStrategyConfigService {
 		return {
 			jwtFromRequest: ExtractJwt.fromExtractors([
 				(req: Request) => {
-					console.log(req?.cookies);
 					return req?.cookies?.Authorization;
 				},
 			]),
