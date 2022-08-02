@@ -14,7 +14,7 @@ async function bootstrap() {
 	swaggerConfig(app);
 
 	// middleware
-	app.enableCors();
+	app.enableCors({ credentials: true });
 	app.use(helmet());
 	app.use(cookieParser());
 	app.use(
