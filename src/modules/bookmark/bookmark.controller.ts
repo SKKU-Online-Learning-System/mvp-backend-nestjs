@@ -17,51 +17,43 @@ import { ApiBookmark } from './bookmark.swagger';
 export class BookmarkController {
 	constructor(private bookmarkService: BookmarkService) {}
 
+	@Get()
+	@UseGuards(JwtAuthGuard)
+	getAllBookmarks(@User() user) {
+		return this.bookmarkService.getAllBookmarks(user.id);
+	}
+
 	@Get('learning')
 	@UseGuards(JwtAuthGuard)
 	@ApiBookmark.getAllLearningBookmarks()
 	getAllLearningBookmarks(@User() user) {
-		return this.bookmarkService.getAllLearningBookmarks(user);
+		return this.bookmarkService.getAllLearningBookmarks(user.id);
 	}
 
-	@Post('learning/:courseId')
-	@UseGuards(JwtAuthGuard)
-	@ApiBookmark.addLearningBookmark()
-	addLearningBookmarkByCourseId(@User() user, @Param('courseId') id: number) {
-		return this.bookmarkService.addLearningBookmarkByCourseId(user, id);
-	}
-
-	@Delete('learning/:courseId')
-	@UseGuards(JwtAuthGuard)
-	@ApiBookmark.deleteLearningBookmark()
-	deleteLearningBookmarkByCourseId(
-		@User() user,
-		@Param('courseId') id: number,
-	) {
-		return this.bookmarkService.deleteLearningBookmarkByCourseId(user, id);
-	}
-
-	@Get('complete')
+	@Get('completed')
 	@UseGuards(JwtAuthGuard)
 	@ApiBookmark.getAllCompleteBookmarks()
-	getAllCompleteBookmarks(@User() user) {
-		return this.bookmarkService.getAllCompleteBookmarks(user);
+	getAllCompletedBookmarks(@User() user) {
+		return this.bookmarkService.getAllCompletedBookmarks(user.id);
 	}
 
-	@Post('complete/:courseId')
+	@Post('course/:courseId')
 	@UseGuards(JwtAuthGuard)
-	@ApiBookmark.addCompleteBookmark()
-	addCompleteBookmarkByCourseId(@User() user, @Param('courseId') id: number) {
-		return this.bookmarkService.addCompleteBookmarkByCourseId(user, id);
-	}
-
-	@Delete('complete/:courseId')
-	@UseGuards(JwtAuthGuard)
-	@ApiBookmark.deleteCompleteBookmark()
-	deleteCompleteBookmarkByCourseId(
+	@ApiBookmark.addLearningBookmark()
+	createBookmarkByCourseId(
 		@User() user,
-		@Param('courseId') id: number,
+		@Param('courseId') courseId: number,
 	) {
-		return this.bookmarkService.deleteCompleteBookmarkByCourseId(user, id);
+		return this.bookmarkService.createBookmarkByCourseId(user.id, courseId);
+	}
+
+	@Delete('course/:courseId')
+	@UseGuards(JwtAuthGuard)
+	@ApiBookmark.deleteLearningBookmark()
+	deleteBookmarkByCourseId(
+		@User() user,
+		@Param('courseId') courseId: number,
+	) {
+		return this.bookmarkService.deleteBookmarkByCourseId(user.id, courseId);
 	}
 }

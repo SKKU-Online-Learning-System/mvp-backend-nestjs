@@ -5,8 +5,6 @@ import {
 	ManyToOne,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
-import { CourseEntity } from './course.entity';
-import { LectureEntity } from './lecture.entity';
 import { QuestionEntity } from './question.entity';
 import { UserEntity } from './user.entity';
 
@@ -24,16 +22,6 @@ class Answer {
 	author: UserEntity;
 	@Column()
 	authorId: number;
-
-	// @ManyToOne(() => CourseEntity)
-	// course: CourseEntity;
-	// @Column()
-	// courseId: number;
-
-	// @ManyToOne(() => LectureEntity)
-	// lecture: LectureEntity;
-	// @Column()
-	// lectureId: number;
 
 	@Column({ type: 'text' })
 	contents: string;

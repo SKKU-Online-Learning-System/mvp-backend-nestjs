@@ -49,7 +49,7 @@ export class AuthService {
 
 	magicLogin(res: Response, user: UserEntity): HttpResponse {
 		const { id, email, privilege } = user;
-		const payload = { id, email, privilege };
+		const payload = { userId: id, email, privilege };
 		const token = this.jwtService.sign(payload);
 		res.cookie('Authorization', token, {
 			httpOnly: true,
@@ -95,28 +95,9 @@ export class AuthService {
 	}
 
 	// for test
-	getToken() {
-		const token_1 = this.jwtService.sign({
-			id: 1,
-			privilege: 2,
-			email: 'a@a.com',
-		});
-		const token_2 = this.jwtService.sign({
-			id: 2,
-			privilege: 3,
-			email: 'b@b.com',
-		});
-		const token_3 = this.jwtService.sign({
-			id: 3,
-			privilege: 4,
-			email: 'c@c.com',
-		});
-		return { token_1, token_2, token_3 };
-	}
-
 	tempLogin(res: Response): HttpResponse {
 		const token = this.jwtService.sign({
-			id: 1,
+			userId: 1,
 			email: 'a@a.com',
 			privilege: 2,
 		});

@@ -21,21 +21,27 @@ export class WishlistController {
 	@Get()
 	@UseGuards(JwtAuthGuard)
 	@ApiWishlist.getAllWishlist()
-	getAllWishlist(@User() user) {
-		return this.wishlistService.getAllWishlist(user);
+	getAllWishlists(@User() user) {
+		return this.wishlistService.getAllWishlists(user.id);
 	}
 
-	@Post(':courseId')
+	@Post('course/:courseId')
 	@UseGuards(JwtAuthGuard)
 	@ApiWishlist.addWishlistById()
-	addWishlistById(@User() user, @Param('courseId') id: number) {
-		return this.wishlistService.addWishlistById(user, id);
+	createWishlistByCourseId(
+		@User() user,
+		@Param('courseId') courseId: number,
+	) {
+		return this.wishlistService.createWishlistByCourseId(user.id, courseId);
 	}
 
-	@Delete(':courseId')
+	@Delete('course/:courseId')
 	@UseGuards(JwtAuthGuard)
 	@ApiWishlist.deleteWishlistById()
-	deleteWishlistById(@User() user, @Param('courseId') id: number) {
-		return this.wishlistService.deleteWishlistById(user, id);
+	deleteWishlistByCourseId(
+		@User() user,
+		@Param('courseId') courseId: number,
+	) {
+		return this.wishlistService.deleteWishlistByCourseId(user.id, courseId);
 	}
 }

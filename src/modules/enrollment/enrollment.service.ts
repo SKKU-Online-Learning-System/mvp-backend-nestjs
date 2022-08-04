@@ -1,23 +1,20 @@
-import {
-	BadRequestException,
-	Injectable,
-	InternalServerErrorException,
-} from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import {
 	HttpResponse,
 	status,
 } from 'src/configs/http-response/http-response.config';
 import { EnrollmentEntity } from 'src/entities/enrollment.entity';
 import { DataSource } from 'typeorm';
-import { CreateUserCourseDto } from './dto/create-user-course.dto';
+import { CreateEnrollmentDto } from './dto/create-enrollment.dto';
+import { DeleteEnrollmentDto } from './dto/delete-enrollment.dto';
 
 @Injectable()
-export class CompleteService {
+export class EnrollmentService {
 	constructor(private dataSource: DataSource) {}
 
-	async getCompletedEnrollments(userId: number) {
+	async getLearningEnrollments(userId: number) {
 		return await this.dataSource.getRepository(EnrollmentEntity).find({
-			where: { userId, completed: true },
+			where: { userId, completed: false },
 			relations: {
 				course: {
 					instructor: true,
@@ -50,26 +47,33 @@ export class CompleteService {
 		});
 	}
 
-	async createCompletedEnrollments({
-		userId,
-		courseId,
-	}: CreateUserCourseDto): Promise<HttpResponse> {
-		const enrollment = await this.dataSource
-			.getRepository(EnrollmentEntity)
-			.findOneBy({ userId, courseId });
-		if (enrollment.completed === true) throw new BadRequestException();
+	async createEnrollment(
+		createEnrollmentDto: CreateEnrollmentDto,
+	): Promise<HttpResponse> {
+		const { userId, courseId } = createEnrollmentDto;
 
 		const {
 			raw: { affectedRows },
 		} = await this.dataSource
 			.getRepository(EnrollmentEntity)
-			.update(
-				{ userId, courseId },
-				{ completed: true, completedAt: Date.now() },
-			);
+			.insert({ userId, courseId });
 
 		if (affectedRows !== 1) throw new InternalServerErrorException();
 
 		return status(201);
+	}
+
+	async deleteEnrollment(
+		deleteEnrollmentDto: DeleteEnrollmentDto,
+	): Promise<HttpResponse> {
+		const { userId, courseId } = deleteEnrollmentDto;
+
+		const { affected } = await this.dataSource
+			.getRepository(EnrollmentEntity)
+			.delete({ userId, courseId });
+
+		if (affected !== 1) throw new InternalServerErrorException();
+
+		return status(200);
 	}
 }

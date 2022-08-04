@@ -100,12 +100,6 @@ export class AuthController {
 		return user || 'no user';
 	}
 
-	@Get('get-token')
-	@ApiAuth.getToken()
-	getToken() {
-		return this.authService.getToken();
-	}
-
 	@Get('temp-login')
 	@ApiAuth.tempLogin()
 	tempLogin(@Res({ passthrough: true }) res: Response) {

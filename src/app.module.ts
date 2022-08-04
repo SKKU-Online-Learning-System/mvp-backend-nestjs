@@ -16,11 +16,11 @@ import { WishlistModule } from './modules/wishlist/wishlist.module';
 import { BookmarkModule } from './modules/bookmark/bookmark.module';
 import { QuestionModule } from './modules/question/question.module';
 import { AnswerModule } from './modules/answer/answer.module';
-import { LearningModule } from './modules/learning/learning.module';
 import { CompleteModule } from './modules/complete/complete.module';
 import { BannerModule } from './modules/banner/banner.module';
 import { HashtagModule } from './modules/hashtag/hashtag.module';
 import { SeedModule } from './modules/seed/seed.module';
+import { EnrollmentModule } from './modules/enrollment/enrollment.module';
 
 @Module({
 	imports: [
@@ -39,7 +39,7 @@ import { SeedModule } from './modules/seed/seed.module';
 		QuestionModule,
 		AnswerModule,
 		HistoryModule,
-		LearningModule,
+		EnrollmentModule,
 		CompleteModule,
 		BannerModule,
 		HashtagModule,
