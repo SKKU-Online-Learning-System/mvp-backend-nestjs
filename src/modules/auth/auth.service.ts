@@ -51,7 +51,10 @@ export class AuthService {
 		const { id, email, privilege } = user;
 		const payload = { id, email, privilege };
 		const token = this.jwtService.sign(payload);
-		res.cookie('Authorization', token, { httpOnly: true });
+		res.cookie('Authorization', token, {
+			httpOnly: true,
+			sameSite: 'none',
+		});
 		return status(200);
 	}
 
@@ -78,7 +81,10 @@ export class AuthService {
 	async localLogin(res: Response, user): Promise<HttpResponse> {
 		const payload = { id: user.id, username: user.username };
 		const token = this.jwtService.sign(payload);
-		res.cookie('Authorization', token, { httpOnly: true });
+		res.cookie('Authorization', token, {
+			httpOnly: true,
+			sameSite: 'none',
+		});
 		return status(200);
 	}
 
@@ -114,7 +120,10 @@ export class AuthService {
 			email: 'a@a.com',
 			privilege: 2,
 		});
-		res.cookie('Authorization', token, { httpOnly: true });
+		res.cookie('Authorization', token, {
+			httpOnly: true,
+			sameSite: 'none',
+		});
 		return status(200);
 	}
 }
