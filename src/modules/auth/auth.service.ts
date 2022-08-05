@@ -84,6 +84,7 @@ export class AuthService {
 		res.cookie('Authorization', token, {
 			httpOnly: true,
 			sameSite: 'none',
+			secure: true,
 		});
 		return status(200);
 	}
@@ -104,6 +105,7 @@ export class AuthService {
 		res.cookie('Authorization', token, {
 			httpOnly: true,
 			sameSite: 'none',
+			secure: true,
 		});
 		return status(200);
 	}
