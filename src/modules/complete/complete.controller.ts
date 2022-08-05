@@ -16,7 +16,7 @@ export class CompleteController {
 	@UseGuards(JwtAuthGuard)
 	@ApiComplete.getCompleteCourses()
 	getCompletedEnrollments(@User() user) {
-		return this.completeService.getCompletedEnrollments(user.id);
+		return this.completeService.getCompletedEnrollments(user.userId);
 	}
 
 	@Post()
