@@ -13,8 +13,6 @@ import { CourseHashtagEntity } from 'src/entities/course-hashtag.entity';
 import { HashtagEntity } from 'src/entities/hashtag.entity';
 import { UserEntity } from 'src/entities/user.entity';
 import { SearchCoursesDto } from './dto/search-courses.dto';
-import { LearningEntity } from 'src/entities/learning.entity';
-import { CompleteEntity } from 'src/entities/complete.entity';
 import { SectionEntity } from 'src/entities/section.entity';
 import {
 	HttpResponse,
@@ -170,74 +168,35 @@ export class CourseService {
 	}
 
 	async getPopularCourses() {
-		const learningNumbers = await this.dataSource
+		const courses: any = await this.dataSource
 			.createQueryBuilder()
-			.from(LearningEntity, 'learning')
-			.innerJoin(CourseEntity, 'course', 'course.id = learning.courseId')
+			.from(CourseEntity, 'course')
+			.leftJoin('course.instructor', 'instructor')
+			.leftJoin('course.category1', 'category1')
+			.leftJoin('course.category2', 'category2')
+			.leftJoin('course.enrollments', 'enrollments')
+			.loadRelationCountAndMap(
+				'course.enrollmentCount',
+				'course.enrollments',
+			)
 			.select([
-				'learning.courseId AS courseId',
-				'COUNT(learning.courseId) AS count',
-				'course.title AS title',
-				'course.description AS description',
-				'course.thumbnail AS thumbnail',
-				'course.difficulty AS difficulty',
+				'course.id',
+				'course.title',
+				'course.description',
+				'course.summary',
+				'course.thumbnail',
+				'course.difficulty',
+				'course.createdAt',
+				'instructor.nickname',
+				'category1.name',
+				'category2.name',
 			])
-			.groupBy('learning.courseId')
-			.getRawMany();
+			.getMany();
 
-		const learningNumbersMap = new Map();
-		learningNumbers.forEach((element) => {
-			learningNumbersMap.set(element.courseId, element);
-		});
-
-		const completeNumbers = await this.dataSource
-			.createQueryBuilder()
-			.from(CompleteEntity, 'complete')
-			.innerJoin(CourseEntity, 'course', 'course.id = complete.courseId')
-			.select([
-				'complete.courseId AS courseId',
-				'COUNT(complete.courseId) AS count',
-				'course.title AS title',
-				'course.description AS description',
-				'course.thumbnail AS thumbnail',
-				'course.difficulty AS difficulty',
-			])
-			.groupBy('complete.courseId')
-			.getRawMany();
-
-		const completeNumbersMap = new Map();
-		completeNumbers.forEach((element) => {
-			completeNumbersMap.set(element.courseId, element);
-		});
-
-		const userCourseNumbersMap = new Map(learningNumbersMap);
-
-		for (const [
-			courseIdOfCompleteNumbers,
-			completeNumber,
-		] of completeNumbersMap) {
-			const element = userCourseNumbersMap.get(courseIdOfCompleteNumbers);
-			if (element) {
-				element['count'] =
-					Number(element['count']) + Number(completeNumber['count']);
-				userCourseNumbersMap.set(courseIdOfCompleteNumbers, element);
-			} else {
-				userCourseNumbersMap.set(
-					courseIdOfCompleteNumbers,
-					completeNumber,
-				);
-			}
-		}
-
-		const userCourseNumbersArray = [...userCourseNumbersMap].sort(
-			(a, b) => b[1]['count'] - a[1]['count'],
-		);
-
-		return userCourseNumbersArray.reduce((accumulator, currentValue) => {
-			accumulator = [...accumulator, currentValue[1]];
-			return accumulator;
-		}, []);
+		courses.sort((a, b) => b.enrollmentCount - a.enrollmentCount);
+		return courses;
 	}
+
 	async getLecturesByCourseId(id: number) {
 		const lectures = await this.dataSource
 			.getRepository(SectionEntity)

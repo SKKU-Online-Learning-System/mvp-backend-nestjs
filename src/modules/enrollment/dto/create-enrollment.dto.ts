@@ -1,9 +1,11 @@
 import { IsInt } from 'class-validator';
 
-export class CreateUserCourseDto {
+export class CreateEnrollmentDto {
+	// user
 	@IsInt()
 	readonly userId: number;
 
+	// body
 	@IsInt()
 	readonly courseId: number;
 }

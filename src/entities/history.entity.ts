@@ -22,13 +22,13 @@ class History {
 	@Column({ default: false })
 	isFinished: boolean;
 
-	// @ManyToOne(() => UserEntity)
-	// user: UserEntity;
+	@ManyToOne(() => UserEntity)
+	user: UserEntity;
 	@Column()
 	userId: number;
 
-	// @ManyToOne(() => LectureEntity)
-	// lecture: LectureEntity;
+	@ManyToOne(() => LectureEntity)
+	lecture: LectureEntity;
 	@Column()
 	lectureId: number;
 }

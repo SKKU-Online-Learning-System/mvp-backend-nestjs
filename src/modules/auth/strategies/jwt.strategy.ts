@@ -15,7 +15,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 		const { id, email, username, privilege } = payload;
 
 		if (email) {
-			return { id, email, privilege };
+			return { userId: id, email, privilege };
 		} else if (username) {
 			return { id, username };
 		} else {

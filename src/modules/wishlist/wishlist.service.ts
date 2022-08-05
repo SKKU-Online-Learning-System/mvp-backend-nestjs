@@ -1,58 +1,68 @@
-import { 
-    Injectable,
-    NotImplementedException
- } from '@nestjs/common';
+import {
+	Injectable,
+	InternalServerErrorException,
+	NotImplementedException,
+} from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { WishlistEntity } from 'src/entities/wishlist.entity';
+import { status } from 'src/configs/http-response/http-response.config';
 
 @Injectable()
-export class WishlistService{
-    constructor(private dataSource: DataSource){}
+export class WishlistService {
+	constructor(private dataSource: DataSource) {}
 
-    async getAllWishlist(user){
-        const lists = await this.dataSource
-            .createQueryBuilder()
-            .from(WishlistEntity, 'wishlist')
-            .select('wishlist')
-            .where('userId = :id', {id : user.id})
-            .getMany()
-        return lists;
-    }
+	async getAllWishlists(userId: number) {
+		return await this.dataSource.getRepository(WishlistEntity).find({
+			where: { userId },
+			relations: {
+				course: {
+					instructor: true,
+					category1: true,
+					category2: true,
+				},
+			},
+			select: {
+				course: {
+					id: true,
+					title: true,
+					description: true,
+					summary: true,
+					instructor: {
+						nickname: true,
+					},
+					category1: {
+						name: true,
+					},
+					category2: {
+						name: true,
+					},
+					thumbnail: true,
+					difficulty: true,
+					createdAt: true,
+				},
+			},
+		});
+	}
 
-    async addWishlistById( user, id : number ) {
-        const {
-            raw: {affectedRows},
-        } = await this.dataSource
-            .createQueryBuilder()
-            .insert()
-            .into(WishlistEntity)
-            .values({
-                userId : user.id,
-                courseId : id
-            })
-            .execute();
-        if (affectedRows){
-            return { statusCode: 201, message: 'Created'};
-        } else { 
-            throw new NotImplementedException(
-                'wishlist.service : addWishList - Nothing inserted.',
-            );
-        }
-    }
+	async createWishlistByCourseId(userId: number, courseId: number) {
+		const {
+			raw: { affectedRows },
+		} = await this.dataSource
+			.getRepository(WishlistEntity)
+			.insert({ userId, courseId });
 
-    async deleteWishlistById( user, id : number ){
-        const { affected } = await this.dataSource
-            .createQueryBuilder()
-            .from(WishlistEntity, 'wishlist')
-            .where('courseId = :id AND userId = :uID ', {id: id, uID: user.id})
-            .delete()
-            .execute();
-            if ( affected ){
-            return { statusCode: 201, message: 'Deleted'};
-        } else {
-            throw new NotImplementedException(
-                'wishlist.service: deleteWishlistById - Nothing deleted.',
-            );
-        }
-    }
+		if (affectedRows !== 1) throw new InternalServerErrorException();
+
+		return status(201);
+	}
+
+	async deleteWishlistByCourseId(userId: number, courseId: number) {
+		const { affected } = await this.dataSource
+			.getRepository(WishlistEntity)
+			.delete({ userId, courseId });
+
+		if (affected !== 1) throw new InternalServerErrorException();
+
+		return status(200);
+	}
 }
