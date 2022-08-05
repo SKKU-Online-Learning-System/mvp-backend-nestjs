@@ -21,6 +21,7 @@ import { CompleteModule } from './modules/complete/complete.module';
 import { BannerModule } from './modules/banner/banner.module';
 import { HashtagModule } from './modules/hashtag/hashtag.module';
 import { SeedModule } from './modules/seed/seed.module';
+import { FileModule } from './modules/file/file.module';
 
 @Module({
 	imports: [
@@ -44,6 +45,7 @@ import { SeedModule } from './modules/seed/seed.module';
 		BannerModule,
 		HashtagModule,
 		SeedModule,
+		FileModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],

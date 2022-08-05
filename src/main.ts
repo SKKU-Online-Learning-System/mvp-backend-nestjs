@@ -25,6 +25,12 @@ async function bootstrap() {
 
 	// static files
 	app.useStaticAssets(join(__dirname, '..', 'public'));
+	app.useStaticAssets(join(__dirname, '..', 'public/images/banners'), {
+		prefix: '/bannerImage',
+	});
+	app.useStaticAssets(join(__dirname, '..', 'public/images/courses'), {
+		prefix: '/courseImage',
+	});
 
 	// view engine
 	app.setViewEngine('pug');
