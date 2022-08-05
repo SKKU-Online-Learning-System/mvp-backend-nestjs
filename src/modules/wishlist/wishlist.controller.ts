@@ -22,7 +22,7 @@ export class WishlistController {
 	@UseGuards(JwtAuthGuard)
 	@ApiWishlist.getAllWishlist()
 	getAllWishlists(@User() user) {
-		return this.wishlistService.getAllWishlists(user.id);
+		return this.wishlistService.getAllWishlists(user.userId);
 	}
 
 	@Post('course/:courseId')
@@ -32,7 +32,7 @@ export class WishlistController {
 		@User() user,
 		@Param('courseId') courseId: number,
 	) {
-		return this.wishlistService.createWishlistByCourseId(user.id, courseId);
+		return this.wishlistService.createWishlistByCourseId(user.userId, courseId);
 	}
 
 	@Delete('course/:courseId')
@@ -42,6 +42,6 @@ export class WishlistController {
 		@User() user,
 		@Param('courseId') courseId: number,
 	) {
-		return this.wishlistService.deleteWishlistByCourseId(user.id, courseId);
+		return this.wishlistService.deleteWishlistByCourseId(user.userId, courseId);
 	}
 }
