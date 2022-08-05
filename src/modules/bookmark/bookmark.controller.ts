@@ -20,21 +20,21 @@ export class BookmarkController {
 	@Get()
 	@UseGuards(JwtAuthGuard)
 	getAllBookmarks(@User() user) {
-		return this.bookmarkService.getAllBookmarks(user.id);
+		return this.bookmarkService.getAllBookmarks(user.userId);
 	}
 
 	@Get('learning')
 	@UseGuards(JwtAuthGuard)
 	@ApiBookmark.getAllLearningBookmarks()
 	getAllLearningBookmarks(@User() user) {
-		return this.bookmarkService.getAllLearningBookmarks(user.id);
+		return this.bookmarkService.getAllLearningBookmarks(user.userId);
 	}
 
 	@Get('completed')
 	@UseGuards(JwtAuthGuard)
 	@ApiBookmark.getAllCompleteBookmarks()
 	getAllCompletedBookmarks(@User() user) {
-		return this.bookmarkService.getAllCompletedBookmarks(user.id);
+		return this.bookmarkService.getAllCompletedBookmarks(user.userId);
 	}
 
 	@Post('course/:courseId')
@@ -44,7 +44,7 @@ export class BookmarkController {
 		@User() user,
 		@Param('courseId') courseId: number,
 	) {
-		return this.bookmarkService.createBookmarkByCourseId(user.id, courseId);
+		return this.bookmarkService.createBookmarkByCourseId(user.userId, courseId);
 	}
 
 	@Delete('course/:courseId')
@@ -54,6 +54,6 @@ export class BookmarkController {
 		@User() user,
 		@Param('courseId') courseId: number,
 	) {
-		return this.bookmarkService.deleteBookmarkByCourseId(user.id, courseId);
+		return this.bookmarkService.deleteBookmarkByCourseId(user.userId, courseId);
 	}
 }
