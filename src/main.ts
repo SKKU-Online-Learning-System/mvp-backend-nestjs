@@ -16,7 +16,7 @@ async function bootstrap() {
 	// middleware
 	app.enableCors({
 		credentials: true,
-		origin: 'http://mrdang.com.s3-website.ap-northeast-2.amazonaws.com/',
+		origin: 'http://mrdang.com.s3-website.ap-northeast-2.amazonaws.com',
 		methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
 	});
 	app.use(helmet());
