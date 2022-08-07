@@ -106,7 +106,6 @@ export class AuthService {
 			httpOnly: true,
 			sameSite: 'none',
 			secure: true,
-			domain: 'https://d160ata4dswc5.cloudfront.net',
 		});
 		return status(200);
 	}
