@@ -23,6 +23,7 @@ export const swaggerConfig = (app) => {
 		.addTag('Question', '')
 		.addTag('Answer', '')
 		.addTag('Hashtag', '해시태그 추가/삭제는 관리자 전용')
+		.addTag('File', 'server disk memory에 영상, 이미지 파일 CRUD')
 		// .addTag('User', '')
 		// .addTag('Seed', '백엔드 전용입니다(사용X)')
 		.build();
