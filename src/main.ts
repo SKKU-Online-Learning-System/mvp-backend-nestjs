@@ -31,6 +31,9 @@ async function bootstrap() {
 	app.useStaticAssets(join(__dirname, '..', 'public/images/courses'), {
 		prefix: '/courseImage',
 	});
+	app.useStaticAssets(join(__dirname, '..', 'public/videos'), {
+		prefix: '/video',
+	});
 
 	// view engine
 	app.setViewEngine('pug');

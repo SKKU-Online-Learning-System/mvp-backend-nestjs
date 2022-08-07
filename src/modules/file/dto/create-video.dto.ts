@@ -1,4 +1,4 @@
-import { IsNumberString, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumberString, IsString } from 'class-validator';
 
 export class CreateVideoDto {
 	@IsNumberString()
@@ -9,6 +9,6 @@ export class CreateVideoDto {
 	title: string;
 	@IsNumberString()
 	duration: number;
-	@IsString()
-	filename: string;
+	@IsNotEmpty()
+	video: Express.Multer.File;
 }
