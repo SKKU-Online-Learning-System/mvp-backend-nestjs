@@ -106,7 +106,7 @@ export class AuthService {
 			httpOnly: true,
 			sameSite: 'none',
 			secure: true,
-			domain: 'http://mrdang.com.s3-website.ap-northeast-2.amazonaws.com',
+			domain: 'https://d160ata4dswc5.cloudfront.net',
 		});
 		return status(200);
 	}
