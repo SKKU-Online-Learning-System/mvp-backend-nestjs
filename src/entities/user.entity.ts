@@ -2,8 +2,10 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
+	OneToMany,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
+import { CourseEntity } from './course.entity';
 
 export enum Privilege {
 	ADMIN = 1,
@@ -20,7 +22,7 @@ class User {
 	@Column({ type: 'varchar', length: 50, unique: true })
 	email: string;
 
-	@Column({ type: 'varchar', length: 20, unique: true, nullable: true })
+	@Column({ type: 'varchar', length: 20, unique: true })
 	nickname: string;
 
 	@CreateDateColumn()
@@ -28,6 +30,9 @@ class User {
 
 	@Column({ default: 4 })
 	privilege: number;
+
+	@OneToMany(() => CourseEntity, (course) => course.instructor)
+	courses: CourseEntity[];
 }
 
 export { User as UserEntity };

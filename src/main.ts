@@ -14,7 +14,11 @@ async function bootstrap() {
 	swaggerConfig(app);
 
 	// middleware
-	app.enableCors({ credentials: true });
+	app.enableCors({
+		credentials: true,
+		origin: 'http://mrdang.com.s3-website.ap-northeast-2.amazonaws.com',
+		methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+	});
 	app.use(helmet());
 	app.use(cookieParser());
 	app.use(
