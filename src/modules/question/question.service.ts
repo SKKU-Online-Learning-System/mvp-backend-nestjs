@@ -79,7 +79,7 @@ export class QuestionService {
 	}
 
 	async getQuestionById(id: number) {
-		return await this.dataSource.getRepository(QuestionEntity).find({
+		return await this.dataSource.getRepository(QuestionEntity).findOne({
 			where: { id },
 			relations: {
 				author: true,
