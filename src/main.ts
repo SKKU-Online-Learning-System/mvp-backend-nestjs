@@ -14,11 +14,11 @@ async function bootstrap() {
 	swaggerConfig(app);
 
 	// middleware
-	app.enableCors({
-		credentials: true,
-		origin: 'https://d160ata4dswc5.cloudfront.net',
-		methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-	});
+	app.enableCors();
+// 		credentials: true,
+// 		origin: 'https://d160ata4dswc5.cloudfront.net',
+// 		methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+// 	});
 	app.use(helmet());
 	app.use(cookieParser());
 	app.use(
