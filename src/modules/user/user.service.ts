@@ -3,13 +3,32 @@ import {
 	Injectable,
 	InternalServerErrorException,
 } from '@nestjs/common';
+import {
+	HttpResponse,
+	status,
+} from 'src/configs/http-response/http-response.config';
 import { UserEntity } from 'src/entities/user.entity';
 import { DataSource } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
 	constructor(private dataSource: DataSource) {}
+
+	async getAllUsers() {
+		return await this.dataSource.getRepository(UserEntity).find();
+	}
+
+	async updateUserById(
+		userId: number,
+		updateUserDto: UpdateUserDto,
+	): Promise<HttpResponse> {
+		await this.dataSource
+			.getRepository(UserEntity)
+			.update(userId, updateUserDto);
+		return status(201);
+	}
 
 	async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
 		const { email, nickname } = createUserDto;
