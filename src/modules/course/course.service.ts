@@ -63,6 +63,7 @@ export class CourseService {
 			.select([
 				'course.id AS id',
 				'course.title AS title',
+				'course.summary AS summary',
 				'course.description AS description',
 				'course.thumbnail AS thumbnail',
 				'course.difficulty AS difficulty',
@@ -137,6 +138,7 @@ export class CourseService {
 			.select([
 				'course.id AS id',
 				'course.title AS title',
+				'course.summary AS summary',
 				'course.description AS description',
 				'course.thumbnail AS thumbnail',
 				'course.difficulty AS difficulty',

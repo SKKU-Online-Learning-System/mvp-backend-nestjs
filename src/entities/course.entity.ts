@@ -22,7 +22,7 @@ class Course {
 	@Column({ type: 'text' })
 	description: string;
 
-	@Column({ type: 'text', nullable: true })
+	@Column({ type: 'text' })
 	summary: string;
 
 	@ManyToOne(() => UserEntity, (instructor) => instructor.courses)
