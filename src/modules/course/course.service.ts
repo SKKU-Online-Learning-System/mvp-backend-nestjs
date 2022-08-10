@@ -202,7 +202,7 @@ export class CourseService {
 	async getLecturesByCourseId(id: number) {
 		const lectures = await this.dataSource
 			.getRepository(SectionEntity)
-			.findOne({
+			.find({
 				where: {
 					courseId: id,
 				},
