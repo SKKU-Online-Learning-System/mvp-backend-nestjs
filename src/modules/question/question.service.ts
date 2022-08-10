@@ -34,14 +34,16 @@ export class QuestionService {
 				contents: true,
 				createdAt: true,
 				author: {
-					email: true,
+					id: true,
+					nickname: true,
 				},
 				answers: {
 					id: true,
 					contents: true,
 					createdAt: true,
 					author: {
-						email: true,
+						id: true,
+						nickname: true,
 					},
 				},
 			},
@@ -64,14 +66,16 @@ export class QuestionService {
 				contents: true,
 				createdAt: true,
 				author: {
-					email: true,
+					id: true,
+					nickname: true,
 				},
 				answers: {
 					id: true,
 					contents: true,
 					createdAt: true,
 					author: {
-						email: true,
+						id: true,
+						nickname: true,
 					},
 				},
 			},
@@ -92,14 +96,16 @@ export class QuestionService {
 				contents: true,
 				createdAt: true,
 				author: {
-					email: true,
+					id: true,
+					nickname: true,
 				},
 				answers: {
 					id: true,
 					contents: true,
 					createdAt: true,
 					author: {
-						email: true,
+						id: true,
+						nickname: true,
 					},
 				},
 			},
