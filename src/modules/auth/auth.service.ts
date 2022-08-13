@@ -106,6 +106,7 @@ export class AuthService {
 			httpOnly: true,
 			sameSite: 'none',
 			secure: true,
+			domain: 'https://mrdang.kro.kr',
 		});
 		return status(200);
 	}
