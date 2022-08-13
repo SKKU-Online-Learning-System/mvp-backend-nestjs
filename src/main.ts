@@ -15,10 +15,10 @@ async function bootstrap() {
 
 	// middleware
 	app.enableCors();
-// 		credentials: true,
-// 		origin: 'https://d160ata4dswc5.cloudfront.net',
-// 		methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-// 	});
+	// 		credentials: true,
+	// 		origin: 'https://d160ata4dswc5.cloudfront.net',
+	// 		methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+	// 	});
 	app.use(helmet());
 	app.use(cookieParser());
 	app.use(
@@ -53,6 +53,6 @@ async function bootstrap() {
 		}),
 	);
 
-	await app.listen(3000);
+	await app.listen(4000);
 }
 bootstrap();
