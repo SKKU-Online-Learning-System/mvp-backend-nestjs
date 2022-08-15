@@ -22,7 +22,7 @@ export class FileService {
 		}
 
 		// let videoPath = join(lecture.courseId.toString(), lecture.filename);
-		const videoPath = join('public/videos', lecture.filename);
+		const videoPath = join('videos', lecture.filename);
 
 // 		if (!existsSync(videoPath)) {
 // 			throw new InternalServerErrorException('video not found');
