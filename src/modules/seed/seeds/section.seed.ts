@@ -839,4 +839,9 @@ export const Section = [
 		title: 'jumps over t',
 		courseId: 40,
 	},
+	{
+		id: 169,
+		title: 'SW 특강 기초',
+		courseId: 41,
+	},
 ];

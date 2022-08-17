@@ -5651,4 +5651,64 @@ export const Lecture = [
 		sectionId: 168,
 		createdAt: '2012-01-22T15:10:24.655Z',
 	},
+	{
+		id: 629,
+		title: '네트워크는 어디에나 있다1',
+		duration: 893,
+		filename:
+			'[성대의 성대한 특강] 네트워크는 어디에나 있다 전반부 _ 김영훈 성균관대 소프트웨어학과 교수-(1080p).mp4',
+		courseId: 41,
+		sectionId: 169,
+		createdAt: '2012-01-22T15:10:24.655Z',
+	},
+	{
+		id: 630,
+		title: '네트워크는 어디에나 있다2',
+		duration: 893,
+		filename:
+			'[성대의 성대한 특강] 네트워크는 어디에나 있다 후반부 _ 김영훈 성균관대 소프트웨어학과 교수-(1080p).mp4',
+		courseId: 41,
+		sectionId: 169,
+		createdAt: '2012-01-22T15:10:24.655Z',
+	},
+	{
+		id: 631,
+		title: '실시간 시스템과 머신 러닝1',
+		duration: 893,
+		filename:
+			'[성대의 성대한 특강] 실시간 시스템과 머신 러닝 전반부 _ 이진규 성균관대 소프트웨어학과 교수-(1080p).mp4',
+		courseId: 41,
+		sectionId: 169,
+		createdAt: '2012-01-22T15:10:24.655Z',
+	},
+	{
+		id: 632,
+		title: '실시간 시스템과 머신 러닝2',
+		duration: 893,
+		filename:
+			'[성대의 성대한 특강] 실시간 시스템과 머신 러닝 후반부 _ 이진규 성균관대 소프트웨어학과 교수-(1080p).mp4',
+		courseId: 41,
+		sectionId: 169,
+		createdAt: '2012-01-22T15:10:24.655Z',
+	},
+	{
+		id: 633,
+		title: '컴퓨터 비전 미리보기1',
+		duration: 893,
+		filename:
+			'[성대의 성대한 특강] 컴퓨터 비전 미리보기 전반부 _ 허재필 성균관대 소프트웨어학과_인공지능학과 교수-(1080p).mp4',
+		courseId: 41,
+		sectionId: 169,
+		createdAt: '2012-01-22T15:10:24.655Z',
+	},
+	{
+		id: 634,
+		title: '컴퓨터 비전 미리보기2',
+		duration: 893,
+		filename:
+			'[성대의 성대한 특강] 컴퓨터 비전 미리보기 후반부 _ 허재필 성균관대 소프트웨어학과_인공지능학과 교수-(1080p).mp4',
+		courseId: 41,
+		sectionId: 169,
+		createdAt: '2012-01-22T15:10:24.655Z',
+	},
 ];
