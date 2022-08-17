@@ -516,4 +516,16 @@ export const Course = [
 		difficulty: 1,
 		createdAt: '2022-01-31T15:00:00.000Z',
 	},
+	{
+		id: 41,
+		title: '성대의 성대한 특강',
+		description: '성균관대학교 SW 중심대학 교수님들의 특강입니다.',
+		summary: 'CS 강의입니다',
+		instructorId: 1,
+		category1Id: 8,
+		category2Id: 16,
+		thumbnail: 'docker.png',
+		difficulty: 1,
+		createdAt: '2022-01-31T15:00:00.000Z',
+	},
 ];
