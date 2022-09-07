@@ -22,9 +22,8 @@ async function bootstrap() {
 	app.use(helmet());
 	app.use(cookieParser());
 	app.use(
-		morgan(
-			'[:date[iso]]\t:method :url :response-time ms\t:remote-addr - :remote-user\tHTTP/:http-version :res[content-length] ":referrer" ":user-agent',
-		),
+		morgan('[:date[iso]] :method :url :response-time ms\t:remote-addr'),
+		//  - :remote-user\tHTTP/:http-version :res[content-length] ":referrer" ":user-agent
 	);
 
 	// static files

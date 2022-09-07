@@ -1,26 +1,23 @@
-import {
-	Injectable,
-	CanActivate,
-	ExecutionContext,
-	mixin,
-} from '@nestjs/common';
-import { Privilege } from 'src/entities/user.entity';
+import { CanActivate, ExecutionContext, mixin } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { Role } from 'src/entities/user.entity';
 
-export const RolesGuard = (privileges: Privilege[]): CanActivate => {
-	@Injectable()
-	class RolesGuardMixin implements CanActivate {
+export const RolesGuard = (roles?: Role[]): CanActivate => {
+	class RolesGuardMixin extends AuthGuard('jwt') {
 		async canActivate(context: ExecutionContext): Promise<boolean> {
-			if (!privileges || privileges.length === 0) {
+			await super.canActivate(context);
+
+			if (!roles || roles.length === 0) {
 				return true;
 			}
 			const request = context.switchToHttp().getRequest();
 			const user = request.user;
 
-			return this.matchRoles(privileges, user.privilege);
+			return this.matchRoles(roles, user.privilege);
 		}
 
-		matchRoles(privileges: Privilege[], userPrivilege: number): boolean {
-			return privileges.includes(userPrivilege);
+		matchRoles(roles: Role[], userRole: Role): boolean {
+			return roles.includes(userRole);
 		}
 	}
 

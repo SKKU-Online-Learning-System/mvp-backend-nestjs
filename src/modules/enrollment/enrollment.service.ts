@@ -12,6 +12,15 @@ import { DeleteEnrollmentDto } from './dto/delete-enrollment.dto';
 export class EnrollmentService {
 	constructor(private dataSource: DataSource) {}
 
+	async checkUserEnrolled(userId: number, courseId: number) {
+		const result = await this.dataSource
+			.getRepository(EnrollmentEntity)
+			.findOne({
+				where: { userId, courseId },
+			});
+		return result;
+	}
+
 	async getLearningEnrollments(userId: number) {
 		return await this.dataSource.getRepository(EnrollmentEntity).find({
 			where: { userId, completed: false },

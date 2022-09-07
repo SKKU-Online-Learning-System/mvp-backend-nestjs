@@ -1,9 +1,13 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class MailService {
-	constructor(private mailerService: MailerService) {}
+	constructor(
+		private mailerService: MailerService,
+		private configService: ConfigService,
+	) {}
 
 	async sendLoginConfirmation(userEmail: string, url: string) {
 		await this.mailerService.sendMail({
@@ -15,7 +19,7 @@ export class MailService {
 				// ✏️ filling curly brackets with content
 				name: userEmail,
 				url,
-				baseUrl: 'http://localhost:3000/',
+				baseUrl: this.configService.get<string>('EMAIL_CALLBACK'),
 			},
 		});
 	}
@@ -28,7 +32,7 @@ export class MailService {
 			context: {
 				name: userEmail,
 				url,
-				baseUrl: 'http://localhost:3000/',
+				baseUrl: this.configService.get<string>('EMAIL_CALLBACK'),
 			},
 		});
 	}

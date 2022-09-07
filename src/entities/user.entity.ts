@@ -7,11 +7,11 @@ import {
 } from 'typeorm';
 import { CourseEntity } from './course.entity';
 
-export enum Privilege {
+export enum Role {
 	ADMIN = 1,
 	INSTRUCTOR,
-	TA,
 	STUDENT,
+	NOT_LOGGED_IN,
 }
 
 @Entity()
@@ -28,7 +28,7 @@ class User {
 	@CreateDateColumn()
 	joinedAt: Date;
 
-	@Column({ default: 4 })
+	@Column({ default: 3 })
 	privilege: number;
 
 	@OneToMany(() => CourseEntity, (course) => course.instructor)

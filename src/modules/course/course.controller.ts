@@ -7,8 +7,11 @@ import {
 	Param,
 	Body,
 	Query,
+	UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { User } from 'src/configs/decorator/user.decorator';
+import { RolesGuard } from '../auth/guards/roles.guard';
 import { CourseService } from './course.service';
 import { ApiCourse } from './course.swagger';
 import { CreateCourseDto } from './dto/create-course.dto';
@@ -40,8 +43,9 @@ export class CourseController {
 
 	@Get(':courseId')
 	@ApiCourse.getCourseById()
-	getCourseById(@Param('courseId') courseId: number) {
-		return this.courseService.getCourseById(courseId);
+	@UseGuards(RolesGuard())
+	getCourseById(@Param('courseId') courseId: number, @User() user) {
+		return this.courseService.getCourseById(courseId, user);
 	}
 
 	@Get(':courseId/lectures')

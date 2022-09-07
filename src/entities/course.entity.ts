@@ -1,7 +1,11 @@
+import { Transform } from 'class-transformer';
 import {
 	Column,
 	CreateDateColumn,
 	Entity,
+	JoinColumn,
+	JoinTable,
+	ManyToMany,
 	ManyToOne,
 	OneToMany,
 	PrimaryGeneratedColumn,
@@ -9,6 +13,7 @@ import {
 import { Category1Entity } from './category1.entity';
 import { Category2Entity } from './category2.entity';
 import { EnrollmentEntity } from './enrollment.entity';
+import { HashtagEntity } from './hashtag.entity';
 import { UserEntity } from './user.entity';
 
 @Entity()
@@ -20,10 +25,10 @@ class Course {
 	title: string;
 
 	@Column({ type: 'text' })
-	description: string;
+	summary: string;
 
 	@Column({ type: 'text' })
-	summary: string;
+	description: string;
 
 	@ManyToOne(() => UserEntity, (instructor) => instructor.courses)
 	instructor: UserEntity;
@@ -51,6 +56,10 @@ class Course {
 
 	@OneToMany(() => EnrollmentEntity, (enrollment) => enrollment.course)
 	enrollments: EnrollmentEntity[];
+
+	@ManyToMany(() => HashtagEntity, (hashtag) => hashtag.courses)
+	@JoinTable()
+	hashtags: HashtagEntity[];
 }
 
 export { Course as CourseEntity };

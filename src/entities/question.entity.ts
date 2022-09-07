@@ -31,6 +31,9 @@ class Question {
 	@Column({ nullable: true })
 	lectureId: number;
 
+	// @Column({ type: 'varchar', length: 100 })
+	// title: string;
+
 	@Column({ type: 'text' })
 	contents: string;
 

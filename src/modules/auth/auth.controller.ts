@@ -20,6 +20,8 @@ import { Response } from 'express';
 import { ApiAuth } from './auth.swagger';
 import { MagicSignupStrategy } from './strategies/magic-signup.strategy';
 import { MagicSignupAuthGuard } from './guards/magic-signup.guard';
+import { RolesGuard } from './guards/roles.guard';
+import { Role } from 'src/entities/user.entity';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -94,7 +96,7 @@ export class AuthController {
 
 	// for test
 	@Get('profile')
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(RolesGuard([]))
 	@ApiAuth.getProfile()
 	getProfile(@User() user) {
 		return user || 'no user';

@@ -10,7 +10,7 @@ import {
 	status,
 } from 'src/configs/http-response/http-response.config';
 import { CreateUserDto } from '../user/dto/create-user.dto';
-import { UserEntity } from 'src/entities/user.entity';
+import { Role, UserEntity } from 'src/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -48,12 +48,13 @@ export class AuthService {
 	}
 
 	magicLogin(res: Response, user: UserEntity): HttpResponse {
-		const { id, email, privilege } = user;
-		const payload = { userId: id, email, privilege };
+		const { id, email, nickname, privilege } = user;
+		const payload = { id, email, nickname, privilege };
 		const token = this.jwtService.sign(payload);
 		res.cookie('Authorization', token, {
 			httpOnly: true,
 			sameSite: 'none',
+			secure: true,
 		});
 		return status(200);
 	}
@@ -98,9 +99,10 @@ export class AuthService {
 	// for test
 	tempLogin(res: Response): HttpResponse {
 		const token = this.jwtService.sign({
-			userId: 1,
+			id: 1,
 			email: 'a@a.com',
-			privilege: 2,
+			nickname: 'user a',
+			privilege: Role.INSTRUCTOR,
 		});
 		res.cookie('Authorization', token, {
 			httpOnly: true,

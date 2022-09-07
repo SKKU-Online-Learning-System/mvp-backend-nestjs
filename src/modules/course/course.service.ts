@@ -18,10 +18,14 @@ import {
 	HttpResponse,
 	status,
 } from 'src/configs/http-response/http-response.config';
+import { EnrollmentService } from '../enrollment/enrollment.service';
 
 @Injectable()
 export class CourseService {
-	constructor(private dataSource: DataSource) {}
+	constructor(
+		private dataSource: DataSource,
+		private enrollmentService: EnrollmentService,
+	) {}
 
 	async searchCourses(searchCoursesDto: SearchCoursesDto) {
 		const { page, perPage, keyword, difficulty, category1Id, category2Id } =
@@ -120,53 +124,99 @@ export class CourseService {
 		return cat;
 	}
 
-	async getCourseById(id: number) {
+	async getCourseById(courseId: number, user) {
+		console.log(user);
+
 		const course = await this.dataSource
-			.createQueryBuilder()
-			.from(CourseEntity, 'course')
-			.innerJoin(
-				Category1Entity,
-				'category1',
-				'category1.id = course.category1Id',
-			)
-			.innerJoin(
-				Category2Entity,
-				'category2',
-				'category2.id = course.category2Id',
-			)
-			.innerJoin(UserEntity, 'user', 'user.id = course.instructorId')
-			.select([
-				'course.id AS id',
-				'course.title AS title',
-				'course.summary AS summary',
-				'course.description AS description',
-				'course.thumbnail AS thumbnail',
-				'course.difficulty AS difficulty',
-				'course.createdAt AS createdAt',
-				'user.email AS instructor',
-				'category1.name AS category1',
-				'category2.name AS category2',
-			])
-			.where('course.id = :id', { id })
-			.getRawOne();
+			.getRepository(CourseEntity)
+			.findOne({
+				where: { id: courseId },
+				relations: {
+					instructor: true,
+					category1: true,
+					category2: true,
+					hashtags: true,
+				},
+				select: {
+					id: true,
+					title: true,
+					summary: true,
+					description: true,
+					thumbnail: true,
+					difficulty: true,
+					createdAt: true,
+					instructor: {
+						id: true,
+						email: true,
+						nickname: true,
+					},
+					category1: {
+						id: true,
+						name: true,
+					},
+					category2: {
+						id: true,
+						name: true,
+					},
+					hashtags: true,
+				},
+			});
 
-		const hashtag = await this.dataSource
-			.createQueryBuilder()
-			.from(CourseHashtagEntity, 'courseHashtag')
-			.innerJoin(
-				HashtagEntity,
-				'hashtag',
-				'hashtag.id = courseHashtag.hashtagId',
-			)
-			.select(['hashtag.tag AS tag'])
-			.where('courseId = :id', { id })
-			.getRawMany();
+		if (!user.id)
+			return { ...course, is_logged_in: false, has_enrolled: false };
 
-		hashtag.map((x, i, arr) => {
-			arr[i] = arr[i].tag;
-		});
+		if (await this.enrollmentService.checkUserEnrolled(user.id, courseId)) {
+			return { ...course, is_logged_in: true, has_enrolled: true };
+		} else {
+			return { ...course, is_logged_in: true, has_enrolled: false };
+		}
 
-		return { ...course, hashtag };
+		// const course = await this.dataSource
+		// 	.createQueryBuilder()
+		// 	.from(CourseEntity, 'course')
+		// 	.innerJoin(
+		// 		Category1Entity,
+		// 		'category1',
+		// 		'category1.id = course.category1Id',
+		// 	)
+		// 	.innerJoin(
+		// 		Category2Entity,
+		// 		'category2',
+		// 		'category2.id = course.category2Id',
+		// 	)
+		// 	.innerJoin(UserEntity, 'user', 'user.id = course.instructorId')
+		// 	.select([
+		// 		'course.id AS id',
+		// 		'course.title AS title',
+		// 		'course.summary AS summary',
+		// 		'course.description AS description',
+		// 		'course.thumbnail AS thumbnail',
+		// 		'course.difficulty AS difficulty',
+		// 		'course.createdAt AS createdAt',
+		// 		'user.email AS instructor',
+		// 		'category1.name AS category1',
+		// 		'category2.name AS category2',
+		// 	])
+		// 	.where('course.id = :id', { id })
+		// 	.getRawOne();
+
+		// const hashtag = await this.dataSource
+		// 	.createQueryBuilder()
+		// 	.from(CourseHashtagEntity, 'courseHashtag')
+		// 	.innerJoin(
+		// 		HashtagEntity,
+		// 		'hashtag',
+		// 		'hashtag.id = courseHashtag.hashtagId',
+		// 	)
+		// 	.select(['hashtag.tag AS tag'])
+		// 	.where('courseId = :id', { id })
+		// 	.getRawMany();
+
+		// hashtag.map((x, i, arr) => {
+		// 	arr[i] = arr[i].tag;
+		// });
+
+		// return { ...course, hashtag };
 	}
 
 	async getPopularCourses() {
