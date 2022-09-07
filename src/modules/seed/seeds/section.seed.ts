@@ -1,4 +1,4 @@
-export const Section = [
+export const SectionSeed = [
 	{
 		id: 1,
 		title: '[테스트] 강좌1_섹션1',

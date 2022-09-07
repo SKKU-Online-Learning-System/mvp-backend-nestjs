@@ -7,9 +7,11 @@ export const RolesGuard = (roles?: Role[]): CanActivate => {
 		async canActivate(context: ExecutionContext): Promise<boolean> {
 			await super.canActivate(context);
 
-			if (!roles || roles.length === 0) {
-				return true;
-			}
+			if (!roles || roles.length === 0) return true;
+
+			if (roles.includes(Role.USER))
+				roles.push(Role.ADMIN, Role.INSTRUCTOR, Role.STUDENT);
+
 			const request = context.switchToHttp().getRequest();
 			const user = request.user;
 

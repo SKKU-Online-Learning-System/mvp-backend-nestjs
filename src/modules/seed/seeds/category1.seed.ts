@@ -1,4 +1,4 @@
-export const Category1 = [
+export const Category1Seed = [
 	{
 		id: 1,
 		name: '개발 · 프로그래밍',

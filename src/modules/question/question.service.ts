@@ -8,10 +8,10 @@ import {
 	HttpResponse,
 	status,
 } from 'src/configs/http-response/http-response.config';
-import { QuestionEntity } from 'src/entities/question.entity';
+import { Question } from 'src/entities/question.entity';
+import { ReqUser, Role } from 'src/entities/user.entity';
 import { DataSource } from 'typeorm';
 import { CreateQuestionDto } from './dto/create-question.dto';
-import { DeleteQuestionDto } from './dto/delete-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
 
 @Injectable()
@@ -19,73 +19,72 @@ export class QuestionService {
 	constructor(private dataSource: DataSource) {}
 
 	async getQuestionsByCourseId(id: number) {
-		return await this.dataSource.getRepository(QuestionEntity).find({
-			where: {
-				courseId: id,
-			},
-			relations: {
-				author: true,
-				answers: {
+		const questions: any = await this.dataSource
+			.getRepository(Question)
+			.find({
+				where: {
+					courseId: id,
+				},
+				relations: {
 					author: true,
+					answers: {
+						author: true,
+					},
 				},
-			},
-			select: {
-				id: true,
-				title: true,
-				contents: true,
-				createdAt: true,
-				author: {
+				select: {
 					id: true,
-					nickname: true,
-				},
-				answers: {
-					id: true,
+					title: true,
 					contents: true,
 					createdAt: true,
 					author: {
 						id: true,
 						nickname: true,
 					},
+					answers: true,
 				},
-			},
+			});
+		questions.map((question) => {
+			question.answerCount = question.answers.length;
+			delete question.answers;
 		});
+		return questions;
 	}
 
-	async getQuestionsByLectureId(id: number) {
-		return await this.dataSource.getRepository(QuestionEntity).find({
-			where: {
-				lectureId: id,
-			},
-			relations: {
-				author: true,
-				answers: {
-					author: true,
-				},
-			},
-			select: {
-				id: true,
-				contents: true,
-				createdAt: true,
-				author: {
-					id: true,
-					nickname: true,
-				},
-				answers: {
-					id: true,
-					contents: true,
-					createdAt: true,
-					author: {
-						id: true,
-						nickname: true,
-					},
-				},
-			},
-		});
-	}
+	// async getQuestionsByLectureId(id: number) {
+	// 	return await this.dataSource.getRepository(QuestionEntity).find({
+	// 		where: {
+	// 			lectureId: id,
+	// 		},
+	// 		relations: {
+	// 			author: true,
+	// 			answers: {
+	// 				author: true,
+	// 			},
+	// 		},
+	// 		select: {
+	// 			id: true,
+	// 			contents: true,
+	// 			createdAt: true,
+	// 			author: {
+	// 				id: true,
+	// 				nickname: true,
+	// 			},
+	// 			answers: {
+	// 				id: true,
+	// 				contents: true,
+	// 				createdAt: true,
+	// 				author: {
+	// 					id: true,
+	// 					nickname: true,
+	// 				},
+	// 			},
+	// 		},
+	// 	});
+	// }
 
-	async getQuestionById(id: number) {
-		return await this.dataSource.getRepository(QuestionEntity).findOne({
-			where: { id },
+	async getQuestion(questionId: number) {
+		const question = await this.dataSource.getRepository(Question).findOne({
+			where: { id: questionId },
 			relations: {
 				author: true,
 				answers: {
@@ -111,57 +110,69 @@ export class QuestionService {
 				},
 			},
 		});
+		if (!question) throw new BadRequestException();
+		return question;
 	}
 
 	async createQuestion(
-		createQuestionDto: CreateQuestionDto,
+		dto: CreateQuestionDto,
+		user: ReqUser,
 	): Promise<HttpResponse> {
 		const {
 			raw: { affectedRows },
 		} = await this.dataSource
-			.getRepository(QuestionEntity)
-			.insert(createQuestionDto);
+			.getRepository(Question)
+			.insert({ ...dto, authorId: user.id });
 
-		if (!affectedRows) throw new NotImplementedException();
+		if (!affectedRows) throw new InternalServerErrorException();
 
-		return { statusCode: 201, message: 'Created' };
+		return status(201);
 	}
 
-	async updateQuestionById(
-		updateQuestionDto: UpdateQuestionDto,
+	async updateQuestion(
+		questionId: number,
+		dto: UpdateQuestionDto,
+		user: ReqUser,
 	): Promise<HttpResponse> {
-		const { questionId, userId, contents } = updateQuestionDto;
+		const { title, contents } = dto;
 
-		const result = await this.dataSource
-			.getRepository(QuestionEntity)
+		const target = await this.dataSource
+			.getRepository(Question)
 			.findOneBy({ id: questionId });
 
-		if (!(result && result?.authorId === userId))
-			throw new BadRequestException();
+		if (!target) throw new BadRequestException();
+
+		const isAdmin = user.role === Role.ADMIN;
+		const isAuthor = target && target?.authorId === user.id;
+
+		if (!isAdmin && !isAuthor) throw new BadRequestException();
 
 		const { affected } = await this.dataSource
-			.getRepository(QuestionEntity)
-			.update(questionId, { contents });
+			.getRepository(Question)
+			.update(questionId, { title, contents });
 
 		if (!affected) throw new InternalServerErrorException();
 
 		return status(200);
 	}
 
-	async deleteQuestionById(
-		deleteQuestionDto: DeleteQuestionDto,
+	async deleteQuestion(
+		questionId: number,
+		user: ReqUser,
 	): Promise<HttpResponse> {
-		const { questionId, userId } = deleteQuestionDto;
-
-		const result = await this.dataSource
-			.getRepository(QuestionEntity)
+		const target = await this.dataSource
+			.getRepository(Question)
 			.findOneBy({ id: questionId });
 
-		if (!(result && result?.authorId === userId))
-			throw new BadRequestException();
+		if (!target) throw new BadRequestException();
+
+		const isAdmin = user.role === Role.ADMIN;
+		const isAuthor = target && target?.authorId === user.id;
+
+		if (!isAdmin && !isAuthor) throw new BadRequestException();
 
 		const { affected } = await this.dataSource
-			.getRepository(QuestionEntity)
+			.getRepository(Question)
 			.delete(questionId);
 
 		if (!affected) throw new InternalServerErrorException();

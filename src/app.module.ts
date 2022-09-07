@@ -22,6 +22,8 @@ import { HashtagModule } from './modules/hashtag/hashtag.module';
 import { SeedModule } from './modules/seed/seed.module';
 import { FileModule } from './modules/file/file.module';
 import { EnrollmentModule } from './modules/enrollment/enrollment.module';
+import { RouterModule } from '@nestjs/core';
+import { routes } from './router';
 
 @Module({
 	imports: [
@@ -29,6 +31,7 @@ import { EnrollmentModule } from './modules/enrollment/enrollment.module';
 		TypeOrmModule.forRootAsync({
 			useClass: TypeOrmConfigService,
 		}),
+		RouterModule.register(routes),
 		AdminModule,
 		AuthModule,
 		CourseModule,

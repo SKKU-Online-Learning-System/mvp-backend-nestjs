@@ -9,23 +9,23 @@ import { UserEntity } from 'src/entities/user.entity';
 import { AdminEntity } from 'src/entities/admin.entity';
 import { WishlistEntity } from 'src/entities/wishlist.entity';
 import { DataSource } from 'typeorm';
-import { Category1 } from './seeds/category1.seed';
-import { Category2 } from './seeds/category2.seed';
-import { Course } from './seeds/course.seed';
-import { CourseHashtag } from './seeds/course-hashtag.seed';
-import { Hashtag } from './seeds/hashtag.seed';
-import { Lecture } from './seeds/lecture.seed';
-import { User } from './seeds/user.seed';
-import { Admin } from './seeds/admin.seed';
+import { Category1Seed } from './seeds/category1.seed';
+import { Category2Seed } from './seeds/category2.seed';
+import { CourseSeed } from './seeds/course.seed';
+import { CourseHashtagSeed } from './seeds/course-hashtag.seed';
+import { HashtagSeed } from './seeds/hashtag.seed';
+import { LectureSeed } from './seeds/lecture.seed';
+import { UserSeed } from './seeds/user.seed';
+import { AdminSeed } from './seeds/admin.seed';
 import { HistoryEntity } from 'src/entities/history.entity';
-import { History } from './seeds/history.seed';
-import { Wishlist } from './seeds/wishlist.seed';
-import { Section } from './seeds/section.seed';
+import { HistorySeed } from './seeds/history.seed';
+import { WishlistSeed } from './seeds/wishlist.seed';
+import { SectionSeed } from './seeds/section.seed';
 import { SectionEntity } from 'src/entities/section.entity';
-import { Question } from './seeds/question.seed';
-import { QuestionEntity } from 'src/entities/question.entity';
-import { Answer } from './seeds/answer.seed';
-import { AnswerEntity } from 'src/entities/answer.entity';
+import { QuestionSeed } from './seeds/question.seed';
+import { Question } from 'src/entities/question.entity';
+import { AnswerSeed } from './seeds/answer.seed';
+import { Answer } from 'src/entities/answer.entity';
 import { EnrollmentEntity } from 'src/entities/enrollment.entity';
 import { TeachingAssistentEntity } from 'src/entities/teaching-assistent.entity';
 
@@ -35,19 +35,19 @@ export class SeedService {
 
 	async seed() {
 		const seeds = [
-			{ seed: Admin, table: AdminEntity },
-			{ seed: User, table: UserEntity },
-			{ seed: Category1, table: Category1Entity },
-			{ seed: Category2, table: Category2Entity },
-			{ seed: Course, table: CourseEntity },
-			{ seed: Hashtag, table: HashtagEntity },
-			{ seed: CourseHashtag, table: CourseHashtagEntity },
-			{ seed: Section, table: SectionEntity },
-			{ seed: Lecture, table: LectureEntity },
-			{ seed: History, table: HistoryEntity },
-			{ seed: Wishlist, table: WishlistEntity },
-			{ seed: Question, table: QuestionEntity },
-			{ seed: Answer, table: AnswerEntity },
+			{ seed: AdminSeed, table: AdminEntity },
+			{ seed: UserSeed, table: UserEntity },
+			{ seed: Category1Seed, table: Category1Entity },
+			{ seed: Category2Seed, table: Category2Entity },
+			{ seed: CourseSeed, table: CourseEntity },
+			{ seed: HashtagSeed, table: HashtagEntity },
+			{ seed: CourseHashtagSeed, table: CourseHashtagEntity },
+			{ seed: SectionSeed, table: SectionEntity },
+			{ seed: LectureSeed, table: LectureEntity },
+			{ seed: HistorySeed, table: HistoryEntity },
+			{ seed: WishlistSeed, table: WishlistEntity },
+			{ seed: QuestionSeed, table: Question },
+			{ seed: AnswerSeed, table: Answer },
 		];
 
 		const dataCount = {};
@@ -90,10 +90,8 @@ export class SeedService {
 			wishlist: await this.dataSource
 				.getRepository(WishlistEntity)
 				.count(),
-			question: await this.dataSource
-				.getRepository(QuestionEntity)
-				.count(),
-			answer: await this.dataSource.getRepository(AnswerEntity).count(),
+			question: await this.dataSource.getRepository(Question).count(),
+			answer: await this.dataSource.getRepository(Answer).count(),
 		};
 	}
 
@@ -119,7 +117,7 @@ export class SeedService {
 	}
 
 	async answer() {
-		return await this.dataSource.getRepository(AnswerEntity).find();
+		return await this.dataSource.getRepository(Answer).find();
 	}
 
 	async category1() {
@@ -155,7 +153,7 @@ export class SeedService {
 	}
 
 	async question() {
-		return await this.dataSource.getRepository(QuestionEntity).find();
+		return await this.dataSource.getRepository(Question).find();
 	}
 
 	async section() {

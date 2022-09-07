@@ -1,4 +1,4 @@
-export const Answer = [
+export const AnswerSeed = [
 	{
 		id: 1,
 		questionId: 1,

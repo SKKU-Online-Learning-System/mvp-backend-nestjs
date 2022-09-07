@@ -21,7 +21,7 @@ import { ApiAuth } from './auth.swagger';
 import { MagicSignupStrategy } from './strategies/magic-signup.strategy';
 import { MagicSignupAuthGuard } from './guards/magic-signup.guard';
 import { RolesGuard } from './guards/roles.guard';
-import { Role } from 'src/entities/user.entity';
+import { ReqUser, Role } from 'src/entities/user.entity';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -69,7 +69,10 @@ export class AuthController {
 	@Get('login/callback')
 	@UseGuards(MagicLoginAuthGuard)
 	@ApiAuth.loginCallback()
-	loginCallback(@Res({ passthrough: true }) res: Response, @User() user) {
+	loginCallback(
+		@Res({ passthrough: true }) res: Response,
+		@User() user: ReqUser,
+	) {
 		return this.authService.magicLogin(res, user);
 	}
 

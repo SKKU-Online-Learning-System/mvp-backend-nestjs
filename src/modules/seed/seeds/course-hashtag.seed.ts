@@ -1,4 +1,4 @@
-export const CourseHashtag = [
+export const CourseHashtagSeed = [
 	{ id: 1, courseId: 1, hashtagId: 1 },
 	{ id: 2, courseId: 9, hashtagId: 1 },
 	{ id: 3, courseId: 1, hashtagId: 2 },

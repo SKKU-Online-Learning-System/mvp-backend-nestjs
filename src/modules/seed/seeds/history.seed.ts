@@ -1,4 +1,4 @@
-export const History = [
+export const HistorySeed = [
 	{
 		id: 1,
 		lastTime: 60,

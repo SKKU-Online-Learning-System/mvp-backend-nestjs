@@ -1,4 +1,5 @@
 import {
+	Body,
 	Controller,
 	Delete,
 	Get,
@@ -8,10 +9,10 @@ import {
 	UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { BPU } from 'src/configs/decorator/body-param-user.decorator';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { User } from 'src/configs/decorator/user.decorator';
+import { ReqUser, Role } from 'src/entities/user.entity';
+import { RolesGuard } from '../auth/guards/roles.guard';
 import { CreateQuestionDto } from './dto/create-question.dto';
-import { DeleteQuestionDto } from './dto/delete-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
 import { QuestionService } from './question.service';
 import { ApiQuestion } from './question.swagger';
@@ -23,40 +24,47 @@ export class QuestionController {
 
 	@Get('course/:courseId')
 	@ApiQuestion.getQuestionsByCourseId()
-	getQuestionsByCourseId(@Param('courseId') id: number) {
-		return this.questionService.getQuestionsByCourseId(id);
+	getQuestionsByCourseId(@Param('courseId') courseId: number) {
+		return this.questionService.getQuestionsByCourseId(courseId);
 	}
 
-	@Get('lecture/:lectureId')
-	@ApiQuestion.getQuestionsByLectureId()
-	getQuestionsByLectureId(@Param('lectureId') id: number) {
-		return this.questionService.getQuestionsByLectureId(id);
-	}
+	// @Get('lecture/:lectureId')
+	// @ApiQuestion.getQuestionsByLectureId()
+	// getQuestionsByLectureId(@Param('lectureId') lectureId: number) {
+	// 	return this.questionService.getQuestionsByLectureId(lectureId);
+	// }
 
 	@Get(':questionId')
-	@ApiQuestion.getQuestionById()
-	getQuestionById(@Param('questionId') id: number) {
-		return this.questionService.getQuestionById(id);
+	@ApiQuestion.getQuestion()
+	getQuestion(@Param('questionId') questionId: number) {
+		return this.questionService.getQuestion(questionId);
 	}
 
 	@Post()
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(RolesGuard([Role.USER]))
 	@ApiQuestion.createQuestion()
-	createQuestion(@BPU() createQuestionDto: CreateQuestionDto) {
-		return this.questionService.createQuestion(createQuestionDto);
+	createQuestion(@Body() dto: CreateQuestionDto, @User() user: ReqUser) {
+		return this.questionService.createQuestion(dto, user);
 	}
 
 	@Put(':questionId')
-	@UseGuards(JwtAuthGuard)
-	@ApiQuestion.updateQuestionById()
-	updateQuestionById(@BPU() updateQuestionDto: UpdateQuestionDto) {
-		return this.questionService.updateQuestionById(updateQuestionDto);
+	@UseGuards(RolesGuard([Role.USER]))
+	@ApiQuestion.updateQuestion()
+	updateQuestion(
+		@Param('questionId') questionId: number,
+		@Body() dto: UpdateQuestionDto,
+		@User() user: ReqUser,
+	) {
+		return this.questionService.updateQuestion(questionId, dto, user);
 	}
 
 	@Delete(':questionId')
-	@UseGuards(JwtAuthGuard)
-	@ApiQuestion.deleteQuestionById()
-	deleteQuestionById(@BPU() deleteQuestionDto: DeleteQuestionDto) {
-		return this.questionService.deleteQuestionById(deleteQuestionDto);
+	@UseGuards(RolesGuard([Role.USER]))
+	@ApiQuestion.deleteQuestion()
+	deleteQuestion(
+		@Param('questionId') questionId: number,
+		@User() user: ReqUser,
+	) {
+		return this.questionService.deleteQuestion(questionId, user);
 	}
 }

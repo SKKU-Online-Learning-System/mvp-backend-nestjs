@@ -1,4 +1,4 @@
-export const Course = [
+export const CourseSeed = [
 	{
 		id: 1,
 		title: '[테스트] 스프링 핵심 원리 - 고급편',

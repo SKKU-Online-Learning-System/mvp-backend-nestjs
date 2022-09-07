@@ -1,4 +1,4 @@
-export const Hashtag = [
+export const HashtagSeed = [
 	{
 		id: 1,
 		tag: 'Back-End',

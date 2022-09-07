@@ -1,21 +1,33 @@
 import { applyDecorators } from '@nestjs/common';
-import { ApiCookieAuth, ApiOperation } from '@nestjs/swagger';
+import {
+	ApiBadRequestResponse,
+	ApiCookieAuth,
+	ApiCreatedResponse,
+	ApiOkResponse,
+	ApiOperation,
+} from '@nestjs/swagger';
 
 export const ApiAnswer = {
 	createAnswer() {
 		return applyDecorators(
 			ApiOperation({
-				summary: 'answer 생성 - 사용 안함',
-				description: '',
+				summary: 'answer 생성',
+				description: 'answer는 반드시 question에 포함됩니다.',
 			}),
+			ApiCreatedResponse({ description: 'Created' }),
 			ApiCookieAuth(),
 		);
 	},
 	updateAnswer() {
 		return applyDecorators(
 			ApiOperation({
-				summary: 'answer 수정 - 사용 안함',
-				description: '',
+				summary: 'answer 수정',
+				description:
+					'일반 사용자는 자신이 작성한 답변일 때만 수정할 수 있습니다. 관리자는 모든 답변을 수정할 수 있습니다.',
+			}),
+			ApiOkResponse({ description: 'OK' }),
+			ApiBadRequestResponse({
+				description: 'Bad Request: 존재하지 않는 id 입력 / 권한 없음',
 			}),
 			ApiCookieAuth(),
 		);
@@ -23,8 +35,13 @@ export const ApiAnswer = {
 	deleteAnswer() {
 		return applyDecorators(
 			ApiOperation({
-				summary: 'answer 삭제 - 사용 안함',
-				description: '',
+				summary: 'answer 삭제',
+				description:
+					'일반 사용자는 자신이 작성한 답변일 때만 삭제할 수 있습니다. 관리자는 모든 답변을 삭제할 수 있습니다.',
+			}),
+			ApiOkResponse({ description: 'OK' }),
+			ApiBadRequestResponse({
+				description: 'Bad Request: 존재하지 않는 id 입력 / 권한 없음',
 			}),
 			ApiCookieAuth(),
 		);

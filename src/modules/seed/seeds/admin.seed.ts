@@ -1,4 +1,4 @@
-export const Admin = [
+export const AdminSeed = [
 	{
 		id: 1,
 		username: 'admin1',

@@ -5,16 +5,16 @@ import {
 	ManyToOne,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
-import { QuestionEntity } from './question.entity';
+import { Question } from './question.entity';
 import { UserEntity } from './user.entity';
 
 @Entity()
-class Answer {
+export class Answer {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@ManyToOne(() => QuestionEntity, (question) => question.answers)
-	question: QuestionEntity;
+	@ManyToOne(() => Question, (question) => question.answers)
+	question: Question;
 	@Column()
 	questionId: number;
 
@@ -29,5 +29,3 @@ class Answer {
 	@CreateDateColumn()
 	createdAt: Date;
 }
-
-export { Answer as AnswerEntity };

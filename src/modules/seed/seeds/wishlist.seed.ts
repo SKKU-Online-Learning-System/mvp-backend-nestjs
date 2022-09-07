@@ -1,4 +1,4 @@
-export const Wishlist = [
+export const WishlistSeed = [
 	{
 		id: 1,
 		userId: 1,

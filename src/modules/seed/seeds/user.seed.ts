@@ -1,4 +1,4 @@
-export const User = [
+export const UserSeed = [
 	{
 		id: 1,
 		email: 'a@a.com',

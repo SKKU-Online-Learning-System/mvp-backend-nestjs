@@ -6,13 +6,13 @@ import {
 	OneToMany,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
-import { AnswerEntity } from './answer.entity';
+import { Answer } from './answer.entity';
 import { CourseEntity } from './course.entity';
 import { LectureEntity } from './lecture.entity';
 import { UserEntity } from './user.entity';
 
 @Entity()
-class Question {
+export class Question {
 	@PrimaryGeneratedColumn()
 	id: number;
 
@@ -40,8 +40,6 @@ class Question {
 	@CreateDateColumn()
 	createdAt: Date;
 
-	@OneToMany(() => AnswerEntity, (answer) => answer.question)
-	answers: AnswerEntity[];
+	@OneToMany(() => Answer, (answer) => answer.question)
+	answers: Answer[];
 }
-
-export { Question as QuestionEntity };

@@ -11,7 +11,15 @@ export enum Role {
 	ADMIN = 1,
 	INSTRUCTOR,
 	STUDENT,
+	USER,
 	NOT_LOGGED_IN,
+}
+
+export interface ReqUser {
+	id: number;
+	email: string;
+	nickname: string;
+	role: Role;
 }
 
 @Entity()
@@ -29,7 +37,7 @@ class User {
 	joinedAt: Date;
 
 	@Column({ default: 3 })
-	privilege: number;
+	Role: number;
 
 	@OneToMany(() => CourseEntity, (course) => course.instructor)
 	courses: CourseEntity[];

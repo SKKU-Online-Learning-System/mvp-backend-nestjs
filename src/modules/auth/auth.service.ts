@@ -10,7 +10,7 @@ import {
 	status,
 } from 'src/configs/http-response/http-response.config';
 import { CreateUserDto } from '../user/dto/create-user.dto';
-import { Role, UserEntity } from 'src/entities/user.entity';
+import { ReqUser, Role, UserEntity } from 'src/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -47,9 +47,9 @@ export class AuthService {
 		else return null;
 	}
 
-	magicLogin(res: Response, user: UserEntity): HttpResponse {
-		const { id, email, nickname, privilege } = user;
-		const payload = { id, email, nickname, privilege };
+	magicLogin(res: Response, user: ReqUser): HttpResponse {
+		const { id, email, nickname, role } = user;
+		const payload = { id, email, nickname, role };
 		const token = this.jwtService.sign(payload);
 		res.cookie('Authorization', token, {
 			httpOnly: true,
@@ -102,7 +102,7 @@ export class AuthService {
 			id: 1,
 			email: 'a@a.com',
 			nickname: 'user a',
-			privilege: Role.INSTRUCTOR,
+			role: Role.INSTRUCTOR,
 		});
 		res.cookie('Authorization', token, {
 			httpOnly: true,

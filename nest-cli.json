@@ -5,6 +5,17 @@
 	"compilerOptions": {
 		"assets": ["**/mail/templates/*"],
 		"watchAssets": true,
-		"plugins": ["@nestjs/swagger"]
+		"plugins": [
+			{
+				"name": "@nestjs/swagger",
+				"options": {
+					"dtoFileNameSuffix": [
+						".dto.ts",
+						".entity.ts",
+						".swagger.ts"
+					]
+				}
+			}
+		]
 	}
 }

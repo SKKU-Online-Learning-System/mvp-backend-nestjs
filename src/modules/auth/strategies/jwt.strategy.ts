@@ -13,10 +13,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 	}
 
 	async validate(payload: any) {
-		const { id, email, nickname, privilege } = payload;
+		const { id, email, nickname, role } = payload;
 
 		if (email) {
-			return { id, email, nickname, privilege };
+			return { id, email, nickname, role };
 			// } else if (username) {
 			// 	return { id, username };
 		} else {
@@ -24,7 +24,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 				id: null,
 				email: null,
 				nickname: null,
-				privilege: Role.NOT_LOGGED_IN,
+				role: Role.NOT_LOGGED_IN,
 			};
 		}
 	}

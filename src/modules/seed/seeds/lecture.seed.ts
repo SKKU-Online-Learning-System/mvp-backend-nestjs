@@ -1,4 +1,4 @@
-export const Lecture = [
+export const LectureSeed = [
 	{
 		id: 1,
 		title: '[테스트] 개발 환경 설치',

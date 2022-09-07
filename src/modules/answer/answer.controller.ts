@@ -1,11 +1,19 @@
-import { Controller, Delete, Post, Put, UseGuards } from '@nestjs/common';
+import {
+	Body,
+	Controller,
+	Delete,
+	Param,
+	Post,
+	Put,
+	UseGuards,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { BPU } from 'src/configs/decorator/body-param-user.decorator';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { User } from 'src/configs/decorator/user.decorator';
+import { ReqUser, Role } from 'src/entities/user.entity';
+import { RolesGuard } from '../auth/guards/roles.guard';
 import { AnswerService } from './answer.service';
 import { ApiAnswer } from './answer.swagger';
 import { CreateAnswerDto } from './dto/create-answer.dto';
-import { DeleteAnswerDto } from './dto/delete-answer.dto';
 import { UpdateAnswerDto } from './dto/update-answer.dto';
 
 @ApiTags('Answer')
@@ -14,23 +22,31 @@ export class AnswerController {
 	constructor(private readonly answerService: AnswerService) {}
 
 	@Post('question/:questionId')
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(RolesGuard([Role.USER]))
 	@ApiAnswer.createAnswer()
-	createAnswer(@BPU() createAnswerDto: CreateAnswerDto) {
-		return this.answerService.createAnswer(createAnswerDto);
+	createAnswer(
+		@Param('questionId') questionId: number,
+		@Body() dto: CreateAnswerDto,
+		@User() user: ReqUser,
+	) {
+		return this.answerService.createAnswer(questionId, dto, user);
 	}
 
 	@Put(':answerId')
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(RolesGuard([Role.USER]))
 	@ApiAnswer.updateAnswer()
-	updateAnswer(@BPU() updateAnswerDto: UpdateAnswerDto) {
-		return this.answerService.updateAnswerById(updateAnswerDto);
+	updateAnswer(
+		@Param('answerId') answerId: number,
+		@Body() dto: UpdateAnswerDto,
+		@User() user: ReqUser,
+	) {
+		return this.answerService.updateAnswer(answerId, dto, user);
 	}
 
 	@Delete(':answerId')
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(RolesGuard([Role.USER]))
 	@ApiAnswer.deleteAnswer()
-	deleteAnswer(@BPU() deleteAnswerDto: DeleteAnswerDto) {
-		return this.answerService.deleteAnswerById(deleteAnswerDto);
+	deleteAnswer(@Param('answerId') answerId: number, @User() user: ReqUser) {
+		return this.answerService.deleteAnswer(answerId, user);
 	}
 }
