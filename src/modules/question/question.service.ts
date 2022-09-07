@@ -31,6 +31,7 @@ export class QuestionService {
 			},
 			select: {
 				id: true,
+				title: true,
 				contents: true,
 				createdAt: true,
 				author: {
