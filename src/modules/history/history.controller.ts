@@ -1,7 +1,7 @@
 import { Controller, Get, Patch, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { BPU } from 'src/configs/decorator/body-param-user.decorator';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '../../configs/guards/jwt-auth.guard';
 import { CreateOrUpdateHistoryDto } from './dto/create-or-update-history.dto';
 import { GetHistoryDto } from './dto/get-history.dto';
 import { HistoryService } from './history.service';

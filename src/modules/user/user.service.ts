@@ -3,10 +3,7 @@ import {
 	Injectable,
 	InternalServerErrorException,
 } from '@nestjs/common';
-import {
-	HttpResponse,
-	status,
-} from 'src/configs/http-response/http-response.config';
+import { HttpResponse, status } from 'src/configs/etc/http-response.config';
 import { UserEntity } from 'src/entities/user.entity';
 import { DataSource } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
