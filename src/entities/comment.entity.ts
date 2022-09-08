@@ -3,22 +3,20 @@ import {
 	CreateDateColumn,
 	Entity,
 	ManyToOne,
-	OneToMany,
 	PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Question } from './question.entity';
+import { Answer } from './answer.entity';
 import { UserEntity } from './user.entity';
-import { Comment } from './comment.entity';
 
 @Entity()
-export class Answer {
+export class Comment {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@ManyToOne(() => Question, (question) => question.answers)
-	question: Question;
+	@ManyToOne(() => Answer, (answer) => answer.comments)
+	answer: Answer;
 	@Column()
-	questionId: number;
+	answerId: number;
 
 	@ManyToOne(() => UserEntity)
 	author: UserEntity;
@@ -30,7 +28,4 @@ export class Answer {
 
 	@CreateDateColumn()
 	createdAt: Date;
-
-	@OneToMany(() => Comment, (comment) => comment.answer)
-	comments: Comment[];
 }

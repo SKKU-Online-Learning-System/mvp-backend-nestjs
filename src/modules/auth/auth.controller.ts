@@ -11,16 +11,15 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { CreateAdminDto } from '../admin/dto/create-admin.dto';
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { LocalAuthGuard } from './guards/local-auth.guard';
-import { MagicLoginAuthGuard } from './guards/magic-login.guard';
+import { LocalAuthGuard } from '../../configs/guards/local-auth.guard';
+import { MagicLoginAuthGuard } from '../../configs/guards/magic-login.guard';
 import { MagicLoginStrategy } from './strategies/magic-login.strategy';
 import { User } from 'src/configs/decorator/user.decorator';
 import { Response } from 'express';
 import { ApiAuth } from './auth.swagger';
 import { MagicSignupStrategy } from './strategies/magic-signup.strategy';
-import { MagicSignupAuthGuard } from './guards/magic-signup.guard';
-import { RolesGuard } from './guards/roles.guard';
+import { MagicSignupAuthGuard } from '../../configs/guards/magic-signup.guard';
+import { RolesGuard } from '../../configs/guards/roles.guard';
 import { ReqUser, Role } from 'src/entities/user.entity';
 
 @ApiTags('Auth')
@@ -99,7 +98,7 @@ export class AuthController {
 
 	// for test
 	@Get('profile')
-	@UseGuards(RolesGuard([]))
+	@UseGuards(RolesGuard([Role.USER]))
 	@ApiAuth.getProfile()
 	getProfile(@User() user) {
 		return user || 'no user';

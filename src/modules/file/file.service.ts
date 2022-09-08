@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { existsSync, unlink } from 'fs';
 import { join } from 'path';
-import { status } from 'src/configs/http-response/http-response.config';
+import { status } from 'src/configs/etc/http-response.config';
 import { CourseEntity } from 'src/entities/course.entity';
 import { LectureEntity } from 'src/entities/lecture.entity';
 import { DataSource } from 'typeorm';
@@ -24,9 +24,9 @@ export class FileService {
 		// let videoPath = join(lecture.courseId.toString(), lecture.filename);
 		const videoPath = join('videos', lecture.filename);
 
-// 		if (!existsSync(videoPath)) {
-// 			throw new InternalServerErrorException('video not found');
-// 		}
+		// 		if (!existsSync(videoPath)) {
+		// 			throw new InternalServerErrorException('video not found');
+		// 		}
 
 		// videoPath = join('video', videoPath);
 		return { video_url: videoPath };

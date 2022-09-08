@@ -5,10 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 import { CreateAdminDto } from '../admin/dto/create-admin.dto';
 import { AdminService } from '../admin/admin.service';
 import { Response } from 'express';
-import {
-	HttpResponse,
-	status,
-} from 'src/configs/http-response/http-response.config';
+import { HttpResponse, status } from 'src/configs/etc/http-response.config';
 import { CreateUserDto } from '../user/dto/create-user.dto';
 import { ReqUser, Role, UserEntity } from 'src/entities/user.entity';
 

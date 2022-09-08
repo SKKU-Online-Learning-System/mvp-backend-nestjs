@@ -1,8 +1,5 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import {
-	HttpResponse,
-	status,
-} from 'src/configs/http-response/http-response.config';
+import { HttpResponse, status } from 'src/configs/etc/http-response.config';
 import { AdminEntity } from 'src/entities/admin.entity';
 import { DataSource } from 'typeorm';
 import { CreateAdminDto } from './dto/create-admin.dto';

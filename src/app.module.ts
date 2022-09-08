@@ -7,23 +7,17 @@ import { TypeOrmConfigService } from './configs/database/db.config.service';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './modules/auth/auth.module';
-import { CourseModule } from './modules/course/course.module';
 import { LectureModule } from './modules/lecture/lecture.module';
 import { UserModule } from './modules/user/user.module';
 import { HistoryModule } from './modules/history/history.module';
 import { AdminModule } from './modules/admin/admin.module';
-import { WishlistModule } from './modules/wishlist/wishlist.module';
-import { BookmarkModule } from './modules/bookmark/bookmark.module';
-import { QuestionModule } from './modules/question/question.module';
-import { AnswerModule } from './modules/answer/answer.module';
-import { CompleteModule } from './modules/complete/complete.module';
 import { BannerModule } from './modules/banner/banner.module';
-import { HashtagModule } from './modules/hashtag/hashtag.module';
 import { SeedModule } from './modules/seed/seed.module';
 import { FileModule } from './modules/file/file.module';
-import { EnrollmentModule } from './modules/enrollment/enrollment.module';
 import { RouterModule } from '@nestjs/core';
 import { routes } from './router';
+import { QnAModule } from './modules/Q&A/qna.module';
+import { CoursesModule } from './modules/courses/courses.module';
 
 @Module({
 	imports: [
@@ -34,19 +28,13 @@ import { routes } from './router';
 		RouterModule.register(routes),
 		AdminModule,
 		AuthModule,
-		CourseModule,
+		CoursesModule,
 		HistoryModule,
 		LectureModule,
 		UserModule,
-		WishlistModule,
-		BookmarkModule,
-		QuestionModule,
-		AnswerModule,
 		HistoryModule,
-		EnrollmentModule,
-		CompleteModule,
+		QnAModule,
 		BannerModule,
-		HashtagModule,
 		SeedModule,
 		FileModule,
 	],
