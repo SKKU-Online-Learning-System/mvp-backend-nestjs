@@ -40,7 +40,7 @@ export class QuestionService {
 			});
 		questions.map((question) => {
 			question.answerCount = question.answers.length;
-			delete question.answers;
+			// delete question.answers;
 		});
 		return questions;
 	}
