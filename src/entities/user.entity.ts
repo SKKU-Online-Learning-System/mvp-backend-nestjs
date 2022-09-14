@@ -37,7 +37,7 @@ class User {
 	joinedAt: Date;
 
 	@Column({ default: 3 })
-	Role: number;
+	role: number;
 
 	@OneToMany(() => CourseEntity, (course) => course.instructor)
 	courses: CourseEntity[];
