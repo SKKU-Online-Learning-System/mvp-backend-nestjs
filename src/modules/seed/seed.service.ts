@@ -41,7 +41,7 @@ export class SeedService {
 			{ seed: Category2Seed, table: Category2Entity },
 			{ seed: CourseSeed, table: CourseEntity },
 			{ seed: HashtagSeed, table: HashtagEntity },
-			{ seed: CourseHashtagSeed, table: CourseHashtagEntity },
+			// { seed: CourseHashtagSeed, table: CourseHashtagEntity },
 			{ seed: SectionSeed, table: SectionEntity },
 			{ seed: LectureSeed, table: LectureEntity },
 			// { seed: HistorySeed, table: HistoryEntity },
@@ -81,9 +81,9 @@ export class SeedService {
 				.count(),
 			course: await this.dataSource.getRepository(CourseEntity).count(),
 			hashtag: await this.dataSource.getRepository(HashtagEntity).count(),
-			course_hashtag: await this.dataSource
-				.getRepository(CourseHashtagEntity)
-				.count(),
+			// course_hashtag: await this.dataSource
+			// 	.getRepository(CourseHashtagEntity)
+			// 	.count(),
 			section: await this.dataSource.getRepository(SectionEntity).count(),
 			lecture: await this.dataSource.getRepository(LectureEntity).count(),
 			// history: await this.dataSource.getRepository(HistoryEntity).count(),
