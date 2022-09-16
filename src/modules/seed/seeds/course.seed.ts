@@ -7,7 +7,8 @@ export const CourseSeed = [
 		instructorId: 1,
 		category1Id: 1,
 		category2Id: 3,
-		thumbnail: 'ai.jpg',
+		thumbnail:
+			'https://mrdang-lectures.s3.ap-northeast-2.amazonaws.com/thumbnail-images/advanced-topics-in-software-engineering.jpg',
 		difficulty: 1,
 		createdAt: '2022-09-01T00:00:00.000Z',
 	},
@@ -19,7 +20,8 @@ export const CourseSeed = [
 		instructorId: 1,
 		category1Id: 1,
 		category2Id: 5,
-		thumbnail: 'ai.jpg',
+		thumbnail:
+			'https://mrdang-lectures.s3.ap-northeast-2.amazonaws.com/thumbnail-images/computer-programming-for-engineers.jpg',
 		difficulty: 2,
 		createdAt: '2022-09-01T00:00:00.000Z',
 	},
@@ -31,7 +33,8 @@ export const CourseSeed = [
 		instructorId: 1,
 		category1Id: 1,
 		category2Id: 5,
-		thumbnail: 'ai.jpg',
+		thumbnail:
+			'https://mrdang-lectures.s3.ap-northeast-2.amazonaws.com/thumbnail-images/data-visualization.jpg',
 		difficulty: 3,
 		createdAt: '2022-09-01T00:00:00.000Z',
 	},
@@ -43,7 +46,8 @@ export const CourseSeed = [
 		instructorId: 1,
 		category1Id: 1,
 		category2Id: 2,
-		thumbnail: 'ai.jpg',
+		thumbnail:
+			'https://mrdang-lectures.s3.ap-northeast-2.amazonaws.com/thumbnail-images/machine-learning-with-graphs.jpg',
 		difficulty: 1,
 		createdAt: '2022-09-01T00:00:00.000Z',
 	},
@@ -55,7 +59,8 @@ export const CourseSeed = [
 		instructorId: 1,
 		category1Id: 1,
 		category2Id: 4,
-		thumbnail: 'ai.jpg',
+		thumbnail:
+			'https://mrdang-lectures.s3.ap-northeast-2.amazonaws.com/thumbnail-images/python-programming.jpg',
 		difficulty: 2,
 		createdAt: '2022-09-01T00:00:00.000Z',
 	},
@@ -67,7 +72,8 @@ export const CourseSeed = [
 		instructorId: 1,
 		category1Id: 2,
 		category2Id: 12,
-		thumbnail: 'ai.jpg',
+		thumbnail:
+			'https://mrdang-lectures.s3.ap-northeast-2.amazonaws.com/thumbnail-images/skku-special-lectures.png',
 		difficulty: 3,
 		createdAt: '2022-09-01T00:00:00.000Z',
 	},
