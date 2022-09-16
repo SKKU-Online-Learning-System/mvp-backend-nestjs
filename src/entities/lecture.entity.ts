@@ -19,7 +19,7 @@ class Lecture {
 	@Column()
 	duration: number;
 
-	@Column({ type: 'varchar', length: 255 })
+	@Column({ type: 'varchar', length: 500 })
 	filename: string;
 
 	@ManyToOne(() => CourseEntity)
