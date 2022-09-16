@@ -12,21 +12,21 @@ export const SectionSeed = [
 	{
 		id: 3,
 		title: 'Data visualization',
-		courseId: 2,
+		courseId: 3,
 	},
 	{
 		id: 4,
 		title: 'Machine learning with graphs',
-		courseId: 2,
+		courseId: 4,
 	},
 	{
 		id: 5,
 		title: '파이썬 프로그래밍',
-		courseId: 2,
+		courseId: 5,
 	},
 	{
 		id: 6,
 		title: '성대의 성대한 특강',
-		courseId: 3,
+		courseId: 5,
 	},
 ];
