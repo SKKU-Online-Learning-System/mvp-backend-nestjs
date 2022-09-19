@@ -12,6 +12,7 @@ import { SearchCoursesDto } from './dto/search-courses.dto';
 import { SectionEntity } from 'src/entities/section.entity';
 import { HttpResponse, status } from 'src/configs/etc/http-response.config';
 import { EnrollmentService } from '../enrollment/enrollment.service';
+import { Question } from 'src/entities/question.entity';
 
 @Injectable()
 export class CourseService {
@@ -265,6 +266,30 @@ export class CourseService {
 				},
 			});
 		return lectures;
+	}
+
+	async getRecentQuestions(courseId: number) {
+		const questions = await this.dataSource.getRepository(Question).find({
+			where: { courseId },
+			relations: {
+				answers: true,
+			},
+			select: {
+				id: true,
+				title: true,
+				contents: true,
+				createdAt: true,
+				answers: {
+					id: true,
+					contents: true,
+					createdAt: true,
+				},
+			},
+			order: { createdAt: 'DESC' },
+			take: 3,
+		});
+
+		return questions;
 	}
 
 	async createCourse(

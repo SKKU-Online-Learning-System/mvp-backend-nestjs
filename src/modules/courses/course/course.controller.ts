@@ -54,6 +54,12 @@ export class CourseController {
 		return this.courseService.getLecturesByCourseId(courseId);
 	}
 
+	@Get(':courseId/recent-questions')
+	@ApiCourse.getRecentQuestions()
+	getRecentQuestions(@Param('courseId') courseId: number) {
+		return this.courseService.getRecentQuestions(courseId);
+	}
+
 	@Post()
 	@ApiCourse.createCourse()
 	createCourse(@Body() createCourseDto: CreateCourseDto) {

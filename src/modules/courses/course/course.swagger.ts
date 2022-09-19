@@ -159,6 +159,18 @@ export const ApiCourse = {
 			}),
 		);
 	},
+	getRecentQuestions() {
+		return applyDecorators(
+			ApiOperation({
+				summary: '최근 질문 조회',
+				description:
+					'course 상세 페이지에 띄울 최근 질문 3개를 조회합니다.',
+			}),
+			ApiOkResponse({
+				type: GetRecentQuestions,
+			}),
+		);
+	},
 	createCourse() {
 		return applyDecorators(
 			ApiOperation({
@@ -187,3 +199,16 @@ export const ApiCourse = {
 		);
 	},
 };
+
+class GetRecentQuestions {
+	id: number;
+	title: string;
+	contents: string;
+	createdAt: Date;
+	answers: Answers[];
+}
+class Answers {
+	id: number;
+	contents: string;
+	createdAt: Date;
+}

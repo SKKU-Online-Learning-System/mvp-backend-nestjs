@@ -27,6 +27,6 @@ export const SectionSeed = [
 	{
 		id: 6,
 		title: '성대의 성대한 특강',
-		courseId: 5,
+		courseId: 6,
 	},
 ];
