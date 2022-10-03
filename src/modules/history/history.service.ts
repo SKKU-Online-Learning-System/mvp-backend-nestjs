@@ -1,5 +1,4 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { NotFoundError } from 'rxjs';
 import { HistoryEntity } from 'src/entities/history.entity';
 import { LectureEntity } from 'src/entities/lecture.entity';
 import { DataSource } from 'typeorm';

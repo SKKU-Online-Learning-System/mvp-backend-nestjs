@@ -2,6 +2,7 @@ import {
 	Body,
 	Controller,
 	Get,
+	NotFoundException,
 	Param,
 	Post,
 	Req,
@@ -21,12 +22,15 @@ import { MagicSignupStrategy } from './strategies/magic-signup.strategy';
 import { MagicSignupAuthGuard } from '../../configs/guards/magic-signup.guard';
 import { RolesGuard } from '../../configs/guards/roles.guard';
 import { ReqUser, Role } from 'src/entities/user.entity';
+import { UserService } from '../user/user.service';
+import { status } from 'src/configs/etc/http-response.config';
 
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
 	constructor(
 		private authService: AuthService,
+		private userService: UserService,
 		private magicLoginStrategy: MagicLoginStrategy,
 		private magicSignupStrategy: MagicSignupStrategy,
 	) {}
@@ -61,8 +65,17 @@ export class AuthController {
 	// magic login
 	@Post('login')
 	@ApiAuth.login()
-	login(@Req() req, @Res() res) {
-		this.magicLoginStrategy.send(req, res);
+	async login(
+		@Req() req,
+		@Res({ passthrough: true }) res,
+		@Body('destination') email: string,
+	) {
+		const user = await this.userService.getUserByEmail(email);
+		console.log(user);
+		if (user) {
+			this.magicLoginStrategy.send(req, res);
+			return status(200);
+		} else throw new NotFoundException();
 	}
 
 	@Get('login/callback')

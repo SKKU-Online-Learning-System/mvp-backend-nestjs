@@ -3,6 +3,7 @@ import {
 	ApiBody,
 	ApiConflictResponse,
 	ApiCookieAuth,
+	ApiNotFoundResponse,
 	ApiOkResponse,
 	ApiOperation,
 	ApiParam,
@@ -98,6 +99,14 @@ export const ApiAuth = {
 						destination: { type: 'string' },
 					},
 				},
+			}),
+			ApiOkResponse({
+				description:
+					'사용자가 입력한 이메일 주소가 회원 목록에 존재하여 로그인 메일이 정상적으로 발송된 경우',
+			}),
+			ApiNotFoundResponse({
+				description:
+					'사용자가 입력한 이메일 주소가 회원 목록에 존재하지 않는 경우',
 			}),
 		);
 	},
