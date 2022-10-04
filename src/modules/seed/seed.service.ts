@@ -28,6 +28,8 @@ import { AnswerSeed } from './seeds/answer.seed';
 import { Answer } from 'src/entities/answer.entity';
 import { EnrollmentEntity } from 'src/entities/enrollment.entity';
 import { TeachingAssistentEntity } from 'src/entities/teaching-assistent.entity';
+import { BannerSeed } from './seeds/banner.seed';
+import { Banner } from 'src/entities/banner.entity';
 
 @Injectable()
 export class SeedService {
@@ -48,6 +50,7 @@ export class SeedService {
 			// { seed: WishlistSeed, table: WishlistEntity },
 			{ seed: QuestionSeed, table: Question },
 			{ seed: AnswerSeed, table: Answer },
+			{ seed: BannerSeed, table: Banner },
 		];
 
 		const dataCount = {};

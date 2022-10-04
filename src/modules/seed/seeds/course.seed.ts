@@ -6,7 +6,7 @@ export const CourseSeed = [
 		summary: '소프트웨어 엔지니어링 강의입니다.',
 		instructorId: 1,
 		category1Id: 1,
-		category2Id: 3,
+		category2Id: 10,
 		thumbnail:
 			'https://mrdang-lectures.s3.ap-northeast-2.amazonaws.com/thumbnail-images/advanced-topics-in-software-engineering.jpg',
 		difficulty: 1,
@@ -19,7 +19,7 @@ export const CourseSeed = [
 		summary: '공학 컴퓨터 프로그래밍',
 		instructorId: 1,
 		category1Id: 1,
-		category2Id: 5,
+		category2Id: 6,
 		thumbnail:
 			'https://mrdang-lectures.s3.ap-northeast-2.amazonaws.com/thumbnail-images/computer-programming-for-engineers.jpg',
 		difficulty: 2,
@@ -31,8 +31,8 @@ export const CourseSeed = [
 		description: '',
 		summary: '데이터 시각화',
 		instructorId: 1,
-		category1Id: 1,
-		category2Id: 5,
+		category1Id: 3,
+		category2Id: 19,
 		thumbnail:
 			'https://mrdang-lectures.s3.ap-northeast-2.amazonaws.com/thumbnail-images/data-visualization.jpg',
 		difficulty: 3,
@@ -44,8 +44,8 @@ export const CourseSeed = [
 		description: '',
 		summary: '머신 러닝',
 		instructorId: 1,
-		category1Id: 1,
-		category2Id: 2,
+		category1Id: 3,
+		category2Id: 18,
 		thumbnail:
 			'https://mrdang-lectures.s3.ap-northeast-2.amazonaws.com/thumbnail-images/machine-learning-with-graphs.jpg',
 		difficulty: 1,
@@ -58,7 +58,7 @@ export const CourseSeed = [
 		summary: '파이썬 프로그래밍 강의',
 		instructorId: 1,
 		category1Id: 1,
-		category2Id: 4,
+		category2Id: 6,
 		thumbnail:
 			'https://mrdang-lectures.s3.ap-northeast-2.amazonaws.com/thumbnail-images/python-programming.jpg',
 		difficulty: 2,
@@ -70,8 +70,8 @@ export const CourseSeed = [
 		description: '',
 		summary: '성균관대 특강',
 		instructorId: 1,
-		category1Id: 2,
-		category2Id: 12,
+		category1Id: 8,
+		category2Id: 44,
 		thumbnail:
 			'https://mrdang-lectures.s3.ap-northeast-2.amazonaws.com/thumbnail-images/skku-special-lectures.png',
 		difficulty: 3,

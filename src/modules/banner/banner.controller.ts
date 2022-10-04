@@ -4,13 +4,13 @@ import { BannerService } from './banner.service';
 import { ApiBanner } from './banner.swagger';
 
 @ApiTags('Banner')
-@Controller('banner')
+@Controller('banners')
 export class BannerController {
 	constructor(private readonly bannerService: BannerService) {}
 
 	@Get()
 	@ApiBanner.getBanners()
-	getBanners() {
-		return this.bannerService.uploadFiles();
+	getActives() {
+		return this.bannerService.getActives();
 	}
 }
