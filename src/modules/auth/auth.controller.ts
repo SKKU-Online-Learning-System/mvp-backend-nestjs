@@ -65,17 +65,10 @@ export class AuthController {
 	// magic login
 	@Post('login')
 	@ApiAuth.login()
-	async login(
-		@Req() req,
-		@Res({ passthrough: true }) res,
-		@Body('destination') email: string,
-	) {
+	async login(@Req() req, @Res() res, @Body('destination') email: string) {
 		const user = await this.userService.getUserByEmail(email);
-		console.log(user);
-		if (user) {
-			this.magicLoginStrategy.send(req, res);
-			return status(200);
-		} else throw new NotFoundException();
+		if (user) this.magicLoginStrategy.send(req, res);
+		else throw new NotFoundException();
 	}
 
 	@Get('login/callback')
