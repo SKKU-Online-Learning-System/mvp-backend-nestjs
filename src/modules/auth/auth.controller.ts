@@ -7,6 +7,7 @@ import {
 	Post,
 	Req,
 	Res,
+	UnauthorizedException,
 	UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
@@ -68,7 +69,7 @@ export class AuthController {
 	async login(@Req() req, @Res() res, @Body('destination') email: string) {
 		const user = await this.userService.getUserByEmail(email);
 		if (user) this.magicLoginStrategy.send(req, res);
-		else throw new NotFoundException();
+		else throw new UnauthorizedException();
 	}
 
 	@Get('login/callback')
