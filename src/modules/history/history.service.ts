@@ -39,6 +39,34 @@ export class HistoryService {
 		});
 	}
 
+	async getByLecture(lectureId: number, user: ReqUser) {
+		return await this.dataSource.getRepository(History).findOne({
+			where: { userId: user.id, lectureId },
+			relations: {
+				lecture: {
+					course: true,
+				},
+			},
+			select: {
+				id: true,
+				lastTime: true,
+				updatedAt: true,
+				isFinished: true,
+				lecture: {
+					id: true,
+					title: true,
+					duration: true,
+					filename: true,
+					course: {
+						id: true,
+						title: true,
+						thumbnail: true,
+					},
+				},
+			},
+		});
+	}
+
 	async update(dto: UpdateHistoryDto, user: ReqUser): Promise<HttpResponse> {
 		const { lectureId, lastTime } = dto;
 		const historyRepository = this.dataSource.getRepository(History);

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { User } from 'src/configs/decorator/user.decorator';
 import { RolesGuard } from 'src/configs/guards/roles.guard';
@@ -17,6 +17,12 @@ export class HistoryController {
 	@ApiHistory.getHistories()
 	getByUser(@User() user: ReqUser) {
 		return this.historyService.getByUser(user);
+	}
+
+	@Get('lectures/:lectureId')
+	@UseGuards(RolesGuard([Role.USER]))
+	getByLecture(@Param('lectureId') lectureId: number, @User() user: ReqUser) {
+		return this.historyService.getByLecture(lectureId, user);
 	}
 
 	@Patch()
