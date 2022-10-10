@@ -17,7 +17,7 @@ import { HashtagSeed } from './seeds/hashtag.seed';
 import { LectureSeed } from './seeds/lecture.seed';
 import { UserSeed } from './seeds/user.seed';
 import { AdminSeed } from './seeds/admin.seed';
-import { HistoryEntity } from 'src/entities/history.entity';
+import { History } from 'src/entities/history.entity';
 import { HistorySeed } from './seeds/history.seed';
 import { WishlistSeed } from './seeds/wishlist.seed';
 import { SectionSeed } from './seeds/section.seed';
@@ -148,7 +148,7 @@ export class SeedService {
 	}
 
 	async history() {
-		return await this.dataSource.getRepository(HistoryEntity).find();
+		return await this.dataSource.getRepository(History).find();
 	}
 
 	async lecture() {

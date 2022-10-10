@@ -1,144 +1,83 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { HistoryEntity } from 'src/entities/history.entity';
+import { HttpResponse, status } from 'src/configs/etc/http-response.config';
+import { History } from 'src/entities/history.entity';
 import { LectureEntity } from 'src/entities/lecture.entity';
+import { ReqUser } from 'src/entities/user.entity';
 import { DataSource } from 'typeorm';
-import { CreateOrUpdateHistoryDto } from './dto/create-or-update-history.dto';
-import { GetHistoryDto } from './dto/get-history.dto';
+import { UpdateHistoryDto } from './dto/update-history.dto';
 
 @Injectable()
 export class HistoryService {
 	constructor(private dataSource: DataSource) {}
-	async getHistories({
-		userId,
-		lectureId,
-	}: GetHistoryDto): Promise<HistoryEntity[]> {
-		const query = await this.dataSource
-			.createQueryBuilder()
-			.from(HistoryEntity, 'history')
-			.innerJoin(
-				LectureEntity,
-				'lecture',
-				'lecture.id = history.lectureId',
-			)
-			.select([
-				'history.id AS id',
-				'history.lastTime AS lastTime',
-				'history.updatedAt AS updatedAT',
-				'history.isFinished AS isFinished',
-				'lecture.title AS title',
-				'lecture.duration AS duration',
-				'lecture.filename AS filename',
-			])
-			.where('history.userId = :userId', { userId });
 
-		if (lectureId !== undefined) {
-			query.andWhere('history.lectureId = :lectureId', {
+	async getByUser(user: ReqUser): Promise<History[]> {
+		return await this.dataSource.getRepository(History).find({
+			where: { userId: user.id },
+			relations: {
+				lecture: {
+					course: true,
+				},
+			},
+			select: {
+				id: true,
+				lastTime: true,
+				updatedAt: true,
+				isFinished: true,
+				lecture: {
+					id: true,
+					title: true,
+					duration: true,
+					filename: true,
+					course: {
+						id: true,
+						title: true,
+						thumbnail: true,
+					},
+				},
+			},
+			order: { updatedAt: 'DESC' },
+		});
+	}
+
+	async update(dto: UpdateHistoryDto, user: ReqUser): Promise<HttpResponse> {
+		const { lectureId, lastTime } = dto;
+		const historyRepository = this.dataSource.getRepository(History);
+
+		const history = await historyRepository.findOne({
+			where: {
+				userId: user.id,
+				lectureId,
+			},
+		});
+
+		if (!history) {
+			await historyRepository.insert({
+				userId: user.id,
 				lectureId,
 			});
-		}
-
-		return await query.getRawMany();
-	}
-
-	async getHistoriesLatest({ userId }: GetHistoryDto) {
-		return await this.dataSource
-			.createQueryBuilder()
-			.from(HistoryEntity, 'history')
-			.innerJoin(
-				LectureEntity,
-				'lecture',
-				'lecture.id = history.lectureId',
-			)
-			.select([
-				'history.id AS id',
-				'history.lastTime AS lastTime',
-				'history.updatedAt AS updatedAT',
-				'history.isFinished AS isFinished',
-				'lecture.title AS title',
-				'lecture.duration AS duration',
-				'lecture.filename AS filename',
-			])
-			.where('history.userId = :userId', { userId })
-			.orderBy('history.updatedAt', 'DESC')
-			.getRawMany();
-	}
-
-	async createOrUpdateHistory(
-		createOrUpdateHistoryDto: CreateOrUpdateHistoryDto,
-	) {
-		const { userId, lectureId, lastTime } = createOrUpdateHistoryDto;
-
-		const histories = await this.getHistories({ userId, lectureId });
-		if (histories.length === 0) {
-			await this.createHistory(createOrUpdateHistoryDto);
 		} else {
-			await this.updateHistory(createOrUpdateHistoryDto);
+			await historyRepository.update(
+				{ userId: user.id, lectureId },
+				{ lastTime },
+			);
 
-			const lectureDuration = await this.getLectureDuration(lectureId);
+			const lecture = await this.dataSource
+				.getRepository(LectureEntity)
+				.findOne({
+					where: { id: lectureId },
+				});
+
 			if (
-				!histories[0].isFinished &&
-				this.isLectureFinished(lastTime, lectureDuration)
+				history.isFinished === false &&
+				lastTime / lecture?.duration > 0.95
 			) {
-				this.updateIsFinished(userId, lectureId);
+				historyRepository.update(
+					{ userId: user.id, lectureId },
+					{ isFinished: true },
+				);
 			}
 		}
 
-		return 'update history';
-	}
-
-	async createHistory(createOrUpdateHistoryDto: CreateOrUpdateHistoryDto) {
-		await this.dataSource
-			.createQueryBuilder()
-			.insert()
-			.into(HistoryEntity)
-			.values([createOrUpdateHistoryDto])
-			.execute();
-	}
-
-	async updateHistory({
-		userId,
-		lectureId,
-		lastTime,
-	}: CreateOrUpdateHistoryDto) {
-		await this.dataSource
-			.createQueryBuilder()
-			.update(HistoryEntity)
-			.set({ lastTime: lastTime })
-			.where('userId = :userId', { userId })
-			.andWhere('lectureId = :lectureId', { lectureId })
-			.execute();
-	}
-
-	async getLectureDuration(lectureId: number) {
-		const lecture = await this.dataSource
-			.createQueryBuilder()
-			.select('lecture')
-			.from(LectureEntity, 'lecture')
-			.where('lecture.id = :lectureId', { lectureId })
-			.getOne();
-
-		if (!lecture) {
-			throw new NotFoundException('Lecture Not Found(FK)');
-		}
-
-		return lecture.duration;
-	}
-
-	isLectureFinished(lastTime: number, duration: number): boolean {
-		if (lastTime / duration > 0.95) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	async updateIsFinished(userId: number, lectureId: number) {
-		await this.dataSource
-			.createQueryBuilder()
-			.update(HistoryEntity)
-			.set({ isFinished: true })
-			.where('userId = :userId', { userId })
-			.andWhere('lectureId = :lectureId', { lectureId })
-			.execute();
+		return status(200);
 	}
 }

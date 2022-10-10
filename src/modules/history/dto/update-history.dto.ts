@@ -1,9 +1,6 @@
 import { IsInt } from 'class-validator';
 
-export class CreateOrUpdateHistoryDto {
-	@IsInt()
-	userId: number;
-
+export class UpdateHistoryDto {
 	@IsInt()
 	lectureId: number;
 

@@ -9,7 +9,7 @@ import { LectureEntity } from './lecture.entity';
 import { UserEntity } from './user.entity';
 
 @Entity()
-class History {
+export class History {
 	@PrimaryGeneratedColumn()
 	id: number;
 
@@ -32,5 +32,3 @@ class History {
 	@Column()
 	lectureId: number;
 }
-
-export { History as HistoryEntity };
