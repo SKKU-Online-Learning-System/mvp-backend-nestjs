@@ -38,19 +38,22 @@ export class CourseService {
 			});
 		}
 		if (category2Id) {
-			courses = courses.where('course.category2Id = :category2Id', {
+			courses = courses.andWhere('course.category2Id = :category2Id', {
 				category2Id,
 			});
 		}
 		if (keyword) {
-			courses = courses.where('course.title like :keyword', {
+			courses = courses.andWhere('course.title like :keyword', {
 				keyword: `%${keyword.toLowerCase()}%`,
 			});
 		}
 		if (difficulty) {
-			courses = courses.where('course.difficulty IN (:...difficulty)', {
-				difficulty,
-			});
+			courses = courses.andWhere(
+				'course.difficulty IN (:...difficulty)',
+				{
+					difficulty,
+				},
+			);
 		}
 
 		const length = await courses.getCount();
