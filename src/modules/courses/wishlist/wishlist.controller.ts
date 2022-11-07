@@ -23,7 +23,7 @@ export class WishlistController {
 	@UseGuards(RolesGuard([Role.USER]))
 	@ApiWishlist.getAllWishlist()
 	getAllWishlists(@User() user) {
-		return this.wishlistService.getAllWishlists(user.userId);
+		return this.wishlistService.getAllWishlists(user.id);
 	}
 
 	@Post('course/:courseId')
@@ -34,7 +34,7 @@ export class WishlistController {
 		@Param('courseId') courseId: number,
 	) {
 		return this.wishlistService.createWishlistByCourseId(
-			user.userId,
+			user.id,
 			courseId,
 		);
 	}
@@ -47,7 +47,7 @@ export class WishlistController {
 		@Param('courseId') courseId: number,
 	) {
 		return this.wishlistService.deleteWishlistByCourseId(
-			user.userId,
+			user.id,
 			courseId,
 		);
 	}

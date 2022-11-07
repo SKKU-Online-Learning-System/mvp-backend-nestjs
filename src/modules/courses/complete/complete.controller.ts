@@ -17,7 +17,7 @@ export class CompleteController {
 	@UseGuards(RolesGuard([Role.USER]))
 	@ApiComplete.getCompleteCourses()
 	getCompletedEnrollments(@User() user) {
-		return this.completeService.getCompletedEnrollments(user.userId);
+		return this.completeService.getCompletedEnrollments(user.id);
 	}
 
 	@Post()

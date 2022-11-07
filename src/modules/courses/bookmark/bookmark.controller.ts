@@ -21,21 +21,21 @@ export class BookmarkController {
 	@Get()
 	@UseGuards(RolesGuard([Role.USER]))
 	getAllBookmarks(@User() user) {
-		return this.bookmarkService.getAllBookmarks(user.userId);
+		return this.bookmarkService.getAllBookmarks(user.id);
 	}
 
 	@Get('learning')
 	@UseGuards(RolesGuard([Role.USER]))
 	@ApiBookmark.getAllLearningBookmarks()
 	getAllLearningBookmarks(@User() user) {
-		return this.bookmarkService.getAllLearningBookmarks(user.userId);
+		return this.bookmarkService.getAllLearningBookmarks(user.id);
 	}
 
 	@Get('completed')
 	@UseGuards(RolesGuard([Role.USER]))
 	@ApiBookmark.getAllCompleteBookmarks()
 	getAllCompletedBookmarks(@User() user) {
-		return this.bookmarkService.getAllCompletedBookmarks(user.userId);
+		return this.bookmarkService.getAllCompletedBookmarks(user.id);
 	}
 
 	@Post('course/:courseId')
@@ -46,7 +46,7 @@ export class BookmarkController {
 		@Param('courseId') courseId: number,
 	) {
 		return this.bookmarkService.createBookmarkByCourseId(
-			user.userId,
+			user.id,
 			courseId,
 		);
 	}
@@ -59,7 +59,7 @@ export class BookmarkController {
 		@Param('courseId') courseId: number,
 	) {
 		return this.bookmarkService.deleteBookmarkByCourseId(
-			user.userId,
+			user.id,
 			courseId,
 		);
 	}
