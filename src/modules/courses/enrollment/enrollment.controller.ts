@@ -15,7 +15,7 @@ export class EnrollmentController {
 	@Get()
 	@UseGuards(JwtAuthGuard)
 	getLearningEnrollments(@User() user) {
-		return this.enrollmentService.getLearningEnrollments(user.userId);
+		return this.enrollmentService.getLearningEnrollments(user.id);
 	}
 
 	@Post()
