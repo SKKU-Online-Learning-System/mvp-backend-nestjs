@@ -1,14 +1,15 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { HttpResponse, status } from 'src/configs/etc/http-response.config';
 import { History } from 'src/entities/history.entity';
+import { LaunchingEventEntity } from 'src/entities/launching-event.entity';
 import { LectureEntity } from 'src/entities/lecture.entity';
-import { ReqUser } from 'src/entities/user.entity';
+import { ReqUser, UserEntity } from 'src/entities/user.entity';
 import { DataSource } from 'typeorm';
 import { UpdateHistoryDto } from './dto/update-history.dto';
 
 @Injectable()
 export class HistoryService {
-	constructor(private dataSource: DataSource) {}
+	constructor(private dataSource: DataSource) { }
 
 	async getByUser(user: ReqUser): Promise<History[]> {
 		return await this.dataSource.getRepository(History).find({
@@ -70,6 +71,8 @@ export class HistoryService {
 	async update(dto: UpdateHistoryDto, user: ReqUser): Promise<HttpResponse> {
 		const { lectureId, lastTime } = dto;
 		const historyRepository = this.dataSource.getRepository(History);
+		const userRepository = this.dataSource.getRepository(UserEntity);
+		const launchingEventRepository = this.dataSource.getRepository(LaunchingEventEntity);
 
 		const history = await historyRepository.findOne({
 			where: {
@@ -77,7 +80,6 @@ export class HistoryService {
 				lectureId,
 			},
 		});
-
 		if (!history) {
 			await historyRepository.insert({
 				userId: user.id,
@@ -99,10 +101,34 @@ export class HistoryService {
 				history.isFinished === false &&
 				lastTime / lecture?.duration > 0.95
 			) {
-				historyRepository.update(
+				await historyRepository.update(
 					{ userId: user.id, lectureId },
 					{ isFinished: true },
 				);
+				// 유저 레포지토리에서 시청한 강의 개수 카운트 증가
+				await this.dataSource.createQueryBuilder()
+					.update(UserEntity)
+					.set({ watchedLecturesCount: () => "watchedLecturesCount + 1" })
+					.where("id = :id", { id: user.id })
+					.execute();
+				// 증가 시 지정한 X개 이상인 경우 킹고코인 API 호출
+				const updatedUser = await userRepository.findOne({
+					where: { id: user.id }
+				})
+				const eventInfo = await launchingEventRepository.findOne({
+					where: { user: user.id }
+				})
+				if (updatedUser.watchedLecturesCount === 1 && !eventInfo) {
+					console.log("킹고코인 API 호출이 필요합니다.");
+					await this.dataSource.createQueryBuilder()
+						.insert()
+						.into(LaunchingEventEntity)
+						.values({
+							isProcessed: true,
+							user: user.id
+						})
+						.execute();
+				}
 			}
 		}
 
