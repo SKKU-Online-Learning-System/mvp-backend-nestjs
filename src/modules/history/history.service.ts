@@ -68,6 +68,22 @@ export class HistoryService {
 		});
 	}
 
+	async getNotFinishedGroupByCourse(user: ReqUser) {
+		return await this.dataSource.getRepository(History)
+			.createQueryBuilder("history")
+			.leftJoinAndSelect("history.lecture", "lecture")
+			.leftJoinAndSelect("lecture.course", "course")
+			.select("course.id", "courseId")
+			.addSelect("course.title", "courseTitle")
+			.addSelect("COUNT(*)", "notFinishedLecture")
+			.where("history.userId = :userId", { userId: user.id })
+			.andWhere("history.isFinished = :isFinished", { isFinished: false })
+			.groupBy("course.id")
+			.getRawMany();
+	}
+
+
+
 	async update(dto: UpdateHistoryDto, user: ReqUser): Promise<HttpResponse> {
 		const { lectureId, lastTime } = dto;
 		const historyRepository = this.dataSource.getRepository(History);

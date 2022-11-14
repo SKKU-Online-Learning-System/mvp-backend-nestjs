@@ -10,13 +10,20 @@ import { ApiHistory } from './history.swagger';
 @ApiTags('History')
 @Controller('history')
 export class HistoryController {
-	constructor(private historyService: HistoryService) {}
-
+	constructor(private historyService: HistoryService) { }
+	
 	@Get()
 	@UseGuards(RolesGuard([Role.USER]))
 	@ApiHistory.getHistories()
 	getByUser(@User() user: ReqUser) {
 		return this.historyService.getByUser(user);
+	}
+	
+	@Get('/lectures/notFinished')
+	@UseGuards(RolesGuard([Role.USER]))
+	@ApiHistory.getNotFinishedLecture()
+	getNotFinishedGroupByCourse(@User() user: ReqUser) {
+		return this.historyService.getNotFinishedGroupByCourse(user);
 	}
 
 	@Get('lectures/:lectureId')
@@ -32,3 +39,4 @@ export class HistoryController {
 		return this.historyService.update(dto, user);
 	}
 }
+
