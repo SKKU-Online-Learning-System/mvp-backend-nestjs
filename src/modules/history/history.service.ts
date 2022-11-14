@@ -1,3 +1,4 @@
+import { HttpService } from '@nestjs/axios';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { HttpResponse, status } from 'src/configs/etc/http-response.config';
 import { History } from 'src/entities/history.entity';
@@ -9,7 +10,10 @@ import { UpdateHistoryDto } from './dto/update-history.dto';
 
 @Injectable()
 export class HistoryService {
-	constructor(private dataSource: DataSource) { }
+	constructor(
+		private dataSource: DataSource,
+		private readonly httpService: HttpService
+	) { }
 
 	async getByUser(user: ReqUser): Promise<History[]> {
 		return await this.dataSource.getRepository(History).find({
@@ -135,7 +139,6 @@ export class HistoryService {
 					where: { user: user.id }
 				})
 				if (updatedUser.watchedLecturesCount === 1 && !eventInfo) {
-					console.log("킹고코인 API 호출이 필요합니다.");
 					await this.dataSource.createQueryBuilder()
 						.insert()
 						.into(LaunchingEventEntity)
@@ -144,6 +147,14 @@ export class HistoryService {
 							user: user.id
 						})
 						.execute();
+					const transaction = await this.dataSource.getRepository(LaunchingEventEntity).findOne({
+						where: {user: user.id}
+					});
+					/*await this.httpService.post('https://kingocoin.cs.skku.edu/api/thrid-party/point/send?transactionId=' + transaction.id, {
+						email: user.email,
+						description: "명륜당 영상시청",
+						point: 400
+					});*/
 				}
 			}
 		}
