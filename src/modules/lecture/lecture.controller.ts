@@ -15,6 +15,11 @@ import { LectureService } from './lecture.service';
 export class LectureController {
 	constructor(private lectureService: LectureService) {}
 
+	@Get('count')
+	getAllLecturesGroupByCourse() {
+		return this.lectureService.getAllLecturesGroupByCourse();
+	}
+
 	@Get(':lectureId')
 	getLecturePathByLectureId(@Param('lectureId') id: number) {
 		return this.lectureService.getLecturePathByLectureId(id);
