@@ -41,6 +41,12 @@ class User {
 
 	@OneToMany(() => CourseEntity, (course) => course.instructor)
 	courses: CourseEntity[];
+
+	@Column({default: 0})
+	watchedLecturesCount: number;
+
+	@Column({default: 0})
+	commentsCount: number
 }
 
 export { User as UserEntity };
