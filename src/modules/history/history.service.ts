@@ -148,13 +148,14 @@ export class HistoryService {
 						})
 						.execute();
 					const transaction = await this.dataSource.getRepository(LaunchingEventEntity).findOne({
-						where: {user: user.id}
+						where: { user: user.id }
 					});
-					/*await this.httpService.post('https://kingocoin.cs.skku.edu/api/thrid-party/point/send?transactionId=' + transaction.id, {
+					await this.httpService.post('https://kingocoin.cs.skku.edu/api/thrid-party/point/send', {
 						email: user.email,
+						transactionId: transaction.id,
 						description: "명륜당 영상시청",
 						point: 400
-					});*/
+					});
 				}
 			}
 		}
