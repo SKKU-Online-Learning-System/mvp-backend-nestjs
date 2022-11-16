@@ -20,5 +20,4 @@ jobs:
                       cd mvp-backend-nestjs/
                       rm -rf ./dist
                       git pull origin main
-                      npm install
                       pm2 restart 0
