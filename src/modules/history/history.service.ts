@@ -1,12 +1,12 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { firstValueFrom, map, tap } from 'rxjs';
+import { Injectable } from '@nestjs/common';
 import { HttpResponse, status } from 'src/configs/etc/http-response.config';
 import { History } from 'src/entities/history.entity';
 import { LaunchingEventEntity } from 'src/entities/launching-event.entity';
 import { LectureEntity } from 'src/entities/lecture.entity';
 import { ReqUser, UserEntity } from 'src/entities/user.entity';
 import { DataSource } from 'typeorm';
+import { KingoCoinRequestDto } from './dto/kingocoin-request.dto';
 import { UpdateHistoryDto } from './dto/update-history.dto';
 
 @Injectable()
@@ -152,28 +152,26 @@ export class HistoryService {
 							user: user.id,
 						})
 						.execute();
+
 					const transaction = await this.dataSource
 						.getRepository(LaunchingEventEntity)
 						.findOne({
 							where: { user: user.id },
 						});
-					const response = await this.httpService
+
+					const requestBody: KingoCoinRequestDto = {
+						email: user.email,
+						transactionId: transaction.id,
+						description: '명륜당 영상시청',
+						point: 400,
+						platform: '온라인명륜당',
+					};
+					await this.httpService
 						.post(
 							'http://kingocoin.cs.skku.edu/api/third-party/point/send',
-							{
-								email: user.email,
-								transactionId: transaction.id,
-								description: '명륜당 영상시청',
-								point: 400,
-								platform: '온라인명륜당',
-							},
+							requestBody,
 						)
-						.pipe(
-							tap((res) => console.log(res)),
-							map((res) => res.data),
-							tap((data) => console.log(data)),
-						);
-					console.log(response);
+						.subscribe((res) => console.log(res));
 				}
 			}
 		}
