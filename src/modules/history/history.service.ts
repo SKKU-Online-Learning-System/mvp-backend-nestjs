@@ -1,5 +1,6 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { map } from 'rxjs';
 import { HttpResponse, status } from 'src/configs/etc/http-response.config';
 import { History } from 'src/entities/history.entity';
 import { LaunchingEventEntity } from 'src/entities/launching-event.entity';
@@ -156,15 +157,17 @@ export class HistoryService {
 						.findOne({
 							where: { user: user.id },
 						});
-					await this.httpService.post(
+					const response = await this.httpService.post(
 						'https://kingocoin.cs.skku.edu/api/thrid-party/point/send',
 						{
 							email: user.email,
 							transactionId: transaction.id,
 							description: '명륜당 영상시청',
-							platform: "온라인명륜당"
+							point: 400,
+							platform: '온라인명륜당',
 						},
 					);
+					console.log(response);
 				}
 			}
 		}
