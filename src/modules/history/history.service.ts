@@ -162,6 +162,7 @@ export class HistoryService {
 							email: user.email,
 							transactionId: transaction.id,
 							description: '명륜당 영상시청',
+							platform: "온라인명륜당"
 						},
 					);
 				}
