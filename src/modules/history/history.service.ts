@@ -157,17 +157,15 @@ export class HistoryService {
 						.findOne({
 							where: { user: user.id },
 						});
-					const response = await firstValueFrom(
-						this.httpService.post(
-							'https://kingocoin.cs.skku.edu/api/third-party/point/send',
-							{
-								email: user.email,
-								transactionId: transaction.id,
-								description: '명륜당 영상시청',
-								point: 400,
-								platform: '온라인명륜당',
-							},
-						),
+					const response = await this.httpService.post(
+						'http://kingocoin.cs.skku.edu/api/third-party/point/send',
+						{
+							email: user.email,
+							transactionId: transaction.id,
+							description: '명륜당 영상시청',
+							point: 400,
+							platform: '온라인명륜당',
+						},
 					);
 					console.log(response);
 				}
