@@ -73,7 +73,7 @@ export class HistoryService {
 		});
 	}
 
-	async getNotFinishedGroupByCourse(user: ReqUser) {
+	async getFinishedGroupByCourse(user: ReqUser) {
 		return await this.dataSource
 			.getRepository(History)
 			.createQueryBuilder('history')
@@ -81,9 +81,9 @@ export class HistoryService {
 			.leftJoinAndSelect('lecture.course', 'course')
 			.select('course.id', 'courseId')
 			.addSelect('course.title', 'courseTitle')
-			.addSelect('COUNT(*)', 'notFinishedLecture')
+			.addSelect('COUNT(*)', 'finishedLecture')
 			.where('history.userId = :userId', { userId: user.id })
-			.andWhere('history.isFinished = :isFinished', { isFinished: false })
+			.andWhere('history.isFinished = :isFinished', { isFinished: true })
 			.groupBy('course.id')
 			.getRawMany();
 	}
