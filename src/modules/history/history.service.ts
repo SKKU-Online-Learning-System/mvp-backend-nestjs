@@ -144,7 +144,10 @@ export class HistoryService {
 				const eventInfo = await launchingEventRepository.findOne({
 					where: { user: user.id },
 				});
-				if (updatedUser.watchedLecturesCount === 1 && !eventInfo) {
+				if (
+					updatedUser.watchedLecturesCount >= 1 &&
+					(!eventInfo || !eventInfo.isProcessed)
+				) {
 					await this.dataSource
 						.createQueryBuilder()
 						.insert()
