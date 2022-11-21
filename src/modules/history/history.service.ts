@@ -101,10 +101,12 @@ export class HistoryService {
 				lectureId,
 			},
 		});
+
 		if (!history) {
 			await historyRepository.insert({
 				userId: user.id,
 				lectureId,
+				lastTime,
 			});
 		} else {
 			await historyRepository.update(

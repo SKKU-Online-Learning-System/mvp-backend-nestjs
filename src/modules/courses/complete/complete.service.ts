@@ -54,18 +54,16 @@ export class CompleteService {
 		const enrollment = await this.dataSource
 			.getRepository(EnrollmentEntity)
 			.findOneBy({ userId, courseId });
-		if (enrollment.completed === true) throw new BadRequestException();
+		if (enrollment.completed === true) return;
 
-		const {
-			raw: { affectedRows },
-		} = await this.dataSource
+		const { affected } = await this.dataSource
 			.getRepository(EnrollmentEntity)
 			.update(
 				{ userId, courseId },
-				{ completed: true, completedAt: Date.now() },
+				{ completed: true, completedAt: new Date() },
 			);
 
-		if (affectedRows !== 1) throw new InternalServerErrorException();
+		if (affected !== 1) throw new InternalServerErrorException();
 
 		return status(201);
 	}
