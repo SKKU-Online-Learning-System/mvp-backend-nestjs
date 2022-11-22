@@ -1,5 +1,10 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import {
+	BadRequestException,
+	Injectable,
+	InternalServerErrorException,
+} from '@nestjs/common';
+import { catchError } from 'rxjs';
 import { HttpResponse, status } from 'src/configs/etc/http-response.config';
 import { History } from 'src/entities/history.entity';
 import { LaunchingEventEntity } from 'src/entities/launching-event.entity';
@@ -73,7 +78,7 @@ export class HistoryService {
 		});
 	}
 
-	async getNotFinishedGroupByCourse(user: ReqUser) {
+	async getFinishedGroupByCourse(user: ReqUser) {
 		return await this.dataSource
 			.getRepository(History)
 			.createQueryBuilder('history')
@@ -81,9 +86,9 @@ export class HistoryService {
 			.leftJoinAndSelect('lecture.course', 'course')
 			.select('course.id', 'courseId')
 			.addSelect('course.title', 'courseTitle')
-			.addSelect('COUNT(*)', 'notFinishedLecture')
+			.addSelect('COUNT(*)', 'finishedLecture')
 			.where('history.userId = :userId', { userId: user.id })
-			.andWhere('history.isFinished = :isFinished', { isFinished: false })
+			.andWhere('history.isFinished = :isFinished', { isFinished: true })
 			.groupBy('course.id')
 			.getRawMany();
 	}
@@ -144,7 +149,10 @@ export class HistoryService {
 				const eventInfo = await launchingEventRepository.findOne({
 					where: { user: user.id },
 				});
-				if (updatedUser.watchedLecturesCount === 1 && !eventInfo) {
+				if (
+					updatedUser.watchedLecturesCount >= 1 &&
+					!eventInfo?.isProcessed
+				) {
 					await this.dataSource
 						.createQueryBuilder()
 						.insert()
@@ -173,7 +181,18 @@ export class HistoryService {
 							'http://kingocoin.cs.skku.edu/api/third-party/point/send',
 							requestBody,
 						)
-						.subscribe((res) => console.log(res));
+						.pipe(
+							catchError((e) => {
+								launchingEventRepository.update(
+									transaction.id,
+									{ isProcessed: false },
+								);
+								throw new InternalServerErrorException(
+									e,
+									'fail to request Kingo-coin API',
+								);
+							}),
+						);
 				}
 			}
 		}

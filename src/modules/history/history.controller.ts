@@ -19,11 +19,11 @@ export class HistoryController {
 		return this.historyService.getByUser(user);
 	}
 
-	@Get('/lectures/notFinished')
+	@Get('/lectures/finished')
 	@UseGuards(RolesGuard([Role.USER]))
-	@ApiHistory.getNotFinishedLecture()
-	getNotFinishedGroupByCourse(@User() user: ReqUser) {
-		return this.historyService.getNotFinishedGroupByCourse(user);
+	@ApiHistory.getFinishedLecture()
+	getFinishedGroupByCourse(@User() user: ReqUser) {
+		return this.historyService.getFinishedGroupByCourse(user);
 	}
 
 	@Get('lectures/:lectureId')
