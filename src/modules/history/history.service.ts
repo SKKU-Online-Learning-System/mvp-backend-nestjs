@@ -199,6 +199,11 @@ export class HistoryService {
 						.subscribe((res) => {
 							console.log(res);
 						});
+
+					if (!eventInfo.isProcessed)
+						launchingEventRepository.update(transaction.id, {
+							isProcessed: true,
+						});
 				}
 			}
 		}
