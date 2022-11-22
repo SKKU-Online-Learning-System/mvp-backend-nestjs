@@ -1,5 +1,10 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import {
+	BadRequestException,
+	Injectable,
+	InternalServerErrorException,
+} from '@nestjs/common';
+import { catchError } from 'rxjs';
 import { HttpResponse, status } from 'src/configs/etc/http-response.config';
 import { History } from 'src/entities/history.entity';
 import { LaunchingEventEntity } from 'src/entities/launching-event.entity';
@@ -146,7 +151,7 @@ export class HistoryService {
 				});
 				if (
 					updatedUser.watchedLecturesCount >= 1 &&
-					(!eventInfo || !eventInfo.isProcessed)
+					!eventInfo?.isProcessed
 				) {
 					await this.dataSource
 						.createQueryBuilder()
@@ -176,7 +181,18 @@ export class HistoryService {
 							'http://kingocoin.cs.skku.edu/api/third-party/point/send',
 							requestBody,
 						)
-						.subscribe((res) => console.log(res));
+						.pipe(
+							catchError((e) => {
+								launchingEventRepository.update(
+									transaction.id,
+									{ isProcessed: false },
+								);
+								throw new InternalServerErrorException(
+									e,
+									'fail to request Kingo-coin API',
+								);
+							}),
+						);
 				}
 			}
 		}
