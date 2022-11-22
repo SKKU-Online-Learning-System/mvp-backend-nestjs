@@ -149,19 +149,22 @@ export class HistoryService {
 				const eventInfo = await launchingEventRepository.findOne({
 					where: { user: user.id },
 				});
+
 				if (
 					updatedUser.watchedLecturesCount >= 1 &&
 					!eventInfo?.isProcessed
 				) {
-					await this.dataSource
-						.createQueryBuilder()
-						.insert()
-						.into(LaunchingEventEntity)
-						.values({
-							isProcessed: true,
-							user: user.id,
-						})
-						.execute();
+					if (!eventInfo) {
+						await this.dataSource
+							.createQueryBuilder()
+							.insert()
+							.into(LaunchingEventEntity)
+							.values({
+								isProcessed: true,
+								user: user.id,
+							})
+							.execute();
+					}
 
 					const transaction = await this.dataSource
 						.getRepository(LaunchingEventEntity)
@@ -192,7 +195,10 @@ export class HistoryService {
 									'fail to request Kingo-coin API',
 								);
 							}),
-						);
+						)
+						.subscribe((res) => {
+							console.log(res);
+						});
 				}
 			}
 		}
