@@ -147,8 +147,8 @@ export class HistoryService {
 					where: { id: user.id },
 				});
 
-				let eventInfo = await launchingEventRepository.findOne({
-					where: { user: user.id },
+				let eventInfo = await launchingEventRepository.findOneBy({
+					user: user.id,
 				});
 				if (eventInfo.user !== user.id) eventInfo = undefined;
 
@@ -168,11 +168,11 @@ export class HistoryService {
 							.execute();
 					}
 
-					const transaction = await this.dataSource
-						.getRepository(LaunchingEventEntity)
-						.findOne({
-							where: { user: user.id },
+					const transaction =
+						await launchingEventRepository.findOneBy({
+							user: user.id,
 						});
+					console.log(transaction.id);
 
 					const requestBody: KingoCoinRequestDto = {
 						email: user.email,
@@ -202,7 +202,7 @@ export class HistoryService {
 							console.log(res);
 						});
 
-					if (!eventInfo.isProcessed)
+					if (!transaction.isProcessed)
 						await launchingEventRepository.update(transaction.id, {
 							isProcessed: true,
 						});
