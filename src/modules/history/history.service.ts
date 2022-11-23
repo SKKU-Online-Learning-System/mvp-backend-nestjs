@@ -201,7 +201,7 @@ export class HistoryService {
 						});
 
 					if (!eventInfo.isProcessed)
-						launchingEventRepository.update(transaction.id, {
+						await launchingEventRepository.update(transaction.id, {
 							isProcessed: true,
 						});
 				}
