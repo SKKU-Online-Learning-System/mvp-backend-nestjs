@@ -146,9 +146,11 @@ export class HistoryService {
 				const updatedUser = await userRepository.findOne({
 					where: { id: user.id },
 				});
-				const eventInfo = await launchingEventRepository.findOne({
+
+				let eventInfo = await launchingEventRepository.findOne({
 					where: { user: user.id },
 				});
+				if (eventInfo.user !== user.id) eventInfo = undefined;
 
 				if (
 					updatedUser.watchedLecturesCount >= 1 &&
