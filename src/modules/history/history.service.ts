@@ -1,9 +1,5 @@
 import { HttpService } from '@nestjs/axios';
-import {
-	BadRequestException,
-	Injectable,
-	InternalServerErrorException,
-} from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { catchError } from 'rxjs';
 import { HttpResponse, status } from 'src/configs/etc/http-response.config';
 import { History } from 'src/entities/history.entity';
@@ -118,13 +114,11 @@ export class HistoryService {
 				{ userId: user.id, lectureId },
 				{ lastTime },
 			);
-
 			const lecture = await this.dataSource
 				.getRepository(LectureEntity)
 				.findOne({
 					where: { id: lectureId },
 				});
-
 			if (
 				history.isFinished === false &&
 				lastTime / lecture?.duration > 0.95
@@ -134,20 +128,15 @@ export class HistoryService {
 					{ isFinished: true },
 				);
 				// 유저 레포지토리에서 시청한 강의 개수 카운트 증가
-				await this.dataSource
-					.createQueryBuilder()
-					.update(UserEntity)
-					.set({
-						watchedLecturesCount: () => 'watchedLecturesCount + 1',
-					})
-					.where('id = :id', { id: user.id })
-					.execute();
+				await userRepository.update(user.id, {
+					watchedLecturesCount: () => 'watchedLecturesCount + 1',
+				});
 				// 증가 시 지정한 X개 이상인 경우 킹고코인 API 호출
 				const updatedUser = await userRepository.findOne({
 					where: { id: user.id },
 				});
 				const eventInfo = await launchingEventRepository.findOne({
-					where: { user: user.id },
+					where: { userId: user.id },
 				});
 
 				if (
@@ -155,23 +144,14 @@ export class HistoryService {
 					!eventInfo?.isProcessed
 				) {
 					if (!eventInfo) {
-						await this.dataSource
-							.createQueryBuilder()
-							.insert()
-							.into(LaunchingEventEntity)
-							.values({
-								isProcessed: true,
-								user: user.id,
-							})
-							.execute();
-					}
-
-					const transaction = await this.dataSource
-						.getRepository(LaunchingEventEntity)
-						.findOne({
-							where: { user: user.id },
+						await launchingEventRepository.insert({
+							isProcessed: true,
+							userId: user.id,
 						});
-
+					}
+					const transaction = await launchingEventRepository.findOne({
+						where: { userId: user.id },
+					});
 					const requestBody: KingoCoinRequestDto = {
 						email: user.email,
 						transactionId: transaction.id,
@@ -199,11 +179,11 @@ export class HistoryService {
 						.subscribe((res) => {
 							console.log(res);
 						});
-
-					if (!eventInfo.isProcessed)
+					if (!transaction.isProcessed) {
 						await launchingEventRepository.update(transaction.id, {
 							isProcessed: true,
 						});
+					}
 				}
 			}
 		}
