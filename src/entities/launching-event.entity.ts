@@ -1,18 +1,18 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn, JoinColumn } from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { UserEntity } from './user.entity';
 
 @Entity()
 class LauchingEvent {
-    @PrimaryGeneratedColumn()
-    id: number;
+	@PrimaryGeneratedColumn()
+	id: number;
 
-    @OneToOne(() => UserEntity)
-    @JoinColumn()
-    user: number;
+	@OneToOne(() => UserEntity)
+	user: UserEntity;
+	@Column()
+	userId: number;
 
-    @Column()
-    isProcessed: boolean
-
+	@Column()
+	isProcessed: boolean;
 }
 
-export { LauchingEvent as LaunchingEventEntity }
+export { LauchingEvent as LaunchingEventEntity };
