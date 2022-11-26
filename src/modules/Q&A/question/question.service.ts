@@ -90,6 +90,13 @@ export class QuestionService {
 		return question;
 	}
 
+	async getAll(user: ReqUser) {
+		return this.dataSource.getRepository(Question).find({
+			where: { authorId: user.id },
+			relations: ['course'],
+		});
+	}
+
 	async create(dto: CreateQuestionDto, user: ReqUser): Promise<HttpResponse> {
 		const {
 			raw: { affectedRows },
