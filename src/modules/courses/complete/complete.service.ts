@@ -5,6 +5,8 @@ import {
 } from '@nestjs/common';
 import { HttpResponse, status } from 'src/configs/etc/http-response.config';
 import { EnrollmentEntity } from 'src/entities/enrollment.entity';
+import { History } from 'src/entities/history.entity';
+import { LectureEntity } from 'src/entities/lecture.entity';
 import { DataSource } from 'typeorm';
 import { CreateUserCourseDto } from './dto/create-user-course.dto';
 
@@ -56,15 +58,42 @@ export class CompleteService {
 			.findOneBy({ userId, courseId });
 		if (enrollment.completed === true) return;
 
-		const { affected } = await this.dataSource
-			.getRepository(EnrollmentEntity)
-			.update(
-				{ userId, courseId },
-				{ completed: true, completedAt: new Date() },
-			);
+		const course = enrollment.courseId;
+		const wholeLectures = await this.dataSource
+			.getRepository(LectureEntity)
+			.find({
+				where: { courseId: course },
+			});
+		const finishedLectures = await this.dataSource
+			.getRepository(History)
+			.find({
+				where: {
+					userId,
+					isFinished: true,
+					lecture: {
+						courseId: course,
+					},
+				},
+				relations: ['lecture'],
+				select: {
+					lecture: {
+						courseId: true,
+					},
+				},
+			});
 
-		if (affected !== 1) throw new InternalServerErrorException();
+		if (wholeLectures.length === finishedLectures.length) {
+			const { affected } = await this.dataSource
+				.getRepository(EnrollmentEntity)
+				.update(
+					{ userId, courseId },
+					{ completed: true, completedAt: new Date() },
+				);
 
-		return status(201);
+			if (affected !== 1) throw new InternalServerErrorException();
+
+			return status(201);
+		}
+		return status(400, 'No all lectures are finished yet.');
 	}
 }
