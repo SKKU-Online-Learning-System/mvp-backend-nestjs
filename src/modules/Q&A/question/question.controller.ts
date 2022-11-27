@@ -34,6 +34,12 @@ export class QuestionController {
 		return this.questionService.getOne(questionId);
 	}
 
+	@Get()
+	@UseGuards(RolesGuard([Role.USER]))
+	getAll(@User() user: ReqUser) {
+		return this.questionService.getAll(user);
+	}
+
 	@Post()
 	@UseGuards(RolesGuard([Role.USER]))
 	@ApiQuestion.create
