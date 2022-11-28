@@ -91,9 +91,8 @@ export class CompleteService {
 				);
 
 			if (affected !== 1) throw new InternalServerErrorException();
-
-			return status(201);
 		}
-		return status(400, 'No all lectures are finished yet.');
+
+		return status(201);
 	}
 }
