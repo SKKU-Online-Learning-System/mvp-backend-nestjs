@@ -175,10 +175,7 @@ export class HistoryService {
 									'fail to request Kingo-coin API',
 								);
 							}),
-						)
-						.subscribe((res) => {
-							console.log(res);
-						});
+						);
 					if (!transaction.isProcessed) {
 						await launchingEventRepository.update(transaction.id, {
 							isProcessed: true,
