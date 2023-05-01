@@ -14,11 +14,12 @@ async function bootstrap() {
 	swaggerConfig(app);
 
 	// middleware
-	// app.enableCors({
-	// 	credentials: true,
-	// 	origin: 'https://mrdang.kro.kr',
-	// 	methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-	// });
+	app.enableCors({
+	 	credentials: true,
+	 	origin: 'http://localhost:3000',
+	 	methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+	 });
+	 
 	app.use(helmet());
 	app.use(cookieParser());
 	app.use(
