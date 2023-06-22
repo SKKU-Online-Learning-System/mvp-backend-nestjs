@@ -1,32 +1,26 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { HttpResponse, status } from 'src/configs/etc/http-response.config';
-import { AdminEntity } from 'src/entities/admin.entity';
-import { DataSource } from 'typeorm';
+import { Injectable } from '@nestjs/common';
 import { CreateAdminDto } from './dto/create-admin.dto';
+import { UpdateAdminDto } from './dto/update-admin.dto';
 
 @Injectable()
 export class AdminService {
-	constructor(private dataSource: DataSource) {}
+  create(createAdminDto: CreateAdminDto) {
+    return 'This action adds a new admin';
+  }
 
-	async createAdmin(createAdminDto: CreateAdminDto): Promise<HttpResponse> {
-		const { username, password } = createAdminDto;
+  findAll() {
+    return `This action returns all admin`;
+  }
 
-		const {
-			raw: { affectedRows },
-		} = await this.dataSource
-			.getRepository(AdminEntity)
-			.insert({ username, password });
+  findOne(id: number) {
+    return `This action returns a #${id} admin`;
+  }
 
-		if (!affectedRows) throw new InternalServerErrorException();
+  update(id: number, updateAdminDto: UpdateAdminDto) {
+    return `This action updates a #${id} admin`;
+  }
 
-		return status(201);
-	}
-
-	async getAdminByName(username: string): Promise<AdminEntity | null> {
-		const admin = await this.dataSource
-			.getRepository(AdminEntity)
-			.findOne({ where: { username } });
-
-		return admin;
-	}
+  remove(id: number) {
+    return `This action removes a #${id} admin`;
+  }
 }

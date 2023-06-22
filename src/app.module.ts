@@ -37,6 +37,7 @@ import { CoursesModule } from './modules/courses/courses.module';
 		BannerModule,
 		SeedModule,
 		FileModule,
+		
 	],
 	controllers: [AppController],
 	providers: [AppService],

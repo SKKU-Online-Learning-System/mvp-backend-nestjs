@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
-import { CreateAdminDto } from '../admin/dto/create-admin.dto';
-import { AdminService } from '../admin/admin.service';
+// import { CreateAdminDto } from '../admin/dto/create-admin.dto';
+// import { AdminService } from '../admin/admin.service';
 import { Response } from 'express';
 import { HttpResponse, status } from 'src/configs/etc/http-response.config';
 import { CreateUserDto } from '../user/dto/create-user.dto';
@@ -14,7 +14,7 @@ export class AuthService {
 	constructor(
 		private jwtService: JwtService,
 		private userService: UserService,
-		private adminService: AdminService,
+		// private adminService: AdminService,
 	) {}
 
 	// check
@@ -57,24 +57,24 @@ export class AuthService {
 	}
 
 	// admin
-	async createAdmin(createAdminDto: CreateAdminDto): Promise<HttpResponse> {
-		const { username, password } = createAdminDto;
-		const saltRounds = 12;
-		const hash = await bcrypt.hash(password, saltRounds);
-		await this.adminService.createAdmin({ username, password: hash });
-		return status(201);
-	}
+	// async createAdmin(createAdminDto: CreateAdminDto): Promise<HttpResponse> {
+	// 	const { username, password } = createAdminDto;
+	// 	const saltRounds = 12;
+	// 	const hash = await bcrypt.hash(password, saltRounds);
+	// 	await this.adminService.createAdmin({ username, password: hash });
+	// 	return status(201);
+	// }
 
-	async validateAdmin(username: string, password: string): Promise<any> {
-		const admin = await this.adminService.getAdminByName(username);
-		if (!admin) return null;
+	// async validateAdmin(username: string, password: string): Promise<any> {
+	// 	const admin = await this.adminService.getAdminByName(username);
+	// 	if (!admin) return null;
 
-		if (await bcrypt.compare(password, admin.password)) {
-			return admin;
-		} else {
-			return null;
-		}
-	}
+	// 	if (await bcrypt.compare(password, admin.password)) {
+	// 		return admin;
+	// 	} else {
+	// 		return null;
+	// 	}
+	// }
 
 	async localLogin(res: Response, user): Promise<HttpResponse> {
 		const payload = { id: user.id, username: user.username };

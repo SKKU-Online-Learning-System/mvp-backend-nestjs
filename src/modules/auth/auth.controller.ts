@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { CreateAdminDto } from '../admin/dto/create-admin.dto';
+// import { CreateAdminDto } from '../admin/dto/create-admin.dto';
 import { LocalAuthGuard } from '../../configs/guards/local-auth.guard';
 import { MagicLoginAuthGuard } from '../../configs/guards/magic-login.guard';
 import { MagicLoginStrategy } from './strategies/magic-login.strategy';
@@ -83,18 +83,18 @@ export class AuthController {
 	}
 
 	// admin
-	@Post('admin')
-	@ApiAuth.createAdmin()
-	createAdmin(@Body() createAdminDto: CreateAdminDto) {
-		return this.authService.createAdmin(createAdminDto);
-	}
+	// @Post('admin')
+	// @ApiAuth.createAdmin()
+	// createAdmin(@Body() createAdminDto: CreateAdminDto) {
+	// 	return this.authService.createAdmin(createAdminDto);
+	// }
 
-	@Post('admin/login')
-	@UseGuards(LocalAuthGuard)
-	@ApiAuth.adminLogin()
-	adminLogin(@Res({ passthrough: true }) res: Response, @User() user) {
-		return this.authService.localLogin(res, user);
-	}
+	// @Post('admin/login')
+	// @UseGuards(LocalAuthGuard)
+	// @ApiAuth.adminLogin()
+	// adminLogin(@Res({ passthrough: true }) res: Response, @User() user) {
+	// 	return this.authService.localLogin(res, user);
+	// }
 
 	// logout
 	@Get('logout')

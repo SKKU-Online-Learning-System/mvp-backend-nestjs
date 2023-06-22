@@ -13,6 +13,7 @@ import { SectionEntity } from 'src/entities/section.entity';
 import { HttpResponse, status } from 'src/configs/etc/http-response.config';
 import { EnrollmentService } from '../enrollment/enrollment.service';
 import { Question } from 'src/entities/question.entity';
+import { Between } from 'typeorm';
 
 @Injectable()
 export class CourseService {
@@ -333,4 +334,19 @@ export class CourseService {
 
 		return status(200);
 	}
+
+	//최근 한달에 업로드된 강좌
+	async getRecentlyUploadedCourses(): Promise<CourseEntity[]> {
+		const dateOneMonthAgo = new Date();
+		dateOneMonthAgo.setMonth(dateOneMonthAgo.getMonth() - 1);
+		
+		const courses = await this.dataSource
+			.getRepository(CourseEntity)
+			.createQueryBuilder('course')
+			.where('course.createdAt >= :dateOneMonthAgo', { dateOneMonthAgo })
+			.getMany();
+		
+		return courses;
+	}
+	
 }

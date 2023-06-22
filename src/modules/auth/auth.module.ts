@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { LocalStrategy } from './strategies/local.strategy';
+// import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { MagicLoginStrategy } from './strategies/magic-login.strategy';
 import { MailModule } from 'src/modules/mail/mail.module';
@@ -9,7 +9,7 @@ import { MailModule } from 'src/modules/mail/mail.module';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { UserModule } from '../user/user.module';
-import { AdminModule } from '../admin/admin.module';
+// import { AdminModule } from '../admin/admin.module';
 import { JwtStrategyConfigService } from 'src/configs/passport/jwt.config.service';
 import { JwtPassportStrategyConfigService } from 'src/configs/passport/jwt-passport.config.service';
 import { MagicSignupStrategy } from './strategies/magic-signup.strategy';
@@ -21,13 +21,13 @@ import { MagicSignupStrategy } from './strategies/magic-signup.strategy';
 			useClass: JwtStrategyConfigService,
 		}),
 		UserModule,
-		AdminModule,
+		// AdminModule,
 		MailModule,
 	],
 	controllers: [AuthController],
 	providers: [
 		AuthService,
-		LocalStrategy,
+		// LocalStrategy,
 		JwtStrategy,
 		MagicLoginStrategy,
 		MagicSignupStrategy,

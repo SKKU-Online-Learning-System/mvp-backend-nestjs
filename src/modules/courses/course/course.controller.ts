@@ -23,6 +23,12 @@ import { UpdateCourseDto } from './dto/update-course.dto';
 export class CourseController {
 	constructor(private courseService: CourseService) {}
 
+	// 최근 한달 안에 업로드 된 강좌 조회
+	@Get('recent')
+	// @ApiCourse.getRecentlyUploadedCourses()
+	getRecentlyUploadedCourses() {
+		return this.courseService.getRecentlyUploadedCourses();
+	}
 	@Get('search')
 	@ApiCourse.searchCourses()
 	searchCourses(@Query() searchCoursesDto: SearchCoursesDto) {
@@ -80,4 +86,6 @@ export class CourseController {
 	deleteCourseById(@Param('courseId') courseId: number) {
 		return this.courseService.deleteCourseById(courseId);
 	}
+
+	
 }
