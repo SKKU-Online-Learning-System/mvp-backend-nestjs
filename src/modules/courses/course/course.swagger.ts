@@ -5,6 +5,7 @@ import {
 	ApiOperation,
 	ApiQuery,
 } from '@nestjs/swagger';
+import { CourseEntity } from 'src/entities/course.entity';
 
 export const ApiCourse = {
 	searchCourses() {
@@ -198,6 +199,18 @@ export const ApiCourse = {
 			ApiCookieAuth(),
 		);
 	},
+	getRecentlyUploadedCourses() {
+        return applyDecorators(
+            ApiOperation({
+                summary: '최근 한 달 안에 업로드 된 강좌 조회',
+                description: '최근 한 달 동안에 업로드 된 강좌를 조회합니다.',
+            }),
+            ApiOkResponse({
+                description: 'Returns courses that were uploaded within the past month.',
+                type: [CourseEntity],
+            }),
+        );
+    },
 };
 
 class GetRecentQuestions {

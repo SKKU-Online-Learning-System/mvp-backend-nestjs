@@ -23,7 +23,7 @@ export class EnrollmentService {
 			where: { userId, completed: false },
 			relations: {
 				course: {
-					instructor: true,
+					// instructor: true,
 					category1: true,
 					category2: true,
 				},
@@ -34,9 +34,9 @@ export class EnrollmentService {
 					title: true,
 					description: true,
 					summary: true,
-					instructor: {
-						nickname: true,
-					},
+					// instructor: {
+					// 	nickname: true,
+					// },
 					category1: {
 						name: true,
 					},

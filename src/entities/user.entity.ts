@@ -39,8 +39,8 @@ class User {
 	@Column({ default: 3 })
 	role: number;
 
-	@OneToMany(() => CourseEntity, (course) => course.instructor)
-	courses: CourseEntity[];
+	// @OneToMany(() => CourseEntity, (course) => course.instructor)
+	// courses: CourseEntity[];
 
 	@Column({default: 0})
 	watchedLecturesCount: number;

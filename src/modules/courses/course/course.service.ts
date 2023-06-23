@@ -31,7 +31,6 @@ export class CourseService {
 			.from(CourseEntity, 'course')
 			.leftJoin(Category1Entity, 'cat1', 'cat1.id = course.category1Id')
 			.leftJoin(Category2Entity, 'cat2', 'cat2.id = course.category2Id')
-			.leftJoin(UserEntity, 'user', 'user.id = course.instructorId');
 
 		if (category1Id) {
 			courses = courses.where('course.category1Id = :category1Id', {
@@ -70,7 +69,7 @@ export class CourseService {
 				'course.thumbnail AS thumbnail',
 				'course.difficulty AS difficulty',
 				'course.createdAt AS createdAt',
-				'user.email AS instructor',
+				// 'user.email AS instructor',
 				'cat1.name AS category1',
 				'cat2.name AS category2',
 			])
@@ -130,7 +129,7 @@ export class CourseService {
 			.findOne({
 				where: { id: courseId },
 				relations: {
-					instructor: true,
+					// instructor: true,
 					category1: true,
 					category2: true,
 					hashtags: true,
@@ -143,11 +142,11 @@ export class CourseService {
 					thumbnail: true,
 					difficulty: true,
 					createdAt: true,
-					instructor: {
-						id: true,
-						email: true,
-						nickname: true,
-					},
+					// instructor: {
+					// 	id: true,
+					// 	email: true,
+					// 	nickname: true,
+					// },
 					category1: {
 						id: true,
 						name: true,
@@ -169,59 +168,13 @@ export class CourseService {
 			return { ...course, is_logged_in: true, has_enrolled: false };
 		}
 
-		// const course = await this.dataSource
-		// 	.createQueryBuilder()
-		// 	.from(CourseEntity, 'course')
-		// 	.innerJoin(
-		// 		Category1Entity,
-		// 		'category1',
-		// 		'category1.id = course.category1Id',
-		// 	)
-		// 	.innerJoin(
-		// 		Category2Entity,
-		// 		'category2',
-		// 		'category2.id = course.category2Id',
-		// 	)
-		// 	.innerJoin(UserEntity, 'user', 'user.id = course.instructorId')
-		// 	.select([
-		// 		'course.id AS id',
-		// 		'course.title AS title',
-		// 		'course.summary AS summary',
-		// 		'course.description AS description',
-		// 		'course.thumbnail AS thumbnail',
-		// 		'course.difficulty AS difficulty',
-		// 		'course.createdAt AS createdAt',
-		// 		'user.email AS instructor',
-		// 		'category1.name AS category1',
-		// 		'category2.name AS category2',
-		// 	])
-		// 	.where('course.id = :id', { id })
-		// 	.getRawOne();
-
-		// const hashtag = await this.dataSource
-		// 	.createQueryBuilder()
-		// 	.from(CourseHashtagEntity, 'courseHashtag')
-		// 	.innerJoin(
-		// 		HashtagEntity,
-		// 		'hashtag',
-		// 		'hashtag.id = courseHashtag.hashtagId',
-		// 	)
-		// 	.select(['hashtag.tag AS tag'])
-		// 	.where('courseId = :id', { id })
-		// 	.getRawMany();
-
-		// hashtag.map((x, i, arr) => {
-		// 	arr[i] = arr[i].tag;
-		// });
-
-		// return { ...course, hashtag };
 	}
 
 	async getPopularCourses() {
 		const courses: any = await this.dataSource
 			.createQueryBuilder()
 			.from(CourseEntity, 'course')
-			.leftJoin('course.instructor', 'instructor')
+			// .leftJoin('course.instructor', 'instructor')
 			.leftJoin('course.category1', 'category1')
 			.leftJoin('course.category2', 'category2')
 			.leftJoin('course.enrollments', 'enrollments')
@@ -237,7 +190,7 @@ export class CourseService {
 				'course.thumbnail',
 				'course.difficulty',
 				'course.createdAt',
-				'instructor.nickname',
+				// 'instructor.nickname',
 				'category1.name',
 				'category2.name',
 			])

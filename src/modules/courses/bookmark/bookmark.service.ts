@@ -11,7 +11,7 @@ export class BookmarkService {
 			where: { userId, bookmark: true },
 			relations: {
 				course: {
-					instructor: true,
+					// instructor: true,
 					category1: true,
 					category2: true,
 				},
@@ -22,9 +22,9 @@ export class BookmarkService {
 					title: true,
 					description: true,
 					summary: true,
-					instructor: {
-						nickname: true,
-					},
+					// instructor: {
+					// 	nickname: true,
+					// },
 					category1: {
 						name: true,
 					},
@@ -49,7 +49,7 @@ export class BookmarkService {
 			where: { userId, bookmark: true, completed: false },
 			relations: {
 				course: {
-					instructor: true,
+					// instructor: true,
 					category1: true,
 					category2: true,
 				},
@@ -60,9 +60,9 @@ export class BookmarkService {
 					title: true,
 					description: true,
 					summary: true,
-					instructor: {
-						nickname: true,
-					},
+					// instructor: {
+					// 	nickname: true,
+					// },
 					category1: {
 						name: true,
 					},
@@ -84,7 +84,7 @@ export class BookmarkService {
 			where: { userId, bookmark: true, completed: true },
 			relations: {
 				course: {
-					instructor: true,
+					// instructor: true,
 					category1: true,
 					category2: true,
 				},
@@ -95,9 +95,9 @@ export class BookmarkService {
 					title: true,
 					description: true,
 					summary: true,
-					instructor: {
-						nickname: true,
-					},
+					// instructor: {
+					// 	nickname: true,
+					// },
 					category1: {
 						name: true,
 					},

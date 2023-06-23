@@ -19,7 +19,7 @@ export class CompleteService {
 			where: { userId, completed: true },
 			relations: {
 				course: {
-					instructor: true,
+					// instructor: true,
 					category1: true,
 					category2: true,
 				},
@@ -30,9 +30,9 @@ export class CompleteService {
 					title: true,
 					description: true,
 					summary: true,
-					instructor: {
-						nickname: true,
-					},
+					// instructor: {
+					// 	nickname: true,
+					// },
 					category1: {
 						name: true,
 					},

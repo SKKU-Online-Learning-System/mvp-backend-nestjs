@@ -25,10 +25,11 @@ export class CourseController {
 
 	// 최근 한달 안에 업로드 된 강좌 조회
 	@Get('recent')
-	// @ApiCourse.getRecentlyUploadedCourses()
+	@ApiCourse.getRecentlyUploadedCourses()
 	getRecentlyUploadedCourses() {
 		return this.courseService.getRecentlyUploadedCourses();
 	}
+
 	@Get('search')
 	@ApiCourse.searchCourses()
 	searchCourses(@Query() searchCoursesDto: SearchCoursesDto) {

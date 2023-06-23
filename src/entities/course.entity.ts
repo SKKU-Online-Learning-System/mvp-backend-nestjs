@@ -30,10 +30,8 @@ class Course {
 	@Column({ type: 'text' })
 	description: string;
 
-	@ManyToOne(() => UserEntity, (instructor) => instructor.courses)
-	instructor: UserEntity;
-	@Column()
-	instructorId: number;
+	@Column({ type: 'varchar', length: 20 })
+	instructor: string;
 
 	@ManyToOne(() => Category1Entity)
 	category1: Category1Entity;

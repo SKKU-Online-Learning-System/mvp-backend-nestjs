@@ -4,7 +4,7 @@ export const CourseSeed = [
 		title: 'Advanced topics in software engineering',
 		description: '',
 		summary: '소프트웨어 엔지니어링 강의입니다.',
-		instructorId: 1,
+		instructor: '',
 		category1Id: 1,
 		category2Id: 10,
 		thumbnail:
@@ -17,7 +17,7 @@ export const CourseSeed = [
 		title: 'Computer programming for engineers',
 		description: '',
 		summary: '공학 컴퓨터 프로그래밍',
-		instructorId: 1,
+		instructor: '',
 		category1Id: 1,
 		category2Id: 6,
 		thumbnail:
@@ -30,7 +30,7 @@ export const CourseSeed = [
 		title: 'Data visualization',
 		description: '',
 		summary: '데이터 시각화',
-		instructorId: 1,
+		instructor: '',
 		category1Id: 3,
 		category2Id: 19,
 		thumbnail:
@@ -43,7 +43,7 @@ export const CourseSeed = [
 		title: 'Machine learning with graphs',
 		description: '',
 		summary: '머신 러닝',
-		instructorId: 1,
+		instructor: '',
 		category1Id: 3,
 		category2Id: 18,
 		thumbnail:
@@ -56,7 +56,7 @@ export const CourseSeed = [
 		title: '파이썬 프로그래밍',
 		description: '',
 		summary: '파이썬 프로그래밍 강의',
-		instructorId: 1,
+		instructor: '',
 		category1Id: 1,
 		category2Id: 6,
 		thumbnail:
@@ -69,7 +69,7 @@ export const CourseSeed = [
 		title: '성대의 성대한 특강',
 		description: '',
 		summary: '성균관대 특강',
-		instructorId: 1,
+		instructor: '',
 		category1Id: 8,
 		category2Id: 44,
 		thumbnail:

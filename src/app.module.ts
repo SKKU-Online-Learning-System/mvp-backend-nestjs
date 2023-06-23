@@ -19,6 +19,7 @@ import { routes } from './router';
 import { QnAModule } from './modules/Q&A/qna.module';
 import { CoursesModule } from './modules/courses/courses.module';
 
+
 @Module({
 	imports: [
 		ConfigModule.forRoot({ isGlobal: true }),
@@ -37,7 +38,7 @@ import { CoursesModule } from './modules/courses/courses.module';
 		BannerModule,
 		SeedModule,
 		FileModule,
-		
+
 	],
 	controllers: [AppController],
 	providers: [AppService],

@@ -8,7 +8,7 @@ export class CreateCourseDto {
 	readonly description: string;
 
 	@IsInt()
-	readonly instructorId: number;
+	readonly instructor: string;
 
 	@IsInt()
 	readonly category1Id: number;
