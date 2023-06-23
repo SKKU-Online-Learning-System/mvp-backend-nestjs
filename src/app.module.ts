@@ -18,6 +18,7 @@ import { RouterModule } from '@nestjs/core';
 import { routes } from './router';
 import { QnAModule } from './modules/Q&A/qna.module';
 import { CoursesModule } from './modules/courses/courses.module';
+import { PopularCoursesModule } from './modules/popular-courses/popular-courses.module';
 
 
 @Module({
@@ -38,6 +39,7 @@ import { CoursesModule } from './modules/courses/courses.module';
 		BannerModule,
 		SeedModule,
 		FileModule,
+		PopularCoursesModule,
 
 	],
 	controllers: [AppController],
