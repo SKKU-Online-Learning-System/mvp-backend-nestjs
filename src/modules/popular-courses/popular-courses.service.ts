@@ -16,7 +16,21 @@ export class PopularCoursesService {
     private courseRepository: Repository<CourseEntity>,
     @InjectRepository(EnrollmentEntity)
     private enrollmentRepository: Repository<EnrollmentEntity>,
+    
   ) {}
+
+  async getPopularCourses(limit: number, category1?: string): Promise<PopularCourseEntity[]> {
+    let query = this.popularCourseRepository
+      .createQueryBuilder("popular_courses")
+      .orderBy("popular_courses.enrollmentCount", "DESC")
+      .take(limit);
+
+    if (category1) {
+      query = query.where("popular_courses.category1 = :category1", { category1 });
+    }
+
+    return query.getMany();
+  }
 
   async updatePopularCourses() {
     const courses = await this.courseRepository.find({ relations: ['enrollments', 'category1'] });
@@ -42,23 +56,4 @@ export class PopularCoursesService {
     await this.popularCourseRepository.save(popularCourses);
   }
 
-  create(createPopularCourseDto: CreatePopularCourseDto) {
-    return 'This action adds a new popularCourse';
-  }
-
-  findAll() {
-    return `This action returns all popularCourses`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} popularCourse`;
-  }
-
-  update(id: number, updatePopularCourseDto: UpdatePopularCourseDto) {
-    return `This action updates a #${id} popularCourse`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} popularCourse`;
-  }
 }
