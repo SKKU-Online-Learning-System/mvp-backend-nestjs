@@ -1,16 +1,22 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { NestExpressApplication } from '@nestjs/platform-express';
+import { NestExpressApplication,  ExpressAdapter } from '@nestjs/platform-express';
+// import { ExpressAdapter } from '@nestjs/platform-express';
 import helmet from 'helmet';
 import * as morgan from 'morgan';
 import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 import { swaggerConfig } from './configs/swagger/swagger.config';
 import { join } from 'path';
+const express = require('express');
 
 async function bootstrap() {
-	const app = await NestFactory.create<NestExpressApplication>(AppModule);
-
+	const server = express();
+    const app = await NestFactory.create<NestExpressApplication>(
+    AppModule,
+    new ExpressAdapter(server),
+  );
+  app.setGlobalPrefix('api');
 	swaggerConfig(app);
 
 	// middleware
@@ -53,6 +59,8 @@ async function bootstrap() {
 		}),
 	);
 
-	await app.listen(4000);
+	await app.init();
+	// await app.listen(4000);
+	server.listen(4000);
 }
 bootstrap();
