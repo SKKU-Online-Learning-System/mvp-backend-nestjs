@@ -21,9 +21,9 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t mrdang/mrdang-backend-nodejs:1.0.0 .
+          docker build -t mrdangssa/mrdang-backend-nestjs:1.0.0 .
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker push mrdangssa/mrdang-backend-nestjs:1.0.0
+          docker push mrdangssa/mrdang-backend-nestjs:1.0.0 .
 
       - name: SSH into Server and Deploy
         uses: appleboy/ssh-action@master
@@ -34,5 +34,5 @@ jobs:
           script: |
             docker stop mrdang-backend || true
             docker rm mrdang-backend || true
-            docker pull mrdangssa/mrdang-backend-nestjs:1.0.0
+            docker pull mrdangssa/mrdang-backend-nestjs:1.0.0 .
             docker run -d --name mrdang-backend --network net -e VIRTUAL_HOST="mrdang.cs.skku.edu" -e LETSENCRYPT_HOST="mrdang.cs.skku.edu" --add-host host.docker.internal:host-gateway -p 4102:4000 mrdang/mrdang-backend-nodejs:1.0.0
