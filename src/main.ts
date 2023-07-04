@@ -29,8 +29,24 @@ async function bootstrap() {
 	   'https://mrdang.cs.skku.edu:443',
    ],
 	methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-});
-    
+   
+   });
+
+   // Block direct access to /api endpoint
+   app.use('/api', (req, res, next) => {
+      if (req.headers.referer) {
+         const refererUrl = new URL(req.headers.referer);
+      if (refererUrl.origin === 'https://mrdang.cs.skku.edu') {
+         next();
+      } else {
+         res.status(403).send('Forbidden');
+      }
+      } else {
+      res.status(403).send('Forbidden');
+   }
+   });
+ 
+
    app.use(helmet());
    app.use(cookieParser());
    app.use(
