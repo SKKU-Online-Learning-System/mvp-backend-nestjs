@@ -11,56 +11,77 @@ import { join } from 'path';
 const express = require('express');
 
 async function bootstrap() {
-	const server = express();
+   const server = express();
     const app = await NestFactory.create<NestExpressApplication>(
     AppModule,
     new ExpressAdapter(server),
   );
   app.setGlobalPrefix('api');
-	swaggerConfig(app);
+   swaggerConfig(app);
 
-	// middleware
-	app.enableCors({
-	 	credentials: true,
-	 	origin: 'http://localhost:3000',
-	 	methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-	 });
-	 
-	app.use(helmet());
-	app.use(cookieParser());
-	app.use(
-		morgan('[:date[iso]] :method :url :response-time ms\t:remote-addr'),
-		//  - :remote-user\tHTTP/:http-version :res[content-length] ":referrer" ":user-agent
-	);
+   // middleware
+   app.enableCors({
+	credentials: true,
+	origin: [
+	   'http://localhost:3000',
+	   'https://mrdang.cs.skku.edu',
+	   'http://mrdang.cs.skku.edu',
+	   'https://mrdang.cs.skku.edu:443',
+   ],
+	methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+   
+   });
 
-	// static files
-	app.useStaticAssets(join(__dirname, '..', 'public'));
-	// app.useStaticAssets(join(__dirname, '..', 'public/images/banners'), {
-	// 	prefix: '/bannerImage',
-	// });
-	// app.useStaticAssets(join(__dirname, '..', 'public/images/courses'), {
-	// 	prefix: '/courseImage',
-	// });
-	// app.useStaticAssets(join(__dirname, '..', 'public/videos'), {
-	// 	prefix: '/video',
-	// });
+   // Block direct access to /api endpoint
+   app.use('/api', (req, res, next) => {
+      if (req.headers.referer) {
+         const refererUrl = new URL(req.headers.referer);
+      if (refererUrl.origin === ('https://mrdang.cs.skku.edu') || refererUrl.origin === ('https://localhost:3000')) {
+         next();
+      } else {
+         res.status(403).send('Forbidden');
+      }
+      } else {
+      res.status(403).send('Forbidden');
+   }
+   });
+ 
 
-	// view engine
-	app.setViewEngine('pug');
-	app.setBaseViewsDir(`${__dirname}/../views`);
+   app.use(helmet());
+   app.use(cookieParser());
+   app.use(
+      morgan('[:date[iso]] :method :url :response-time ms\t:remote-addr'),
+      //  - :remote-user\tHTTP/:http-version :res[content-length] ":referrer" ":user-agent
+   );
 
-	app.useGlobalPipes(
-		new ValidationPipe({
-			transform: true,
-			whitelist: true,
-			forbidNonWhitelisted: true,
-			validateCustomDecorators: true,
-			disableErrorMessages: false,
-		}),
-	);
+   // static files
+   app.useStaticAssets(join(__dirname, '..', 'public'));
+   // app.useStaticAssets(join(__dirname, '..', 'public/images/banners'), {
+   //    prefix: '/bannerImage',
+   // });
+   // app.useStaticAssets(join(__dirname, '..', 'public/images/courses'), {
+   //    prefix: '/courseImage',
+   // });
+   // app.useStaticAssets(join(__dirname, '..', 'public/videos'), {
+   //    prefix: '/video',
+   // });
 
-	await app.init();
-	// await app.listen(4000);
-	server.listen(4000);
+   // view engine
+   app.setViewEngine('pug');
+   app.setBaseViewsDir(`${__dirname}/../views`);
+
+   app.useGlobalPipes(
+      new ValidationPipe({
+         transform: true,
+         whitelist: true,
+         forbidNonWhitelisted: true,
+         validateCustomDecorators: true,
+         disableErrorMessages: false,
+      }),
+   );
+
+   await app.init();
+   // await app.listen(4000);
+   server.listen(4000);
 }
 bootstrap();

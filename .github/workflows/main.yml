@@ -1,23 +1,38 @@
 name: CI
 
 on:
-    push:
-        branches: ['main']
+  push:
+    branches: ['main']
 
 jobs:
-    deploy:
-        runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-latest
 
-        steps:
-            - uses: actions/checkout@v3
-            - name: Run scripts in server
-              uses: appleboy/ssh-action@master
-              with:
-                  host: ${{ secrets.SSH_HOST }}
-                  username: ${{ secrets.SSH_USERNAME }}
-                  key: ${{ secrets.SSH_KEY }}
-                  script: |
-                      cd mvp-backend-nestjs/
-                      rm -rf ./dist
-                      git pull origin main
-                      pm2 restart 0
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Docker
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+          sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+          sudo apt-get update
+          sudo apt-get -y install docker-ce
+
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t mrdang/mrdang-backend-nodejs:1.0.0 .
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          docker push mrdangssa/mrdang-backend-nestjs:1.0.0
+
+      - name: SSH into Server and Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            docker stop mrdang-backend || true
+            docker rm mrdang-backend || true
+            docker pull mrdangssa/mrdang-backend-nestjs:1.0.0
+            docker run -d --name mrdang-backend --network net -e VIRTUAL_HOST="mrdang.cs.skku.edu" -e LETSENCRYPT_HOST="mrdang.cs.skku.edu" --add-host host.docker.internal:host-gateway -p 4102:4000 mrdang/mrdang-backend-nodejs:1.0.0
