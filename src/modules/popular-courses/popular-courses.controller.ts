@@ -10,31 +10,6 @@ import { PopularCourseEntity } from '../../entities/popular-course.entity'
 export class PopularCoursesController {
   constructor(private readonly popularCoursesService: PopularCoursesService) {}
 
-  // @Post()
-  // create(@Body() createPopularCourseDto: CreatePopularCourseDto) {
-  //   return this.popularCoursesService.create(createPopularCourseDto);
-  // }
-
-  // @Get()
-  // findAll() {
-  //   return this.popularCoursesService.findAll();
-  // }
-
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.popularCoursesService.findOne(+id);
-  // }
-
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updatePopularCourseDto: UpdatePopularCourseDto) {
-  //   return this.popularCoursesService.update(+id, updatePopularCourseDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.popularCoursesService.remove(+id);
-  // }
-
   @Post('update')
   @ApiOperation({ summary: 'Update popular courses' })
   async updatePopularCourses() {

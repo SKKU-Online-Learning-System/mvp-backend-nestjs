@@ -12,6 +12,7 @@ export const swaggerConfig = (app) => {
 		.setVersion('0.0.3')
 		.addTag('Admin', '관리자 및 운영자 전용 테이블')
 		.addTag('PopularCourses', '통계용 테이블')
+		.addTag('MainLayout', '메인페이지 관리용 테이블')
 		.addTag('Auth', '')
 		.addTag('Course', '')
 		.addTag('Enrollment', 'Course 수강')
