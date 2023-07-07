@@ -19,6 +19,7 @@ import { routes } from './router';
 import { QnAModule } from './modules/Q&A/qna.module';
 import { CoursesModule } from './modules/courses/courses.module';
 import { PopularCoursesModule } from './modules/popular-courses/popular-courses.module';
+import { CourseLayoutModule } from './modules/course-layout/course-layout.module';
 
 
 @Module({
@@ -40,6 +41,7 @@ import { PopularCoursesModule } from './modules/popular-courses/popular-courses.
 		SeedModule,
 		FileModule,
 		PopularCoursesModule,
+		CourseLayoutModule,
 
 	],
 	controllers: [AppController],

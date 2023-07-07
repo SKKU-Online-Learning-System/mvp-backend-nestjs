@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { CourseEntity } from 'src/entities/course.entity';
 import { Category1Entity } from 'src/entities/category1.entity';
@@ -7,19 +7,20 @@ import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { CourseHashtagEntity } from 'src/entities/course-hashtag.entity';
 import { HashtagEntity } from 'src/entities/hashtag.entity';
-import { UserEntity } from 'src/entities/user.entity';
 import { SearchCoursesDto } from './dto/search-courses.dto';
 import { SectionEntity } from 'src/entities/section.entity';
 import { HttpResponse, status } from 'src/configs/etc/http-response.config';
 import { EnrollmentService } from '../enrollment/enrollment.service';
 import { Question } from 'src/entities/question.entity';
-import { Between } from 'typeorm';
-
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 @Injectable()
 export class CourseService {
 	constructor(
 		private dataSource: DataSource,
 		private enrollmentService: EnrollmentService,
+		@InjectRepository(CourseEntity)
+    	private courseRepository: Repository<CourseEntity>,
 	) {}
 
 	async searchCourses(searchCoursesDto: SearchCoursesDto) {
@@ -288,7 +289,7 @@ export class CourseService {
 		return status(200);
 	}
 
-	//최근 한달에 업로드된 강좌
+	//Jaeung Lee
 	async getRecentlyUploadedCourses(): Promise<CourseEntity[]> {
 		const dateOneMonthAgo = new Date();
 		dateOneMonthAgo.setMonth(dateOneMonthAgo.getMonth() - 1);
@@ -301,5 +302,37 @@ export class CourseService {
 		
 		return courses;
 	}
+	
+	async getThumbnail(courseId: number): Promise<string> {
+		const course = await this.dataSource
+			.getRepository(CourseEntity)
+			.findOne({
+				where: { id: courseId },
+				select: ['thumbnail'],
+			});
+		
+		if (!course) {
+			throw new NotFoundException(`Course with ID ${courseId} not found.`);
+		}
+	
+		return course.thumbnail;
+	}
+
+	async getCategory(courseId: number): Promise<string> {
+		const course = await this.courseRepository.findOne({
+		  where: { id: courseId },
+		  relations: ['category1']
+		});
+	
+		if (!course) {
+		  throw new Error(`Course with id ${courseId} not found`);
+		}
+	
+		if (!course.category1) {
+		  throw new Error(`Category1 for course with id ${courseId} not found`);
+		}
+	
+		return course.category1.name;  // assuming the Category1 entity has a 'name' field
+	  }
 	
 }
