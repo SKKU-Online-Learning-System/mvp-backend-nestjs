@@ -333,6 +333,45 @@ export class CourseService {
 		}
 	
 		return course.category1.name;  // assuming the Category1 entity has a 'name' field
-	  }
+	}
 	
+	
+	async getAllCourses() {
+		const courses: any = await this.dataSource
+		  .createQueryBuilder()
+		  .from(CourseEntity, 'course')
+		  .leftJoin('course.category1', 'category1')
+		  .leftJoin('course.category2', 'category2')
+		  .select([
+			'course.id',
+			'course.title',
+			'course.description',
+			'course.summary',
+			'course.thumbnail',
+			'course.difficulty',
+			'course.createdAt',
+			'category1.name',
+			'category2.name',
+		  ])
+		  .getMany();
+	  
+		  for (const course of courses) {
+			const lectures = await this.dataSource
+			  .getRepository(SectionEntity)
+			  .find({
+				where: {
+				  courseId: course.id,
+				},
+				relations: {
+				  lectures: true,
+				},
+			  });
+		  
+			const lectureCount = lectures.length;
+			course.lectureCnt = lectureCount;
+		  }
+		  
+		return courses;
+	}	  
+	  
 }

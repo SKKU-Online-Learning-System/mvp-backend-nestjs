@@ -199,6 +199,18 @@ export const ApiCourse = {
 			ApiCookieAuth(),
 		);
 	},
+	getAllCourses() {
+		return applyDecorators(
+			ApiOperation({
+				summary: '모든 강좌 조회',
+                description: '강좌 관리를 위해 모든 강좌를 조회합니다.',
+			}),
+			ApiOkResponse({
+                description: 'Returns all courses',
+                type: [CourseEntity],
+            }),
+		);
+	},
 	getRecentlyUploadedCourses() {
         return applyDecorators(
             ApiOperation({
@@ -211,6 +223,7 @@ export const ApiCourse = {
             }),
         );
     },
+	
 };
 
 class GetRecentQuestions {

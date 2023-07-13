@@ -30,6 +30,12 @@ export class CourseController {
 		return this.courseService.getRecentlyUploadedCourses();
 	}
 
+	@Get('all')
+	@ApiCourse.getAllCourses()
+	getAllCourses() {
+		return this.courseService.getAllCourses();
+	}
+
 	@Get('search')
 	@ApiCourse.searchCourses()
 	searchCourses(@Query() searchCoursesDto: SearchCoursesDto) {
@@ -67,6 +73,7 @@ export class CourseController {
 		return this.courseService.getRecentQuestions(courseId);
 	}
 
+	
 	@Post()
 	@ApiCourse.createCourse()
 	createCourse(@Body() createCourseDto: CreateCourseDto) {
@@ -88,5 +95,5 @@ export class CourseController {
 		return this.courseService.deleteCourseById(courseId);
 	}
 
-	
+
 }
