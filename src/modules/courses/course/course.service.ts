@@ -352,26 +352,9 @@ export class CourseService {
 			'course.createdAt',
 			'category1.name',
 			'category2.name',
+			'course.lectureCnt',
 		  ])
-		  .getMany();
-	  
-		  for (const course of courses) {
-			const lectures = await this.dataSource
-			  .getRepository(SectionEntity)
-			  .find({
-				where: {
-				  courseId: course.id,
-				},
-				relations: {
-				  lectures: true,
-				},
-			  });
-		  
-			const lectureCount = lectures.length;
-			course.lectureCnt = lectureCount;
-		  }
-		  
+		  .getMany();		  
 		return courses;
 	}	  
-	  
 }
