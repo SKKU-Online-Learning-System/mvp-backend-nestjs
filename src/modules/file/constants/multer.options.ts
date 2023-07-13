@@ -1,71 +1,33 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
-import { existsSync, mkdirSync } from 'fs';
-import { diskStorage } from 'multer';
-import { join } from 'path';
+import { ConfigService } from '@nestjs/config';
+import { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer-options.interface';
+import multerS3 = require('multer-s3')
+import { S3Client } from '@aws-sdk/client-s3';
+import path = require('path');
 
-export const VideoMulterOptions = {
-	storage: diskStorage({
-		destination: (req, file, callback) => {
-			const uploadPath = join(
-				'public/videos',
-				req.body.courseId.toString(),
-			);
-			if (!existsSync(uploadPath)) {
-				mkdirSync(uploadPath);
-			}
-			callback(null, uploadPath);
-		},
-		filename: (req, file, callback) => {
-			callback(null, `${Date.now()}-${file.originalname}`);
-		},
-	}),
-	fileFilter: (req, file, callback) => {
-		if (file.mimetype.match(/\/(mp4)$/)) {
-			callback(null, true);
-		} else {
-			callback(
-				new HttpException(
-					'Video type is not supported',
-					HttpStatus.BAD_REQUEST,
-				),
-				false,
-			);
-		}
-	},
-	limits: {
-		fileSize: 10485760 * 1000, // 10GB
-	},
-};
 
-export const ImageMulterOptions = (imageType: string) => {
-	return {
-		storage: diskStorage({
-			destination: (req, file, callback) => {
-				const uploadPath = join('public/images', imageType);
-				if (!existsSync(uploadPath)) {
-					mkdirSync(uploadPath);
-				}
-				callback(null, uploadPath);
-			},
-			filename: (req, file, callback) => {
-				callback(null, `${Date.now()}-${file.originalname}`);
-			},
-		}),
-		fileFilter: (req, file, callback) => {
-			if (file.mimetype.match(/\/(jpg|jpeg|png)$/)) {
-				callback(null, true);
-			} else {
-				callback(
-					new HttpException(
-						'Image type is not supported',
-						HttpStatus.BAD_REQUEST,
-					),
-					false,
-				);
-			}
-		},
-		limits: {
-			fileSize: 16777216, // 16MB
-		},
-	};
+export const multerOptionsFactory = (
+  configService: ConfigService,
+): MulterOptions => {
+  // s3 인스턴스를 생성합니다.
+  const s3 = new S3Client({
+    region: process.env.AWS_BUCKET_REGION,
+    credentials: {
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    },
+  });
+
+
+  return {
+    storage: multerS3({
+      s3,
+      bucket: process.env.AWS_BUCKET_NAME,
+      key(_req, file, done) {
+        const ext = path.extname(file.originalname); // 파일의 확장자 추출
+        const basename = path.basename(file.originalname, ext); // 파일 이름
+        done(null, `automata/${basename}${ext}`);
+      },
+    }),
+    //limits: { fileSize: 1000 * 1024 * 1024 }, // 10MB
+  };
 };

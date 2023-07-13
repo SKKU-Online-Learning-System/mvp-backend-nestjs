@@ -24,19 +24,4 @@ export class LectureController {
 	getLecturePathByLectureId(@Param('lectureId') id: number) {
 		return this.lectureService.getLecturePathByLectureId(id);
 	}
-
-	@Get('testS3Video')
-	getLecturePathForTest(@Param('lectureId') id: number) {
-		return this.lectureService.getLecturePathForTest(id);
-	}
-
-	@Post('upload/:lectureId')
-	@UseInterceptors(FileInterceptor('video'))
-	upload(@UploadedFile() file) {
-		const response = {
-			originalName: file.originalName,
-			filenName: file.fileName,
-		};
-		return response;
-	}
 }
