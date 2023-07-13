@@ -18,11 +18,19 @@ export class MainLayoutController {
   }
 
   
+  @Get(':order')
+  @ApiOperation({ summary: 'Get main page layout by order' })
+  @ApiResponse({ status: 200, description: 'The main layouts have been successfully retrieved.', type: MainLayout })
+  getByOrder(@Param('order', ParseIntPipe) order: number): Promise<MainLayout[]> {
+    return this.mainLayoutService.getByOrder(order);
+}
   @Get(':order/:sequence')
   @ApiOperation({ summary: 'Get main page layout' })
   @ApiResponse({ status: 200, description: 'The main layout has been successfully retrieved.', type: MainLayout })
   orderBySequence(@Param('order', ParseIntPipe) order: number, @Param('sequence', ParseIntPipe) sequence: number,): Promise<MainLayout[]> {
     return this.mainLayoutService.getByOrderAndSequence(order, sequence);
   }
+
+  
 
 }

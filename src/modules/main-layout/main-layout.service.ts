@@ -16,26 +16,34 @@ export class MainLayoutService {
   
   async createFromCourseIds(createMainLayoutDto: CreateMainLayoutDto[]): Promise<MainLayout[]> {
     const mainLayouts = [];
-
+  
     for (const dto of createMainLayoutDto) {
-      const thumbnailLink = await this.courseService.getThumbnail(dto.courseId);
-      const category = await this.courseService.getCategory(dto.courseId); 
-
-      // find existing entity with the same order and sequence
-      const existingEntities = await this.mainLayoutRepository.find({ where: { order: dto.order, sequence: dto.sequence } });
-
-      // if it exists, remove it
-      if (existingEntities.length > 0) {
-        await this.mainLayoutRepository.remove(existingEntities);
-      }
-
-      // create new entity and add it to the courseLayouts array
-      const mainLayout = this.mainLayoutRepository.create({ ...dto, thumbnailLink, category });  
-      mainLayouts.push(mainLayout);
+      await this.mainLayoutRepository.manager.transaction(async transactionalEntityManager => {
+        const thumbnailLink = await this.courseService.getThumbnail(dto.courseId);
+        const category = await this.courseService.getCategory(dto.courseId); 
+  
+        // find existing entity with the same order and sequence
+        const existingEntity = await transactionalEntityManager.findOne(MainLayout, { where: { order: dto.order, sequence: dto.sequence } });
+  
+        // if it exists, remove it
+        if (existingEntity) {
+          await transactionalEntityManager.remove(MainLayout, existingEntity);
+        }
+  
+        // create new entity and add it to the mainLayouts array
+        const mainLayout = await transactionalEntityManager.create(MainLayout, { ...dto, thumbnailLink, category });  
+  
+        // save the entity
+        const savedMainLayout = await transactionalEntityManager.save(MainLayout, mainLayout);
+  
+        mainLayouts.push(savedMainLayout);
+      });
     }
-
-    // save all new entities
-    return this.mainLayoutRepository.save(mainLayouts);
+    return mainLayouts;
+  }
+  
+  getByOrder(order: number): Promise<MainLayout[]> {
+    return this.mainLayoutRepository.find({ where: { order } });
   }
   
   getByOrderAndSequence(order: number, sequence: number): Promise<MainLayout[]> {
