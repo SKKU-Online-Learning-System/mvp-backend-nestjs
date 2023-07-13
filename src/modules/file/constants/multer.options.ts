@@ -25,7 +25,7 @@ export const multerOptionsFactory = (
       key(_req, file, done) {
         const ext = path.extname(file.originalname); // 파일의 확장자 추출
         const basename = path.basename(file.originalname, ext); // 파일 이름
-        done(null, `automata/${basename}${ext}`);
+        done(null, `${basename}${ext}`);
       },
     }),
     //limits: { fileSize: 1000 * 1024 * 1024 }, // 10MB
