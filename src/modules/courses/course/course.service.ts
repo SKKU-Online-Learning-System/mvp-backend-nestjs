@@ -142,6 +142,7 @@ export class CourseService {
 					thumbnail: true,
 					difficulty: true,
 					createdAt: true,
+					instructor: true,
 					// instructor: {
 					// 	id: true,
 					// 	email: true,
@@ -213,6 +214,7 @@ export class CourseService {
 				select: {
 					id: true,
 					title: true,
+					
 					lectures: {
 						id: true,
 						title: true,

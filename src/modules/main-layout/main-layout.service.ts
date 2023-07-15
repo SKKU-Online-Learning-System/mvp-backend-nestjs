@@ -33,7 +33,7 @@ export class MainLayoutService {
         const courseInfo = await this.courseService.getCourseById(dto.courseId);
         const category1 = await this.courseService.getCategory(dto.courseId); 
         const mainLayout = await transactionalEntityManager.create(MainLayout, { ...dto, 
-          thumbnail: courseInfo.thumbnail, category1: category1, title:courseInfo.title, description:courseInfo.description });  
+          thumbnail: courseInfo.thumbnail, category1: category1, title:courseInfo.title, description:courseInfo.description, instructor:courseInfo.instructor });  
   
         // save the entity
         const savedMainLayout = await transactionalEntityManager.save(MainLayout, mainLayout);
@@ -45,8 +45,13 @@ export class MainLayoutService {
   }
   
   getByOrder(order: number): Promise<MainLayout[]> {
-    return this.mainLayoutRepository.find({ where: { order } });
-  }
+    return this.mainLayoutRepository.find({ 
+        where: { order },
+        order: {
+            sequence: 'ASC'
+        }
+    });
+}
   
   getByOrderAndSequence(order: number, sequence: number): Promise<MainLayout[]> {
     return this.mainLayoutRepository.find({ where: { order, sequence } });

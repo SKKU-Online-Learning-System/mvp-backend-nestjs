@@ -19,14 +19,15 @@ export class MainLayout {
     
     @Column({ length: 30 })
     category1: string;
-    
+
     @Column({ type: 'varchar', length: 100 })
 	title: string;
 
     @Column({ type: 'text' })
 	description: string;
 
-    
+    @Column({ type: 'varchar', length: 20 })
+	instructor: string;
     
     
 }

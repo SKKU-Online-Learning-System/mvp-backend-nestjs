@@ -6,4 +6,5 @@ export class CreateMainLayoutDto {
     readonly category1: string; 
     readonly title: string;
     readonly description: string;
+    readonly instructor: string;
 }
