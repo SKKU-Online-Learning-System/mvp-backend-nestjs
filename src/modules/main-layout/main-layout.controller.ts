@@ -24,6 +24,7 @@ export class MainLayoutController {
   getByOrder(@Param('order', ParseIntPipe) order: number): Promise<MainLayout[]> {
     return this.mainLayoutService.getByOrder(order);
 }
+
   @Get(':order/:sequence')
   @ApiOperation({ summary: 'Get main page layout' })
   @ApiResponse({ status: 200, description: 'The main layout has been successfully retrieved.', type: MainLayout })

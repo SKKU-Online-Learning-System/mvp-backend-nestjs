@@ -122,8 +122,7 @@ export class CourseService {
 		return cat;
 	}
 
-	async getCourseById(courseId: number, user) {
-		console.log(user);
+	async getCourseById(courseId: number) {
 
 		const course = await this.dataSource
 			.getRepository(CourseEntity)
@@ -159,15 +158,15 @@ export class CourseService {
 					hashtags: true,
 				},
 			});
+		return course
+		// if (!user.id)
+		// 	return { ...course, is_logged_in: false, has_enrolled: false };
 
-		if (!user.id)
-			return { ...course, is_logged_in: false, has_enrolled: false };
-
-		if (await this.enrollmentService.checkUserEnrolled(user.id, courseId)) {
-			return { ...course, is_logged_in: true, has_enrolled: true };
-		} else {
-			return { ...course, is_logged_in: true, has_enrolled: false };
-		}
+		// if (await this.enrollmentService.checkUserEnrolled(user.id, courseId)) {
+		// 	return { ...course, is_logged_in: true, has_enrolled: true };
+		// } else {
+		// 	return { ...course, is_logged_in: true, has_enrolled: false };
+		// }
 
 	}
 

@@ -57,8 +57,8 @@ export class CourseController {
 	@Get(':courseId')
 	@ApiCourse.getCourseById()
 	@UseGuards(RolesGuard())
-	getCourseById(@Param('courseId') courseId: number, @User() user) {
-		return this.courseService.getCourseById(courseId, user);
+	getCourseById(@Param('courseId') courseId: number) {
+		return this.courseService.getCourseById(courseId);
 	}
 
 	@Get(':courseId/lectures')

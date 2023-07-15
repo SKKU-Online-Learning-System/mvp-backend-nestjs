@@ -1,7 +1,9 @@
 export class CreateMainLayoutDto {
 	readonly courseId: number;
-    readonly thumbnailLink: string;
     readonly order: number;
 	readonly sequence: number;
-    readonly category: string; 
+    readonly thumbnail: string;
+    readonly category1: string; 
+    readonly title: string;
+    readonly description: string;
 }

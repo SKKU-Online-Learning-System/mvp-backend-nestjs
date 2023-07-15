@@ -17,28 +17,30 @@ export class MainLayoutService {
   async createFromCourseIds(createMainLayoutDto: CreateMainLayoutDto[]): Promise<MainLayout[]> {
     const mainLayouts = [];
   
-    for (const dto of createMainLayoutDto) {
-      await this.mainLayoutRepository.manager.transaction(async transactionalEntityManager => {
-        const thumbnailLink = await this.courseService.getThumbnail(dto.courseId);
-        const category = await this.courseService.getCategory(dto.courseId); 
-  
-        // find existing entity with the same order and sequence
-        const existingEntity = await transactionalEntityManager.findOne(MainLayout, { where: { order: dto.order, sequence: dto.sequence } });
-  
-        // if it exists, remove it
-        if (existingEntity) {
-          await transactionalEntityManager.remove(MainLayout, existingEntity);
+    await this.mainLayoutRepository.manager.transaction(async transactionalEntityManager => {
+      // First, delete all entities with the same order
+      for (const dto of createMainLayoutDto) {
+        const existingEntities = await transactionalEntityManager.find(MainLayout, { where: { order: dto.order } });
+        if (existingEntities.length > 0) {
+          for (const entity of existingEntities) {
+            await transactionalEntityManager.remove(MainLayout, entity);
+          }
         }
-  
-        // create new entity and add it to the mainLayouts array
-        const mainLayout = await transactionalEntityManager.create(MainLayout, { ...dto, thumbnailLink, category });  
+      }
+
+      // Then, create new entities
+      for (const dto of createMainLayoutDto) {
+        const courseInfo = await this.courseService.getCourseById(dto.courseId);
+        const category1 = await this.courseService.getCategory(dto.courseId); 
+        const mainLayout = await transactionalEntityManager.create(MainLayout, { ...dto, 
+          thumbnail: courseInfo.thumbnail, category1: category1, title:courseInfo.title, description:courseInfo.description });  
   
         // save the entity
         const savedMainLayout = await transactionalEntityManager.save(MainLayout, mainLayout);
   
         mainLayouts.push(savedMainLayout);
-      });
-    }
+      }
+    });
     return mainLayouts;
   }
   
