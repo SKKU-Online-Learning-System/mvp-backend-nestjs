@@ -7,7 +7,7 @@ export class PopularCourseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => CourseEntity)
+  @ManyToOne(() => CourseEntity, { eager: true })
   @JoinColumn({ name: 'course' }) // Join with course id
   course: CourseEntity;
 

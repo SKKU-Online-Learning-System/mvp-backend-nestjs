@@ -22,6 +22,7 @@ export class PopularCoursesService {
   async getPopularCourses(limit: number, category1?: string): Promise<PopularCourseEntity[]> {
     let query = this.popularCourseRepository
       .createQueryBuilder("popular_courses")
+      .leftJoinAndSelect("popular_courses.course", "course")
       .orderBy("popular_courses.enrollmentCount", "DESC")
       .take(limit);
 
