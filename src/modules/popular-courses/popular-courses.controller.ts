@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Query, Post, Body, Patch, Param, Delete, NotFoundException } from '@nestjs/common';
 import { PopularCoursesService } from './popular-courses.service';
 import { CreatePopularCourseDto } from './dto/create-popular-course.dto';
 import { UpdatePopularCourseDto } from './dto/update-popular-course.dto';
@@ -17,7 +17,23 @@ export class PopularCoursesController {
     return { message: 'Popular courses updated successfully.' };
   }
   
-  @Get()
+  @Get('course/:courseId')
+  @ApiOperation({ summary: 'Get a popular course by course id' })
+  @ApiResponse({ status: 200, description: 'The popular course has been successfully fetched.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
+  async getPopularCourseByCourseId(
+    @Param('courseId') courseId: number
+  ): Promise<PopularCourseEntity> {
+    const popularCourse = await this.popularCoursesService.getPopularCourseByCourseId(courseId);
+  
+    if (!popularCourse) {
+      throw new NotFoundException('No popular course found with the provided course id.');
+    }
+  
+    return popularCourse;
+  }
+
+  @Get(':llmit/:category1')
   @ApiOperation({ summary: 'Get popular courses' })
   @ApiQuery({ name: 'limit', required: true })
   @ApiQuery({ name: 'category1', required: false }) 

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreatePopularCourseDto } from './dto/create-popular-course.dto';
 import { UpdatePopularCourseDto } from './dto/update-popular-course.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -31,6 +31,22 @@ export class PopularCoursesService {
     }
 
     return query.getMany();
+  }
+  
+  async getPopularCourseByCourseId(courseId: number): Promise<PopularCourseEntity> {
+    const course = await this.courseRepository.findOne({ where: { id: courseId } });
+
+    if (!course) {
+      throw new NotFoundException('No course found with the provided id.');
+    }
+
+    const popularCourse = await this.popularCourseRepository.findOne({ where: { course } });
+
+    if (!popularCourse) {
+      throw new NotFoundException('No popular course found with the provided course id.');
+    }
+
+    return popularCourse;
   }
 
   async updatePopularCourses() {
