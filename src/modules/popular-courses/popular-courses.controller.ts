@@ -33,7 +33,7 @@ export class PopularCoursesController {
     return popularCourse;
   }
 
-  @Get(':llmit/:category1')
+  @Get()
   @ApiOperation({ summary: 'Get popular courses' })
   @ApiQuery({ name: 'limit', required: true })
   @ApiQuery({ name: 'category1', required: false }) 
