@@ -4,11 +4,9 @@ import multerS3 = require('multer-s3')
 import { S3Client } from '@aws-sdk/client-s3';
 import path = require('path');
 
-
 export const multerOptionsFactory = (
   configService: ConfigService,
 ): MulterOptions => {
-  // s3 인스턴스를 생성합니다.
   const s3 = new S3Client({
     region: process.env.AWS_BUCKET_REGION,
     credentials: {
@@ -16,8 +14,7 @@ export const multerOptionsFactory = (
       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     },
   });
-
-
+  
   return {
     storage: multerS3({
       s3,
@@ -25,6 +22,8 @@ export const multerOptionsFactory = (
       key(_req, file, done) {
         const ext = path.extname(file.originalname); // 파일의 확장자 추출
         const basename = path.basename(file.originalname, ext); // 파일 이름
+        //const dir = "data-visualization";
+        //done(null, `${dir}/${basename}${ext}`);
         done(null, `${basename}${ext}`);
       },
     }),
