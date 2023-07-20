@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { MainLayout } from 'src/entities/main-layout.entity';
 import { CreateMainLayoutDto } from './dto/create-main-layout.dto';
 import { CourseService } from '../courses/course/course.service';  // assuming this exists
+import { User } from 'src/configs/decorator/user.decorator';
 
 @Injectable()
 export class MainLayoutService {
@@ -30,7 +31,7 @@ export class MainLayoutService {
 
       // Then, create new entities
       for (const dto of createMainLayoutDto) {
-        const courseInfo = await this.courseService.getCourseById(dto.courseId);
+        const courseInfo = await this.courseService.getCourseById(dto.courseId, User);
         const category1 = await this.courseService.getCategory(dto.courseId); 
         const mainLayout = await transactionalEntityManager.create(MainLayout, { ...dto, 
           thumbnail: courseInfo.thumbnail, category1: category1, title:courseInfo.title, description:courseInfo.description, instructor:courseInfo.instructor });  
