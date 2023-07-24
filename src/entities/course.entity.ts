@@ -52,6 +52,9 @@ class Course {
 	@Column()
 	lectureCnt: number;
 
+	@Column()
+	operate: boolean;
+
 	@CreateDateColumn()
 	createdAt: Date;
 

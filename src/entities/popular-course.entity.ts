@@ -23,9 +23,13 @@ export class PopularCourseEntity {
   @Column()
   enrollmentCount: number;
 
+  @Column()
+	operate: boolean;
+
   @CreateDateColumn()
   courseCreatedAt: Date; // '강좌 생성일' column
 
   @CreateDateColumn()
   updatedAt: Date;
+
 }

@@ -32,6 +32,7 @@ export class CourseService {
 			.from(CourseEntity, 'course')
 			.leftJoin(Category1Entity, 'cat1', 'cat1.id = course.category1Id')
 			.leftJoin(Category2Entity, 'cat2', 'cat2.id = course.category2Id')
+			.where('course.operate = :operateValue', { operateValue: true })
 
 		if (category1Id) {
 			courses = courses.where('course.category1Id = :category1Id', {
@@ -70,6 +71,7 @@ export class CourseService {
 				'course.thumbnail AS thumbnail',
 				'course.difficulty AS difficulty',
 				'course.createdAt AS createdAt',
+				'course.operate AS operate',
 				// 'user.email AS instructor',
 				'cat1.name AS category1',
 				'cat2.name AS category2',
@@ -187,6 +189,7 @@ export class CourseService {
 				'course.thumbnail',
 				'course.difficulty',
 				'course.createdAt',
+				'course.operate',
 				// 'instructor.nickname',
 				'category1.name',
 				'category2.name',
@@ -261,20 +264,20 @@ export class CourseService {
 		return status(201);
 	}
 
-	async updateCourseById(
-		id: number,
-		updateCourseDto: UpdateCourseDto,
-	): Promise<HttpResponse> {
-		const {
-			raw: { affectedRows },
-		} = await this.dataSource
-			.getRepository(CourseEntity)
-			.update(id, updateCourseDto);
+	// async updateCourseById(
+	// 	id: number,
+	// 	updateCourseDto: UpdateCourseDto,
+	// ): Promise<HttpResponse> {
+	// 	const {
+	// 		raw: { affectedRows },
+	// 	} = await this.dataSource
+	// 		.getRepository(CourseEntity)
+	// 		.update(id, updateCourseDto);
 
-		if (!affectedRows) throw new InternalServerErrorException();
+	// 	if (!affectedRows) throw new InternalServerErrorException();
 
-		return status(200);
-	}
+	// 	return status(200);
+	// }
 
 	async deleteCourseById(id: number): Promise<HttpResponse> {
 		const { affected } = await this.dataSource
@@ -292,11 +295,11 @@ export class CourseService {
 		dateOneMonthAgo.setMonth(dateOneMonthAgo.getMonth() - 1);
 		
 		const courses = await this.dataSource
-			.getRepository(CourseEntity)
-			.createQueryBuilder('course')
-			.where('course.createdAt >= :dateOneMonthAgo', { dateOneMonthAgo })
-			.getMany();
-		
+  			.getRepository(CourseEntity)
+  			.createQueryBuilder('course')
+  			.where('course.createdAt >= :dateOneMonthAgo', { dateOneMonthAgo })
+  			.andWhere('course.operate = :operateValue', { operateValue: true })
+  			.getMany();		
 		return courses;
 	}
 	
@@ -350,8 +353,22 @@ export class CourseService {
 			'category1.name',
 			'category2.name',
 			'course.lectureCnt',
+			'course.operate',
 		  ])
 		  .getMany();		  
 		return courses;
-	}	  
+	}
+
+	async updateCourseOperate(courseId: number) {
+		try {
+		  const course = await this.courseRepository.findOne({
+			where: { id: courseId },
+		  });
+		  course.operate = !course.operate;
+		  return this.courseRepository.save(course);
+		} catch (error) {
+		  // Handle error - Course not found
+		  throw new NotFoundException('Course not found');
+		}
+	  }
 }

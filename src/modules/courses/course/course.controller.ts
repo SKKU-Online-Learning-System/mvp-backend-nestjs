@@ -17,6 +17,7 @@ import { ApiCourse } from './course.swagger';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { SearchCoursesDto } from './dto/search-courses.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
+import { UpdateOperateDto } from './dto/update-operate.dto';
 
 @ApiTags('Course')
 @Controller('courses')
@@ -48,11 +49,11 @@ export class CourseController {
 		return this.courseService.getCategories();
 	}
 
-	@Get('popular')
-	@ApiCourse.getPopularCourse()
-	getPopularCourses() {
-		return this.courseService.getPopularCourses();
-	}
+	// @Get('popular')
+	// @ApiCourse.getPopularCourse()
+	// getPopularCourses() {
+	// 	return this.courseService.getPopularCourses();
+	// }
 
 	@Get(':courseId')
 	@ApiCourse.getCourseById()
@@ -73,27 +74,25 @@ export class CourseController {
 		return this.courseService.getRecentQuestions(courseId);
 	}
 
-	
-	@Post()
-	@ApiCourse.createCourse()
-	createCourse(@Body() createCourseDto: CreateCourseDto) {
-		return this.courseService.createCourse(createCourseDto);
-	}
-
-	@Put(':courseId')
+	@Put(':courseId/operate')
 	@ApiCourse.updateCourseById()
-	updateCourseById(
-		@Param('courseId') courseId: number,
-		@Body() updateCourseDto: UpdateCourseDto,
-	) {
-		return this.courseService.updateCourseById(courseId, updateCourseDto);
-	}
+  	async updateCourseOperate(@Param('courseId') courseId: number) {
+    	return this.courseService.updateCourseOperate(courseId);
+  	}
+
+	// @Put(':courseId')
+	// @ApiCourse.updateCourseById()
+	// updateCourseById(
+	// 	@Param('courseId') courseId: number,
+	// 	@Body() updateCourseDto: UpdateCourseDto,
+	// ) {
+	// 	return this.courseService.updateCourseById(courseId, updateCourseDto);
+	// }
 
 	@Delete(':courseId')
 	@ApiCourse.deleteCourseById()
 	deleteCourseById(@Param('courseId') courseId: number) {
 		return this.courseService.deleteCourseById(courseId);
 	}
-
 
 }

@@ -184,7 +184,7 @@ export const ApiCourse = {
 	updateCourseById() {
 		return applyDecorators(
 			ApiOperation({
-				summary: 'course 수정 - 사용 안함',
+				summary: 'course 수정 - operate 값 update',
 				description: '',
 			}),
 			ApiCookieAuth(),
@@ -193,7 +193,7 @@ export const ApiCourse = {
 	deleteCourseById() {
 		return applyDecorators(
 			ApiOperation({
-				summary: 'course 삭제 - 사용 안함',
+				summary: 'course 삭제',
 				description: '',
 			}),
 			ApiCookieAuth(),

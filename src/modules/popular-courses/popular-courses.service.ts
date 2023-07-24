@@ -24,6 +24,7 @@ export class PopularCoursesService {
       .createQueryBuilder("popular_courses")
       .leftJoinAndSelect("popular_courses.course", "course")
       .orderBy("popular_courses.enrollmentCount", "DESC")
+      .where('course.operate = :operateValue', { operateValue: 1 })
       .take(limit);
 
     if (category1) {
@@ -34,7 +35,7 @@ export class PopularCoursesService {
   }
   
   async getPopularCourseByCourseId(courseId: number): Promise<PopularCourseEntity> {
-    const course = await this.courseRepository.findOne({ where: { id: courseId } });
+    const course = await this.courseRepository.findOne({ where: { id: courseId, operate: true } });
 
     if (!course) {
       throw new NotFoundException('No course found with the provided id.');
@@ -59,6 +60,7 @@ export class PopularCoursesService {
         instructorName: course.instructor,
         enrollmentCount: course.enrollments.length,
         courseCreatedAt: course.createdAt,
+        operate: course.operate,
         category1: course.category1.name, // Here, instead of id, we are getting the name of the category1
       };
     });
