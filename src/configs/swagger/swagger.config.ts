@@ -24,6 +24,7 @@ export const swaggerConfig = (app) => {
 		.addTag('History', 'Lecture 시청 기록')
 		.addTag('Lecture', '')
 		.addTag('MainLayout', '메인페이지 관리용 테이블')
+		.addTag('Notice', '공지사항 테이블')
 		.addTag('PopularCourses', '통계용 테이블')
 		.addTag('Question', '질문 답변')
 		.addTag('User', '관리자 페이지용')

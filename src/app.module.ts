@@ -20,6 +20,7 @@ import { QnAModule } from './modules/Q&A/qna.module';
 import { CoursesModule } from './modules/courses/courses.module';
 import { PopularCoursesModule } from './modules/popular-courses/popular-courses.module';
 import { MainLayoutModule } from './modules/main-layout/main-layout.module';
+import { NoticeModule } from './modules/notice/notice.module';
 
 
 @Module({
@@ -42,7 +43,7 @@ import { MainLayoutModule } from './modules/main-layout/main-layout.module';
 		FileModule,
 		PopularCoursesModule,
 		MainLayoutModule,
-
+		NoticeModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
