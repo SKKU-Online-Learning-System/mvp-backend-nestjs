@@ -354,6 +354,7 @@ export class CourseService {
 			'category2.name',
 			'course.lectureCnt',
 			'course.operate',
+			'course.instructor',
 		  ])
 		  .getMany();		  
 		return courses;
