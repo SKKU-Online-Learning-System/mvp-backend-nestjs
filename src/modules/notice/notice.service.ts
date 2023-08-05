@@ -20,6 +20,16 @@ export class NoticeService {
     return this.noticeRepository.findOne({ where: { id: id }});
   }
 
+  async increaseViewCount(id: number): Promise<Notice> {
+    await this.noticeRepository.createQueryBuilder()
+      .update(Notice)
+      .set({ views: () => "views + 1" }) // views 컬럼의 값을 1 증가
+      .where("id = :id", { id })
+      .execute();
+  
+    return this.noticeRepository.findOne({ where: { id: id }});  // 업데이트된 공지사항 객체를 반환
+  }
+  
   async create(createNoticeDto: CreateNoticeDto): Promise<Notice> {
     const notice = new Notice();
     notice.title = createNoticeDto.title;

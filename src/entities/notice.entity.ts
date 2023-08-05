@@ -16,4 +16,7 @@ export class Notice {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @Column({ type: 'int', default: 0 })
+  views: number;  // 조회수 컬럼 추가
 }

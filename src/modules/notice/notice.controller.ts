@@ -19,8 +19,8 @@ export class NoticeController {
   @Get(':id')
   @ApiOperation({ summary: 'Get a notice by id' })
   @ApiParam({ name: 'id', required: true })
-  findOne(@Param('id') id: number): Promise<Notice> {
-    return this.noticeService.findOne(id);
+  async findOne(@Param('id') id: number): Promise<Notice> {
+      return this.noticeService.increaseViewCount(id);
   }
 
   @Post()
@@ -53,10 +53,11 @@ export class NoticeController {
 // content: 공지사항의 내용
 // createdAt: 공지사항이 작성된 날짜와 시간
 // updatedAt: 공지사항이 마지막으로 수정된 날짜와 시간
+// views: 조회수
 
 // API:
 // GET /notices: 모든 공지사항을 가져오는 API. 이 API는 공지사항을 생성된 날짜의 내림차순으로 정렬해서 반환
-// GET /notices/:id: 특정 공지사항을 가져오는 API. 이 API는 id 매개변수를 사용해 해당하는 공지사항을 반환
+// GET /notices/:id: 특정 공지사항을 가져오는 API. 이 API는 id 매개변수를 사용해 해당하는 공지사항을 반환 및 공지사항의 조회수 증가
 // POST /notices: 새로운 공지사항을 생성하는 API. 이 API는 HTTP 요청 본문에 있는 데이터를 사용해 새로운 공지사항을 데이터베이스에 추가
 // PUT /notices/:id: 특정 공지사항을 수정하는 API. 이 API는 id 매개변수를 사용해 해당하는 공지사항을 찾고, HTTP 요청 본문에 있는 데이터로 공지사항을 업데이트
 // DELETE /notices/:id: 특정 공지사항을 삭제하는 API. 이 API는 id 매개변수를 사용해 해당하는 공지사항을 찾고 삭제
