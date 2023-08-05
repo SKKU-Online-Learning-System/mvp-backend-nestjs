@@ -73,6 +73,7 @@ export class CourseService {
 				'course.createdAt AS createdAt',
 				'course.operate AS operate',
 				// 'user.email AS instructor',
+				'course.instructor AS instructor',
 				'cat1.name AS category1',
 				'cat2.name AS category2',
 			])
