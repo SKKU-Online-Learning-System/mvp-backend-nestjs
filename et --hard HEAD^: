@@ -1,0 +1,2780 @@
+[33mcommit 4ab7828785e22c1c06a65db356e0f7c460ff3131[m[33m ([m[1;36mHEAD -> [m[1;32mdev[m[33m)[m
+Author: Ubin108 <ybin0108@gmail.com>
+Date:   Tue Aug 8 20:23:55 2023 +0900
+
+    admin search
+
+[33mcommit 6ae8dca9cd7cffe571d3d661faf65d63a871b2b6[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Wed Jul 26 01:15:20 2023 +0900
+
+    공지사항용 DB 및 API 업데이트
+
+[33mcommit f3d0d4f52c88fe7324dc9c90c26b3c7fe70f4068[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Tue Jul 25 23:56:45 2023 +0900
+
+    SWAGGER update
+
+[33mcommit aa94d7974169e9bad82535bc423c536f1f6b0630[m
+Author: root <root@Ubin108.localdomain>
+Date:   Mon Jul 24 21:59:55 2023 +0900
+
+    course operate
+
+[33mcommit fdbaa8dfee8dfa2a75cd94edf17ba3272433fc76[m
+Author: root <root@Ubin108.localdomain>
+Date:   Thu Jul 20 19:19:52 2023 +0900
+
+    file upload api
+
+[33mcommit 9a3353250baf1c7529b7e2be26d21707037f9b28[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Thu Jul 20 18:18:17 2023 +0900
+
+    버그수정
+
+[33mcommit 5ae2e894442d473bdbcf08dcca814dac8d80a4c8[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Wed Jul 19 17:56:32 2023 +0900
+
+    버그수정
+
+[33mcommit e1d46b68bd56667ab9109235a4eaa140678334dd[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Tue Jul 18 17:42:24 2023 +0900
+
+     get/course/ID API user guard 해제
+
+[33mcommit 4ed978eb4b62c03dd48c5a2695c0c4682b79d576[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Tue Jul 18 17:25:06 2023 +0900
+
+    SWAGGER update 2023-07-18
+
+[33mcommit faa85417dd5e7bffe8a1e61d31528162b84cac56[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Tue Jul 18 17:24:21 2023 +0900
+
+    강좌리스트 페이지 API 추가가
+
+[33mcommit 2088c682a32c2756b7030c64649a663a566b382a[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Sat Jul 15 15:51:33 2023 +0900
+
+    PopularCourses 버그수정
+
+[33mcommit a65b9065461b66d602e1ae33a1c56631fb158fcb[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Sat Jul 15 14:47:50 2023 +0900
+
+    mainLayout에 instructor 추가
+
+[33mcommit b68d9d9783eda71dbcc0a6d54ef01f6a4f4d6eac[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Sat Jul 15 14:22:44 2023 +0900
+
+    API 수정, 버그 수정
+
+[33mcommit 5c6169befc762ff661ca182d73fca272abff2cec[m
+Author: root <root@Ubin108.localdomain>
+Date:   Fri Jul 14 00:53:52 2023 +0900
+
+    upload path edit
+
+[33mcommit 33309f806097e227d01f07260d0edd9e89e52e2f[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Fri Jul 14 00:52:45 2023 +0900
+
+    MainLayout API 추가 및 버그 수정
+
+[33mcommit 0475151dd850e5a7d1e275034ec9854ab1044f77[m
+Author: root <root@Ubin108.localdomain>
+Date:   Fri Jul 14 00:51:33 2023 +0900
+
+    upload file API
+
+[33mcommit 18b2815aaad1408a9b13245a6cf9a6d978d580dc[m
+Author: root <root@Ubin108.localdomain>
+Date:   Thu Jul 13 17:17:05 2023 +0900
+
+    lectureCnt issue 해결
+
+[33mcommit 003537239ee42250dc5ef3f56b52f9546d875964[m
+Author: root <root@Ubin108.localdomain>
+Date:   Thu Jul 13 14:55:54 2023 +0900
+
+    update swagger
+
+[33mcommit e3e9b054de9d9745f5646cae5887aad34461dc10[m
+Author: root <root@Ubin108.localdomain>
+Date:   Thu Jul 13 14:35:16 2023 +0900
+
+    add getAllCourse
+
+[33mcommit e2adb39e7a3289c769f1d0cbfac6ea7941d6c898[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Fri Jul 7 20:13:39 2023 +0900
+
+    메인페이지 레이아웃 편성용 테이블 및 API 추가
+
+[33mcommit e648ad13f1284916f622ce89c9dcf6289e924024[m
+Merge: b1a1ccc ad0a07b
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Fri Jul 7 17:10:01 2023 +0900
+
+    course-layout 테이블 및 배너 이미지 편성용 api 추가
+
+[33mcommit b1a1cccd75ea1cd542c9ac9632b8e5ba8c4f1e3b[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Fri Jul 7 17:02:12 2023 +0900
+
+    course-layout 테이블 및 배너 이미지 편성용 api 추가
+
+[33mcommit ad0a07b0d13b0b9a2febedf578ce83c24c74c6d9[m
+Author: Ubin108 <ybin0108@gmail.com>
+Date:   Thu Jul 6 03:33:47 2023 -0400
+
+    referUrl 수정
+
+[33mcommit 998bfb2dedae5cc058b353ffb70f3d054098148c[m
+Author: Ubin108 <ybin0108@gmail.com>
+Date:   Thu Jul 6 00:46:26 2023 -0400
+
+    origin add
+
+[33mcommit 12c3afeabd0372330fea8646761340efaf6e4467[m
+Merge: 6627a58 998bfb2
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Thu Jul 6 05:31:11 2023 +0900
+
+    merge
+
+[33mcommit 9dba8fb1efa581c49f4a4006c4dd71e1b85b4036[m
+Author: Ubin108 <ybin0108@gmail.com>
+Date:   Tue Jul 4 04:49:03 2023 -0400
+
+    Auto Deploy edit
+
+[33mcommit f17cc85b419157bbf906851d1c608889c1f2915c[m
+Author: Ubin108 <ybin0108@gmail.com>
+Date:   Tue Jul 4 04:40:41 2023 -0400
+
+    Auto Deploy edit
+
+[33mcommit 3e0af2c4866fa8e71edc9b7ba6ea5b7d635bffa9[m
+Author: Ubin108 <ybin0108@gmail.com>
+Date:   Tue Jul 4 04:35:04 2023 -0400
+
+    Auto Deploy edit
+
+[33mcommit 0731f52ad537d952023e267e1849e2a1a48bd68d[m
+Author: Ubin108 <ybin0108@gmail.com>
+Date:   Tue Jul 4 01:46:31 2023 -0400
+
+    Auto Deploy
+
+[33mcommit 3a666e2af188d511206b6a6acf591997ccbe0f56[m
+Author: Ubin108 <ybin0108@gmail.com>
+Date:   Tue Jul 4 01:13:06 2023 -0400
+
+    API block
+
+[33mcommit 14799897507abf6b87eb6cb748d803b502fd2bac[m
+Author: Ubin108 <ybin0108@gmail.com>
+Date:   Mon Jul 3 03:04:30 2023 -0400
+
+    docker ver 1.0.0
+
+[33mcommit 6627a584756fb41a461fe519f028275dc59a7e7a[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Tue Jun 27 16:46:23 2023 +0900
+
+    main.ts /api router 설정
+
+[33mcommit 9f177d52a2f90788419e4a5b465861f0286fcd67[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Fri Jun 23 17:11:45 2023 +0900
+
+    통계 API 추가
+
+[33mcommit 0eec2f3b60f8a26d6d2562ac01c3a0ba252b9558[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Fri Jun 23 16:50:16 2023 +0900
+
+    통계용 테이블 생성 및 업데이트 API 추가
+
+[33mcommit 30ed4ff11f9d3206cac63b16c419feee19139bca[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Fri Jun 23 14:07:55 2023 +0900
+
+    버그수정, instructor table column type number->string으로 변경
+
+[33mcommit 675b39cc48159f78083fe6c5d29c3d1bcf1b9312[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Thu Jun 22 16:19:31 2023 +0900
+
+    최근 업로드된 강좌 조회 API 추가
+
+[33mcommit a6508cddfcebed3169fabbaecfc17b2e4b622f06[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Mon Jun 19 16:12:56 2023 +0900
+
+    banner change
+
+[33mcommit 7212a43e63013cc003e1ccefe73853b896a3adcf[m
+Merge: 8ab9f88 5dbfa0d
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Mon Jun 19 16:10:03 2023 +0900
+
+    update banner, swagger
+
+[33mcommit 8ab9f88107c9abefa82ac1612caec815c075860e[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Mon Jun 19 16:03:40 2023 +0900
+
+    SWAGGER UPDATE
+
+[33mcommit 5dbfa0dfd90678f5aeb5bc87224a136a074a682a[m
+Author: sonah5009 <sonah5009@gmail.com>
+Date:   Tue May 16 00:32:43 2023 +0900
+
+    Upload: mainbanner images
+
+[33mcommit b408cf9038a94ca95f1124a71ffeb505fb32d495[m
+Merge: 1db8afb 62ff6bc
+Author: sonah5009 <sonah5009@gmail.com>
+Date:   Tue May 2 00:33:27 2023 +0900
+
+    Merge branch 'dev' of https://github.com/SKKU-Online-Learning-System/mvp-backend-nestjs into dev
+
+[33mcommit 1db8afb15981c4c7a545dc8a964bedfcbaa06be3[m
+Author: sonah5009 <sonah5009@gmail.com>
+Date:   Tue May 2 00:32:44 2023 +0900
+
+    되돌림: 재웅걸로
+
+[33mcommit 62ff6bca90015aefb46286ba2ab132f784b427ee[m
+Merge: 9a4dc53 567fa71
+Author: sonah5009 <sonah5009@gmail.com>
+Date:   Mon May 1 22:47:50 2023 +0900
+
+    Merge branch 'dev' of https://github.com/SKKU-Online-Learning-System/mvp-backend-nestjs into dev
+
+[33mcommit 9a4dc5394dff23889c73dc5aa399ce055246cbfd[m
+Author: jaeung <dlwodnd00@gmail.com>
+Date:   Mon May 1 19:04:58 2023 +0900
+
+    ver 23-05-01
+
+[33mcommit 567fa711a884b27dc968f5d4400cc14c095c5328[m
+Author: root <root@Ubin108.localdomain>
+Date:   Thu Apr 27 15:30:36 2023 +0900
+
+    be
+
+[33mcommit bc93d08183ff4b946d75b4505402200fc1b18e65[m
+Merge: 8d8a8d7 900065e
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Mon Nov 28 10:59:27 2022 +0900
+
+    Merge pull request #75 from clearmirror-js/main
+    
+    del: 콘솔 출력 삭제
+
+[33mcommit 900065e224e681820284b6d8d06da43ed4520fab[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Mon Nov 28 10:58:50 2022 +0900
+
+    del: 콘솔 출력 삭제
+
+[33mcommit 8d8a8d7d21d75ba00a3199981785215938a7bb85[m
+Merge: 8842f77 a467976
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Mon Nov 28 10:40:56 2022 +0900
+
+    Merge pull request #74 from clearmirror-js/main
+    
+    fix: 모든 강의 수강 여부 확인하도록 수정
+
+[33mcommit a467976a91c8b0bb25cbcb4d8e916da6f3e03219[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Mon Nov 28 10:39:46 2022 +0900
+
+    fix: response code 수정
+
+[33mcommit dd508daad2615fab319f2b72dd7c686ff0720fa3[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Sun Nov 27 22:04:01 2022 +0900
+
+    fix: 모든 강의 수강 여부 확인하도록 수정
+
+[33mcommit 8842f7752d4b54dbe0bde15bc8033946a8e954e5[m
+Merge: bb6c6fb 91296dc
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Sun Nov 27 13:56:40 2022 +0900
+
+    Merge pull request #73 from clearmirror-js/main
+
+[33mcommit 91296dc1e0a25504ccf8b24bc786f237e2155e09[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Sat Nov 26 20:04:05 2022 +0900
+
+    feat: 유저 질문 전체 반환 api 추가
+    
+    - 로그인한 유저가 남긴 모든 질문 리스트를 반환합니다.
+
+[33mcommit bb6c6fb59ec6f0fd82c21a188502ed94a765d750[m
+Merge: 315b0f8 d047c7b
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Thu Nov 24 13:41:57 2022 +0900
+
+    Merge pull request #72 from clearmirror-js/main
+    
+    fix: 킹고코인 포인트 지급 관련 버그 수정
+
+[33mcommit d047c7ba91c278a1bd983f4513f409f61e0051e4[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Thu Nov 24 13:40:38 2022 +0900
+
+    fix: 킹고코인 포인트 지급 관련 버그 수정
+    
+    - entity relation 수정
+
+[33mcommit 315b0f8471cbfef908c20947619f99f8e3984b43[m
+Merge: 2d7b9fd d144c74
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Wed Nov 23 19:56:25 2022 +0900
+
+    Merge pull request #71 from SKKU-Online-Learning-System/revert-68-main
+    
+    Revert "fix: typeORM findOne() 관련 문제 수정"
+
+[33mcommit d144c74010dbfdcce7a16f7d0917b16234ff0811[m
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Wed Nov 23 19:55:36 2022 +0900
+
+    Revert "fix: typeORM findOne() 관련 문제 수정"
+
+[33mcommit 2d7b9fda6a8e7f10898877e666cf21485ecaf49b[m
+Merge: 3887089 97007b7
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Wed Nov 23 19:53:32 2022 +0900
+
+    Merge pull request #70 from SKKU-Online-Learning-System/revert-69-main
+    
+    Revert "fix: typeORM findOne() 관련 문제 수정(2)"
+
+[33mcommit 97007b76201421b3df68ab72a8d58b39b009cdb4[m
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Wed Nov 23 19:53:22 2022 +0900
+
+    Revert "fix: typeORM findOne() 관련 문제 수정(2)"
+
+[33mcommit 388708962306e45611b0dafd150ef514b7c3d011[m
+Merge: 03e1d22 f8b5ced
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Wed Nov 23 18:48:37 2022 +0900
+
+    Merge pull request #69 from clearmirror-js/main
+    
+    fix: typeORM findOne() 관련 문제 수정(2)
+
+[33mcommit f8b5ced07e8913c63d0117c5f254729a4d4cf697[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Wed Nov 23 18:48:18 2022 +0900
+
+    fix: typeORM findOne() 관련 문제 수정(2)
+
+[33mcommit 03e1d2284a2ef4c0b23ab65070170e93ebb41f81[m
+Merge: 28ef5dd f5d54c3
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Wed Nov 23 18:29:45 2022 +0900
+
+    Merge pull request #68 from clearmirror-js/main
+    
+    fix: typeORM findOne() 관련 문제 수정
+
+[33mcommit f5d54c3b4e2d9ddcceac75c4942b579275d2a924[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Wed Nov 23 18:29:01 2022 +0900
+
+    fix: typeORM findOne() 관련 문제 수정
+    
+    - typeORM의 findOne()이 where 조건에 맞는 레코드가 없는 경우, 첫 번째 레코드를 반환하던 문제를 수정하였습니다.
+
+[33mcommit 28ef5dddd6b613eb3e52ad48e6a59e569ab293ce[m
+Merge: a70a418 a1e3649
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Wed Nov 23 12:26:01 2022 +0900
+
+    Merge pull request #67 from clearmirror-js/main
+    
+    chore: typeorm logging 설정
+
+[33mcommit a1e364926398f6af0472a02b56c7f724e75cabcb[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Wed Nov 23 12:24:52 2022 +0900
+
+    chore: typeorm logging 설정
+
+[33mcommit a70a418bd652e6b1442a1aacd01829e7a8fc64ff[m
+Merge: 2458647 bfce669
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Tue Nov 22 16:00:09 2022 +0900
+
+    Merge pull request #66 from clearmirror-js/main
+    
+    fix: 오류 수정
+
+[33mcommit bfce669b2578b11d057779bdae8e91ceb202b71e[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Tue Nov 22 15:59:46 2022 +0900
+
+    fix: 오류 수정
+
+[33mcommit 245864735b30250d3d765a6c8da57dad45f82901[m
+Merge: 5f724fb 88c1e67
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Tue Nov 22 15:45:02 2022 +0900
+
+    Merge pull request #65 from clearmirror-js/main
+    
+    fix: 오류 수정
+
+[33mcommit 88c1e6790b5e70275d5a5459ea77087222afa90e[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Tue Nov 22 15:44:21 2022 +0900
+
+    fix: 오류 수정
+
+[33mcommit 5f724fba99c076841e56b4b175cb7ffae8bd1a38[m
+Merge: 17c6bb7 00ed7b7
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Tue Nov 22 14:47:10 2022 +0900
+
+    Merge pull request #64 from clearmirror-js/main
+    
+    fix: notFinished에서 finished로 수정
+
+[33mcommit 00ed7b7fc881ece9da73d5bcddd28d4dfb8a88ed[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Tue Nov 22 12:49:47 2022 +0900
+
+    fix: 킹고코인 api 호출 예외 처리 추가
+
+[33mcommit e9f3c296753cb84c33e1e4cb339faaafbb0967ac[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Mon Nov 21 19:12:36 2022 +0900
+
+    fix: 킹고코인 포인트 부여 로직 수정
+
+[33mcommit 5c13c2249dd1b63b32efac30f212034cc38ec2eb[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Mon Nov 21 19:04:50 2022 +0900
+
+    fix: notFinished에서 finished로 수정
+
+[33mcommit 17c6bb75236b3a57ea501b867d82436efd4fad5f[m
+Merge: 436736f 1ceef67
+Author: GyuMin Han <60285506+rbals0445@users.noreply.github.com>
+Date:   Mon Nov 21 10:37:49 2022 +0900
+
+    Merge pull request #63 from SKKU-Online-Learning-System/fix/history
+    
+    fix: lastTime이 제공되지 않아 insert가 되지 않는 오류 수정
+
+[33mcommit 1ceef676e4913b12e63a3224e51d81559a1ef108[m[33m ([m[1;31morigin/fix/history[m[33m)[m
+Author: gyumin_han <gyumin_han@linecorp.com>
+Date:   Mon Nov 21 00:15:13 2022 +0900
+
+    fix: datetime대신 number가 넘어가던 문제 수정, destructuring 잘못된것 수정
+
+[33mcommit 1495bdc78a4bf88e79705f1ad6c249a1b18ffbcb[m
+Author: gyumin_han <gyumin_han@linecorp.com>
+Date:   Sun Nov 20 22:07:37 2022 +0900
+
+    fix: lastTime이 제공되지 않아 insert가 되지 않는 오류 수정
+
+[33mcommit 436736f9b680a7fd5c750fd98447391d48e6c668[m
+Merge: a17b25e 91f2210
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Wed Nov 16 23:56:16 2022 +0900
+
+    Merge pull request #62 from clearmirror-js/main
+    
+    킹고코인 api 호출 관련 수정
+
+[33mcommit 91f221036e09040b5196f92196fa189828679869[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Wed Nov 16 23:55:28 2022 +0900
+
+    fix: 킹고코인 api request 수정
+
+[33mcommit 146978819e6322b07b0ff72a0e8af5bfac9987af[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Wed Nov 16 23:55:01 2022 +0900
+
+    feat: KingoCoinRequestDto 추가
+
+[33mcommit a17b25ed8834a95e465e3835dd50099ad7ec6264[m
+Merge: 81c4ecc 030e176
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Wed Nov 16 22:03:05 2022 +0900
+
+    Merge pull request #61 from clearmirror-js/main
+    
+    fix: api request 수정
+
+[33mcommit 030e176a3f3a2a611d8dba9bfabfe8af6e10e706[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Wed Nov 16 22:02:33 2022 +0900
+
+    fix: api request 수정
+
+[33mcommit 81c4ecc9dafe19a51ac2761504085e3b77b8ff57[m
+Merge: 11147e0 fa1117b
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Wed Nov 16 21:55:37 2022 +0900
+
+    Merge pull request #60 from clearmirror-js/main
+    
+    fix: 오류 수정
+
+[33mcommit fa1117b62c6cc62d70c2df7e77fb8145bc6cbfbd[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Wed Nov 16 21:54:57 2022 +0900
+
+    fix: 오류 수정
+
+[33mcommit 11147e0328ad51a5797867b817776a2da164a088[m
+Merge: fab41fe 889185a
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Wed Nov 16 21:43:19 2022 +0900
+
+    Merge pull request #59 from clearmirror-js/main
+    
+    fix: 오타 수정
+
+[33mcommit 889185a4a45922c330de19335a9357f3a2105124[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Wed Nov 16 21:42:47 2022 +0900
+
+    fix: 오타 수정
+
+[33mcommit fab41fe228469c4ad931a58b64238241bf29a922[m
+Merge: d6e6b35 ca4363b
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Wed Nov 16 20:44:30 2022 +0900
+
+    Merge pull request #58 from clearmirror-js/main
+    
+    fix: 킹고코인 api 수정
+
+[33mcommit ca4363bf5ae85f8dea26bf6f9993d6733e4ee67f[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Wed Nov 16 20:43:58 2022 +0900
+
+    fix: 킹고코인 api 수정
+
+[33mcommit d6e6b35d75d5a15660cabee430641d899c52ef70[m
+Merge: c0de139 2f8fe2f
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Wed Nov 16 20:21:35 2022 +0900
+
+    Merge pull request #57 from clearmirror-js/main
+    
+    fix: 빌드 스크립트 수정
+
+[33mcommit 2f8fe2f238700f13816125fff1b4cf0692adffae[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Wed Nov 16 20:20:28 2022 +0900
+
+    fix: 빌드 스크립트 수정
+
+[33mcommit c0de1397e3fb769987af0dd88b3ae7631ad7d6fc[m
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Wed Nov 16 20:12:19 2022 +0900
+
+    fix: request body 수정
+
+[33mcommit 9c224c6b8bd5adcce5826e5cb792ec64bbc14a4f[m
+Merge: 43e27fc 8e4af96
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Wed Nov 16 20:03:44 2022 +0900
+
+    Merge pull request #56 from clearmirror-js/main
+    
+    fix: api request body 수정
+
+[33mcommit 8e4af968c395ed5ef793ce34e1d5d504a19c77c4[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Wed Nov 16 20:02:48 2022 +0900
+
+    fix: api request body 수정
+
+[33mcommit 43e27fccec70b0a5de1d7f4a2f53c39957344b97[m
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Wed Nov 16 18:52:47 2022 +0900
+
+    fix: 킹고코인 api request body 수정
+
+[33mcommit 08d207304b3a1925534dc979add770bc387930bf[m
+Merge: a0094e5 af8b9ca
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Tue Nov 15 23:47:45 2022 +0900
+
+    Merge pull request #55 from clearmirror-js/main
+    
+    chore: 빌드 스크립트 수정
+
+[33mcommit af8b9ca9b43b8b2234bd4f56d4249d344236663a[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Tue Nov 15 23:46:18 2022 +0900
+
+    chore: 빌드 스크립트 수정
+
+[33mcommit a0094e5bdf09ea31f7c641aa56e6a7565f7e058d[m
+Merge: 83e57f5 0127a5a
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Tue Nov 15 22:51:49 2022 +0900
+
+    Merge pull request #54 from clearmirror-js/main
+    
+    chore: @nestjs/axios 라이브러리 추가
+
+[33mcommit 0127a5a9d247ac5cca5711738b59306f9b111e99[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Tue Nov 15 22:49:31 2022 +0900
+
+    chore: @nestjs/axios 라이브러리 추가
+
+[33mcommit 83e57f5298ebe2e3d854554952b25812cb495b9c[m
+Merge: 41a4107 c138202
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Tue Nov 15 22:31:15 2022 +0900
+
+    Merge pull request #53 from clearmirror-js/feat
+    
+    feat: 강의 시청 시 킹고코인 지급 로직 추가 (런칭 이벤트용) 및 수강률 반환 api 구현
+
+[33mcommit c1382028f77d64daa80bc711fee1b9093b886a4a[m
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Tue Nov 15 16:53:45 2022 +0900
+
+    fix: 킹고코인 api request body 수정
+
+[33mcommit 7c8f8e94056955f36b0f262755f56f49060c2ecb[m
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Mon Nov 14 21:14:29 2022 +0900
+
+    feat: 킹고코인 api 호출
+
+[33mcommit 9e84eb264b54cab870544584b79fdfd5eba5e2ad[m
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Mon Nov 14 19:18:32 2022 +0900
+
+    feat: 수강 중인 강좌 내 미수강 강의 개수 반환 api 추가
+
+[33mcommit c17f92a6e88bae6990aab5cc2693bd96db018d52[m
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Mon Nov 14 19:17:49 2022 +0900
+
+    feat: 강좌 내 강의 개수 반환 api 추가
+
+[33mcommit 473a49ed53c633e229791976e5854e07401415c3[m
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Thu Nov 10 20:08:52 2022 +0900
+
+    feat: 강의 시청 시 킹고코인 지급 로직 추가 (런칭 이벤트용)
+    
+    - 코인 지급 기록용 lauching_event 테이블 생성
+    - 유저 엔티티에 시청 강좌 및 댓글 개수 컬럼 추가
+
+[33mcommit 41a4107556411b70e94335e6e1c6189f12285dd3[m
+Merge: 0de32f2 3c3972c
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Mon Nov 7 20:11:00 2022 +0900
+
+    Merge pull request #52 from clearmirror-js/fix
+    
+    fix: 유저 id 잘못 로드되던 문제 수정
+
+[33mcommit 3c3972c238476e9e634eaddd4883abbc48cc4ded[m
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Mon Nov 7 20:07:34 2022 +0900
+
+    fix: 유저 id 잘못 로드되던 문제 수정
+
+[33mcommit 0de32f2110f565a15848f29561bd13c96804dd70[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Sun Nov 6 00:36:36 2022 +0900
+
+    fix: question 제목 반환하도록 수정
+
+[33mcommit 17713d25b5d7e969196c43f46530f189f9780530[m
+Merge: 27bf4ad 4688107
+Author: Jisu Kang <kangjisu0403@gmail.com>
+Date:   Fri Nov 4 11:28:10 2022 +0900
+
+    Merge pull request #51 from clearmirror-js/fix
+    
+    fix: 강의 검색 기능 버그 수정
+
+[33mcommit 4688107ce4f27fc0e96d65c4761b5bdc73792812[m
+Author: clearmirror-js <kangjisu0403@gmail.com>
+Date:   Thu Nov 3 20:17:25 2022 +0900
+
+    fix: 강의 검색 기능 버그 수정
+
+[33mcommit 27bf4ad8732ebab7f92a97a4d635454689eed9c7[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Tue Oct 11 01:25:46 2022 +0900
+
+    feat: lecture id로 history 조회하는 api 추가
+
+[33mcommit 8a89e7e0f3eaf0e3f1160650aab9a01a2d1da3df[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Tue Oct 11 00:18:12 2022 +0900
+
+    feat: history API에 정보 추가
+
+[33mcommit 141fc9259619355442f2c865737a5f23d1395426[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Wed Oct 5 21:37:23 2022 +0900
+
+    chore: 로그인 API 실패시 status code 변경
+
+[33mcommit 8217b9fbe6d033b7408670b4cc6460217b8667aa[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Wed Oct 5 21:34:18 2022 +0900
+
+    fix: 로그인 API에서 response가 2번 보내지는 문제 해결
+
+[33mcommit 17b99583d07c92afda13450894bf12e8ed8cfd6c[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Wed Oct 5 00:27:34 2022 +0900
+
+    feat: 배너 API에 강좌와 카테고리 정보 추가
+
+[33mcommit c2d0fc8b9988f41afda06ee6a356378f67f66175[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Mon Oct 3 23:47:35 2022 +0900
+
+    feat: 인증메일 링크가 새 탭에 열리도록 수정
+
+[33mcommit bb649b8afff9ca7d687e976c7679fa6086a6118c[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Mon Oct 3 22:50:32 2022 +0900
+
+    feat: 영상 길이 수정 및 테스트용 Q&A 삭제
+
+[33mcommit 16989995e438faa0507cb20ae9da90af797143ab[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Wed Sep 28 17:34:12 2022 +0900
+
+    feat: 인증 메일 디자인 변경
+
+[33mcommit f8082993a3621ba0c3ccd8a1239ecdab1f69fd52[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Mon Sep 19 22:15:28 2022 +0900
+
+    feat: 최근 질문 조회 api 추가
+
+[33mcommit 337197dee6e3b377c79149fa6f352f576898f83e[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Fri Sep 16 21:53:32 2022 +0900
+
+    fix: course seed의 썸네일을 s3 주소로 변경
+
+[33mcommit 70d8553da0474713f8e258dc564f358b62f69def[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Fri Sep 16 18:30:03 2022 +0900
+
+    fix: lecture url type을 text로 변경
+
+[33mcommit adc74afa3564d25001dcd1febc88d9f376382b40[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Fri Sep 16 18:28:29 2022 +0900
+
+    fix: lecture url 길이 변경
+
+[33mcommit 98c44e5fb6ed8296e1f5b111e2fa97b49adf3159[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Fri Sep 16 18:26:02 2022 +0900
+
+    fix: seed service 오타 수정
+
+[33mcommit 635a9302fe3f16dd67568263e68d258e627116c1[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Fri Sep 16 18:23:19 2022 +0900
+
+    fix: section entity 오타 수정
+
+[33mcommit 20039a23810a7f22129fb13801099cc7239a8f4a[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Fri Sep 16 18:00:57 2022 +0900
+
+    feat: 실제 강의 데이터 입력
+
+[33mcommit 173e40f29507fa6156aec5d44ffcbded45ba39d9[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Wed Sep 14 21:45:04 2022 +0900
+
+    fix: user.seed 권한 변경
+
+[33mcommit 5749459ea2900a656957487b559c51b831d2161e[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Wed Sep 14 21:28:42 2022 +0900
+
+    fix: user.entity의 role 대소문자 변경
+
+[33mcommit f39c01f4c9b30185257241dcfb2373b7fa9e0325[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Wed Sep 14 19:42:53 2022 +0900
+
+    fix: Question 조회 시 답변도 임시로 포함
+
+[33mcommit 2990d608125ad7e33812a2eb43b7656d653083f4[m
+Merge: 41fae9c d9b3a7a
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Fri Sep 9 00:44:19 2022 +0900
+
+    Merge pull request #50 from SKKU-Online-Learning-System/feature/answer-comment
+    
+    feat: comment(답변의 댓글) 기능 완성
+
+[33mcommit d9b3a7a4f601af06eddf2df830081b7dccbce2b9[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Fri Sep 9 00:42:23 2022 +0900
+
+    feat: comment(답변의 댓글) 기능 완성
+
+[33mcommit 41fae9c249415cf17df22f9db6cbb1cac63c5659[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Thu Sep 8 04:03:22 2022 +0900
+
+    fix: Q&A 기능 완성
+
+[33mcommit 340b3b0e9e0ac2e45b38628d79a418517c260d2a[m
+Author: Jae-Young Choi <paulcjy@naver.com>
+Date:   Wed Sep 7 20:19:23 2022 +0900
+
+    feat: Question에 title 필드 추가
+
+[33mcommit b881b0e9795623eea45ee795ac77a06e208d8a97[m
+Author: cjy <cjy@cjy.localdomain>
+Date:   Wed Sep 7 15:23:53 2022 +0900
+
+    feat: Role Guard 구현
+
+[33mcommit 916d2b63c0bb7ab4ed847bfb75440e67d9e17375[m
+Merge: 5263080 d3ef0e9
+Author: Peorge <64393421+SH9480P@users.noreply.github.com>
+Date:   Wed Aug 17 15:49:09 2022 +0900
+
+    Merge pull request #49 from SKKU-Online-Learning-System/feature/test-lecture-image
+    
+    ai.jpg로 변경
+
+[33mcommit d3ef0e9d3936801544b992b494934554b82ef103[m[33m ([m[1;31morigin/feature/test-lecture-image[m[33m)[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Wed Aug 17 15:48:20 2022 +0900
+
+    ai.jpg로 변경
+
+[33mcommit 5263080df87ac804f4ccd89ec93e4697a2b99aab[m
+Merge: c2389a2 8f6e128
+Author: Peorge <64393421+SH9480P@users.noreply.github.com>
+Date:   Wed Aug 17 15:41:50 2022 +0900
+
+    Merge pull request #48 from SKKU-Online-Learning-System/feature/test-lecture-image
+    
+    feat: add seed data of 성대한특강 course
+
+[33mcommit 8f6e128d4e91be917c75cbbea75fe5c162d1fbe9[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Wed Aug 17 15:14:11 2022 +0900
+
+    feat: add seed data of 성대한특강 course
+
+[33mcommit c2389a2cab97836877711f66064e4fc82ebbd5ea[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Aug 15 19:27:36 2022 +0900
+
+    fix: 배너 폴더 변경
+
+[33mcommit fa6a36f97f11aeb5ad02441536d98c0bdfac8e65[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Aug 15 19:09:41 2022 +0900
+
+    fix: 파일 경로에서 public 제외
+
+[33mcommit 0bda772566896bb35303d6dc376b72b59e29685c[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Aug 15 17:58:39 2022 +0900
+
+    fix: 임시로 파일 체크 기능 비활성화
+
+[33mcommit fc520a5f45fc82141a8e71dc426e41b63032ace0[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Aug 15 17:53:43 2022 +0900
+
+    fix: 임시로 비디오 url을 static assets 경로로 변경
+
+[33mcommit 7eab678ab64143185a592d94e8155ead9ade9496[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Aug 15 16:03:46 2022 +0900
+
+    fix: Github Action에서 기존 dist폴더를 삭제하도록 변경
+
+[33mcommit 347e26aa289aa9be35a501ea1e7cdd2fac1b4385[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Aug 15 16:00:23 2022 +0900
+
+    fix: 로그인 이메일 템플릿 이름 업데이트
+
+[33mcommit 6b31ba043bcafa079eea047d0e5d688fbd2173e7[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Sat Aug 13 22:57:26 2022 +0900
+
+    fix: Github Actions가 pr에는 작동하지 않도록 변경
+    
+    main 브랜치에 push나 commit이 생성될 때 작동합니다.
+
+[33mcommit f0177c18c2e52aa63ee5b77b481946af8fffce59[m
+Author: cjy <paulcjy@naver.com>
+Date:   Sat Aug 13 22:53:37 2022 +0900
+
+    fix: CORS 설정 해제
+
+[33mcommit d4ab2b7a8b2fa672f2e8919a0e5d62e095c0274d[m
+Author: cjy <paulcjy@naver.com>
+Date:   Sat Aug 13 21:34:06 2022 +0900
+
+    fix: temp-login에 domain 설정
+
+[33mcommit 07dba9b614631b474407c04bfa0cb7c7db18f755[m
+Author: cjy <paulcjy@naver.com>
+Date:   Sat Aug 13 21:12:27 2022 +0900
+
+    fix: CORS 설정에 origin 추가
+
+[33mcommit 5dca217abe90eb148dd2f5544dd204675b40de91[m
+Author: cjy <paulcjy@naver.com>
+Date:   Sat Aug 13 19:36:08 2022 +0900
+
+    chore: 포트 4000번으로 변경
+
+[33mcommit 498b009bb52be6c3bbca7557aef6ab65dd4c054c[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Fri Aug 12 02:38:53 2022 +0900
+
+    Github Action으로 CI/CD 설정
+
+[33mcommit 66dc83bf5bd8380ab1ce77327c53cb89dd569536[m
+Author: cjy <paulcjy@naver.com>
+Date:   Wed Aug 10 15:03:20 2022 +0900
+
+    fix: question.service에서 질문과 답변 작성자 정보를 email에서 id와 nickname으로 수정
+
+[33mcommit 97b01e10cb3d6e421c6a99f46e8d3cc0654259db[m
+Author: cjy <paulcjy@naver.com>
+Date:   Wed Aug 10 14:55:34 2022 +0900
+
+    Revert "fix: course.service의 getLecturesByCourseId를 find에서 findOne으로 변경"
+    
+    This reverts commit 6005c49415b1dd6779fb77e12fa14d5c504ee966.
+
+[33mcommit 6005c49415b1dd6779fb77e12fa14d5c504ee966[m
+Author: cjy <paulcjy@naver.com>
+Date:   Wed Aug 10 14:52:50 2022 +0900
+
+    fix: course.service의 getLecturesByCourseId를 find에서 findOne으로 변경
+
+[33mcommit b92e0e1cebfa5bd1b14a3d09c0afd130f728a9e4[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Aug 9 16:07:13 2022 +0900
+
+    fix: swagger에 User 태그 추가
+
+[33mcommit eaf77e2a80488671eb74912d30ce897014063687[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Aug 9 16:04:50 2022 +0900
+
+    feat: 관리자용 User 조회 및 수정 기능 추가
+
+[33mcommit 87559abbf630ef369ede244c6d2df2b363afb0e0[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Aug 9 15:51:01 2022 +0900
+
+    fix: Course 조회 시  summary 항목이 포함되도록 수정
+
+[33mcommit a632bbee15d4a7b7dcf384b6dff527191625e203[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Aug 8 16:06:43 2022 +0900
+
+    fix: Question 모듈의 getQuestionById를 findOne으로 변경
+
+[33mcommit 3fa2c902c51dd62d96e566c0b986cfbbc3c7a4c5[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Aug 8 15:33:08 2022 +0900
+
+    fix: CORS 설정 해제
+
+[33mcommit 05714649956973285f30944abc86b0cf0e7a7fd0[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Aug 8 00:40:50 2022 +0900
+
+    fix: 쿠키 도메인 변경
+
+[33mcommit 713a17beb6389cb31eee8a6a68d4fe9c8625ab51[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Aug 8 00:24:35 2022 +0900
+
+    fix: 쿠키 도메인 변경
+
+[33mcommit 938039375b24cc6a0f019710f325c348aa315236[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Aug 8 00:20:11 2022 +0900
+
+    fix: 쿠키 도메인 설정
+
+[33mcommit 26850abe899a3f9f5ce93582ebb835741d3bb8c6[m
+Merge: 4810f77 c4daff0
+Author: Peorge <64393421+SH9480P@users.noreply.github.com>
+Date:   Sun Aug 7 16:06:48 2022 +0900
+
+    Merge pull request #47 from SKKU-Online-Learning-System/feature/file-system
+    
+    Feature/file system
+
+[33mcommit c4daff07442b4f632df91d3b68f4ebe4a05d8bc1[m
+Merge: 4fa05be 4810f77
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Sun Aug 7 16:05:37 2022 +0900
+
+    Merge branch 'main' into feature/file-system
+    
+    # Conflicts:
+    #       src/app.module.ts
+
+[33mcommit 4fa05be64541dc60cfde5ec870bdfbcdee14f225[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Sun Aug 7 16:03:58 2022 +0900
+
+    feat: add swagger and change video GET logic and add delete api
+    
+    기존 비디오 다운로드 방식은 fs의 pipe를 사용하는 것이었는데, 그냥 staticAsset 미들웨어를 추가하여 링크로 접속할 수 있도록 만들었습니다.
+    기존 방식은 영상 건너뛰기와 같은 동작이 되지 않아서 현 방식으로 바꿨습니다.
+    단, 지금 방식의 문제는 권한이 없는 사용자라도 url만 알면 서버의 static 파일에 접근할 수 있다는 것입니다.
+
+[33mcommit 4810f77f61b7296676d8da31b646f227d95b3590[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Sun Aug 7 00:47:47 2022 +0900
+
+    fix: 프론트엔드 url 수정
+
+[33mcommit 00b3e36c9f66268b2d37ebb2ab3916c7c0cd12bb[m
+Author: cjy <paulcjy@naver.com>
+Date:   Sun Aug 7 00:34:44 2022 +0900
+
+    feat: CORS 옵션 origin 설정
+
+[33mcommit f1a82e07407196c694156233a4b0215fd4443804[m
+Author: cjy <paulcjy@naver.com>
+Date:   Sat Aug 6 03:04:54 2022 +0900
+
+    fix: 쿠키에 secure 추가
+
+[33mcommit be54cac285723d524db8e4f8d41027a320ecda11[m
+Merge: 3aa76b7 3b9aa94
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Sat Aug 6 02:56:02 2022 +0900
+
+    Merge pull request #46 from SKKU-Online-Learning-System/feature/seed
+    
+    feat: 시드데이터 추가 및 테이블 관계 설정
+
+[33mcommit 3b9aa94a9186f123cc459f540e8d0221e763bac8[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Sat Aug 6 02:55:29 2022 +0900
+
+    fix: user.id를 user.userId로 수정
+    
+    임시로 @user()에서 받아오고 나중에 dto로 수정할 예정입니다
+
+[33mcommit 10de16d7796fc1945055b5c7977a050a29f03c12[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Sat Aug 6 02:54:47 2022 +0900
+
+    fix: user.id를 user.userId로 수정
+    
+    임시로 @user()에서 받아오고 나중에 dto로 수정할 예정입니다
+
+[33mcommit a6627a9d2d8d83b2de16c229b6a7d4653d74b331[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Sat Aug 6 02:53:33 2022 +0900
+
+    fix: user.id를 user.userId로 수정
+    
+    임시로 @user()에서 받아오고 나중에 dto로 수정할 예정입니다
+
+[33mcommit 05f1fdbe827e959fb378080a1ad019ad726af1d1[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Sat Aug 6 02:52:24 2022 +0900
+
+    fix: user.id를 user.userId로 수정
+    
+    임시로 @user()에서 받아오고 나중에 dto로 수정할 예정입니다
+
+[33mcommit 22ec0a5dfbc81b66d28c8a891ee390d248785bad[m
+Merge: 309bd5f 3aa76b7
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Fri Aug 5 15:53:24 2022 +0900
+
+    Merge branch 'main' into feature/file-system
+
+[33mcommit 309bd5fac4d555a3236451f70b8c44100b59e6c8[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Fri Aug 5 15:53:03 2022 +0900
+
+    feat: add image/video upload/download system
+    
+    파일을 업로드할 땐 multer를 사용합니다. multerOption은 constants 폴더에 저장해놓았습니다.
+    비디오를 업로드하면 videos에 courseId 폴더가 생성되고, 해당 폴더에 비디오가 저장됩니다. 파일 이름 중복을 위해 파일 이름 앞에 dateTime을 추가합니다.
+    이미지를 업로드하면 multerOption의 인자에 따라 해당 폴더에 이미지가 생성됩니다. 현재는 course 썸네일만 구현했습니다.
+    
+    비디오를 다운로드할 땐 streaming data의 pipe 기능을 사용하였습니다. 영상을 보기 전에 전부 다운로드받기를 기다리지 않아도 되기 때문입니다.
+    이미지를 다운로드할 땐 main.ts에 staticAsset 미들웨어를 추가하여 해당 경로로 접속할 수 있게 했습니다.
+
+[33mcommit a39f1fd0ed8170d13bf76b632b6cf2e6e4aa0358[m
+Author: cjy <paulcjy@naver.com>
+Date:   Thu Aug 4 14:33:05 2022 +0900
+
+    feat: 시드데이터 추가 및 테이블 관계 설정
+    
+    - 시드데이터 대량 추가
+    - 테이블 관계 설정 및 시드 입력 순서 조정
+    - Learning과 Complete 테이블을 Enrollment로 변경
+    - courses/popular 내용 수정(Enrollment 테이블 사용하도록)
+    - Wishlist 모듈에서 wishlist 목록이 아닌 course 목록이 반환되도록 변경
+    - Bookmark 모듈에서 bookmark 목록이 아닌 course 목록이 반환되도록 변경
+    - 기타 자잘한 문제 수정
+
+[33mcommit 3aa76b7c1085af29f6db01d0ddc163a9dd394348[m
+Merge: db987f9 d56f798
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Tue Aug 2 18:09:03 2022 +0900
+
+    Merge pull request #45 from SKKU-Online-Learning-System/hotfix/cors
+    
+    fix: CORS 옵션 변경
+
+[33mcommit d56f798b70798b197820da27d83733c6d888d54e[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Aug 2 16:10:16 2022 +0900
+
+    fix: CORS 옵션 변경
+
+[33mcommit db987f9a38161fb78b67d9aa4ce9deb2bc06a11a[m
+Merge: 36d441c 60338a6
+Author: Peorge <64393421+SH9480P@users.noreply.github.com>
+Date:   Mon Aug 1 21:24:36 2022 +0900
+
+    Merge pull request #44 from SKKU-Online-Learning-System/feature/duplicate-check
+    
+    Feature/duplicate check
+
+[33mcommit 36d441ce526ad840ab0e3555fce81a7411707a20[m
+Merge: 9a45054 9809794
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Aug 1 21:12:24 2022 +0900
+
+    Merge pull request #43 from SKKU-Online-Learning-System/feature/role-guard
+    
+    Feature/role guard
+
+[33mcommit 98097941d5cf73fc32c0bcc133a6b1a7aafbcb50[m
+Merge: 8b4337a f1a753a
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Mon Aug 1 21:10:56 2022 +0900
+
+    Merge branch 'feature/role-guard' of https://github.com/SKKU-Online-Learning-System/mvp-backend-nestjs into feature/role-guard
+
+[33mcommit 8b4337a9dffc034214309e2734d31331cda23947[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Mon Aug 1 21:10:25 2022 +0900
+
+    refactor: change role to privileage
+
+[33mcommit f1a753a82db7772f458877b906bbf05828161b28[m
+Merge: 00c1127 9a45054
+Author: Peorge <64393421+SH9480P@users.noreply.github.com>
+Date:   Mon Aug 1 20:59:19 2022 +0900
+
+    Merge branch 'main' into feature/role-guard
+
+[33mcommit 60338a6975a2fec1b66e7a17628b09032f67860f[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Aug 1 20:55:48 2022 +0900
+
+    docs: 이메일 및 닉네임 중복 확인 기능 API 명세 작성
+
+[33mcommit 00c1127e8969436921a2c1317ac433b83f3fe177[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Mon Aug 1 20:51:44 2022 +0900
+
+    feat: role guard 구현
+    
+    role은 1~4까지 있습니다.
+    1은 admin, 2는 instructor, 3은 ta, 4는 일반 사용자입니다.
+    jwt auth guard 위에 RolesGuard를 붙이면 됩니다.
+
+[33mcommit fd9f65624b3741efdded912c1c209276278a3aea[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Aug 1 20:29:02 2022 +0900
+
+    feat: 이메일 및 닉네임 중복 확인 기능 추가
+    
+    - /auth/email-check/:email
+    - /auth/nickname-check/:nickname
+
+[33mcommit 9a450540708e554519cc3ee96a965d40efd24bca[m
+Merge: a29a9d7 13beab2
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Aug 1 20:01:45 2022 +0900
+
+    Merge pull request #42 from SKKU-Online-Learning-System/feature/signup
+    
+    feat: 로그인과 회원가입 기능을 별도로 분리
+
+[33mcommit a29a9d70988d46813fb5d4b6e7c834e4f0d232e7[m
+Merge: 68dbb6a 71cddd8
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Aug 1 19:32:20 2022 +0900
+
+    Merge pull request #41 from SKKU-Online-Learning-System/feature/course
+    
+    feat : Course entity 에 summary column 추가
+
+[33mcommit 13beab28c2ec2fe15ca17ba96cb4961a6d090210[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Aug 1 19:28:41 2022 +0900
+
+    feat: 로그인과 회원가입 기능을 별도로 분리
+
+[33mcommit 71cddd8f36441e120934b048e4626ddaf0fa4579[m
+Author: seah526 <seah526@naver.com>
+Date:   Mon Aug 1 15:36:43 2022 +0900
+
+    feat : Course entity 에 summary column 추가
+
+[33mcommit 68dbb6a158e15739407fb9606907af4fc51f54ec[m
+Merge: 8b4c0d7 b315411
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Aug 1 15:04:18 2022 +0900
+
+    Merge pull request #40 from SKKU-Online-Learning-System/feature/logger-morgan
+    
+    feat: Logger(morgan) 추가
+
+[33mcommit 8b4c0d71d4047a688ab012c895115e5dd63eb9af[m
+Merge: 3c62ea4 44d7704
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Aug 1 15:04:04 2022 +0900
+
+    Merge pull request #39 from SKKU-Online-Learning-System/feature/config-http-response
+    
+    Feature/config http response
+
+[33mcommit 4f0ff0c6dadb0b0ba3923591057d0f5316f69802[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Mon Aug 1 14:52:29 2022 +0900
+
+    feat: jwt payload에 사용자 privilege를 정수 형태로 포함시킨다
+
+[33mcommit b3154115373c002cd30bd1e590c66bbcd3da2a01[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Aug 1 14:05:56 2022 +0900
+
+    feat: Logger(morgan) 추가
+
+[33mcommit 44d77044b1a9625125072f7425a883fa7b100971[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Aug 1 13:39:08 2022 +0900
+
+    refactor: find 및 HttpResponse 적용
+
+[33mcommit 1ce8324bc2c50fd70836661ca96f5e1480ecc688[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Aug 1 13:03:00 2022 +0900
+
+    fix: HttpResponse 메시지에 콜론 추가
+
+[33mcommit 400dba961722a17b3ed5c0f38b47619053b10f3f[m
+Author: cjy <paulcjy@naver.com>
+Date:   Sat Jul 30 15:03:33 2022 +0900
+
+    refactor: auth.service find 및 HttpResponse 적용
+
+[33mcommit b215e8902d62b552fca7619d3afcab8eb79f1d84[m
+Author: cjy <paulcjy@naver.com>
+Date:   Sat Jul 30 15:02:53 2022 +0900
+
+    refactor: answer.service find 및 HttpResponse 적용
+
+[33mcommit dbfce89b915c8889160699554579ea2bce64199f[m
+Author: cjy <paulcjy@naver.com>
+Date:   Sat Jul 30 14:59:21 2022 +0900
+
+    refactor: admin.service find 및 HttpResponse 적용
+
+[33mcommit 77f79237a1d527ca43747e8180f81f5cbf142743[m
+Author: cjy <paulcjy@naver.com>
+Date:   Sat Jul 30 14:55:57 2022 +0900
+
+    feat: StatusCode와 메시지를 정의하는 클래스와 생성하는 함수 기능
+    
+    - HttpResponse 객체로 statusCode와 message 형식 정의
+    - status 함수로 statusCode만 입력하면 자동으로 메시지가 생성
+
+[33mcommit 3c62ea4f264032f587c9e40fa53a6fb533c336af[m
+Merge: c989036 72f8512
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Fri Jul 29 21:19:47 2022 +0900
+
+    feat: Swagger 파일 생성 및 id 관련 변수명 변경
+    
+    Feature/swagger
+
+[33mcommit 72f8512494bb05ee491313e31452bcc9794724ad[m
+Merge: 6ee0f8d c989036
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Fri Jul 29 21:19:00 2022 +0900
+
+    Merge branch 'main' into feature/swagger
+
+[33mcommit c989036d7a05d1aefb05644ecdf99b69401a6bdd[m
+Merge: aba1b0d 19d03bf
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Fri Jul 29 21:17:40 2022 +0900
+
+    Merge pull request #37 from SKKU-Online-Learning-System/feature/hashtag
+    
+    feat: 해시태그 CRUD 기능 완성
+
+[33mcommit 6ee0f8d0676fddb638b5d0259cf69d18ca4fa949[m
+Author: cjy <paulcjy@naver.com>
+Date:   Fri Jul 29 20:58:08 2022 +0900
+
+    feat: Swagger 파일 생성 및 변수 용어 변경
+    
+    - id를 받아오는 파라미터는 어떤 id인지 명시
+    - 컨트롤러 데코레이터 순서 설정(http method가 처음, swagger가 마지막)
+
+[33mcommit 66cdc9e439ecff029c804c0b358c66cba3b94975[m
+Author: cjy <paulcjy@naver.com>
+Date:   Fri Jul 29 11:48:36 2022 +0900
+
+    swagger 작업중
+
+[33mcommit aba1b0d7ed16f5332168fc3c0bc7e3291a63b1b0[m
+Merge: cb5f54b 08aad5e
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Wed Jul 27 01:08:29 2022 +0900
+
+    Merge pull request #35 from SKKU-Online-Learning-System/feature/bookmark
+    
+    Feature/bookmark
+
+[33mcommit 19d03bf514a4b69123fb08f501237b25602f4207[m
+Author: cjy <paulcjy@naver.com>
+Date:   Wed Jul 27 01:05:41 2022 +0900
+
+    feat: 해시태그 CRUD 기능 완성
+    
+    - 해시태그 관련 DTO 생성
+
+[33mcommit cb5f54bcad5667cf8b3a64cc1ea3887ce24c2f52[m
+Merge: 3f96ef6 81510e5
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Tue Jul 26 22:46:26 2022 +0900
+
+    Merge pull request #36 from SKKU-Online-Learning-System/hotfix/auth-get-token
+    
+    feat: 로그인 기능 테스트를 위한 임시 로그인 API 추가
+
+[33mcommit 81510e5b54bd8723f00395d1bda1008e0a3f35d1[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jul 26 22:44:14 2022 +0900
+
+    feat: 로그인 기능 테스트를 위한 임시 로그인 API 추가
+    
+    Auth Module에 /auth/temp-login을 통해 쿠키 세팅을 할 수 있음
+
+[33mcommit 3f96ef6545871570973f2a70f4048964951480b9[m
+Author: June1010 <tjrwns1010@naver.com>
+Date:   Tue Jul 26 20:34:04 2022 +0900
+
+    feat: lecture 경로 반환 API 추가
+
+[33mcommit 15cf6353558fc526549b3262dbac7b83b95edaa4[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 26 18:32:13 2022 +0900
+
+    fix: response 데이터 변경
+    
+    innerJoin을 추가하여 courseID에 따른 course의 정보도 볼 수 있게 만들었습니다
+
+[33mcommit 08aad5eeb04147b09b91c712fc138e52e389652c[m
+Author: seah526 <seah526@naver.com>
+Date:   Tue Jul 26 18:02:32 2022 +0900
+
+    refactor: addWishlist api의 method 를 put에서 post 로 변경
+
+[33mcommit 89b2d78e5fb072242ba087476fed592b6ee251fe[m
+Merge: 13a9841 218c126
+Author: seah526 <seah526@naver.com>
+Date:   Tue Jul 26 17:59:36 2022 +0900
+
+    Merge branch 'main' into feature/bookmark
+
+[33mcommit 13a9841ce499eb6dde70c550bb4383b8443af11d[m
+Author: seah526 <seah526@naver.com>
+Date:   Tue Jul 26 17:56:56 2022 +0900
+
+    refactor: method 정의 변경
+
+[33mcommit 218c12601a582e2c851c9d187470b8922651bc87[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Tue Jul 26 17:01:54 2022 +0900
+
+    fix: 해시태그 URL 수정
+
+[33mcommit 95fbc9ed783ff0988a66b1d06fb822e09d295f9f[m
+Merge: 06f90f3 ddda062
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Tue Jul 26 17:00:10 2022 +0900
+
+    Merge pull request #34 from SKKU-Online-Learning-System/feature/hashtag
+    
+    feat: 해시태그 모듈 생성 및 course 검색기능 수정
+
+[33mcommit ddda062283c1c3042791e7975d736c2b9b9efecf[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jul 26 16:55:02 2022 +0900
+
+    feat: 해시태그 모듈 생성 및 course 검색기능 수정
+    
+    - 전체 해시태그를 돌려주는 엔드포인트 생성
+    - course 검색 시 검색된 전체 강의 개수를 포함하도록 변경
+
+[33mcommit 06f90f31732436831133b1f01f55d2bd804510b7[m
+Merge: c79404a e44148c
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Tue Jul 26 15:54:46 2022 +0900
+
+    Merge pull request #32 from SKKU-Online-Learning-System/feature/bookmark
+    
+    Feature/bookmark
+
+[33mcommit c79404af2ee9fdea07dbf66f2f9cb9396051f5da[m
+Merge: 7539ce0 f8afaab
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Tue Jul 26 15:50:55 2022 +0900
+
+    Merge pull request #31 from SKKU-Online-Learning-System/feature/popular-course-get-api
+    
+    Feature/popular course get api
+
+[33mcommit f8afaab110284d7e89083004b9b8102c919a39e7[m
+Merge: 6ae887f 7539ce0
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 26 15:42:00 2022 +0900
+
+    Merge branch 'main' into feature/popular-course-get-api
+    
+    # Conflicts:
+    #       src/modules/course/course.controller.ts
+    #       src/modules/course/course.service.ts
+
+[33mcommit e44148cb45f26359ec5ddea4bc9795e9783807ae[m
+Merge: 844eed3 7539ce0
+Author: seah526 <seah526@naver.com>
+Date:   Tue Jul 26 15:40:01 2022 +0900
+
+    Merge branch 'main' into feature/bookmark
+
+[33mcommit 844eed3ec70c85860d06df6729ab4f1bbd738abd[m
+Author: seah526 <seah526@naver.com>
+Date:   Tue Jul 26 15:38:33 2022 +0900
+
+    fix : .env 파일을 읽어올 때까지 secret key 등록 지연
+
+[33mcommit 2bf03ab0eb74879edc6751b77eff4f7fc265652a[m
+Author: seah526 <seah526@naver.com>
+Date:   Tue Jul 26 15:36:48 2022 +0900
+
+    feat : Complete entity의 bookmark CRD api 생성
+
+[33mcommit 6ae887f23eb81393777abb2f0bd8f7b0ac05ccc9[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 26 15:35:54 2022 +0900
+
+    feat: course 인기순 조회 API 구현
+    
+    /courses/popular GET 요청으로 받아볼 수 있습니다.
+    learning과 complete가 분리되어있어 다음과 같은 구조로 구현했습니다.
+    learning과 complete에서 course별 수강신청 수를 가져온 뒤,
+    두 객체를 합쳐서 공통된 courseId를 가진 item은 수강신청 수를 더해줍니다.
+    수강신청 수를 기준으로 내림차순 정렬하여 return합니다.
+
+[33mcommit 7539ce02c01c019367f6038428c36fde693fabf5[m
+Merge: f3f8936 48f32df
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jul 26 15:20:08 2022 +0900
+
+    Merge branch 'feature/qna-seed'
+
+[33mcommit 48f32df15d19ac5d99daed00335f7c15088cdd28[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jul 26 15:16:51 2022 +0900
+
+    fix: TypeORM find에서 select가 안되는 문제 해결
+    
+    - Entity에서 eager 옵션 제거
+
+[33mcommit f3f89366f9562f453b4214e284e466a8480a69cf[m
+Merge: 85710ab d5a1bec
+Author: seah526 <50127687+seah526@users.noreply.github.com>
+Date:   Tue Jul 26 15:01:04 2022 +0900
+
+    Merge pull request #30 from SKKU-Online-Learning-System/feature/qna-seed
+    
+    Feature/qna seed
+
+[33mcommit d5a1bec5ce922cb2bea06b74356ae67cfbaf9967[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jul 26 14:52:26 2022 +0900
+
+    feat: Q&A 조회 기능 완성
+    
+    - course id로 조회: 해당 course에 포함되는 모든 질문과 답변 반환
+    - lecture id로 조회: 해당 lecture에 포함되는 모든 질문과 답변 반환
+    - Entity에 eager 옵션 추가
+
+[33mcommit 1c5708084f1769680cc36ac4e0e7391f76d6b72f[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jul 26 12:47:59 2022 +0900
+
+    feat: QnA seed 추가 및 entity 변경
+    
+    - Answer Entity에서 courseId와 lectureId를 제거하고 Question Entity와 relation을 설정
+    - course별 2~3개씩 question을 추가하고 각 question마다 answer를 1개씩 생성
+
+[33mcommit 85710ab8dd8257375c56d80a1beed876d6ca78db[m
+Merge: c6e5016 a998d1b
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Tue Jul 26 11:53:19 2022 +0900
+
+    Merge pull request #29 from SKKU-Online-Learning-System/feature/course-fix
+    
+    feat: 강의 검색에 난이도 필터 추가
+
+[33mcommit a998d1bf9e327193ce6230042a7d16107f151ad6[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jul 26 11:45:12 2022 +0900
+
+    feat: 강의 검색에 난이도 필터 추가
+    
+    - 난이도는 query string으로 입력하고, 숫자를 컴마로 연결하여 전달
+    - swagger 사용을 대비하여 id 파라미터에 무슨 id인지 명시
+
+[33mcommit c6e5016cf3328738a8bf5fb6b3a843519ed2635d[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Jul 25 18:26:08 2022 +0900
+
+    fix: 외래키 때문에 seed 입력이 안되는 문제 해결
+    
+    seed 입력시에는 반드시 순서를 잘 맞춰서 입력해야 함
+
+[33mcommit 9f07edc7a0459dd57bc2a4c51ec610d7ea3aacd3[m
+Merge: b4d72c1 fb7fde2
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Jul 25 17:27:30 2022 +0900
+
+    Merge pull request #28 from SKKU-Online-Learning-System/feature/lecture
+    
+    Feature/lecture
+
+[33mcommit fb7fde20bebe476e5010ef033ee8a3848d8c9d92[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Jul 25 17:27:01 2022 +0900
+
+    chore: getLecturesByCourseId의 URL 수정
+
+[33mcommit fa10570064296428bb198fe86fd3410ea6ebee69[m
+Author: seah526 <seah526@naver.com>
+Date:   Mon Jul 25 17:18:26 2022 +0900
+
+    refactor : getLectureByCourseId 를 lecture module에서 course module로 이동
+
+[33mcommit b4d72c11ff695b5320514d8f36686c4eb9fce011[m
+Merge: a4529ea 6220578
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Jul 25 17:13:06 2022 +0900
+
+    Merge pull request #27 from SKKU-Online-Learning-System/feature/mail-gmail
+    
+    feat: Gmail로 인증 메일 발송하도록 변경
+
+[33mcommit a4529eac94f6b32eb3905020e599f89f722a777c[m
+Merge: e8aff1f 4632199
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Jul 25 17:03:50 2022 +0900
+
+    Merge pull request #26 from SKKU-Online-Learning-System/feature/join-usercourse-and-course
+    
+    fix: change return data of GET API
+
+[33mcommit e8aff1f04bac99b86bdf817f69b4a56e7ca09bc9[m
+Merge: e21b8ba 681f1e6
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Jul 25 16:57:48 2022 +0900
+
+    Merge pull request #25 from SKKU-Online-Learning-System/feature/seed
+    
+    test : section seed data 추가 및 lecture seed data의 잘못된 sectionId 수정
+
+[33mcommit e21b8ba83d81e58001715e37102a3cba1628512b[m
+Merge: ff2a842 39840fc
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Jul 25 16:55:06 2022 +0900
+
+    Merge pull request #24 from SKKU-Online-Learning-System/feature/history-order-by
+    
+    Feature/history order by
+
+[33mcommit 118f9108636f96a38470859cf1e736aefe8e7e6c[m
+Author: seah526 <seah526@naver.com>
+Date:   Mon Jul 25 16:48:22 2022 +0900
+
+    feat : course 의 해당 section 별 lecture 목록 불러오기 api 추가
+
+[33mcommit a7b85c3a5a1b5e8ab7e0cb2b3ec93b89c6c309cd[m
+Author: seah526 <seah526@naver.com>
+Date:   Mon Jul 25 16:47:41 2022 +0900
+
+    test : page/seed에서 lecture과 section seed data 업로드 추가
+
+[33mcommit 4632199db2bbed526bae21d6ab6335fe314c3e88[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Mon Jul 25 16:41:32 2022 +0900
+
+    fix: change return data of GET API
+    
+    원래는 complete, learning 각각의 엔터티에 해당하는 값만 보내줬는데,
+    지금은 courseId에 해당하는 course정보를 같이 보내주게끔 join을 걸어 주는 것으로 변경합니다.
+
+[33mcommit 6220578b99e7472ac3d22ec27305cf7c117ff148[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Jul 25 16:38:20 2022 +0900
+
+    feat: Gmail로 인증 메일 발송 기능 추가
+    
+    1) .env에 이메일 정보 입력 필요
+            - EMAIL_SERVICE: gmail
+            - EMAIL_USERNAME: 이메일 주소
+            - EMAIL_PASSWORD: 구글 계정 비밀번호가 아니라 앱 비밀번호
+            - EMAIL_FROM: 발신자 이름과 이메일 주소
+    2) 이메일 템플릿도 빌드하도록 nest-cli.json 수정
+    3) JWT와 Magic-login에 사용되는 secret key를 .env로 옮김
+            - JWT_SECRET
+            - MAGIC_SECRET
+
+[33mcommit d70377a4c522db133e1d0b3505c2ba4fb28bae43[m
+Merge: bf48ea1 681f1e6
+Author: seah526 <seah526@naver.com>
+Date:   Mon Jul 25 16:12:29 2022 +0900
+
+    Merge branch 'feature/seed' into feature/lecture
+
+[33mcommit bf48ea165db559f20a3c46b295fa11344b94455c[m
+Merge: 2d2769c ff2a842
+Author: seah526 <seah526@naver.com>
+Date:   Mon Jul 25 16:02:54 2022 +0900
+
+    Merge branch 'main' into feature/lecture
+
+[33mcommit 39840fcc44282d84b2dd3d075e2cce2cc0683ffa[m
+Merge: cc45361 ff2a842
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Mon Jul 25 16:00:52 2022 +0900
+
+    Merge branch 'main' into feature/history-order-by
+
+[33mcommit cc45361ff3730939649ea63e479b2dc8ad90ebb8[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Mon Jul 25 16:00:23 2022 +0900
+
+    feat: join history and lecture tables
+    
+    원래는 history의 userid와 lectureid를 반환하게 했는데,
+    userid는 반환하지 않고, lectureid는 id 대신 title, duration, filename을 join으로 같이 반환하게 변경합니다
+
+[33mcommit 681f1e65482455997c1974c635b30548a553e986[m
+Author: seah526 <seah526@naver.com>
+Date:   Mon Jul 25 15:59:57 2022 +0900
+
+    test : section seed data 추가 및 lecture seed data의 잘못된 sectionId 수정
+
+[33mcommit ff2a84204ccb9cc7f951e3e9eea6966348360a88[m
+Merge: 8ad50f5 8da0626
+Author: seah526 <50127687+seah526@users.noreply.github.com>
+Date:   Mon Jul 25 15:57:29 2022 +0900
+
+    Merge pull request #23 from SKKU-Online-Learning-System/feature/course-category
+    
+    feat: 카테고리 한 번에 가져오는 기능 추가
+
+[33mcommit 8da0626ab24a8fd64287422acdd7d8d23c7acb60[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Jul 25 15:52:50 2022 +0900
+
+    feat: 카테고리 한 번에 가져오는 기능 추가
+    
+    - getCategories로 대분류와 소분류를 모두 조회
+    - category1과 category2의 relation 설정
+
+[33mcommit a33ff6e427eb2b65a4785d8c9f535b5eddb994bb[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Mon Jul 25 15:47:30 2022 +0900
+
+    feat: add history get api order by updatedAt DESC
+
+[33mcommit 47c9803c6ac657493650fe207ed02306169b8155[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Jul 25 15:17:46 2022 +0900
+
+    chore: 메일 템플릿 제목 변경
+
+[33mcommit 2d2769c8787b22ec3bb783b749f65ba39283c464[m
+Author: seah526 <seah526@naver.com>
+Date:   Mon Jul 25 15:09:26 2022 +0900
+
+    feat : 특정 category1 하위에 해당하는 category2 목록만 return 하는 API 추가
+
+[33mcommit 8ad50f5a089c03f04f85ca532a880950dd9f6dd6[m
+Merge: d14d2a2 a16aa59
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Jul 25 13:08:59 2022 +0900
+
+    Merge pull request #21 from SKKU-Online-Learning-System/feature/course
+    
+    Feature/course
+
+[33mcommit d14d2a2209bb948ae21baa92675e02245aa9cd3a[m
+Merge: abcc257 3dffc4a
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Jul 25 12:07:08 2022 +0900
+
+    Merge pull request #20 from SKKU-Online-Learning-System/feature/seed-complete-history-and-course
+    
+    feat: add seed data of history, course and complete
+
+[33mcommit 3dffc4af40191652b085ba8c37a0c33b276f08e3[m
+Merge: 634fe99 abcc257
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Jul 25 12:06:57 2022 +0900
+
+    Merge branch 'main' into feature/seed-complete-history-and-course
+
+[33mcommit abcc257bbca36eb6a6229de70e85ee41ac127b48[m
+Merge: f69ad62 de58ac4
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Jul 25 12:01:14 2022 +0900
+
+    Merge pull request #17 from SKKU-Online-Learning-System/feature/seed
+    
+    Feature/seed
+
+[33mcommit 634fe99f44d87d9cd4a8048f8642a83278b79654[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Mon Jul 25 10:25:33 2022 +0900
+
+    refactor: add history and complete seed data number in seeding page
+
+[33mcommit a16aa59ce4df15b37d4cf9261e370687c20b209d[m
+Merge: f8754b2 f69ad62
+Author: seah526 <seah526@naver.com>
+Date:   Mon Jul 25 09:48:34 2022 +0900
+
+    Merge branch 'main' into feature/course
+
+[33mcommit f108323ae248a3bbae834da915b5619fe35f3617[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Mon Jul 25 09:42:37 2022 +0900
+
+    feat: add seed data of history, course and complete
+
+[33mcommit f8754b20e46389b720da3aaffc2bd60038dce19f[m
+Author: seah526 <seah526@naver.com>
+Date:   Mon Jul 25 09:20:26 2022 +0900
+
+    temp
+
+[33mcommit f69ad62a76e01345b9e7a7c1a0f71cee3729e917[m
+Merge: fbae492 a6938fe
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Sun Jul 24 13:44:56 2022 +0900
+
+    Merge pull request #19 from SKKU-Online-Learning-System/feature/banner
+    
+    Feature/banner
+
+[33mcommit a6938fed17529fe782bed7ff1bf5d613eda44529[m
+Merge: 1a71805 fbae492
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Sun Jul 24 13:12:37 2022 +0900
+
+    Merge branch 'main' into feature/banner
+
+[33mcommit 1a7180577f98fdb1cace27f3535ad6b008bfa73c[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Sun Jul 24 13:12:03 2022 +0900
+
+    feat: add bannerService
+    
+    {서버 도메인}/{파일 이름}으로 접근 가능하게 만들었습니다.
+    bannerController는 반환값으로 파일이름을 담은 배열을 받습니다.
+    프론트엔드에서는 도메인을 앞에 붙이는 식으로 배열 원소를 조작하여 이미지에 접근해야 합니다.
+
+[33mcommit 1c403a1d8f7c02c886cad8beeb8a3a94c8d02408[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Sun Jul 24 13:09:05 2022 +0900
+
+    feat: add main page images
+    
+    src/랑 같은 위치에 있는 public/을 만들었습니다
+
+[33mcommit a50439daa0298a5a16ebe3611971bbdebff18b6a[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Sun Jul 24 11:58:47 2022 +0900
+
+    chore: update node modules using npm-check-updates
+    
+    패키지 설치 중 의존성 문제가 생겨 설치된 패키지 모두 업데이트 한번 해 줬습니다
+     @nestjs-modules/mailer             ^1.7.1  →   ^1.8.1
+     @nestjs/common                     ^8.0.0  →   ^9.0.5
+     @nestjs/config                     ^2.1.0  →   ^2.2.0
+     @nestjs/core                       ^8.0.0  →   ^9.0.5
+     @nestjs/jwt                        ^8.0.1  →   ^9.0.0
+     @nestjs/passport                   ^8.2.2  →   ^9.0.0
+     @nestjs/platform-express           ^8.0.0  →   ^9.0.5
+     @nestjs/swagger                    ^5.2.1  →   ^6.0.4
+     @nestjs/typeorm                    ^8.1.4  →   ^9.0.0
+     helmet                             ^5.1.0  →   ^5.1.1
+     nodemailer                         ^6.7.5  →   ^6.7.7
+     rxjs                               ^7.2.0  →   ^7.5.6
+     swagger-ui-express                 ^4.4.0  →   ^4.5.0
+     typeorm                            ^0.3.6  →   ^0.3.7
+     @nestjs/cli                        ^8.0.0  →   ^9.0.0
+     @nestjs/schematics                 ^8.0.0  →   ^9.0.1
+     @nestjs/testing                    ^8.0.0  →   ^9.0.5
+     @types/jest                        27.5.0  →   28.1.6
+     @types/node                       ^16.0.0  →  ^18.0.6
+     @types/supertest                  ^2.0.11  →  ^2.0.12
+     @typescript-eslint/eslint-plugin   ^5.0.0  →  ^5.30.7
+     @typescript-eslint/parser          ^5.0.0  →  ^5.30.7
+     eslint                             ^8.0.1  →  ^8.20.0
+     eslint-config-prettier             ^8.3.0  →   ^8.5.0
+     eslint-plugin-prettier             ^4.0.0  →   ^4.2.1
+     jest                               28.0.3  →   28.1.3
+     prettier                           ^2.3.2  →   ^2.7.1
+     source-map-support                ^0.5.20  →  ^0.5.21
+     supertest                          ^6.1.3  →   ^6.2.4
+     ts-jest                            28.0.1  →   28.0.7
+     ts-loader                          ^9.2.3  →   ^9.3.1
+     ts-node                           ^10.0.0  →  ^10.9.1
+     typescript                         ^4.3.5  →   ^4.7.4
+
+[33mcommit fbae492a167acd9abd1a83423723a15c99a5cfc2[m
+Merge: 384ee5e 4b6a0ab
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Sun Jul 24 02:46:18 2022 +0900
+
+    Merge pull request #18 from SKKU-Online-Learning-System/feature/course-search
+    
+    Feature/course search
+
+[33mcommit 4b6a0abd2a77bd6e9413e13a1b1dfa23271bd761[m
+Author: cjy <paulcjy@naver.com>
+Date:   Sun Jul 24 02:30:30 2022 +0900
+
+    feat: 강의 검색 기능 완료
+    
+    - 강의 검색 기능에 난이도 검색은 추가해야 함
+    - 강의 검색과 강의 조회에 해시태그 달았는데, 더 효율적으로 typeorm을
+      활용할 방안이 있는지 확인
+
+[33mcommit c4b5be3a556d3f1a2133e951e61b786212285329[m
+Author: cjy <paulcjy@naver.com>
+Date:   Sun Jul 24 01:25:15 2022 +0900
+
+    feat: 검색 옵션 추가
+
+[33mcommit 384ee5e99d537aeb7f4d36061ded7434c1c24492[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Wed Jul 20 02:04:52 2022 +0900
+
+    fix: bookmark.controller 오타 수정
+    
+    swagger를 소문자로 써야 함
+
+[33mcommit de58ac4c9d89d5b6696116ccea1fd0f78bc936ae[m
+Author: seah526 <seah526@naver.com>
+Date:   Tue Jul 19 17:45:43 2022 +0900
+
+    test: add seed data for wishlist & learning
+
+[33mcommit fd68f0213f16b223c9ba2c55c45cb76d41c4f656[m
+Author: seah526 <seah526@naver.com>
+Date:   Tue Jul 19 17:26:46 2022 +0900
+
+    fix : page/data-seed -> page/seed url 변경에 따른 href 태그 수정
+
+[33mcommit 4c7be7fb1f2b79c9c38271a73abe7cfaea2554e7[m
+Merge: b0badfe 150566f
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Tue Jul 19 17:03:05 2022 +0900
+
+    Merge pull request #14 from SKKU-Online-Learning-System/feature/passport-jwt
+    
+    Feature/passport jwt
+
+[33mcommit b0badfedefa90247af4f50fdd70e7f02e87e940b[m
+Merge: 17c76aa 492f2cc
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Tue Jul 19 17:02:46 2022 +0900
+
+    Merge pull request #16 from SKKU-Online-Learning-System/feature/bookmark
+    
+    feat: add bookmark modules
+
+[33mcommit 492f2ccd9d2aaa0a8d0878543afa67e3aa92f7d8[m
+Author: seah526 <seah526@naver.com>
+Date:   Tue Jul 19 16:54:34 2022 +0900
+
+    feat: add bookmark modules
+
+[33mcommit 17c76aa40358862046d734a54c2ee7671a1e2bb8[m
+Merge: 0f3b623 6406895
+Author: Peorge <64393421+SH9480P@users.noreply.github.com>
+Date:   Tue Jul 19 16:09:31 2022 +0900
+
+    Merge pull request #15 from SKKU-Online-Learning-System/hotfix
+    
+    Hotfix
+
+[33mcommit 640689532321ccedf8eb554f53f859596656e9bd[m
+Merge: 802688f 0f3b623
+Author: Peorge <64393421+SH9480P@users.noreply.github.com>
+Date:   Tue Jul 19 16:08:59 2022 +0900
+
+    Merge branch 'main' into hotfix
+
+[33mcommit 0f3b623d8160cc1f76acb49fd762bd990009c57e[m
+Merge: 9fab25c 089eab5
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Tue Jul 19 16:07:31 2022 +0900
+
+    Merge pull request #13 from SKKU-Online-Learning-System/feature/wishlist
+    
+    Feature/wishlist
+
+[33mcommit 089eab55e897bbb0a23945497d0c13124a249d02[m
+Merge: 6ab0181 9fab25c
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Tue Jul 19 16:06:51 2022 +0900
+
+    Merge branch 'main' into feature/wishlist
+
+[33mcommit 802688f22eb425aa7410ee46307154afe883cd68[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 19 16:05:22 2022 +0900
+
+    fix: fix possible errors on history, learning and complete
+    
+    1. historyController에 useGuard를 추가합니다
+    2. getHistoryDto의 lectureId에 IsOptional 데코레이터를 추가합니다. typescript optional operator(?)를 사용하기 위함입니다
+    3. historyEntity의 isFinished필드에 default로 false를 줍니다
+    4. complete와 learning service에 delete 함수를 일부 수정합니다. deleteResult는 raw 속성값이 빈 배열이므로, 대신 affected 속성을 사용하여 에러 처리를 합니다
+    5. historyService의 getLectureDuration함수에서 lecture를 찾지 못한 경우 NotFoundException을 반환합니다
+
+[33mcommit 8bf3e2c9385e58ba1d6c5402afc9845d57a1adcf[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 19 15:58:19 2022 +0900
+
+    refactor: rename learningController's routing handlers
+    
+    누락된 변경사항입니다
+
+[33mcommit 6ab0181c730f6c8ebc349799930dc0b5d5e48ee0[m
+Author: seah526 <seah526@naver.com>
+Date:   Tue Jul 19 15:53:44 2022 +0900
+
+    merge main branch
+
+[33mcommit 150566f3f88af31442b897dfc695727f9ee8b51c[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jul 19 15:20:01 2022 +0900
+
+    feat: 로그아웃 기능 추가
+    
+    로그아웃은 쿠키의 Authorization을 ''로 저장함
+
+[33mcommit 67cd9e524d39be10fb1e4c10c1870d8561e99020[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jul 19 15:06:58 2022 +0900
+
+    feat: JWT 인증 방식을 쿠키를 사용하도록 변경
+    
+    - Seed에 admin 계정 한 개 추가(username: admin1, password: 1234)
+    - 쿠키에 Authorization=token이 저장되어 있으면 인증 가능
+    - cookie-parser를 사용하기 위해 cookie-parser, @types/cookie-parser 패키지 설치
+    - User 데코레이터 생성
+
+[33mcommit 6d32eb4f9c1ac4289c92b60afd6ca62d02ed5088[m
+Author: seah526 <seah526@naver.com>
+Date:   Tue Jul 19 14:57:32 2022 +0900
+
+    feat : add wishlist modules
+
+[33mcommit 2a596e147c9812511bfd758b12a7962f5a5dc1e7[m
+Author: seah526 <seah526@naver.com>
+Date:   Tue Jul 19 14:54:38 2022 +0900
+
+    pull & merge main branch
+
+[33mcommit 9fab25cb1ce1266fa9f7ef9a7dc4f59a01897c3b[m
+Merge: 7e33895 78ac5cd
+Author: Peorge <64393421+SH9480P@users.noreply.github.com>
+Date:   Tue Jul 19 14:21:27 2022 +0900
+
+    Merge pull request #12 from SKKU-Online-Learning-System/feature/history
+    
+    Feature/history
+
+[33mcommit 78ac5cdc71e0e2e4ed472096183dd3326b37f9f5[m
+Merge: 772b8d1 7e33895
+Author: Peorge <64393421+SH9480P@users.noreply.github.com>
+Date:   Tue Jul 19 14:21:07 2022 +0900
+
+    Merge branch 'main' into feature/history
+
+[33mcommit 7e3389504bf7a0eb4f4172055cef9aafcb88d16e[m
+Merge: 9aa24bb bfacbaf
+Author: Peorge <64393421+SH9480P@users.noreply.github.com>
+Date:   Tue Jul 19 14:12:53 2022 +0900
+
+    Merge pull request #11 from SKKU-Online-Learning-System/feature/course_registered
+    
+    feat(be): add course-registered module and course-done module
+
+[33mcommit b4a17e4508fd4f47cdd8afad856b1b0c38f79377[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jul 19 13:26:33 2022 +0900
+
+    feat: @User() 데코레이터 생성
+    
+    Guard를 통과했을 때 생기는 req.user를 받아오는 데코레이터
+
+[33mcommit 772b8d1edb0ce3c32907c64d5721a3943d617e8a[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 19 11:47:46 2022 +0900
+
+    feat(be): add an importing module
+    
+    history module을 import하는 부분을 추가합니다
+
+[33mcommit d6534ace163f19b1a6702786474cbc2b3fab6e79[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 19 11:45:44 2022 +0900
+
+    refactor: change dto decorator
+    
+    parameter로 받아오는 lectureId의 데코레이터만 IsNumberString으로, 나머지는 IsInt로 변경합니다.
+
+[33mcommit bfacbaffc5db18f57ec65628b4da7cc2fa92ef09[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 19 11:34:44 2022 +0900
+
+    refactor: rename modules, controllers, services and entities
+    
+    course_registered에서 learning으로, course_done에서 complete로 변경합니다.
+    엔터티도 모듈에 맞게 이름을 변경합니다.
+    변경된 모듈을 appModule에 import합니다.
+
+[33mcommit 94a3ab4d0aa1a887c687551d1576bafe194ae89f[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 19 11:31:01 2022 +0900
+
+    feat(be): remake DeleteUserCourseDto
+    
+    DeleteUserCourseDto를 새로 정의합니다.
+    path parameter로 전달되는 courseId는 IsNumberString 데코레이터를 사용하는 것으로 변경합니다.
+    learning 디렉토리의 dto는 complete의 dto와 정확히 동일하므로, 복사 붙여넣기를 했습니다
+
+[33mcommit cec1f3dc584a37ea6db6fdb8bdec8adb3ce479f0[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 19 11:26:09 2022 +0900
+
+    refactor: remove unnecessary codes
+    
+    complete모듈과 learning모듈에 해당하는 deprecated 코드가 user service, user controller에 있었습니다.
+    해당 코드와 더이상 쓰이지 않는 interface를 삭제합니다.
+
+[33mcommit 1eeabdc13a1be08e3e1dc4290dd9d12646db755e[m
+Merge: 1c072f9 9aa24bb
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 19 10:32:29 2022 +0900
+
+    Merge branch 'main' into feature/course_registered
+    
+    # Conflicts:
+    #       src/modules/complete/complete.controller.ts
+    #       src/modules/complete/complete.module.ts
+    #       src/modules/complete/complete.service.ts
+    #       src/modules/complete/dto/create-user-course.dto.ts
+    #       src/modules/complete/dto/delete-user-course.dto.ts
+    #       src/modules/complete/dto/get-user-course.dto.ts
+    #       src/modules/course-registered/course-registered.controller.spec.ts
+    #       src/modules/course-registered/course-registered.controller.ts
+    #       src/modules/course-registered/course-registered.module.ts
+    #       src/modules/course-registered/course-registered.service.spec.ts
+    #       src/modules/course-registered/course-registered.service.ts
+    #       src/modules/course-registered/dto/add-user-course.dto.ts
+    #       src/modules/course-registered/dto/delete-user-course.dto.ts
+    #       src/modules/course-registered/dto/get-user-course.dto.ts
+
+[33mcommit 1c072f9ae8c21de40652b2e251e768f87e8286de[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 19 10:28:05 2022 +0900
+
+    refactor: change module, controller and dto name
+    
+    course_done에서 complete로 변경
+    add 대신 create를 쓰도록 변경
+
+[33mcommit 96a5c3860ee32876dfb36c617c66804c63a30d3a[m
+Merge: 4ab5f81 9aa24bb
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 19 00:57:45 2022 +0900
+
+    Merge branch 'main' into feature/history
+
+[33mcommit 4ab5f81f3c88e6649fd4a1a81dc47ae508016f2f[m
+Merge: d08d088 eda2e1e
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 19 00:55:14 2022 +0900
+
+    Merge branch 'main' into feature/history
+    
+    # Conflicts:
+    #       src/entities/history.entity.ts
+    #       src/modules/history/dto/create-or-update-history.dto.ts
+    #       src/modules/history/dto/get-history.dto.ts
+    #       src/modules/history/interfaces/history.interface.ts
+
+[33mcommit 9aa24bb5ab49bf981a6ef86e406718b2cd751160[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Jul 18 18:15:08 2022 +0900
+
+    test: Seeding 업데이트 & 토큰 생성 기능
+    
+    - seed module 코드 정리 및 유저 데이터 추가
+    - /auth/get-token 으로 접속하면 인증 가능한 JWT 토큰 생성
+
+[33mcommit d08d088543ff428a7c43d2233163802a05252877[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Mon Jul 18 18:04:12 2022 +0900
+
+    feat(be): add history services and controllers and corresponding DTOs
+    
+    dto를 2개 추가합니다.
+    첫번째는 GetHistoryDto로, userId와 lectureId를 포함합니다. 여기서 lectureId는 ?를 붙여 선택적으로 넣을 수 있게 구성했습니다.
+    두번째는 CreateOrUpdateHistoryDto로, userId, lectureId, lastTime을 포함합니다. dto의 이름은 service이름을 따라 지었습니다.
+    createOrUpdateHistory controller를 추가합니다.
+    해당 api로 요청이 들어오면, history 테이블에 해당 lecture에 대한 기록이 있는지 확인하고, 없으면 create를, 있으면 lastTime을 update 해 줍니다.
+    여기서 만약에 lastTime이 lecture duration의 95%를 넘기면, isFinished를 true로 변경합니다.
+
+[33mcommit eda2e1e8ae96526479551fc55a3c14ec76457d5a[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Jul 18 15:35:17 2022 +0900
+
+    chore: 폴더 구조 변경 및 try-catch 삭제
+    
+    - 모듈은 src/modules에 수평적으로 배치
+    - 에러 메시지는 JSON에 넣어 리턴하지 않고 콘솔에 출력(보안상으로도 더 좋음)
+
+[33mcommit d62b8e15cf9c7a972e95d46129bc3da8e400ef11[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Jul 18 13:53:33 2022 +0900
+
+    chore: Entity에서 외래키 삭제
+    
+    혹시 나중에 다시 외래키 사용할 수도 있어서 주석처리만 함
+
+[33mcommit 57a08fefe0d800e2527f90d3b41f122ea41f2d22[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Mon Jul 18 13:49:23 2022 +0900
+
+    feat(be): add course-registered module and course-done module
+    
+    course-registered 모듈과 course-done 모듈을 생성합니다.
+    각 모듈의 controller에는 동명의 entity에서 create, read, delete 연산을 수행하는 라우터가 포함되어 있습니다.
+
+[33mcommit 6aae14ab095ee0809337b208fb7217738bd57f4c[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Jul 18 13:45:03 2022 +0900
+
+    docs: README 업데이트
+    
+    git 규칙 추가
+    - branch 사용법
+    - commit message 작성법
+
+[33mcommit 5fdd1d24be442abf3724f8c38fba8e06f87035ff[m
+Merge: 0ede13b 8868933
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Jul 18 12:02:53 2022 +0900
+
+    Merge pull request #10 from SKKU-Online-Learning-System/feature/qna
+    
+    Feature/qna
+
+[33mcommit 88689339784a07329b14c4c04808f4a0ffa34d16[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Jul 18 00:40:22 2022 +0900
+
+    Finish answer module
+
+[33mcommit a2da768caa1cea73de7bea23dbbb73ff3fa0849a[m
+Author: cjy <paulcjy@naver.com>
+Date:   Fri Jul 15 02:17:46 2022 +0900
+
+    Finish question module
+    
+    - JWT token 유효기간 30분으로 변경
+    - Body-Param-User decorator 추가
+    - email 버그 수정
+    - main.ts에 남아있던 hot reload 코드 삭제
+
+[33mcommit 52c13e78435a969f80a68e1df088306afeb25e9a[m
+Author: cjy <paulcjy@naver.com>
+Date:   Wed Jul 13 21:29:22 2022 +0900
+
+    Create DTOs and change question entity
+    
+    - create-question DTO 생성
+    - update-question DTO 생성
+    - delete-question DTO 생성
+    - question.entity의 lectureId를 optional로 변경
+    - Body-Param-User decorator 생성
+
+[33mcommit 98fce7d072a120818675e8f16e50742fdd56ba62[m
+Author: cjy <paulcjy@naver.com>
+Date:   Wed Jul 13 20:13:03 2022 +0900
+
+    Create question api endpoints
+
+[33mcommit 41c8972abdbc6a142750617eb2ca48deded992d8[m
+Author: cjy <paulcjy@naver.com>
+Date:   Wed Jul 13 19:31:21 2022 +0900
+
+    Create answer module
+
+[33mcommit 7d014699329abcd45465d30ed706ef6e8916ed9e[m
+Author: cjy <paulcjy@naver.com>
+Date:   Wed Jul 13 19:23:52 2022 +0900
+
+    Create question module
+
+[33mcommit 402859922f65c998a4b4357b183031475a6f28ec[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jul 12 16:57:46 2022 +0900
+
+    Create body-param decorator
+
+[33mcommit 0ede13b4668fc2f053faf98776eca60abb628fe2[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jul 12 14:21:02 2022 +0900
+
+    Update entities: use relations
+
+[33mcommit 864ee03d0fa5d2edfcf4ffe871faee6f9b68399b[m
+Merge: c3c8ffc 0347995
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Jul 11 20:24:50 2022 +0900
+
+    Merge branch 'main' of origin/main
+
+[33mcommit c3c8ffc07bef7bbe6c5c752f3c6c41957c97bbe6[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Jul 11 20:15:40 2022 +0900
+
+    Update entities
+
+[33mcommit 034799505443fe4166b539e84676cb96ae54d80f[m
+Merge: 47e478d e268f32
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Jul 11 20:04:06 2022 +0900
+
+    Merge pull request #9 from SKKU-Online-Learning-System/feature/history-api
+    
+    Feature/history api
+
+[33mcommit e268f323c0bda61252c6764f7af397e46b0c1249[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Jul 11 20:03:43 2022 +0900
+
+    Update history.entity.ts
+    
+    - Change 'last_time' type to int
+    - Delete field 'created_at'
+
+[33mcommit d7f9644330a6b0bdf23b6811ec5ebca475881b42[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Jul 11 19:34:56 2022 +0900
+
+    Update history.entity.ts
+    
+    Change variable name to snake case
+
+[33mcommit eea3292dbc3ab5f498db3b3aa26bac70b086c139[m
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Jul 11 19:30:25 2022 +0900
+
+    Update history.controller.ts
+    
+    Remove parameter pipe and set variable type
+
+[33mcommit c0f28f960ad369e2cd5aefec5b0393615d0b2c77[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Mon Jul 11 18:25:22 2022 +0900
+
+    fix code
+    
+    entity별 레포지토리 사용 -> datasource의 전역 사용
+
+[33mcommit 257654be4a92ac125c5c6f35b56a673b948d344c[m
+Merge: a24c778 9d1fcad
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Mon Jul 11 18:08:49 2022 +0900
+
+    Merge branch 'main' into feature/history-api
+    
+    # Conflicts:
+    #       src/entities/history.entity.ts
+
+[33mcommit 9d1fcad89630ba60822f8d1aa7a69881bbe2d6c0[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Mon Jul 11 18:05:58 2022 +0900
+
+    refactor entity name
+
+[33mcommit f6a755efa1e94e852c14fda85c97f6d6bee2b228[m
+Merge: 9e6279a 47e478d
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Mon Jul 11 18:05:16 2022 +0900
+
+    Merge branch 'main' of https://github.com/SKKU-Online-Learning-System/mvp-backend-nestjs
+    
+    # Conflicts:
+    #       src/api/history/history.controller.spec.ts
+    #       src/api/history/history.controller.ts
+    #       src/api/history/history.module.ts
+    #       src/api/history/history.service.spec.ts
+    #       src/api/history/history.service.ts
+    #       src/app.module.ts
+    #       src/entities/history.entity.ts
+
+[33mcommit a24c778123b9ab842510efc758958252bc964f7f[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Mon Jul 11 17:40:01 2022 +0900
+
+    add onetomany decorator to lecture entity
+
+[33mcommit 47e478d433890c5c2e5be476d79641899e0a3ea9[m
+Merge: 87b5314 17a014a
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Jul 11 17:37:51 2022 +0900
+
+    Merge pull request #8 from SKKU-Online-Learning-System/feature/course
+    
+    getCourseById return hashtag info
+
+[33mcommit 17a014a45fb00086e44add7f6ab982f1a0111cd7[m
+Merge: dc95e8d 87b5314
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Mon Jul 11 17:37:31 2022 +0900
+
+    Merge branch 'main' into feature/course
+
+[33mcommit dc95e8d39a33fc406b2b9a5b87a6cf16a6fa2f67[m
+Author: seah526 <seah526@naver.com>
+Date:   Mon Jul 11 17:02:30 2022 +0900
+
+    getCourseById return hashtag info
+
+[33mcommit 87b5314f929af2ea1432d6c25c45332a1db5ce99[m
+Author: cjy <paulcjy@naver.com>
+Date:   Fri Jul 8 01:48:44 2022 +0900
+
+    Add README file & refactoring
+
+[33mcommit 742a855b42b9301d417ae167bc93a101034cf10e[m
+Merge: e04a145 89d3359
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Thu Jul 7 17:06:48 2022 +0900
+
+    Merge pull request #7 from SKKU-Online-Learning-System/feature/course
+    
+    Feature/course
+
+[33mcommit 89d33597a1200fbdf7b4ed4d9fce53106538bded[m
+Merge: 71abd05 e04a145
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Thu Jul 7 17:05:06 2022 +0900
+
+    Merge branch 'main' into feature/course
+
+[33mcommit 6285350b31d8deb739ddf9c26b3a66f7923ca88d[m
+Merge: 988fa78 9e6279a
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 5 17:45:09 2022 +0900
+
+    Merge branch 'main' into feature/history-api
+
+[33mcommit 988fa7872031cd78dac88e96f452b70acba50ddb[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 5 17:44:44 2022 +0900
+
+    change entity name
+
+[33mcommit 9e6279ac3e28ada9d2a5eac6e5faec9087c24beb[m
+Merge: e04a145 4a2f6ca
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 5 17:37:54 2022 +0900
+
+    Merge branch 'feature/history-api'
+    
+    # Conflicts:
+    #       src/entities/user.entity.ts
+
+[33mcommit 4a2f6ca2a9ca14fb2fec23a6d4569633e93b67ff[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 5 17:30:13 2022 +0900
+
+    refactor: change entity name
+    
+    History -> HistoryEntity
+
+[33mcommit e04a145698e6cd7752df57beee7969396af99fd9[m
+Merge: 7572440 66dac8c
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jul 5 17:09:49 2022 +0900
+
+    Merge branch 'feature/passport'
+
+[33mcommit 1094f9745380d6484fa5074d0972f43e89a071c0[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 5 16:28:36 2022 +0900
+
+    refactor: add interface to controller and service
+    
+    history 테이블에서 조회한 데이터의 형식을 담은 interface를 추가한다.
+    typescript의 type checking을 위해 interface를 지정해준다.
+
+[33mcommit 66dac8cc47f70fd4b578aeb26f062454c11a5a5b[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jul 5 16:27:58 2022 +0900
+
+    rename mail configs 2
+
+[33mcommit c624c4d27d1ffcefd70057f1a5d981f945997bf7[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jul 5 16:26:20 2022 +0900
+
+    rename mail configs
+
+[33mcommit 89aa940e4de173a5e23e04b4ba99909ad8756ffd[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 5 16:12:36 2022 +0900
+
+    feat: add history module
+    
+    lecture별 마지막 시청 지점을 알 수 있는 history API를 제작합니다.
+    현재 history 모듈의 controller에는 2개의 route handler가 존재합니다.
+    1. getHistories: user id만을 인자로 받아 해당 user의 모든 시청 기록을 가져옵니다.
+    2. getLectureHistory: user id와 lecture id를 인자로 받아 해당 lecture만의 시청 기록을 가져옵니다.
+
+[33mcommit 14959a8701621212f827696a06ee6958181bc6ce[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 5 16:08:32 2022 +0900
+
+    chore: specify column type as datetime
+    
+    createAt과 updatedAt의 데이터 타입을 datetime으로 명시합니다
+
+[33mcommit 80285e68cebdc41351458e51f8990b60d9e27224[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jul 5 15:58:54 2022 +0900
+
+    rollback entity class name & passport both locan and magic done
+
+[33mcommit 9309a1ed36a8605faca2a75b4fcdaf24d1a61a38[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 5 14:04:52 2022 +0900
+
+    feature: add History entity
+    
+    lecture의 시청기록 데이터를 담는 typeorm entity입니다.
+    userId와 lectureId를 FK로 갖습니다.
+    마지막 시청 지점을 나타내는 lastTime 필드는 mysql의 time 타입입니다.
+
+[33mcommit 7572440928ff9e2e7345f5bef6fbb6462c822093[m
+Merge: a935cab 3c06583
+Author: Peorge <64393421+SH9480P@users.noreply.github.com>
+Date:   Tue Jul 5 13:53:45 2022 +0900
+
+    Merge pull request #5 from SKKU-Online-Learning-System/feature/history-api
+    
+    fix: resolve remaining conflicts
+
+[33mcommit 3c065832c9c16150693d1e67bbc3ac08ff8975d7[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Tue Jul 5 13:50:50 2022 +0900
+
+    chore: resolve remaining conflicts
+    
+    세아님이 올려주신 부분에 merge하면서 생긴 conflict가 일부 남아있어서 수정합니다.
+
+[33mcommit a935cab89c0c2400eeff7fd455149dbaee626fd4[m
+Merge: 22af3aa 44a1dab
+Author: Peorge <64393421+SH9480P@users.noreply.github.com>
+Date:   Tue Jul 5 13:26:03 2022 +0900
+
+    Merge pull request #4 from SKKU-Online-Learning-System/feature/user-course
+    
+    Feature/user course
+
+[33mcommit 71abd0590c0f5b97b31049f4227d6a8c32f2fe50[m
+Author: seah526 <seah526@naver.com>
+Date:   Tue Jul 5 10:48:45 2022 +0900
+
+    create seed data for lectures
+
+[33mcommit 4fcb681a15617c481f34d79cb684ec248c7a9e57[m
+Author: seah526 <seah526@naver.com>
+Date:   Tue Jul 5 10:46:54 2022 +0900
+
+    create section entity
+
+[33mcommit 34d016322262a4133878ab95bd459be49dd094df[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Jul 4 19:00:20 2022 +0900
+
+    modify entity class name
+
+[33mcommit f8091f1e7cd98c5c6493a9e60835c4e2444d40d2[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Jul 4 04:54:45 2022 +0900
+
+    hot reload
+
+[33mcommit ea6871c1c64452cca428f2f26deeb64939db37ce[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Jul 4 04:30:53 2022 +0900
+
+    service testing done
+
+[33mcommit 5b62a68b5572b686c5af8c2ec7be2ca5c0f7614c[m
+Author: cjy <paulcjy@naver.com>
+Date:   Sun Jul 3 03:04:44 2022 +0900
+
+    testing
+
+[33mcommit 22af3aa0808768d7bea0b451c26cccfc19e173d2[m
+Merge: 7acad94 922f37e
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Sat Jul 2 00:27:07 2022 +0900
+
+    Merge pull request #3 from SKKU-Online-Learning-System/feature/course
+    
+    transplant course api from express to nest
+
+[33mcommit 922f37eb3958f8273c3566527adf9fa9469a9131[m
+Merge: a7ed964 7acad94
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Sat Jul 2 00:24:59 2022 +0900
+
+    Merge branch 'main' into feature/course
+
+[33mcommit c33069dbd8c6201317bf4f4d35ba32b64c7a9ae9[m
+Author: cjy <paulcjy@naver.com>
+Date:   Sat Jul 2 00:14:43 2022 +0900
+
+    Use .env for email configuration
+
+[33mcommit 1fadc8d2fa09aa78596f66f5df76f72b799d6704[m
+Author: cjy <paulcjy@naver.com>
+Date:   Fri Jul 1 03:06:29 2022 +0900
+
+    passport-magic-login done
+
+[33mcommit 44a1dab9a9f647608fb84911c75ed4b6c0f5644b[m
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Fri Jul 1 01:30:30 2022 +0900
+
+    add user-course api dto && add user-course interface
+
+[33mcommit 7f068af18fd2ccc193ebb890804de72a80c11732[m
+Merge: 0c6b2fc 7acad94
+Author: realsehwan@gmail.com <realsehwan@gmail.com>
+Date:   Fri Jul 1 01:05:52 2022 +0900
+
+    Merge branch 'main' into feature/user-course
+    
+    # Conflicts:
+    #       src/api/user/user.module.ts
+    #       src/page/user/add-user-course.dto.ts
+    #       src/page/user/interfaces/user-course.interface.ts
+    #       src/routes/user/user.controller.ts
+    #       src/routes/user/user.service.ts
+
+[33mcommit 5309d91d77aa848867ac4663b3f8bb347517a428[m
+Author: cjy <paulcjy@naver.com>
+Date:   Thu Jun 30 22:18:06 2022 +0900
+
+    passport magic-login & local-login for admin
+
+[33mcommit 0c6b2fc37b13ee447014214e915fb1450b6cee2d[m
+Author: SeHwan_Park <realsehwan@gmail.com>
+Date:   Tue Jun 28 17:48:47 2022 +0900
+
+    add a global pipe
+    
+    DTO에 class-validator에서 제공하는 decorator를 쓰면 type checking을 해 준다.
+    transform: true 옵션으로, typescript에서 사용되듯이 type을 명시하면 자동으로 변환해준다.
+
+[33mcommit 52c493e9f6eafe9ca9b8950c9e70a687ef041f8e[m
+Author: SeHwan_Park <realsehwan@gmail.com>
+Date:   Tue Jun 28 17:46:08 2022 +0900
+
+    implement 3 APIs
+    
+    1. get user's course info
+    2. add user's course
+    3. delete user's course info
+
+[33mcommit f60c67dfe24fdf4081dceb47cf1a23c9ed2f9d53[m
+Author: SeHwan_Park <realsehwan@gmail.com>
+Date:   Tue Jun 28 17:43:43 2022 +0900
+
+    user_course typeorm entity
+
+[33mcommit 0e0eb8663bbc197f46b6c0805d6e8eb608efac78[m
+Author: SeHwan_Park <realsehwan@gmail.com>
+Date:   Tue Jun 28 17:43:10 2022 +0900
+
+    create a dto for addUserCourses
+
+[33mcommit 0e1bc4ae3ee56e5c5af8ed1e3288497898a4b505[m
+Author: SeHwan_Park <realsehwan@gmail.com>
+Date:   Tue Jun 28 17:41:53 2022 +0900
+
+    typescript type checking interface
+    
+    user_course 엔터티의 구성과 동일합니다
+
+[33mcommit 3596ebb2aea0a7026f8eb46e9c5cd8cbbc15d7ac[m
+Author: SeHwan_Park <realsehwan@gmail.com>
+Date:   Tue Jun 28 17:39:02 2022 +0900
+
+    add dependancies
+    
+    npm i --save class-validator class-transformer
+
+[33mcommit a7ed96449ad3eb9a3a2c74583dd7fa3382aa74e2[m
+Author: seah526 <seah526@naver.com>
+Date:   Tue Jun 28 15:20:19 2022 +0900
+
+    transplant course api from express to nest
+
+[33mcommit 7acad94f7bfc0f0e3a55770fad4f0280c10d05a1[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Jun 27 15:53:49 2022 +0900
+
+    swagger settings
+
+[33mcommit cbb1d757deff2dec337393e597d537b0e95248b5[m
+Author: cjy <mosescjy@gmail.com>
+Date:   Sun Jun 26 01:08:50 2022 +0900
+
+    signup & email check
+
+[33mcommit c0142f9646c82797898c5a618701f27173b107cd[m
+Merge: 80c529a f1c1a4c
+Author: paulcjy <86853786+paulcjy@users.noreply.github.com>
+Date:   Thu Jun 23 23:34:31 2022 +0900
+
+    Merge pull request #2 from SKKU-Online-Learning-System/feature/passport
+    
+    Feature/passport
+
+[33mcommit f1c1a4cd6ce0094d49fedfbd92615f7d3abfcd34[m
+Author: cjy <mosescjy@gmail.com>
+Date:   Thu Jun 23 23:24:55 2022 +0900
+
+    passport - JWT & local strategy
+
+[33mcommit b3722b463e577610d652b3f90043fcc158d9311c[m
+Author: cjy <paulcjy@naver.com>
+Date:   Thu Jun 23 13:32:46 2022 +0900
+
+    basic local-strategy for passport
+
+[33mcommit 80c529a49a4213a4f3a9112f173df94ecad092d0[m
+Merge: 8eb18a9 bd20b0e
+Author: Peorge <64393421+SH9480P@users.noreply.github.com>
+Date:   Tue Jun 21 19:13:54 2022 +0900
+
+    Merge pull request #1 from SKKU-Online-Learning-System/prettier-setting
+    
+    add endOfLine option, required in Windows OS
+
+[33mcommit da30c138b16d8287327ed411dd4728da863c6a05[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jun 21 19:12:29 2022 +0900
+
+    change function name
+
+[33mcommit bd20b0e48ce7d9ebf3b32b950237086d17aa62be[m
+Author: SeHwan_Park <realsehwan@gmail.com>
+Date:   Tue Jun 21 18:27:23 2022 +0900
+
+    add endOfLine option, required in Windows OS
+
+[33mcommit 8eb18a9daa765cb1f0c6121206999173781d74ce[m
+Author: cjy <paulcjy@naver.com>
+Date:   Tue Jun 21 18:12:25 2022 +0900
+
+    init project
+
+[33mcommit fde96db5108b7086dd729138b5c75bd0e779ecc4[m
+Author: cjy <paulcjy@naver.com>
+Date:   Mon Jun 20 17:23:35 2022 +0900
+
+    init project

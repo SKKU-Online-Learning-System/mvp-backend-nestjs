@@ -36,6 +36,7 @@ export class QuestionController {
 
 	@Get()
 	@UseGuards(RolesGuard([Role.USER]))
+	@ApiQuestion.getAll
 	getAll(@User() user: ReqUser) {
 		return this.questionService.getAll(user);
 	}

@@ -68,6 +68,13 @@ export const ApiQuestion = {
 			description: 'Bad Request: 존재하지 않는 id 입력',
 		}),
 	),
+	getAll: applyDecorators(
+		ApiOperation({
+			summary: '사용자의 모든 Question 조회',
+			description:
+				'사용자가 작성한 모든 question 조회',
+		}),
+	),
 	create: applyDecorators(
 		ApiOperation({
 			summary: 'question 생성',

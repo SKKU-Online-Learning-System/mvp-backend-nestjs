@@ -5,6 +5,7 @@ import {
 	Param,
 	Post,
 	Put,
+	Get,
 	UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
@@ -37,6 +38,13 @@ export class AnswerController {
 		@User() user: ReqUser,
 	) {
 		return this.answerService.update(answerId, dto, user);
+	}
+
+	@Get()
+	@UseGuards(RolesGuard([Role.USER]))
+	@ApiAnswer.getAll
+	getAll(@User() user: ReqUser) {
+		return this.answerService.getAll(user);
 	}
 
 	@Delete(':answerId')
