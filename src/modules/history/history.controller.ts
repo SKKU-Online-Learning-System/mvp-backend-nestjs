@@ -28,6 +28,7 @@ export class HistoryController {
 
 	@Get('lectures/:lectureId')
 	@UseGuards(RolesGuard([Role.USER]))
+	@ApiHistory.getLectureHistory()
 	getByLecture(@Param('lectureId') lectureId: number, @User() user: ReqUser) {
 		return this.historyService.getByLecture(lectureId, user);
 	}
