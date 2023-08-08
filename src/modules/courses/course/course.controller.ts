@@ -43,6 +43,12 @@ export class CourseController {
 		return this.courseService.searchCourses(searchCoursesDto);
 	}
 
+	@Get('Adminsearch/:searchKey')
+	@ApiCourse.adminSearchCourses()
+	adminSearchCourses(@Param('searchKey') searchKey: string) {
+		return this.courseService.adminSearchCourses(searchKey);
+	}
+
 	@Get('categories')
 	@ApiCourse.getCategories()
 	getCategories() {

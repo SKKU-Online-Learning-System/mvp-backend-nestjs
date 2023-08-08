@@ -51,6 +51,14 @@ export const ApiCourse = {
 			}),
 		);
 	},
+	adminSearchCourses() {
+		return applyDecorators(
+			ApiOperation({
+				summary: 'admin 강좌 관리에서 course 검색',
+				description: '조건에 맞는 course를 검색합니다.',
+			}),
+		);
+	},
 	getCategories() {
 		return applyDecorators(
 			ApiOperation({
