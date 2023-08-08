@@ -33,6 +33,13 @@ export class HistoryController {
 		return this.historyService.getByLecture(lectureId, user);
 	}
 
+	@Get('lectures/course/:courseId')
+	@UseGuards(RolesGuard([Role.USER]))
+	@ApiHistory.getCourseHistory()
+	getByCourse(@Param('courseId') courseId: number, @User() user: ReqUser) {
+		return this.historyService.getByCourse(courseId, user);
+	}
+
 	@Patch()
 	@UseGuards(RolesGuard([Role.USER]))
 	@ApiHistory.createOrUpdateHistory()

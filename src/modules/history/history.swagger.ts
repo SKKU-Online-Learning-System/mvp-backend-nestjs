@@ -29,6 +29,15 @@ export const ApiHistory = {
 			ApiCookieAuth(),
 		);
 	},
+	getCourseHistory() {
+		return applyDecorators(
+			ApiOperation({
+				summary: '강좌별 수강중인 강의 진도율 조회',
+				description: 'couserId를 통해 강좌별 수강중인 모든 강의의 진도율을 조회합니다.',
+			}),
+			ApiCookieAuth(),
+		);
+	},
 	getFinishedLecture() {
 		return applyDecorators(
 			ApiOperation({
