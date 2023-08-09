@@ -16,6 +16,14 @@ export const ApiAnswer = {
 		ApiCreatedResponse({ description: 'Created' }),
 		ApiCookieAuth(),
 	),
+	getAll: applyDecorators(
+		ApiOperation({
+			summary: '사용자의 모든 Answer 조회',
+			description:
+				'사용자가 작성한 모든 Answer 조회',
+		}),
+		
+	),
 	update: applyDecorators(
 		ApiOperation({
 			summary: 'answer 수정',

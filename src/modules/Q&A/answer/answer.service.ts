@@ -15,6 +15,13 @@ import { UpdateAnswerDto } from './dto/update-answer.dto';
 export class AnswerService {
 	constructor(private dataSource: DataSource) {}
 
+	async getAll(user: ReqUser) {
+		return this.dataSource.getRepository(Answer).find({
+			where: { authorId: user.id },
+			relations: ['question'],
+		});
+	}
+
 	async create(dto: CreateAnswerDto, user: ReqUser): Promise<HttpResponse> {
 		const {
 			raw: { affectedRows },

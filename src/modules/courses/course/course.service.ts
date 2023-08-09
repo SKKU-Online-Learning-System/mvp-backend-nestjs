@@ -106,6 +106,37 @@ export class CourseService {
 
 		return { length, courses };
 	}
+	async adminSearchCourses(searchKey: string) {
+		let courses: any = this.dataSource
+			.createQueryBuilder()
+			.from(CourseEntity, 'course')
+			.leftJoin(Category1Entity, 'cat1', 'cat1.id = course.category1Id')
+			.leftJoin(Category2Entity, 'cat2', 'cat2.id = course.category2Id')
+			.where('course.operate = :operateValue', { operateValue: true })
+		if (searchKey) {
+			courses = courses.andWhere('course.title like :keyword', {
+				keyword: `%${searchKey.toLowerCase()}%`,
+			});
+		}
+		courses = await courses
+			.select([
+				'course.id',
+				'course.title',
+				'course.description',
+				'course.summary',
+				'course.thumbnail',
+				'course.difficulty',
+				'course.createdAt',
+				'cat1.name AS category1',
+				'cat2.name AS category2',
+				'course.instructor AS instructor',
+				'course.lectureCnt',
+				'course.operate',
+			])
+			.getMany();		  
+		return courses;
+	}
+
 
 	async getCategories() {
 		const cat = await this.dataSource.getRepository(Category1Entity).find({
@@ -373,4 +404,5 @@ export class CourseService {
 		  throw new NotFoundException('Course not found');
 		}
 	  }
+
 }

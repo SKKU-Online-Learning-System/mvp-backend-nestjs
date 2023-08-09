@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { LectureEntity } from './lecture.entity';
 import { UserEntity } from './user.entity';
+import { CourseEntity } from './course.entity';
 
 @Entity()
 export class History {
