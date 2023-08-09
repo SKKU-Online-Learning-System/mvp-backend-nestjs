@@ -99,7 +99,7 @@ export class AuthService {
 			id: 1,
 			email: 'a@a.com',
 			nickname: 'user a',
-			role: Role.INSTRUCTOR,
+			role: Role.MANAGER,
 		});
 		res.cookie('Authorization', token, {
 			httpOnly: true,

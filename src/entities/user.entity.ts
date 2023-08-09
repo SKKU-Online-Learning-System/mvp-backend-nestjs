@@ -9,10 +9,10 @@ import { CourseEntity } from './course.entity';
 
 export enum Role {
 	ADMIN = 1,
-	INSTRUCTOR,
-	STUDENT,
-	USER,
-	NOT_LOGGED_IN,
+	MANAGER = 2,
+	STUDENT = 3,
+	USER = 4,
+	NOT_LOGGED_IN = 5,
 }
 
 export interface ReqUser {

@@ -10,7 +10,7 @@ export const RolesGuard = (roles?: Role[]): CanActivate => {
 			if (!roles || roles.length === 0) return true;
 
 			if (roles.includes(Role.USER))
-				roles = [Role.ADMIN, Role.INSTRUCTOR, Role.STUDENT];
+				roles = [Role.ADMIN, Role.MANAGER, Role.STUDENT];
 
 			const request = context.switchToHttp().getRequest();
 			const user: ReqUser = request.user;
