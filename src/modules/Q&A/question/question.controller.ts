@@ -41,6 +41,27 @@ export class QuestionController {
 		return this.questionService.getAll(user);
 	}
 
+	@Post(':questionId/like')
+	@UseGuards(RolesGuard([Role.USER]))
+	@ApiQuestion.like
+	async likeQuestion(
+  	@Param('questionId') questionId: number,
+  	@User() user: ReqUser,
+	) {
+  		return this.questionService.likeQuestion(questionId, user);
+	}
+
+	// @Get(':questionId/isLiked')
+	// @UseGuards(RolesGuard([Role.USER]))
+	// @ApiQuestion.isLiked
+	// async isLikedQuestion(
+  	// @Param('questionId') questionId: number,
+  	// @User() user: ReqUser,
+	// ) {
+  	// 	const isLiked = await this.questionService.isUserLikedQuestion(user.id, questionId);
+  	// 	return { isLiked };
+	// }
+
 	@Post()
 	@UseGuards(RolesGuard([Role.USER]))
 	@ApiQuestion.create

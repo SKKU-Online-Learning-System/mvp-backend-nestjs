@@ -6,8 +6,8 @@ import {
 import { isAuthor } from 'src/configs/etc/functions.config';
 import { HttpResponse, status } from 'src/configs/etc/http-response.config';
 import { Question } from 'src/entities/question.entity';
-import { ReqUser } from 'src/entities/user.entity';
-import { DataSource } from 'typeorm';
+import { ReqUser, UserEntity } from 'src/entities/user.entity';
+import { DataSource, getRepository } from 'typeorm';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
 
@@ -136,4 +136,50 @@ export class QuestionService {
 		await this.dataSource.getRepository(Question).delete(questionId);
 		return status(200);
 	}
+
+	async likeQuestion(questionId: number, user: ReqUser): Promise<HttpResponse> {
+		const questionRepository = this.dataSource.getRepository(Question);
+  		const question = await questionRepository
+    		.createQueryBuilder('question')
+    		.leftJoinAndSelect('question.likesByUsers', 'likesByUsers')
+    		.where('question.id = :id', { id: questionId })
+    		.getOne();
+	  
+		if (!question) {
+		  throw new BadRequestException('Question not found');
+		}
+	  
+		if (question.authorId === user.id) {
+		  throw new BadRequestException('You cannot like your own question');
+		}
+	  
+		const userEntity = new UserEntity();
+		userEntity.id = user.id;
+	  
+		if (question.likesByUsers.some(likedUser => likedUser.id === user.id)) {
+		  throw new BadRequestException('You have already liked this question');
+		}
+		question.likes += 1;
+		question.likesByUsers.push(userEntity);
+		await this.dataSource.getRepository(Question).save(question);
+	  
+		return status(200);
+	  }
+	
+	//   async isUserLikedQuestion(userId: number, questionId: number): Promise<boolean> {
+	// 	const questionRepository = this.dataSource.getRepository(Question);
+	// 	const question = await questionRepository
+	// 	  .createQueryBuilder('question')
+	// 	  .leftJoin('question.likesByUsers', 'likesByUsers')
+	// 	  .where('question.id = :id', { id: questionId })
+	// 	  .andWhere('likesByUsers.id = :userId', { userId })
+	// 	  .getOne();
+		
+	// 	if (!question) {
+	// 	  throw new BadRequestException('Question not found');
+	// 	}
+	  
+	// 	return !!question.likesByUsers; // question.likesByUsers가 있는 경우에만 true 반환
+	//   }
+
 }

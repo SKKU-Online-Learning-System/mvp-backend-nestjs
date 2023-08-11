@@ -75,6 +75,20 @@ export const ApiQuestion = {
 				'사용자가 작성한 모든 question 조회',
 		}),
 	),
+	like: applyDecorators(
+		ApiOperation({
+			summary: 'Question의 likes 수 조회',
+			description:
+				'해당 question의 likes 수 조회',
+		}),
+	),
+	// isLiked: applyDecorators(
+	// 	ApiOperation({
+	// 		summary: 'Question에 대한 사용자의 like 여부 조회',
+	// 		description:
+	// 			'해당 Question에 사용자가 이미 like 했는지 여부 확인',
+	// 	}),
+	// ),
 	create: applyDecorators(
 		ApiOperation({
 			summary: 'question 생성',
