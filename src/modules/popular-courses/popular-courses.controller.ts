@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Query, Post, Body, Patch, Param, Delete, NotFoundException } from '@nestjs/common';
 import { PopularCoursesService } from './popular-courses.service';
 import { CreatePopularCourseDto } from './dto/create-popular-course.dto';
 import { UpdatePopularCourseDto } from './dto/update-popular-course.dto';
@@ -10,31 +10,6 @@ import { PopularCourseEntity } from '../../entities/popular-course.entity'
 export class PopularCoursesController {
   constructor(private readonly popularCoursesService: PopularCoursesService) {}
 
-  // @Post()
-  // create(@Body() createPopularCourseDto: CreatePopularCourseDto) {
-  //   return this.popularCoursesService.create(createPopularCourseDto);
-  // }
-
-  // @Get()
-  // findAll() {
-  //   return this.popularCoursesService.findAll();
-  // }
-
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.popularCoursesService.findOne(+id);
-  // }
-
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updatePopularCourseDto: UpdatePopularCourseDto) {
-  //   return this.popularCoursesService.update(+id, updatePopularCourseDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.popularCoursesService.remove(+id);
-  // }
-
   @Post('update')
   @ApiOperation({ summary: 'Update popular courses' })
   async updatePopularCourses() {
@@ -42,6 +17,22 @@ export class PopularCoursesController {
     return { message: 'Popular courses updated successfully.' };
   }
   
+  @Get('course/:courseId')
+  @ApiOperation({ summary: 'Get a popular course by course id' })
+  @ApiResponse({ status: 200, description: 'The popular course has been successfully fetched.' })
+  @ApiResponse({ status: 404, description: 'Not found.' })
+  async getPopularCourseByCourseId(
+    @Param('courseId') courseId: number
+  ): Promise<PopularCourseEntity> {
+    const popularCourse = await this.popularCoursesService.getPopularCourseByCourseId(courseId);
+  
+    if (!popularCourse) {
+      throw new NotFoundException('No popular course found with the provided course id.');
+    }
+  
+    return popularCourse;
+  }
+
   @Get()
   @ApiOperation({ summary: 'Get popular courses' })
   @ApiQuery({ name: 'limit', required: true })

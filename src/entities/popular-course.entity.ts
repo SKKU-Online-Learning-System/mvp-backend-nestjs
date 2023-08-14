@@ -7,7 +7,7 @@ export class PopularCourseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => CourseEntity)
+  @ManyToOne(() => CourseEntity, { eager: true })
   @JoinColumn({ name: 'course' }) // Join with course id
   course: CourseEntity;
 
@@ -23,9 +23,13 @@ export class PopularCourseEntity {
   @Column()
   enrollmentCount: number;
 
+  @Column()
+	operate: boolean;
+
   @CreateDateColumn()
   courseCreatedAt: Date; // '강좌 생성일' column
 
   @CreateDateColumn()
   updatedAt: Date;
+
 }

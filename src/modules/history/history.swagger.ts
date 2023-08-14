@@ -23,8 +23,17 @@ export const ApiHistory = {
 	getLectureHistory() {
 		return applyDecorators(
 			ApiOperation({
-				summary: '',
-				description: '',
+				summary: '강의별 진도율 조회',
+				description: 'lectureId를 통해 강의별 진도율을 조회합니다.',
+			}),
+			ApiCookieAuth(),
+		);
+	},
+	getCourseHistory() {
+		return applyDecorators(
+			ApiOperation({
+				summary: '강좌별 수강중인 강의 진도율 조회',
+				description: 'couserId를 통해 강좌별 수강중인 모든 강의의 진도율을 조회합니다.',
 			}),
 			ApiCookieAuth(),
 		);

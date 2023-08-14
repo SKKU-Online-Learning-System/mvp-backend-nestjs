@@ -49,6 +49,12 @@ class Course {
 	@Column()
 	difficulty: number;
 
+	@Column()
+	lectureCnt: number;
+
+	@Column()
+	operate: boolean;
+
 	@CreateDateColumn()
 	createdAt: Date;
 

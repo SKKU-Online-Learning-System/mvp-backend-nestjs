@@ -74,6 +74,33 @@ export class HistoryService {
 		});
 	}
 
+	async getByCourse(courseId: number, user: ReqUser) {
+		return await this.dataSource.getRepository(History).find({
+			where: { 
+				userId: user.id,
+				lecture: { course: { id: courseId } },
+			},
+			relations: {
+				lecture: {
+					course: false,
+				},
+			},
+			select: {
+				id: true,
+				lastTime: true,
+				updatedAt: true,
+				isFinished: true,
+				lecture: {
+					id: true,
+					title: true,
+					duration: true,
+					filename: false,
+				},
+			},
+		});
+	}
+
+
 	async getFinishedGroupByCourse(user: ReqUser) {
 		return await this.dataSource
 			.getRepository(History)

@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { CourseEntity } from 'src/entities/course.entity';
 import { Category1Entity } from 'src/entities/category1.entity';
@@ -7,19 +7,20 @@ import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { CourseHashtagEntity } from 'src/entities/course-hashtag.entity';
 import { HashtagEntity } from 'src/entities/hashtag.entity';
-import { UserEntity } from 'src/entities/user.entity';
 import { SearchCoursesDto } from './dto/search-courses.dto';
 import { SectionEntity } from 'src/entities/section.entity';
 import { HttpResponse, status } from 'src/configs/etc/http-response.config';
 import { EnrollmentService } from '../enrollment/enrollment.service';
 import { Question } from 'src/entities/question.entity';
-import { Between } from 'typeorm';
-
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 @Injectable()
 export class CourseService {
 	constructor(
 		private dataSource: DataSource,
 		private enrollmentService: EnrollmentService,
+		@InjectRepository(CourseEntity)
+    	private courseRepository: Repository<CourseEntity>,
 	) {}
 
 	async searchCourses(searchCoursesDto: SearchCoursesDto) {
@@ -31,6 +32,7 @@ export class CourseService {
 			.from(CourseEntity, 'course')
 			.leftJoin(Category1Entity, 'cat1', 'cat1.id = course.category1Id')
 			.leftJoin(Category2Entity, 'cat2', 'cat2.id = course.category2Id')
+			.where('course.operate = :operateValue', { operateValue: true })
 
 		if (category1Id) {
 			courses = courses.where('course.category1Id = :category1Id', {
@@ -69,7 +71,9 @@ export class CourseService {
 				'course.thumbnail AS thumbnail',
 				'course.difficulty AS difficulty',
 				'course.createdAt AS createdAt',
+				'course.operate AS operate',
 				// 'user.email AS instructor',
+				'course.instructor AS instructor',
 				'cat1.name AS category1',
 				'cat2.name AS category2',
 			])
@@ -102,6 +106,37 @@ export class CourseService {
 
 		return { length, courses };
 	}
+	async adminSearchCourses(searchKey: string) {
+		let courses: any = this.dataSource
+			.createQueryBuilder()
+			.from(CourseEntity, 'course')
+			.leftJoin(Category1Entity, 'cat1', 'cat1.id = course.category1Id')
+			.leftJoin(Category2Entity, 'cat2', 'cat2.id = course.category2Id')
+			.where('course.operate = :operateValue', { operateValue: true })
+		if (searchKey) {
+			courses = courses.andWhere('course.title like :keyword', {
+				keyword: `%${searchKey.toLowerCase()}%`,
+			});
+		}
+		courses = await courses
+			.select([
+				'course.id',
+				'course.title',
+				'course.description',
+				'course.summary',
+				'course.thumbnail',
+				'course.difficulty',
+				'course.createdAt',
+				'cat1.name AS category1',
+				'cat2.name AS category2',
+				'course.instructor AS instructor',
+				'course.lectureCnt',
+				'course.operate',
+			])
+			.getMany();		  
+		return courses;
+	}
+
 
 	async getCategories() {
 		const cat = await this.dataSource.getRepository(Category1Entity).find({
@@ -122,8 +157,6 @@ export class CourseService {
 	}
 
 	async getCourseById(courseId: number, user) {
-		console.log(user);
-
 		const course = await this.dataSource
 			.getRepository(CourseEntity)
 			.findOne({
@@ -142,6 +175,7 @@ export class CourseService {
 					thumbnail: true,
 					difficulty: true,
 					createdAt: true,
+					instructor: true,
 					// instructor: {
 					// 	id: true,
 					// 	email: true,
@@ -158,16 +192,13 @@ export class CourseService {
 					hashtags: true,
 				},
 			});
-
 		if (!user.id)
 			return { ...course, is_logged_in: false, has_enrolled: false };
-
 		if (await this.enrollmentService.checkUserEnrolled(user.id, courseId)) {
 			return { ...course, is_logged_in: true, has_enrolled: true };
 		} else {
 			return { ...course, is_logged_in: true, has_enrolled: false };
 		}
-
 	}
 
 	async getPopularCourses() {
@@ -190,6 +221,7 @@ export class CourseService {
 				'course.thumbnail',
 				'course.difficulty',
 				'course.createdAt',
+				'course.operate',
 				// 'instructor.nickname',
 				'category1.name',
 				'category2.name',
@@ -213,6 +245,7 @@ export class CourseService {
 				select: {
 					id: true,
 					title: true,
+					
 					lectures: {
 						id: true,
 						title: true,
@@ -263,20 +296,20 @@ export class CourseService {
 		return status(201);
 	}
 
-	async updateCourseById(
-		id: number,
-		updateCourseDto: UpdateCourseDto,
-	): Promise<HttpResponse> {
-		const {
-			raw: { affectedRows },
-		} = await this.dataSource
-			.getRepository(CourseEntity)
-			.update(id, updateCourseDto);
+	// async updateCourseById(
+	// 	id: number,
+	// 	updateCourseDto: UpdateCourseDto,
+	// ): Promise<HttpResponse> {
+	// 	const {
+	// 		raw: { affectedRows },
+	// 	} = await this.dataSource
+	// 		.getRepository(CourseEntity)
+	// 		.update(id, updateCourseDto);
 
-		if (!affectedRows) throw new InternalServerErrorException();
+	// 	if (!affectedRows) throw new InternalServerErrorException();
 
-		return status(200);
-	}
+	// 	return status(200);
+	// }
 
 	async deleteCourseById(id: number): Promise<HttpResponse> {
 		const { affected } = await this.dataSource
@@ -288,18 +321,88 @@ export class CourseService {
 		return status(200);
 	}
 
-	//최근 한달에 업로드된 강좌
+	//Jaeung Lee
 	async getRecentlyUploadedCourses(): Promise<CourseEntity[]> {
 		const dateOneMonthAgo = new Date();
 		dateOneMonthAgo.setMonth(dateOneMonthAgo.getMonth() - 1);
 		
 		const courses = await this.dataSource
-			.getRepository(CourseEntity)
-			.createQueryBuilder('course')
-			.where('course.createdAt >= :dateOneMonthAgo', { dateOneMonthAgo })
-			.getMany();
-		
+  			.getRepository(CourseEntity)
+  			.createQueryBuilder('course')
+  			.where('course.createdAt >= :dateOneMonthAgo', { dateOneMonthAgo })
+  			.andWhere('course.operate = :operateValue', { operateValue: true })
+  			.getMany();		
 		return courses;
 	}
 	
+	async getThumbnail(courseId: number): Promise<string> {
+		const course = await this.dataSource
+			.getRepository(CourseEntity)
+			.findOne({
+				where: { id: courseId },
+				select: ['thumbnail'],
+			});
+		
+		if (!course) {
+			throw new NotFoundException(`Course with ID ${courseId} not found.`);
+		}
+	
+		return course.thumbnail;
+	}
+
+	async getCategory(courseId: number): Promise<string> {
+		const course = await this.courseRepository.findOne({
+		  where: { id: courseId },
+		  relations: ['category1']
+		});
+	
+		if (!course) {
+		  throw new Error(`Course with id ${courseId} not found`);
+		}
+	
+		if (!course.category1) {
+		  throw new Error(`Category1 for course with id ${courseId} not found`);
+		}
+	
+		return course.category1.name;  // assuming the Category1 entity has a 'name' field
+	}
+	
+	
+	async getAllCourses() {
+		const courses: any = await this.dataSource
+		  .createQueryBuilder()
+		  .from(CourseEntity, 'course')
+		  .leftJoin('course.category1', 'category1')
+		  .leftJoin('course.category2', 'category2')
+		  .select([
+			'course.id',
+			'course.title',
+			'course.description',
+			'course.summary',
+			'course.thumbnail',
+			'course.difficulty',
+			'course.createdAt',
+			'category1.name',
+			'category2.name',
+			'course.lectureCnt',
+			'course.operate',
+			'course.instructor',
+		  ])
+		  .getMany();		  
+		return courses;
+	}
+
+	async updateCourseOperate(courseId: number) {
+		try {
+		  const course = await this.courseRepository.findOne({
+			where: { id: courseId },
+		  });
+		  course.operate = !course.operate;
+		  return this.courseRepository.save(course);
+		} catch (error) {
+		  // Handle error - Course not found
+		  throw new NotFoundException('Course not found');
+		}
+	  }
+
 }

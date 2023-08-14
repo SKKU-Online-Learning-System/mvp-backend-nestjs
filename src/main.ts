@@ -33,18 +33,18 @@ async function bootstrap() {
    });
 
    // Block direct access to /api endpoint
-   app.use('/api', (req, res, next) => {
-      if (req.headers.referer) {
-         const refererUrl = new URL(req.headers.referer);
-      if (refererUrl.origin === ('https://mrdang.cs.skku.edu') || refererUrl.origin === ('http://localhost:3000')) {
-         next();
-      } else {
-         res.status(403).send('Forbidden');
-      }
-      } else {
-      res.status(403).send('Forbidden');
-   }
-   });
+   // app.use('/api', (req, res, next) => {
+   //    if (req.headers.referer) {
+   //       const refererUrl = new URL(req.headers.referer);
+   //    if (refererUrl.origin === ('https://mrdang.cs.skku.edu') || refererUrl.origin === ('http://localhost:3000')) {
+   //       next();
+   //    } else {
+   //       res.status(403).send('Forbidden');
+   //    }
+   //    } else {
+   //    res.status(403).send('Forbidden');
+   // }
+   // });
  
 
    app.use(helmet());

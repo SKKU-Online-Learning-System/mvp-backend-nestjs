@@ -51,6 +51,14 @@ export const ApiCourse = {
 			}),
 		);
 	},
+	adminSearchCourses() {
+		return applyDecorators(
+			ApiOperation({
+				summary: 'admin 강좌 관리에서 course 검색',
+				description: '조건에 맞는 course를 검색합니다.',
+			}),
+		);
+	},
 	getCategories() {
 		return applyDecorators(
 			ApiOperation({
@@ -184,7 +192,7 @@ export const ApiCourse = {
 	updateCourseById() {
 		return applyDecorators(
 			ApiOperation({
-				summary: 'course 수정 - 사용 안함',
+				summary: 'course 수정 - operate 값 update',
 				description: '',
 			}),
 			ApiCookieAuth(),
@@ -193,10 +201,22 @@ export const ApiCourse = {
 	deleteCourseById() {
 		return applyDecorators(
 			ApiOperation({
-				summary: 'course 삭제 - 사용 안함',
+				summary: 'course 삭제',
 				description: '',
 			}),
 			ApiCookieAuth(),
+		);
+	},
+	getAllCourses() {
+		return applyDecorators(
+			ApiOperation({
+				summary: '모든 강좌 조회',
+                description: '강좌 관리를 위해 모든 강좌를 조회합니다.',
+			}),
+			ApiOkResponse({
+                description: 'Returns all courses',
+                type: [CourseEntity],
+            }),
 		);
 	},
 	getRecentlyUploadedCourses() {
@@ -211,6 +231,7 @@ export const ApiCourse = {
             }),
         );
     },
+	
 };
 
 class GetRecentQuestions {

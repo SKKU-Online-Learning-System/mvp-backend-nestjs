@@ -2,6 +2,8 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
+	JoinTable,
+	ManyToMany,
 	ManyToOne,
 	OneToMany,
 	PrimaryGeneratedColumn,
@@ -36,6 +38,13 @@ export class Question {
 
 	@Column({ type: 'text' })
 	contents: string;
+
+	@Column()
+	likes: number;
+
+	@ManyToMany(() => UserEntity)
+  	@JoinTable()
+  	likesByUsers: UserEntity[];
 
 	@CreateDateColumn()
 	createdAt: Date;
