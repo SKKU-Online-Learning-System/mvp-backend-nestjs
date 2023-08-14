@@ -31,5 +31,4 @@ jobs:
           script: |
             docker stop mrdang-backend || true
             docker rm mrdang-backend || true
-            docker build -t mrdang-backend-nodejs:1.0.0 .
             docker run -d --name mrdang-backend --network net -e VIRTUAL_HOST="mrdang.cs.skku.edu" -e LETSENCRYPT_HOST="mrdang.cs.skku.edu" --add-host host.docker.internal:host-gateway -p 4102:4000 mrdang-backend-nodejs:1.0.0
