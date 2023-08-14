@@ -107,7 +107,7 @@ export class AuthController {
 	@Get('profile')
 	@UseGuards(RolesGuard([Role.USER]))
 	@ApiAuth.getProfile()
-	getProfile(@User() user) {
+	getProfile(@User() user: ReqUser) {
 		return user || 'no user';
 	}
 

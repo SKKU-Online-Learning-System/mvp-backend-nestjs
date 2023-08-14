@@ -47,13 +47,15 @@ export class MainLayoutService {
   
   getByOrder(order: number): Promise<MainLayout[]> {
     return this.mainLayoutRepository.find({ 
-        where: { order },
+        where: {
+            order,
+        },
         order: {
             sequence: 'ASC'
         }
     });
-}
-  
+  }
+
   getByOrderAndSequence(order: number, sequence: number): Promise<MainLayout[]> {
     return this.mainLayoutRepository.find({ where: { order, sequence } });
   }

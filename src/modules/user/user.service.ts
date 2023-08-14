@@ -4,11 +4,11 @@ import {
 	InternalServerErrorException,
 } from '@nestjs/common';
 import { HttpResponse, status } from 'src/configs/etc/http-response.config';
-import { UserEntity } from 'src/entities/user.entity';
+import { Role, UserEntity } from 'src/entities/user.entity';
 import { DataSource } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-
+import { User } from 'src/configs/decorator/user.decorator';
 @Injectable()
 export class UserService {
 	constructor(private dataSource: DataSource) {}
@@ -64,4 +64,16 @@ export class UserService {
 			.getRepository(UserEntity)
 			.findOneBy({ nickname });
 	}
+
+	async isAdmin(@User() user): Promise<boolean> {
+		// console.log(user);
+		const foundUser = await this.dataSource.getRepository(UserEntity).findOne({ 
+			where: { email: user.email } 
+		});
+		if (!foundUser) {
+			throw new BadRequestException('User not found');
+		}
+		return foundUser.role === Role.ADMIN;
+	}
+	
 }
