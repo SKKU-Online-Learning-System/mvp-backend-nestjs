@@ -17,35 +17,61 @@ export class HistoryService {
 		private readonly httpService: HttpService,
 	) {}
 
-	async getByUser(user: ReqUser): Promise<History[]> {
-		return await this.dataSource.getRepository(History).find({
-			where: { userId: user.id },
-			relations: {
-				lecture: {
-					course: true,
-				},
-			},
-			select: {
-				id: true,
-				lastTime: true,
-				updatedAt: true,
-				isFinished: true,
-				lecture: {
-					id: true,
-					title: true,
-					duration: true,
-					filename: true,
-					course: {
-						id: true,
-						title: true,
-						thumbnail: true,
-					},
-				},
-			},
-			order: { updatedAt: 'DESC' },
-		});
-	}
+	// async getByUser(user: ReqUser): Promise<History[]> {
+	// 	return await this.dataSource.getRepository(History).find({
+	// 		where: { userId: user.id },
+	// 		relations: {
+	// 			lecture: {
+	// 				course: true,
+	// 			},
+	// 		},
+	// 		select: {
+	// 			id: true,
+	// 			lastTime: true,
+	// 			updatedAt: true,
+	// 			isFinished: true,
+	// 			lecture: {
+	// 				id: true,
+	// 				title: true,
+	// 				duration: true,
+	// 				filename: true,
+	// 				course: {
+	// 					id: true,
+	// 					title: true,
+	// 					thumbnail: true,
+	// 				},
+	// 			},
+	// 		},
+	// 		order: { updatedAt: 'DESC' },
+	// 	});
+	// }
 
+	async getByUser(user: ReqUser): Promise<History[]> {
+		const historyRepo = this.dataSource.getRepository(History);
+	
+		return await historyRepo
+			.createQueryBuilder("history")
+			.innerJoin("history.lecture", "lecture")
+			.innerJoin("lecture.course", "course")
+			.leftJoin("enrollment", "enrollment", "enrollment.courseId = course.id AND enrollment.userId = :userId")
+			.where("history.userId = :userId AND enrollment.userId IS NOT NULL", { userId: user.id })
+			.select([
+				"history.id",
+				"history.lastTime",
+				"history.updatedAt",
+				"history.isFinished",
+				"lecture.id",
+				"lecture.title",
+				"lecture.duration",
+				"lecture.filename",
+				"course.id",
+				"course.title",
+				"course.thumbnail"
+			])
+			.orderBy("history.updatedAt", "DESC")
+			.getMany();
+	}
+	
 	async getByLecture(lectureId: number, user: ReqUser) {
 		return await this.dataSource.getRepository(History).findOne({
 			where: { userId: user.id, lectureId },

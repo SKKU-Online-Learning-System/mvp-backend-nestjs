@@ -36,7 +36,7 @@ async function bootstrap() {
    // app.use('/api', (req, res, next) => {
    //    if (req.headers.referer) {
    //       const refererUrl = new URL(req.headers.referer);
-   //    if (refererUrl.origin === ('https://mrdang.cs.skku.edu') || refererUrl.origin === ('http://localhost:3000')) {
+   //    if (refererUrl.origin === ('https://mrdang.cs.skku.edu') || refererUrl.origin === ('https://localhost:3000')) {
    //       next();
    //    } else {
    //       res.status(403).send('Forbidden');
@@ -46,6 +46,7 @@ async function bootstrap() {
    // }
    // });
  
+   
 
    app.use(helmet());
    app.use(cookieParser());
