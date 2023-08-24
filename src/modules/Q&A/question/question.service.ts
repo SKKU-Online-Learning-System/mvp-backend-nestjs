@@ -30,6 +30,7 @@ export class QuestionService {
 					id: true,
 					title: true,
 					contents: true,
+					likes: true,
 					createdAt: true,
 					author: {
 						id: true,
@@ -61,6 +62,7 @@ export class QuestionService {
 				id: true,
 				title: true,
 				contents: true,
+				likes: true,
 				createdAt: true,
 				author: {
 					id: true,

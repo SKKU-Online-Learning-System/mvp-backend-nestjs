@@ -14,4 +14,7 @@ export class CreateQuestionDto {
 
 	@IsString()
 	readonly contents: string;
+
+	@IsInt()
+	readonly likes: number;
 }
