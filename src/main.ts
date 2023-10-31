@@ -26,6 +26,8 @@ async function bootstrap() {
 	   'http://localhost:3000',
 	   'https://mrdang.cs.skku.edu',
 	   'http://mrdang.cs.skku.edu',
+      'http://mrdang-dev.cs.skku.edu:8080',
+      'http://mrdang-dev.cs.skku.edu',
 	   'https://mrdang.cs.skku.edu:443',
    ],
 	methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
