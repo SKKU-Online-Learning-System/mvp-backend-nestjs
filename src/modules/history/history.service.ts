@@ -206,7 +206,7 @@ export class HistoryService {
 						where: { userId: user.id },
 					});
 					const requestBody: KingoCoinRequestDto = {
-						email: user.email,
+						st_id: user.st_id,
 						transactionId: transaction.id,
 						description: '명륜당 영상시청',
 						point: 400,

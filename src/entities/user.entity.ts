@@ -17,8 +17,13 @@ export enum Role {
 
 export interface ReqUser {
 	id: number;
-	email: string;
-	nickname: string;
+	//email: string;
+	//nickname: string;
+	st_id: string;
+	st_name: string;
+	st_degree: string;
+	st_status: string;
+	st_dept: string;
 	role: Role;
 }
 
@@ -27,11 +32,26 @@ class User {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ type: 'varchar', length: 50, unique: true })
-	email: string;
+	// @Column({ type: 'varchar', length: 50, unique: true })
+	// email: string;
+
+	// @Column({ type: 'varchar', length: 20, unique: true })
+	// nickname: string;
 
 	@Column({ type: 'varchar', length: 20, unique: true })
-	nickname: string;
+	st_id: string;
+
+	@Column({ type: 'varchar', length: 20, unique: true })
+	st_name: string;
+
+	@Column({ type: 'varchar', length: 20, unique: true })
+	st_degree: string;
+
+	@Column({ type: 'varchar', length: 20, unique: true })
+	st_status: string;
+
+	@Column({ type: 'varchar', length: 20, unique: true })
+	st_dept: string;
 
 	@CreateDateColumn()
 	joinedAt: Date;

@@ -6,7 +6,7 @@ import { DataSource } from 'typeorm';
 import { TypeOrmConfigService } from './configs/database/db.config.service';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AuthModule } from './modules/auth/auth.module';
+//import { AuthModule } from './modules/auth/auth.module';
 import { LectureModule } from './modules/lecture/lecture.module';
 import { UserModule } from './modules/user/user.module';
 import { HistoryModule } from './modules/history/history.module';
@@ -21,6 +21,7 @@ import { CoursesModule } from './modules/courses/courses.module';
 import { PopularCoursesModule } from './modules/popular-courses/popular-courses.module';
 import { MainLayoutModule } from './modules/main-layout/main-layout.module';
 import { NoticeModule } from './modules/notice/notice.module';
+import { LoginModule } from './modules/login/login.module';
 
 
 @Module({
@@ -31,7 +32,8 @@ import { NoticeModule } from './modules/notice/notice.module';
 		}),
 		RouterModule.register(routes),
 		AdminModule,
-		AuthModule,
+		//AuthModule,
+		LoginModule,
 		CoursesModule,
 		HistoryModule,
 		LectureModule,
