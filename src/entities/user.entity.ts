@@ -33,6 +33,21 @@ class User {
 	@Column({ type: 'varchar', length: 20, unique: true })
 	nickname: string;
 
+	@Column({ type: 'varchar', length: 20, unique: true })
+	st_id: string;
+
+	@Column({ type: 'varchar', length: 20, unique: true })
+	st_name: string;
+
+	@Column({ type: 'varchar', length: 20, unique: true })
+	st_degree: string;
+
+	@Column({ type: 'varchar', length: 20, unique: true })
+	st_status: string;
+
+	@Column({ type: 'varchar', length: 20, unique: true })
+	st_dept: string;
+
 	@CreateDateColumn()
 	joinedAt: Date;
 
