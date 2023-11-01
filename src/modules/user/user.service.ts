@@ -28,11 +28,11 @@ export class UserService {
 	}
 
 	async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
-		const { email, nickname } = createUserDto;
+		const { st_id, st_name, st_degree, st_status, st_dept } = createUserDto;
 
 		const exist = await this.dataSource
 			.getRepository(UserEntity)
-			.find({ where: [{ email }, { nickname }] });
+			.find({ where: [{ st_id }, { st_name }, { st_degree }, { st_status }, { st_dept }] });
 
 		if (exist.length) throw new BadRequestException();
 
@@ -52,23 +52,29 @@ export class UserService {
 			.getRepository(UserEntity)
 			.findOneBy({ id });
 	}
-
-	async getUserByEmail(email: string): Promise<UserEntity | null> {
+	
+	async getUserBystId(st_id: string): Promise<UserEntity | null> {
 		return await this.dataSource
 			.getRepository(UserEntity)
-			.findOneBy({ email });
+			.findOneBy({ st_id });
 	}
 
-	async getUserByNickname(nickname: string): Promise<UserEntity | null> {
-		return await this.dataSource
-			.getRepository(UserEntity)
-			.findOneBy({ nickname });
-	}
+	// async getUserByEmail(email: string): Promise<UserEntity | null> {
+	// 	return await this.dataSource
+	// 		.getRepository(UserEntity)
+	// 		.findOneBy({ email });
+	// }
+
+	// async getUserByNickname(nickname: string): Promise<UserEntity | null> {
+	// 	return await this.dataSource
+	// 		.getRepository(UserEntity)
+	// 		.findOneBy({ nickname });
+	// }
 
 	async isAdmin(@User() user): Promise<boolean> {
 		// console.log(user);
 		const foundUser = await this.dataSource.getRepository(UserEntity).findOne({ 
-			where: { email: user.email } 
+			where: { st_id: user.st_id } 
 		});
 		if (!foundUser) {
 			throw new BadRequestException('User not found');

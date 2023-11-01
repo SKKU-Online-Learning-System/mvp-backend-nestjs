@@ -12,7 +12,7 @@
 
 // 	// For the local-strategy, passport expects validate() method
 // 	async validate(username: string, password: string): Promise<any> {
-// 		const admin = await this.authService.validateAdmin(username, password);
+// 		const admin = await this.authService.validateUser(username, password);
 // 		if (!admin) {
 // 			throw new UnauthorizedException();
 // 		}

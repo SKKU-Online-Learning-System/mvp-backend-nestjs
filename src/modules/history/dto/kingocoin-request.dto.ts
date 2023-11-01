@@ -1,8 +1,8 @@
 import { IsEmail, IsInt, IsString } from 'class-validator';
 
 export class KingoCoinRequestDto {
-	@IsEmail()
-	email: string;
+	@IsString()
+	st_id: string;
 
 	@IsInt()
 	transactionId: number;

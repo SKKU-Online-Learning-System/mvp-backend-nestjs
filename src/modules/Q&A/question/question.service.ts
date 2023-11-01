@@ -33,7 +33,7 @@ export class QuestionService {
 					createdAt: true,
 					author: {
 						id: true,
-						nickname: true,
+						st_id: true,
 					},
 					answers: true,
 				},
@@ -64,7 +64,7 @@ export class QuestionService {
 				createdAt: true,
 				author: {
 					id: true,
-					nickname: true,
+					st_id: true,
 				},
 				answers: {
 					id: true,
@@ -72,13 +72,13 @@ export class QuestionService {
 					createdAt: true,
 					author: {
 						id: true,
-						nickname: true,
+						st_id: true,
 					},
 					comments: {
 						id: true,
 						author: {
 							id: true,
-							nickname: true,
+							st_id: true,
 						},
 						contents: true,
 						createdAt: true,
