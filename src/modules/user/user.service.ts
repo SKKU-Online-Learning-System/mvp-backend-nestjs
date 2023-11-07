@@ -32,10 +32,11 @@ export class UserService {
 
 		const exist = await this.dataSource
 			.getRepository(UserEntity)
-			.find({ where: [{ st_id }, { st_name }, { st_degree }, { st_status }, { st_dept }] });
-
-		if (exist.length) throw new BadRequestException();
-
+			.find({ where: [{ st_id }] });
+		//console.log('Exist:', exist);
+		if (exist.length) {
+			return this.getUserById(exist[0].id);
+		}
 		const {
 			raw: { affectedRows, insertId },
 		} = await this.dataSource
@@ -44,7 +45,7 @@ export class UserService {
 
 		if (!affectedRows) throw new InternalServerErrorException();
 
-		return await this.getUserById(insertId);
+		return this.getUserById(insertId);
 	}
 
 	async getUserById(id: number): Promise<UserEntity | null> {

@@ -13,17 +13,16 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 	}
 
 	async validate(payload: any) {
-		const { id, email, nickname, role } = payload;
+		const { id, st_id, role } = payload;
 
-		if (email) {
-			return { id, email, nickname, role };
+		if (st_id) {
+			return { id, st_id, role };
 			// } else if (username) {
 			// 	return { id, username };
 		} else {
 			return {
 				id: null,
-				email: null,
-				nickname: null,
+				st_id: null,
 				role: Role.NOT_LOGGED_IN,
 			};
 		}

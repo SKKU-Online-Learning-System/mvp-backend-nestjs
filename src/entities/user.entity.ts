@@ -41,16 +41,16 @@ class User {
 	@Column({ type: 'varchar', length: 20, unique: true })
 	st_id: string;
 
-	@Column({ type: 'varchar', length: 20, unique: true })
+	@Column({ type: 'varchar', length: 20 })
 	st_name: string;
 
-	@Column({ type: 'varchar', length: 20, unique: true })
+	@Column({ type: 'varchar', length: 20 })
 	st_degree: string;
 
-	@Column({ type: 'varchar', length: 20, unique: true })
+	@Column({ type: 'varchar', length: 20 })
 	st_status: string;
 
-	@Column({ type: 'varchar', length: 20, unique: true })
+	@Column({ type: 'varchar', length: 20, default: '소프트웨어학과' })
 	st_dept: string;
 
 	@CreateDateColumn()
