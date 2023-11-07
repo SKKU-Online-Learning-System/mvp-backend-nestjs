@@ -79,7 +79,7 @@ export class AuthService {
 
 	async localLogin(res: Response, user: ReqUser): Promise<HttpResponse> {
 		const { id, st_id, st_name, st_degree, st_status, st_dept, role } = user;
-		console.log(user);
+		//console.log(user);
 		const createUserDto: CreateUserDto = {
 		  st_id,
 		  st_name,
