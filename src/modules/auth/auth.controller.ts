@@ -131,7 +131,8 @@ export class AuthController {
 	@Get('logout')
 	@ApiAuth.logout()
 	logout(@Res({ passthrough: true }) res: Response) {
-		return this.authService.logout(res);
+		this.authService.logout(res);
+		res.redirect("https://mrdang.cs.skku.edu/login/logout");
 	}
 
 	// for test
