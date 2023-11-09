@@ -21,7 +21,6 @@ import { CoursesModule } from './modules/courses/courses.module';
 import { PopularCoursesModule } from './modules/popular-courses/popular-courses.module';
 import { MainLayoutModule } from './modules/main-layout/main-layout.module';
 import { NoticeModule } from './modules/notice/notice.module';
-import { LoginModule } from './modules/login/login.module';
 
 
 @Module({
@@ -33,7 +32,6 @@ import { LoginModule } from './modules/login/login.module';
 		RouterModule.register(routes),
 		AdminModule,
 		AuthModule,
-		LoginModule,
 		CoursesModule,
 		HistoryModule,
 		LectureModule,
