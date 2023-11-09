@@ -28,11 +28,11 @@ export class UserService {
 	}
 
 	async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
-		const { st_id, st_name, st_degree, st_status, st_dept } = createUserDto;
+		const { user_id, st_id, st_name, st_degree, st_status, st_dept } = createUserDto;
 
 		const exist = await this.dataSource
 			.getRepository(UserEntity)
-			.find({ where: [{ st_id }] });
+			.find({ where: [{ user_id }] });
 		//console.log('Exist:', exist);
 		if (exist.length) {
 			return this.getUserById(exist[0].id);
@@ -58,6 +58,11 @@ export class UserService {
 		return await this.dataSource
 			.getRepository(UserEntity)
 			.findOneBy({ st_id });
+	}
+	async getUserByuserId(user_id: string): Promise<UserEntity | null> {
+		return await this.dataSource
+			.getRepository(UserEntity)
+			.findOneBy({ user_id });
 	}
 
 	// async getUserByEmail(email: string): Promise<UserEntity | null> {

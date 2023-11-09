@@ -24,6 +24,7 @@ export interface ReqUser {
 	st_degree: string;
 	st_status: string;
 	st_dept: string;
+	user_id: string;
 	role: Role;
 }
 
@@ -32,13 +33,10 @@ class User {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	// @Column({ type: 'varchar', length: 50, unique: true })
-	// email: string;
+	@Column({ type: 'varchar', length: 25, unique: true })
+	user_id: string;
 
-	// @Column({ type: 'varchar', length: 20, unique: true })
-	// nickname: string;
-
-	@Column({ type: 'varchar', length: 20, unique: true })
+	@Column({ type: 'varchar', length: 20, default: '소프트웨어학과' })
 	st_id: string;
 
 	@Column({ type: 'varchar', length: 20 })

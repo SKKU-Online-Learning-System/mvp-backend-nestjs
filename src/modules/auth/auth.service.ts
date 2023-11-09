@@ -78,17 +78,18 @@ export class AuthService {
 	// }
 
 	async localLogin(res: Response, user: ReqUser): Promise<HttpResponse> {
-		const { id, st_id, st_name, st_degree, st_status, st_dept, role } = user;
+		const { id, user_id, st_id, st_name, st_degree, st_status, st_dept, role } = user;
 		//console.log(user);
 		const createUserDto: CreateUserDto = {
-		  st_id,
-		  st_name,
-		  st_degree,
-		  st_status,
-		  st_dept,
+			user_id,
+		  	st_id,
+		  	st_name,
+		  	st_degree,
+		  	st_status,
+		  	st_dept,
 		};
 		
-		const payload = { id: id, st_id: st_id, role: role };
+		const payload = { id: id, user_id: user_id, role: role };
 		//console.log(payload);
 		const token = this.jwtService.sign(payload);
 			//console.log(token);

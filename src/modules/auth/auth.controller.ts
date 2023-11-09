@@ -46,16 +46,17 @@ export class AuthController {
     	//return this.authService.localLogin(res, user);
 	}
 	@Get('login')
-	async login(@Res({ passthrough: true }) res: Response, @Query('st_id') st_id: string, @Query('st_name') st_name: string, @Query('st_degree') st_degree: string, @Query('st_status') st_status: string, @Query('st_dept') st_dept: string) {
+	async login(@Res({ passthrough: true }) res: Response, @Query('user_id') user_id: string, @Query('st_id') st_id: string, @Query('st_name') st_name: string, @Query('st_degree') st_degree: string, @Query('st_status') st_status: string, @Query('st_dept') st_dept: string) {
     	// 사용자 정보를 객체로 생성
 		const createUserDto: CreateUserDto = {
+			user_id,
 			st_id,
 			st_name,
 			st_degree,
 			st_status,
 			st_dept,
 		  };
-		const existUser = await this.userService.getUserBystId(st_id);
+		const existUser = await this.userService.getUserByuserId(user_id);
 		if(existUser){
 			await this.authService.localLogin(res,existUser);
 			res.redirect('https://mrdang.cs.skku.edu');
@@ -144,7 +145,7 @@ export class AuthController {
 	async getProfile(@User() user: ReqUser) {
 		if (user) {
 			try {
-				const userProfile = await this.userService.getUserBystId(user.st_id);
+				const userProfile = await this.userService.getUserByuserId(user.user_id);
 				return userProfile;
 			} catch (error) {
 			  return 'Error fetching user profile';

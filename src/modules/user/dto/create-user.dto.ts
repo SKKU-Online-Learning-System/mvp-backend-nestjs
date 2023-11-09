@@ -6,6 +6,9 @@ export class CreateUserDto {
 
 	// @IsString()
 	// readonly nickname: string;
+	
+	@IsString()
+	readonly user_id: string;
 
 	@IsString()
 	readonly st_id: string;
@@ -21,4 +24,5 @@ export class CreateUserDto {
 
 	@IsString()
 	readonly st_dept: string;
+
 }
