@@ -175,7 +175,7 @@ export const ApiAuth = {
 	getProfile() {
 		return applyDecorators(
 			ApiOperation({
-				summary: '프로필 - 테스트용',
+				summary: '프로필',
 				description:
 					'로그인 상태인 경우 사용자 정보를 돌려줍니다. 로그인 상태가 아닌 경우 "no user"를 돌려줍니다.',
 			}),

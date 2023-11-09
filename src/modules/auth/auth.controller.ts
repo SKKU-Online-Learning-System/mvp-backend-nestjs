@@ -27,6 +27,8 @@ import { ReqUser, Role } from 'src/entities/user.entity';
 import { UserService } from '../user/user.service';
 import { status } from 'src/configs/etc/http-response.config';
 import { CreateUserDto } from '../user/dto/create-user.dto';
+import { UserEntity } from 'src/entities/user.entity';
+import { getRepository } from 'typeorm';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -139,8 +141,17 @@ export class AuthController {
 	@Get('profile')
 	@UseGuards(RolesGuard([Role.USER]))
 	@ApiAuth.getProfile()
-	getProfile(@User() user: ReqUser) {
-		return user || 'no user';
+	async getProfile(@User() user: ReqUser) {
+		if (user) {
+			try {
+				const userProfile = await this.userService.getUserBystId(user.st_id);
+				return userProfile;
+			} catch (error) {
+			  return 'Error fetching user profile';
+			}
+		  } else {
+			return 'No user';
+		  }
 	}
 
 	@Get('temp-login')
