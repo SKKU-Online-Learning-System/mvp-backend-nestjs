@@ -17,7 +17,7 @@ export class SearchCoursesDto {
 	@IsOptional()
 	@IsInt()
 	@Type(() => Number)
-	readonly perPage?: number = 24;
+	readonly perPage?: number = 50;
 
 	@IsOptional()
 	@IsString()
