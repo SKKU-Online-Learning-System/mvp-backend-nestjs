@@ -321,17 +321,15 @@ export class CourseService {
 		return status(200);
 	}
 
-	//Jaeung Lee
 	async getRecentlyUploadedCourses(): Promise<CourseEntity[]> {
-		const dateOneMonthAgo = new Date();
-		dateOneMonthAgo.setMonth(dateOneMonthAgo.getMonth() - 1);
-		
 		const courses = await this.dataSource
-  			.getRepository(CourseEntity)
-  			.createQueryBuilder('course')
-  			.where('course.createdAt >= :dateOneMonthAgo', { dateOneMonthAgo })
-  			.andWhere('course.operate = :operateValue', { operateValue: true })
-  			.getMany();		
+		  .getRepository(CourseEntity)
+		  .createQueryBuilder('course')
+		  .where('course.operate = :operateValue', { operateValue: true })
+		  .orderBy('course.createdAt', 'DESC')
+		  .take(5)
+		  .getMany();
+		
 		return courses;
 	}
 	

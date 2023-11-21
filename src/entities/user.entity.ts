@@ -36,7 +36,7 @@ class User {
 	@Column({ type: 'varchar', length: 25, unique: true })
 	user_id: string;
 
-	@Column({ type: 'varchar', length: 20, default: '소프트웨어학과' })
+	@Column({ type: 'varchar', length: 20, default: '2000000000' })
 	st_id: string;
 
 	@Column({ type: 'varchar', length: 20 })
